@@ -4,6 +4,7 @@ from kino.models import Client, Film
 # Register your models here.
 class ClientAdmin(admin.ModelAdmin):
     model = Client
+    fields = ('username','city')
 
 class FilmAdmin(admin.ModelAdmin):
     model = Film
