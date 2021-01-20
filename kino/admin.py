@@ -1,15 +1,24 @@
 from django.contrib import admin
-from kino.models import Client, Film
+from django.contrib.auth.models import Group
+from kino.models import Client, Film, FilmGallery
 
-# Register your models here.
+
+admin.site.unregister(Group)
+
 class ClientAdmin(admin.ModelAdmin):
     model = Client
     fields = ('username','city')
 
+
+class FilmGalleryInLine(admin.TabularInline):
+    model = FilmGallery
+    extra = 0
+    
 class FilmAdmin(admin.ModelAdmin):
-    model = Film
+    inlines = [FilmGalleryInLine]
 
+    class Meta:
+        model = Film
 
-
-admin.site.register(Client)
-admin.site.register(Film)
+admin.site.register(Client, ClientAdmin)
+admin.site.register(Film, FilmAdmin)
