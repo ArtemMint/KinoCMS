@@ -1,4 +1,6 @@
 from django.db import models
+from django.template.defaultfilters import truncatechars
+
 from django.contrib.auth.models import User
 
 
@@ -18,8 +20,8 @@ class Client(models.Model):
     address = models.CharField(max_length=50, blank=True)
     num_card = models.CharField(max_length=16, blank=True)
     birth_date = models.DateField(null=True, blank=True)
-    gender = models.CharField(max_length=1,choices=GENDER_CHOICES, blank=True)
-    language = models.CharField(max_length=2,choices=LANGUAGE_CHOICES, blank=True)
+    gender = models.CharField(max_length=1, choices=GENDER_CHOICES, blank=True)
+    language = models.CharField(max_length=2, choices=LANGUAGE_CHOICES, blank=True)
     phone = models.CharField(max_length=15, blank=True)
     city = models.CharField(max_length=50, blank=True)
 
@@ -48,6 +50,9 @@ class Film(models.Model):
     class Meta:
         verbose_name = ("Фильм")
         verbose_name_plural = ("Фильмы")
+
+    def short_descr(self):
+        return truncatechars(self.description, 100)
 
     def __str__(self):
         return self.name

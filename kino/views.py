@@ -3,7 +3,7 @@ from django.contrib.auth import login, logout, authenticate
 from django.shortcuts import render, redirect
 
 from .forms import SignInForm, SignUpForm #UserForm
-from kino.models import Film
+from kino.models import Film, Cinema
 
 from django.contrib.auth.models import User
 from django.views.generic import ListView, DetailView
@@ -63,3 +63,19 @@ def logout_view(request):
     logout(request)
     return render(request, 
                 'register/logout.html')
+
+
+def admin_view(request):
+    return render(request, 'admin_panel/admin.html')
+
+class AdminFilmsView(ListView):
+    model = Film
+    template_name = 'admin_panel/films.html'
+
+class AdminCinemasView(ListView):
+    model = Cinema
+    template_name = 'admin_panel/cinemas.html'
+
+
+def dashboard_view(request):
+    return render(request, 'admin_panel/dashboard.html')
