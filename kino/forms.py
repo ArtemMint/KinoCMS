@@ -24,7 +24,16 @@ class FilmForm(forms.ModelForm):
             'preview': forms.FileInput(attrs={'class':'form-control'}),
         }
 
-
+class CinemaForm(forms.ModelForm):
+    preview = forms.ImageField()
+    class Meta:
+        model = Cinema
+        fields = ('name', 'description', 'preview')
+        widgets = {
+            'name': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Name of the Cinema'}),
+            'description': forms.Textarea(attrs={'class':'form-control'}),
+            'preview': forms.FileInput(attrs={'class':'form-control'}),
+        }
 
 
 

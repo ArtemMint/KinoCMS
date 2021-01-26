@@ -3,8 +3,8 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 from kino.views import HomeView, sign_in_view, sign_up_view, logout_view
-from kino.views import admin_view, AdminFilmsView, AdminFilmDetailView, AdminFilmAddView, AdminCinemasView, AdminFilmUpdateView, AdminFilmDeleteView
-
+from kino.views import admin_view, AdminFilmsView, AdminFilmDetailView, AdminFilmAddView, AdminFilmUpdateView, AdminFilmDeleteView
+from kino.views import AdminCinemasView, AdminCinemaDetailView, AdminCinemaAddView, AdminCinemaUpdateView, AdminCinemaDeleteView
 
 urlpatterns = [
     path('', HomeView.as_view(), name='home'),
@@ -25,6 +25,10 @@ urlpatterns = [
     
     #CINEMA
     path('admin/cinemas/', AdminCinemasView.as_view(), name='admin_cinemas'),
-
+    path('admin/cinemas/<int:pk>', AdminCinemaDetailView.as_view(), name='admin_cinema_detail'),
+    path('admin/cinemas/edit/<int:pk>', AdminCinemaUpdateView.as_view(), name='admin_update_cinema'),
+    path('admin/cinemas/<int:pk>/delete', AdminCinemaDeleteView.as_view(), name='admin_delete_cinema'),
+    path('admin/new_cinemas/', AdminCinemaAddView.as_view(), name='admin_add_cinema'),
+    
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

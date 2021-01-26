@@ -107,6 +107,9 @@ class Cinema(models.Model):
     def __str__(self):
         return self.name
 
+    def get_absolute_url(self):
+        return reverse("admin_cinemas")
+
 def upload_cinema_gallery(instance, filename):
     return f"cinema/{instance.cinema.name}/gallery_of_cinema/{filename}"
 

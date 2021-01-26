@@ -3,8 +3,9 @@ from django.contrib.auth import login, logout, authenticate
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 
-from .forms import FilmForm, SignInForm, SignUpForm #UserForm
-from kino.models import Film, FilmGallery,Cinema
+from kino.models import Film, FilmGallery, Cinema, CinemaGallery
+
+from .forms import FilmForm, CinemaForm, SignInForm, SignUpForm #UserForm
 
 from django.contrib.auth.models import User
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
@@ -70,6 +71,7 @@ def logout_view(request):
 def admin_view(request):
     return render(request, 'admin_panel/admin.html')
 
+#Film views
 class AdminFilmsView(ListView):
     model = Film
     template_name = 'admin_panel/films.html'
@@ -99,10 +101,39 @@ class AdminFilmDeleteView(DeleteView):
     model = Film
     template_name = 'admin_panel/film_delete.html'
     success_url = reverse_lazy('admin_films')
-    
+#-----
+
+#Cinema views
 class AdminCinemasView(ListView):
     model = Cinema
     template_name = 'admin_panel/cinemas.html'
+
+class AdminCinemaDetailView(DetailView):
+    model = Cinema
+    template_name = 'admin_panel/cinema_detail.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(AdminCinemaDetailView, self).get_context_data(**kwargs)
+        context['gallery_list'] = CinemaGallery.objects.filter()
+        # And so on for more models
+        return context
+
+class AdminCinemaAddView(CreateView):
+    model = Cinema
+    form_class = CinemaForm
+    template_name = 'admin_panel/cinema_add.html'
+
+class AdminCinemaUpdateView(UpdateView):
+    model = Cinema
+    form_class = CinemaForm
+    template_name = 'admin_panel/cinema_update.html'
+
+class AdminCinemaDeleteView(DeleteView):
+    model = Cinema
+    template_name = 'admin_panel/cinema_delete.html'
+    success_url = reverse_lazy('admin_cinemas')
+
+#-----
 
 
 def dashboard_view(request):
