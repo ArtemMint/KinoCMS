@@ -1,0 +1,48 @@
+.login-form {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* Full height */
+  height: 100%;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-color: rgb(255, 255, 255);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.border-form {
+  border-radius: 10px;
+  padding: 2%;
+  background-color: rgba(255, 235, 51, 0.404);
+  box-shadow: 2px 7px 15px #888888;
+}
+
+.field {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.help_text {
+  color: rgb(95, 93, 93);
+}
+
+.btn {
+    background-color: #ff0000; /* Green */
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+.btn:hover {
+  background-color: rgb(43, 199, 43);
+  box-shadow: 5px 10px 15px #888888;
+}

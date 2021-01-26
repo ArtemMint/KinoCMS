@@ -1,9 +1,9 @@
 {% extends 'admin_panel/base.html' %}
 {% load static %}
 
-{% block title %}AdminLTE | Films{% endblock title %}
+{% block title %}AdminLTE | List Of Films{% endblock title %}
 
-{% block content_header %}Films{% endblock content_header %}
+{% block content_header %}List of films{% endblock content_header %}
 
 {% block breadcrumb %}
     <li class="breadcrumb-item"><a href="{% url 'admin_home' %}">Home</a></li>
@@ -35,22 +35,25 @@
             <th>Name</th>
             <th>Description</th>
             <th>Genre</th>
+            <th>Year</th>
             <th>Director</th>
             <th>Country</th>
-            
         </tr>
         </thead>
         <tbody>
         {% for film in object_list %}
             <tr>
                 <td style="width: 200px;"><img src="{{ film.preview.url }}" alt="{{ film.preview }}" style="width: 100px;"></td>
-                <td style="width: 150px;">{{ film.name }}</td>
+                <td style="width: 150px;">
+                    <a href="{% url 'admin_film_detail' film.pk %}">«{{ film.name }}»</a><hr>
+                    <a href="{% url 'admin_update_film' film.pk %}" class="btn btn-primary">EDIT</a>
+                </td>
                 <td style="width: 450px; height: 200px;">{{ film.description|truncatechars:140 }}</td>
-                <td >{{ film.genre }}</td>
+                <td>{{ film.genre }}</td>
+                <td>{{ film.year }}</td>
                 <td>{{ film.director }}</td>
                 <td>{{ film.country }}</td>
-                
-        </tr>
+            </tr>
         {% endfor %}
         </tbody>
         </table>
@@ -59,8 +62,8 @@
     </div>
     <!-- /.card-body -->
     <div class="card-footer clearfix">
-        <a href="javascript:void(0)" class="btn btn-sm btn-info float-left">Add new film</a>
-        <a href="javascript:void(0)" class="btn btn-sm btn-secondary float-right">Delete film</a>
+        <a href="{% url 'admin_add_film' %}" class="btn btn-sm btn-info float-left">ADD NEW FILM</a>
+        <a href="javascript:void(0)" class="btn btn-sm btn-secondary float-right">DELETE FILM</a>
     </div>
     <!-- /.card-footer -->
 </div>

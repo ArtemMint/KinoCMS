@@ -1,4 +1,7 @@
+import datetime
+
 from django.db import models
+from django.urls import reverse
 from django.template.defaultfilters import truncatechars
 
 from django.contrib.auth.models import User
@@ -35,27 +38,40 @@ class Client(models.Model):
 
 # FILM MODELS
 
+YEAR_CHOICES = [(r,r) for r in range(1900, datetime.date.today().year+1)] 
+
 def upload_film_preview(instance, filename):
     return f"films/{instance.name}/preview/{filename}"
 
+def current_year():
+    return datetime.date.today().year
+
 class Film(models.Model):
 
-    name = models.CharField(max_length=100, default='', help_text='Напишите название фильма или мультфильма.')
-    country = models.CharField(max_length=100, default='', help_text='Страна съемки..')
-    genre = models.CharField(max_length=200, default='', help_text='Жанр..')
-    director = models.CharField(max_length=65, default='', help_text='Режисер..')
-    description = models.TextField(default='', help_text='Опишите фильма или мультфильма.')
-    preview = models.ImageField(upload_to=upload_film_preview, default='', help_text='Выберите превью к фильму.')
+    name = models.CharField(max_length=100, verbose_name='Name', default='')
+    year = models.IntegerField(verbose_name='Year', choices=YEAR_CHOICES, default=current_year)
+    country = models.CharField(max_length=100, default='', help_text='Country..')
+    director = models.CharField(max_length=65, default='', help_text='Director..')
+    producer = models.CharField(max_length=65, default='', help_text='Producer..')
+    music = models.CharField(max_length=65, default='', help_text='Music By..')
+    scenarist = models.CharField(max_length=65, default='', help_text='Written By..')
+    genre = models.CharField(max_length=200, default='', help_text='Genre..')
+    description = models.TextField(default='', help_text='Describe the plot of the film..')
+    preview = models.ImageField(upload_to=upload_film_preview, default='')
 
     class Meta:
         verbose_name = ("Фильм")
         verbose_name_plural = ("Фильмы")
 
-    def short_descr(self):
-        return truncatechars(self.description, 100)
-
     def __str__(self):
         return self.name
+
+    # def get_absolute_url(self):
+    #     return reverse("admin_film_detail", kwargs={"pk": self.pk})
+    
+    def get_absolute_url(self):
+        return reverse("admin_films")
+    
 
 def upload_film_gallery(instance, filename):
     return f"films/{instance.film.name}/gallery/{filename}"
@@ -63,7 +79,7 @@ def upload_film_gallery(instance, filename):
 class FilmGallery(models.Model):
 
     film = models.ForeignKey(Film, default='', on_delete=models.CASCADE)
-    images = models.FileField(upload_to=upload_film_gallery)
+    image = models.FileField(upload_to=upload_film_gallery)
     
     class Meta:
         verbose_name = ("Галерея фильма")

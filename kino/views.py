@@ -1,12 +1,13 @@
 from django.http import HttpResponse
 from django.contrib.auth import login, logout, authenticate
 from django.shortcuts import render, redirect
+from django.urls import reverse_lazy
 
-from .forms import SignInForm, SignUpForm #UserForm
-from kino.models import Film, Cinema
+from .forms import FilmForm, SignInForm, SignUpForm #UserForm
+from kino.models import Film, FilmGallery,Cinema
 
 from django.contrib.auth.models import User
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
 
 class HomeView(ListView):
@@ -65,13 +66,40 @@ def logout_view(request):
                 'register/logout.html')
 
 
+# ADMIN VIEWS
 def admin_view(request):
     return render(request, 'admin_panel/admin.html')
 
 class AdminFilmsView(ListView):
     model = Film
     template_name = 'admin_panel/films.html'
+    ordering = ['-id']
 
+class AdminFilmDetailView(DetailView):
+    model = Film
+    template_name = 'admin_panel/film_detail.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(AdminFilmDetailView, self).get_context_data(**kwargs)
+        context['gallery_list'] = FilmGallery.objects.filter()
+        # And so on for more models
+        return context
+
+class AdminFilmAddView(CreateView):
+    model = Film
+    form_class = FilmForm
+    template_name = 'admin_panel/film_add.html'
+
+class AdminFilmUpdateView(UpdateView):
+    model = Film
+    form_class = FilmForm
+    template_name = 'admin_panel/film_update.html'
+
+class AdminFilmDeleteView(DeleteView):
+    model = Film
+    template_name = 'admin_panel/film_delete.html'
+    success_url = reverse_lazy('admin_films')
+    
 class AdminCinemasView(ListView):
     model = Cinema
     template_name = 'admin_panel/cinemas.html'
