@@ -8,7 +8,7 @@ from kino.models import Film, FilmGallery, Cinema, CinemaGallery
 from .forms import FilmForm, CinemaForm, SignInForm, SignUpForm #UserForm
 
 from django.contrib.auth.models import User
-from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.views.generic import View, TemplateView, ListView, DetailView, CreateView, UpdateView, DeleteView
 
 
 class HomeView(ListView):
@@ -70,6 +70,27 @@ def logout_view(request):
 # ADMIN VIEWS
 def admin_view(request):
     return render(request, 'admin_panel/admin.html')
+
+class AdminStatisticsView(TemplateView):
+    template_name = 'admin_panel/statistics.html'
+
+class AdminBannersSlidersView(TemplateView):
+    template_name = 'admin_panel/banners_sliders.html'
+
+class AdminNewsView(TemplateView):
+    template_name = 'admin_panel/news.html'
+
+class AdminSharesView(TemplateView):
+    template_name = 'admin_panel/shares.html'
+
+class AdminPagesView(TemplateView):
+    template_name = 'admin_panel/pages.html'
+
+class AdminUsersView(TemplateView):
+    template_name = 'admin_panel/users.html'
+
+class AdminMailingView(TemplateView):
+    template_name = 'admin_panel/mailing.html'
 
 #Film views
 class AdminFilmsView(ListView):

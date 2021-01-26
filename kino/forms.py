@@ -43,6 +43,12 @@ class CinemaForm(forms.ModelForm):
 class SignInForm(forms.Form):
     username = forms.CharField()
     password = forms.CharField(widget=forms.PasswordInput())
+    class Meta:
+        fields = ('username', 'password')
+        widgets = {
+            'username': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Name of the Cinema'}),
+            'password': forms.TextInput(attrs={'class':'form-control'}),
+        }
 
 
 class SignUpForm(UserCreationForm):
