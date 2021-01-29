@@ -8,7 +8,8 @@ from kino.views import admin_view, AdminStatisticsView, AdminBannersSlidersView,
 from kino.views import AdminFilmsView, AdminFilmDetailView, AdminFilmAddView, AdminFilmUpdateView, AdminFilmDeleteView
 #CINEMA
 from kino.views import AdminCinemasView, AdminCinemaDetailView, AdminCinemaAddView, AdminCinemaUpdateView, AdminCinemaDeleteView
-
+#NEWS
+from kino.views import AdminNewsView, AdminNewsDetailView, AdminNewsAddView, AdminNewsUpdateView, AdminNewsDeleteView
 urlpatterns = [
     path('', HomeView.as_view(), name='home'),
     # path('', home_view, name='home'),
@@ -20,7 +21,6 @@ urlpatterns = [
     path('admin/', admin_view, name='admin_home'),
     path('admin/statistics/', AdminStatisticsView.as_view(), name='admin_statistics'),
     path('admin/banners_sliders/', AdminBannersSlidersView.as_view(), name='admin_banners_sliders'),
-    path('admin/news/', AdminNewsView.as_view(), name='admin_news'),
     path('admin/shares/', AdminSharesView.as_view(), name='admin_shares'),
     path('admin/pages/', AdminPagesView.as_view(), name='admin_pages'),
     path('admin/users/', AdminUsersView.as_view(), name='admin_users'),
@@ -41,5 +41,11 @@ urlpatterns = [
     path('admin/cinemas/<int:pk>/delete', AdminCinemaDeleteView.as_view(), name='admin_delete_cinema'),
     path('admin/new_cinemas/', AdminCinemaAddView.as_view(), name='admin_add_cinema'),
     
+    #News
+    path('admin/news/', AdminNewsView.as_view(), name='admin_news'),
+    path('admin/news/<int:pk>', AdminNewsDetailView.as_view(), name='admin_news_detail'),
+    path('admin/news/edit/<int:pk>', AdminNewsUpdateView.as_view(), name='admin_update_news'),
+    path('admin/news/<int:pk>/delete', AdminNewsDeleteView.as_view(), name='admin_delete_news'),
+    path('admin/new_news/', AdminNewsAddView.as_view(), name='admin_add_news'),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

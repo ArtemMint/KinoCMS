@@ -3,9 +3,9 @@ from django.contrib.auth import login, logout, authenticate
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 
-from kino.models import Film, Cinema
+from kino.models import Film, Cinema, News
 
-from .forms import FilmForm, CinemaForm, SignInForm, SignUpForm #UserForm
+from .forms import FilmForm, CinemaForm, NewsForm, SignInForm, SignUpForm #UserForm
 
 from django.contrib.auth.models import User
 from django.views.generic import View, TemplateView, ListView, DetailView, CreateView, UpdateView, DeleteView
@@ -77,8 +77,32 @@ class AdminStatisticsView(TemplateView):
 class AdminBannersSlidersView(TemplateView):
     template_name = 'admin_panel/banners_sliders.html'
 
-class AdminNewsView(TemplateView):
-    template_name = 'admin_panel/news.html'
+
+# NEWS views
+class AdminNewsView(ListView):
+    model = News
+    template_name = 'admin_panel/news/news.html'
+
+class AdminNewsDetailView(DetailView):
+    model = News
+    template_name = 'admin_panel/news/news_detail.html'
+
+class AdminNewsAddView(CreateView):
+    model = News
+    form_class = NewsForm
+    template_name = 'admin_panel/news/news_add.html'
+
+class AdminNewsUpdateView(UpdateView):
+    model = News
+    form_class = NewsForm
+    template_name = 'admin_panel/news/news_update.html'
+
+class AdminNewsDeleteView(DeleteView):
+    model = News
+    template_name = 'admin_panel/news/news_delete.html'
+    success_url = reverse_lazy('admin_news')
+# NEWS-----
+
 
 class AdminSharesView(TemplateView):
     template_name = 'admin_panel/shares.html'
@@ -92,57 +116,60 @@ class AdminUsersView(TemplateView):
 class AdminMailingView(TemplateView):
     template_name = 'admin_panel/mailing.html'
 
-#Film views
+
+
+#FILM views
 class AdminFilmsView(ListView):
     model = Film
-    template_name = 'admin_panel/films.html'
+    template_name = 'admin_panel/film/films.html'
     ordering = ['-id']
 
 class AdminFilmDetailView(DetailView):
     model = Film
-    template_name = 'admin_panel/film_detail.html'
+    template_name = 'admin_panel/film/film_detail.html'
 
 class AdminFilmAddView(CreateView):
     model = Film
     form_class = FilmForm
-    template_name = 'admin_panel/film_add.html'
+    template_name = 'admin_panel/film/film_add.html'
 
 class AdminFilmUpdateView(UpdateView):
     model = Film
     form_class = FilmForm
-    template_name = 'admin_panel/film_update.html'
+    template_name = 'admin_panel/film/film_update.html'
 
 class AdminFilmDeleteView(DeleteView):
     model = Film
-    template_name = 'admin_panel/film_delete.html'
+    template_name = 'admin_panel/film/film_delete.html'
     success_url = reverse_lazy('admin_films')
 #-----
 
-#Cinema views
+#CINEMA views
 class AdminCinemasView(ListView):
     model = Cinema
-    template_name = 'admin_panel/cinemas.html'
+    template_name = 'admin_panel/cinema/cinemas.html'
 
 class AdminCinemaDetailView(DetailView):
     model = Cinema
-    template_name = 'admin_panel/cinema_detail.html'
+    template_name = 'admin_panel/cinema/cinema_detail.html'
 
 class AdminCinemaAddView(CreateView):
     model = Cinema
     form_class = CinemaForm
-    template_name = 'admin_panel/cinema_add.html'
+    template_name = 'admin_panel/cinema/cinema_add.html'
 
 class AdminCinemaUpdateView(UpdateView):
     model = Cinema
     form_class = CinemaForm
-    template_name = 'admin_panel/cinema_update.html'
+    template_name = 'admin_panel/cinema/cinema_update.html'
 
 class AdminCinemaDeleteView(DeleteView):
     model = Cinema
-    template_name = 'admin_panel/cinema_delete.html'
+    template_name = 'admin_panel/cinema/cinema_delete.html'
     success_url = reverse_lazy('admin_cinemas')
-
 #-----
+
+
 
 
 def dashboard_view(request):
