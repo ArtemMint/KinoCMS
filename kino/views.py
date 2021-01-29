@@ -3,7 +3,7 @@ from django.contrib.auth import login, logout, authenticate
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 
-from kino.models import Film, FilmGallery, Cinema, CinemaGallery
+from kino.models import Film, Cinema
 
 from .forms import FilmForm, CinemaForm, SignInForm, SignUpForm #UserForm
 
@@ -102,12 +102,6 @@ class AdminFilmDetailView(DetailView):
     model = Film
     template_name = 'admin_panel/film_detail.html'
 
-    def get_context_data(self, **kwargs):
-        context = super(AdminFilmDetailView, self).get_context_data(**kwargs)
-        context['gallery_list'] = FilmGallery.objects.filter()
-        # And so on for more models
-        return context
-
 class AdminFilmAddView(CreateView):
     model = Film
     form_class = FilmForm
@@ -132,12 +126,6 @@ class AdminCinemasView(ListView):
 class AdminCinemaDetailView(DetailView):
     model = Cinema
     template_name = 'admin_panel/cinema_detail.html'
-
-    def get_context_data(self, **kwargs):
-        context = super(AdminCinemaDetailView, self).get_context_data(**kwargs)
-        context['gallery_list'] = CinemaGallery.objects.filter()
-        # And so on for more models
-        return context
 
 class AdminCinemaAddView(CreateView):
     model = Cinema

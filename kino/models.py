@@ -38,6 +38,9 @@ YEAR_CHOICES = [(r,r) for r in range(1900, datetime.date.today().year+1)]
 def upload_film_preview(instance, filename):
     return f"films/{instance.name}/preview/{filename}"
 
+def upload_film_gallery(instance, filename):
+    return f"films/{instance.name}/gallery/{filename}"
+
 def current_year():
     return datetime.date.today().year
 
@@ -54,39 +57,36 @@ class Film(models.Model):
     description = models.TextField(default='')
     trailer = models.URLField(default='')
     preview = models.ImageField(upload_to=upload_film_preview, default='')
+    image1 = models.ImageField(upload_to=upload_film_gallery, default='')
+    image2 = models.ImageField(upload_to=upload_film_gallery, default='')
+    image3 = models.ImageField(upload_to=upload_film_gallery, default='')
+    image4 = models.ImageField(upload_to=upload_film_gallery, default='')
+    image5 = models.ImageField(upload_to=upload_film_gallery, default='')
 
     def __str__(self):
         return self.name
-
-    # def get_absolute_url(self):
-    #     return reverse("admin_film_detail", kwargs={"pk": self.pk})
     
     def get_absolute_url(self):
         return reverse("admin_films")
-    
-
-def upload_film_gallery(instance, filename):
-    return f"films/{instance.film.name}/gallery/{filename}"
-
-class FilmGallery(models.Model):
-
-    film = models.ForeignKey(Film, default='', on_delete=models.CASCADE)
-    image = models.FileField(upload_to=upload_film_gallery)
-    
-    def __str__(self):
-        return self.film.name
-
 
 # CINEMA MODELS
 
 def upload_cinema_preview(instance, filename):
     return f"cinema/{instance.name}/preview/{filename}"
 
+def upload_cinema_gallery(instance, filename):
+    return f"cinema/{instance.name}/gallery_of_cinema/{filename}"
+
 class Cinema(models.Model):
 
     name = models.CharField(max_length=50, default='')
     description = models.TextField(default='')
     preview = models.ImageField(upload_to=upload_cinema_preview, default='')
+    image1 = models.FileField(upload_to=upload_cinema_gallery, default='')
+    image2 = models.FileField(upload_to=upload_cinema_gallery, default='')
+    image3 = models.FileField(upload_to=upload_cinema_gallery, default='')
+    image4 = models.FileField(upload_to=upload_cinema_gallery, default='')
+    image5 = models.FileField(upload_to=upload_cinema_gallery, default='')
 
     def __str__(self):
         return self.name
@@ -94,19 +94,11 @@ class Cinema(models.Model):
     def get_absolute_url(self):
         return reverse("admin_cinemas")
 
-def upload_cinema_gallery(instance, filename):
-    return f"cinema/{instance.cinema.name}/gallery_of_cinema/{filename}"
-
-class CinemaGallery(models.Model):
-    
-    cinema = models.ForeignKey(Cinema, default='', on_delete=models.CASCADE)
-    image = models.FileField(upload_to=upload_cinema_gallery)
-    
-    def __str__(self):
-        return self.cinema.name
-
 def upload_cinemahall_preview(instance, filename):
     return f"cinema/{instance.cinema.name}/halls/{instance.name}/preview/{filename}"
+
+def upload_cinemahall_gallery(instance, filename):
+    return f"cinema/{instance.cinema.name}/halls/{instance.name}/gallery/{filename}"
 
 class CinemaHall(models.Model):
 
@@ -114,55 +106,50 @@ class CinemaHall(models.Model):
     name = models.CharField(max_length=50, default='')
     description = models.TextField(default='')
     preview = models.ImageField(upload_to=upload_cinemahall_preview, default='')
+    image1 = models.FileField(upload_to=upload_cinemahall_gallery, default='')
+    image2 = models.FileField(upload_to=upload_cinemahall_gallery, default='')
+    image3 = models.FileField(upload_to=upload_cinemahall_gallery, default='')
+    image4 = models.FileField(upload_to=upload_cinemahall_gallery, default='')
+    image5 = models.FileField(upload_to=upload_cinemahall_gallery, default='')
 
     def __str__(self):
         return f'{self.cinema.name} | {self.name}'
 
-def upload_cinemahall_gallery(instance, filename):
-    return f"cinema/{instance.cinema.name}/halls/{instance.hall.name}/gallery/{filename}"
-
-class CinemaHallGallery(models.Model):
-    
-    cinema = models.ForeignKey(Cinema, default='', on_delete=models.CASCADE)
-    hall = models.ForeignKey(CinemaHall, default='', on_delete=models.CASCADE)
-    image = models.FileField(upload_to=upload_cinemahall_gallery)
-    
-
-
-    def __str__(self):
-        return self.hall.name
 
 #   NEWS MODEL
 def upload_news_preview(instance, filename):
     return f"news/{instance.name}/preview/{filename}"
 
+def upload_news_gallery(instance, filename):
+    return f"news/{instance.name}/gallery_of_news/{filename}"
+
 class News(models.Model):
 
     name = models.CharField(max_length=50, default='')
-    pub_date = models.DateField()
+    pub_date = models.DateField(null=True)
     description = models.TextField(default='')
-    preview = models.ImageField(upload_to=upload_news_preview, default='')
     status = models.BooleanField(default=False)
+    preview = models.ImageField(upload_to=upload_news_preview, default='')
+    image1 = models.FileField(upload_to=upload_cinemahall_gallery, default='')
+    image2 = models.FileField(upload_to=upload_cinemahall_gallery, default='')
+    image3 = models.FileField(upload_to=upload_cinemahall_gallery, default='')
+    image4 = models.FileField(upload_to=upload_cinemahall_gallery, default='')
+    image5 = models.FileField(upload_to=upload_cinemahall_gallery, default='')
 
     def __str__(self):
         return self.name
 
-def upload_news_gallery(instance, filename):
-    return f"news/{instance.news.name}/gallery_of_news/{filename}"
-
-class NewsGallery(models.Model):
-    news = models.ForeignKey(News, on_delete=models.CASCADE)
-    image = models.FileField(upload_to=upload_cinemahall_gallery)
-
-    def __str__(self):
-        return self.news.name
 
 #   SHARES MODEL
+def upload_shares_preview(instance, filename):
+    return f"shares/{instance.name}/preview/{filename}"
+
 class Shares(models.Model):
 
-    shares_name = models.CharField(max_length=50, default='')
+    name = models.CharField(max_length=50, default='')
     description = models.TextField(default='')
-    preview = models.ImageField(upload_to='shares_and_disconts', default='')
+    active_date = models.DateField(null=True)
+    preview = models.ImageField(upload_to='upload_shares_preview', default='')
 
     def __str__(self):
-        return self.shares_name
+        return self.name

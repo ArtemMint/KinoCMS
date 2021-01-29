@@ -10,29 +10,39 @@ class FilmForm(forms.ModelForm):
     preview = forms.ImageField()
     class Meta:
         model = Film
-        fields = ('name', 'year', 'country', 'director', 'producer', 'music', 'scenarist', 'genre', 'description', 'preview')
+        fields = ('name', 'year', 'country', 'director', 'producer', 'music', 'scenarist', 'genre', 'description', 'preview', 'image1', 'image2', 'image3', 'image4', 'image5')
         widgets = {
             'name': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Name of the film'}),
-            'year': forms.Select(attrs={'class':'form-control'}),
-            'country': forms.TextInput(attrs={'class':'form-control'}),
-            'director': forms.TextInput(attrs={'class':'form-control'}),
-            'producer': forms.TextInput(attrs={'class':'form-control'}),
-            'music': forms.TextInput(attrs={'class':'form-control'}),
-            'scenarist': forms.TextInput(attrs={'class':'form-control'}),
-            'genre': forms.TextInput(attrs={'class':'form-control'}),
-            'description': forms.Textarea(attrs={'class':'form-control'}),
-            'preview': forms.FileInput(attrs={'class':'form-control'}),
+            'year': forms.Select(attrs={'class':'form-control', 'placeholder':'Year of the film'}),
+            'country': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Country of the film'}),
+            'director': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Director of the film'}),
+            'producer': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Producer of the film'}),
+            'music': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Music By'}),
+            'scenarist': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Written By'}),
+            'genre': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Genre of the film'}),
+            'description': forms.Textarea(attrs={'class':'form-control', 'placeholder':'Description of the film'}),
+            'preview': forms.FileInput(attrs={'class':'form-control', 'placeholder':'Preview of the film'}),
+            'image1': forms.FileInput(attrs={'class':'form-control', 'placeholder':'Image of the film'}),
+            'image2': forms.FileInput(attrs={'class':'form-control', 'placeholder':'Image of the film'}),
+            'image3': forms.FileInput(attrs={'class':'form-control', 'placeholder':'Image of the film'}),
+            'image4': forms.FileInput(attrs={'class':'form-control', 'placeholder':'Image of the film'}),
+            'image5': forms.FileInput(attrs={'class':'form-control', 'placeholder':'Image of the film'}),
         }
 
 class CinemaForm(forms.ModelForm):
     preview = forms.ImageField()
     class Meta:
         model = Cinema
-        fields = ('name', 'description', 'preview')
+        fields = ('name', 'description', 'preview', 'image1', 'image2', 'image3', 'image4', 'image5')
         widgets = {
-            'name': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Name of the Cinema'}),
-            'description': forms.Textarea(attrs={'class':'form-control'}),
-            'preview': forms.FileInput(attrs={'class':'form-control'}),
+            'name': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Name of the cinema'}),
+            'description': forms.Textarea(attrs={'class':'form-control', 'placeholder':'Descripton of the cinema'}),
+            'preview': forms.FileInput(attrs={'class':'form-control', 'placeholder':'Preview of the cinema'}),
+            'image1': forms.FileInput(attrs={'class':'form-control'}),
+            'image2': forms.FileInput(attrs={'class':'form-control'}),
+            'image3': forms.FileInput(attrs={'class':'form-control'}),
+            'image4': forms.FileInput(attrs={'class':'form-control'}),
+            'image5': forms.FileInput(attrs={'class':'form-control'}),
         }
 
 
