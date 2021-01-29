@@ -5,7 +5,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta property="og:url" content="{% block url %}{% endblock url %}">
   <title>{% block title %}{% endblock title %}</title>
+  <meta name="description" property="og:description" content="{% block discription %}{% endblock discription %}">
+  <meta name="keywords" content="{% block keywords %}{% endblock keywords %}">
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -283,7 +286,7 @@
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
-      {% block content %}{% endblock content %}
+        {% block content %}{% endblock content %}
       </div><!-- /.container-fluid -->
     </section>
     <!-- /.content -->
