@@ -3,9 +3,9 @@ from django.contrib.auth import login, logout, authenticate
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 
-from kino.models import Film, Cinema, News
+from kino.models import Film, Cinema, News, Shares
 
-from .forms import FilmForm, CinemaForm, NewsForm, SignInForm, SignUpForm #UserForm
+from .forms import FilmForm, CinemaForm, NewsForm, SharesForm, SignInForm, SignUpForm #UserForm
 
 from django.contrib.auth.models import User
 from django.views.generic import View, TemplateView, ListView, DetailView, CreateView, UpdateView, DeleteView
@@ -82,6 +82,7 @@ class AdminBannersSlidersView(TemplateView):
 class AdminNewsView(ListView):
     model = News
     template_name = 'admin_panel/news/news.html'
+    ordering = ['-id']
 
 class AdminNewsDetailView(DetailView):
     model = News
@@ -103,9 +104,32 @@ class AdminNewsDeleteView(DeleteView):
     success_url = reverse_lazy('admin_news')
 # NEWS-----
 
+# Shares views
+class AdminSharesView(ListView):
+    model = Shares
+    template_name = 'admin_panel/shares/shares.html'
+    ordering = ['-id']
 
-class AdminSharesView(TemplateView):
-    template_name = 'admin_panel/shares.html'
+class AdminSharesDetailView(DetailView):
+    model = Shares
+    template_name = 'admin_panel/shares/shares_detail.html'
+
+class AdminSharesAddView(CreateView):
+    model = Shares
+    form_class = SharesForm
+    template_name = 'admin_panel/shares/shares_add.html'
+
+class AdminSharesUpdateView(UpdateView):
+    model = Shares
+    form_class = SharesForm
+    template_name = 'admin_panel/shares/shares_update.html'
+
+class AdminSharesDeleteView(DeleteView):
+    model = Shares
+    template_name = 'admin_panel/shares/shares_delete.html'
+    success_url = reverse_lazy('admin_shares')
+# Shares -----
+
 
 class AdminPagesView(TemplateView):
     template_name = 'admin_panel/pages.html'

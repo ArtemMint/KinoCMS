@@ -199,64 +199,106 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          <li class="nav-item menu-open">
-            <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="{% url 'admin_statistics' %}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="fas fa-globe nav-icon"></i>
                   <p>Statistics</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="{% url 'admin_banners_sliders' %}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="fas fa-sliders-h nav-icon"></i>
                   <p>Banners/Sliders</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="{% url 'admin_films' %}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="fas fa-film nav-icon"></i>
                   <p>Films</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="{% url 'admin_cinemas' %}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="fas fa-star nav-icon"></i>
                   <p>Cinemas</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="{% url 'admin_news' %}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="fas fa-newspaper nav-icon"></i>
                   <p>News</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="{% url 'admin_shares' %}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="fas fa-percent nav-icon"></i>
                   <p>Shares</p>
                 </a>
               </li>
-              <li class="nav-item">
-                <a href="{% url 'admin_pages' %}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Pages</p>
+              <li class="nav-item menu-is-opening">
+                <a href="#" class="nav-link">
+                  <i class="nav-icon fas fa-laptop"></i>
+                  <p>
+                    Pages<i class="right fas fa-angle-left"></i>
+                  </p>
                 </a>
+                <ul class="nav nav-treeview" style="display: none;">
+                  <li class="nav-item">
+                    <a href="#" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Home</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="#" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>About</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="#" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Cafe-Bar</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="#" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Vip-hall</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="#" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>ADS</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="#" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Children room</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="#" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Contacts</p>
+                    </a>
+                  </li>
+                </ul>
               </li>
               <li class="nav-item">
                 <a href="{% url 'admin_users' %}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="fas fa-user-edit nav-icon"></i>
                   <p>Users</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="{% url 'admin_mailing' %}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="fas fa-paper-plane nav-icon"></i>
                   <p>Mailing</p>
                 </a>
               </li>
-            </ul>
-          </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

@@ -10,6 +10,12 @@ from kino.views import AdminFilmsView, AdminFilmDetailView, AdminFilmAddView, Ad
 from kino.views import AdminCinemasView, AdminCinemaDetailView, AdminCinemaAddView, AdminCinemaUpdateView, AdminCinemaDeleteView
 #NEWS
 from kino.views import AdminNewsView, AdminNewsDetailView, AdminNewsAddView, AdminNewsUpdateView, AdminNewsDeleteView
+#Shares
+from kino.views import AdminSharesView, AdminSharesDetailView, AdminSharesAddView, AdminSharesUpdateView, AdminSharesDeleteView
+
+
+
+
 urlpatterns = [
     path('', HomeView.as_view(), name='home'),
     # path('', home_view, name='home'),
@@ -47,5 +53,12 @@ urlpatterns = [
     path('admin/news/edit/<int:pk>', AdminNewsUpdateView.as_view(), name='admin_update_news'),
     path('admin/news/<int:pk>/delete', AdminNewsDeleteView.as_view(), name='admin_delete_news'),
     path('admin/new_news/', AdminNewsAddView.as_view(), name='admin_add_news'),
+
+    #Shares
+    path('admin/shares/', AdminSharesView.as_view(), name='admin_shares'),
+    path('admin/shares/<int:pk>', AdminSharesDetailView.as_view(), name='admin_shares_detail'),
+    path('admin/shares/edit/<int:pk>', AdminSharesUpdateView.as_view(), name='admin_update_shares'),
+    path('admin/shares/<int:pk>/delete', AdminSharesDeleteView.as_view(), name='admin_delete_shares'),
+    path('admin/new_shares/', AdminSharesAddView.as_view(), name='admin_add_shares'),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

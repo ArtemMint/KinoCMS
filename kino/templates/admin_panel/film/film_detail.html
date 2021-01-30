@@ -51,9 +51,7 @@
                     <dd>{{ film.scenarist }}</dd>
                     <dt>Country:</dt>
                     <dd>{{ film.country }}</dd>
-                    {% for gallery in gallery_list %}
-                        <img src="{{ gallery.image.url }}" alt="{{ gallery.image }}" style="width: 100px;">
-                    {% endfor %}
+                    <img src="{{ film.image1.url }}" alt="{{ gallery.image1 }}" style="width: 100px;">
                 </dl>
             </div>
             <!-- /.box-body -->

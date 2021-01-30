@@ -145,11 +145,11 @@ class News(models.Model):
     description = models.TextField(blank=True)
     status = models.BooleanField(default=False)
     preview = models.ImageField(upload_to=upload_news_preview, null=True)
-    image1 = models.FileField(upload_to=upload_news_gallery, null=True)
-    image2 = models.FileField(upload_to=upload_news_gallery, null=True)
-    image3 = models.FileField(upload_to=upload_news_gallery, null=True)
-    image4 = models.FileField(upload_to=upload_news_gallery, null=True)
-    image5 = models.FileField(upload_to=upload_news_gallery, null=True)
+    image1 = models.ImageField(upload_to=upload_news_gallery, blank=True, null=True)
+    image2 = models.ImageField(upload_to=upload_news_gallery, blank=True, null=True)
+    image3 = models.ImageField(upload_to=upload_news_gallery, blank=True, null=True)
+    image4 = models.ImageField(upload_to=upload_news_gallery, blank=True, null=True)
+    image5 = models.ImageField(upload_to=upload_news_gallery, blank=True, null=True)
     video = models.URLField(blank=True)
     seo_title = models.CharField(max_length=50, blank=True)
     seo_keywords = models.CharField(max_length=100, blank=True)
@@ -166,24 +166,28 @@ class News(models.Model):
 def upload_shares_preview(instance, filename):
     return f"shares/{instance.name}/preview/{filename}"
 
+def upload_shares_gallery(instance, filename):
+    return f"shares/{instance.name}/gallery_of_shares/{filename}"
+
 class Shares(models.Model):
 
     name = models.CharField(max_length=50, default='')
     pub_date = models.DateField(default=timezone.now)
     description = models.TextField(blank=True)
     status = models.BooleanField(default=False)
-    preview = models.ImageField(upload_to=upload_cinemahall_preview, blank=True)
-    image1 = models.FileField(upload_to=upload_cinemahall_gallery, blank=True)
-    image2 = models.FileField(upload_to=upload_cinemahall_gallery, blank=True)
-    image3 = models.FileField(upload_to=upload_cinemahall_gallery, blank=True)
-    image4 = models.FileField(upload_to=upload_cinemahall_gallery, blank=True)
-    image5 = models.FileField(upload_to=upload_cinemahall_gallery, blank=True)
+    preview = models.ImageField(upload_to=upload_shares_preview)
+    image1 = models.ImageField(upload_to=upload_shares_gallery, blank=True, null=True)
+    image2 = models.ImageField(upload_to=upload_shares_gallery, blank=True, null=True)
+    image3 = models.ImageField(upload_to=upload_shares_gallery, blank=True, null=True)
+    image4 = models.ImageField(upload_to=upload_shares_gallery, blank=True, null=True)
+    image5 = models.ImageField(upload_to=upload_shares_gallery, blank=True, null=True)
     video = models.URLField(blank=True)
     seo_title = models.CharField(max_length=50, blank=True)
     seo_keywords = models.CharField(max_length=100, blank=True)
     seo_description = models.CharField(max_length=100, blank=True)
     
-    
-
     def __str__(self):
         return self.name
+
+    def get_absolute_url(self):
+        return reverse("admin_shares")
