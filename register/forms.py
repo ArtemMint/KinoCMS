@@ -15,8 +15,8 @@ class EditProfileForm(UserChangeForm):
 
 
     class Meta:
-        model = User
-        fields = ('username', 'password', 'email', 'first_name', 'last_name')
+        model = Client
+        fields = ('city',)
 
 class ClientForm(UserCreationForm):
 

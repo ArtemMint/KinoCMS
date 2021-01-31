@@ -20,14 +20,13 @@ class Client(models.Model):
     address = models.CharField(max_length=50, blank=True)
     num_card = models.CharField(max_length=16, blank=True)
     birth_date = models.DateField(null=True, blank=True)
-    reg_date = models.DateField(default=timezone.now)
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES, blank=True)
     language = models.CharField(max_length=2, choices=LANGUAGE_CHOICES, blank=True)
     phone = models.CharField(max_length=10, blank=True)
     city = models.CharField(max_length=50, blank=True)
 
     def __str__(self):
-        return self.user
+        return f'{self.user.username}'
 
     def get_absolute_url(self):
         return reverse("admin_users")

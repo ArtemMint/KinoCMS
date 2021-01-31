@@ -1,13 +1,15 @@
 from django.http import HttpResponse
 from django.contrib.auth import login, logout, authenticate
 from django.shortcuts import render, redirect
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
+
+from django.contrib.auth.forms import UserChangeForm
 
 from kino.models import Film, Cinema, News, Shares
 from register.models import Client
 
 from kino.forms import FilmForm, CinemaForm, NewsForm, SharesForm
-from register.forms import ClientForm
+from register.forms import EditProfileForm
 
 from django.contrib.auth.models import User
 from django.views.generic import View, TemplateView, ListView, DetailView, CreateView, UpdateView, DeleteView
@@ -84,13 +86,28 @@ class AdminSharesDeleteView(DeleteView):
 class AdminPagesView(TemplateView):
     template_name = 'admin_panel/pages.html'
 
+# User views
 class AdminUsersView(ListView):
     model = Client
     template_name = 'admin_panel/users/users.html'
+    ordering = ['-id']
 
-class AdminUsersDetailView(DetailView):
-    model = Client
-    template_name = 'admin_panel/shares/shares_detail.html'
+class AdminUsersUpdateView(UpdateView):
+    model = User
+    form_class = UserChangeForm
+    template_name = 'admin_panel/users/user_update.html'
+
+    def get_success_url(self):
+        return reverse('admin_users')
+
+class AdminUserDeleteView(DeleteView):
+    model = User
+    template_name = 'admin_panel/users/user_delete.html'
+    success_url = reverse_lazy('admin_users')
+
+    def get_success_url(self):
+        return reverse('admin_users')
+# User -----
 
 class AdminMailingView(TemplateView):
     template_name = 'admin_panel/mailing.html'

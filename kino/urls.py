@@ -13,7 +13,7 @@ from kino.views import AdminNewsView, AdminNewsDetailView, AdminNewsAddView, Adm
 #Shares
 from kino.views import AdminSharesView, AdminSharesDetailView, AdminSharesAddView, AdminSharesUpdateView, AdminSharesDeleteView
 #Users
-from kino.views import AdminUsersView
+from kino.views import AdminUsersView, AdminUsersUpdateView, AdminUserDeleteView
 
 
 
@@ -21,7 +21,8 @@ urlpatterns = [
     path('', HomeView.as_view(), name='home'),
 
     path('admin/users/', AdminUsersView.as_view(), name='admin_users'),
-    path('admin/users/edit/', AdminUsersView.as_view(), name='admin_update_users'),
+    path('admin/users/edit/<int:pk>', AdminUsersUpdateView.as_view(), name='admin_update_users'),
+    path('admin/users/<int:pk>/delete', AdminUserDeleteView.as_view(), name='admin_delete_user'),
 
     #Admin
     path('admin/', admin_view, name='admin_home'),

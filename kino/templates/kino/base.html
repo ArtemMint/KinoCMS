@@ -152,7 +152,7 @@
                         <a href="#" class="fa fa-youtube"></a>
                         <a href="#" class="fa fa-instagram"></a>
                     </div>
-                    {% if user.is_superuser %}
+                    {% if user %}
                         <a href="{% url 'admin_home' %}">ADMIN PANEL</a>
                     {% endif %}
                 </div>
