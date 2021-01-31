@@ -1,3 +1,4 @@
+import datetime
 from django import forms
 from django.db import models
 
@@ -8,15 +9,17 @@ from register.models import Client
 
 
 class EditProfileForm(UserChangeForm):
-    email = forms.EmailField(widget=forms.EmailInput(attrs={'class':'form-control'})),
-    first_name = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control'})),
-    last_name = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control'})),
-    username = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control'})),
-
 
     class Meta:
+
+        years_to_display = range(datetime.datetime.now().year - 100, datetime.datetime.now().year)
         model = Client
-        fields = ('city',)
+        fields = ('address','phone','city','birth_date','gender',)
+        widgets = {
+            'birth_date':forms.SelectDateWidget(years=years_to_display),
+            'gender':forms.Select(),
+        }
+
 
 class ClientForm(UserCreationForm):
 

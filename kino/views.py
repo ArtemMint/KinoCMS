@@ -91,17 +91,18 @@ class AdminUsersView(ListView):
     model = Client
     template_name = 'admin_panel/users/users.html'
     ordering = ['-id']
+    
 
 class AdminUsersUpdateView(UpdateView):
-    model = User
-    form_class = UserChangeForm
+    model = Client
+    form_class = EditProfileForm
     template_name = 'admin_panel/users/user_update.html'
 
     def get_success_url(self):
         return reverse('admin_users')
 
 class AdminUserDeleteView(DeleteView):
-    model = User
+    model = Client
     template_name = 'admin_panel/users/user_delete.html'
     success_url = reverse_lazy('admin_users')
 

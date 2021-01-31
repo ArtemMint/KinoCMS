@@ -7,8 +7,8 @@ from django.contrib.auth.models import User
 class Client(models.Model):
     
     GENDER_CHOICES = [
-        ('М', 'Male'),
-        ('F', 'Female'),
+        ('Мale', 'Male'),
+        ('Female', 'Female'),
         ]
 
     LANGUAGE_CHOICES = [
@@ -17,16 +17,16 @@ class Client(models.Model):
         ]
 
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    address = models.CharField(max_length=50, blank=True)
-    num_card = models.CharField(max_length=16, blank=True)
+    address = models.CharField(max_length=50, blank=True, null=True)
+    num_card = models.CharField(max_length=16, blank=True, null=True)
     birth_date = models.DateField(null=True, blank=True)
-    gender = models.CharField(max_length=1, choices=GENDER_CHOICES, blank=True)
-    language = models.CharField(max_length=2, choices=LANGUAGE_CHOICES, blank=True)
-    phone = models.CharField(max_length=10, blank=True)
-    city = models.CharField(max_length=50, blank=True)
+    gender = models.CharField(max_length=10, choices=GENDER_CHOICES, blank=True, null=True)
+    language = models.CharField(max_length=2, choices=LANGUAGE_CHOICES, blank=True, null=True)
+    phone = models.CharField(max_length=14, blank=True, null=True)
+    city = models.CharField(max_length=50, blank=True, null=True)
 
     def __str__(self):
-        return f'{self.user.username}'
+        return f'{self.user}'
 
     def get_absolute_url(self):
         return reverse("admin_users")

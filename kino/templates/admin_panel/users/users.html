@@ -26,7 +26,9 @@
                     <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Email</th>
                     <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Phone</th>
                     <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Full name</th>
+                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Gender</th>
                     <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">City</th>
+                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Address</th>
                     <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending">Edit/Delete</th>
                 </thead>
                 {% if object_list %}
@@ -40,7 +42,9 @@
                                 <td>{{user.user.email}}</td>
                                 <td>{{user.phone}}</td>                     
                                 <td>{{user.user.first_name}} {{user.user.last_name}}</td>
+                                <td>{{user.gender}}</td>
                                 <td>{{user.city}}</td>
+                                <td>{{user.address}}</td>
                                 <td><a href="{% url 'admin_update_users' user.pk%}">Update</a>/<a href="{% url 'admin_delete_user' user.pk%}">Delete</a></td>
                             </tr>
                         {% endfor %}
