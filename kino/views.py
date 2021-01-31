@@ -4,8 +4,10 @@ from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 
 from kino.models import Film, Cinema, News, Shares
+from register.models import Client
 
-from .forms import FilmForm, CinemaForm, NewsForm, SharesForm, SignInForm, SignUpForm #UserForm
+from kino.forms import FilmForm, CinemaForm, NewsForm, SharesForm
+from register.forms import ClientForm
 
 from django.contrib.auth.models import User
 from django.views.generic import View, TemplateView, ListView, DetailView, CreateView, UpdateView, DeleteView
@@ -14,58 +16,6 @@ from django.views.generic import View, TemplateView, ListView, DetailView, Creat
 class HomeView(ListView):
     model = Film
     template_name = 'kino/home.html'
-
-# def home_view(request):
-#     films = Film.objects.all()
-#     return render(
-#         request, 
-#         'kino/home.html',
-#         {'films':films})
-
-def sign_up_view(request):
-    if request.method == 'POST':
-        form = SignUpForm(request.POST)
-        if form.is_valid():
-            form.save()
-            username = form.cleaned_data.get('username')
-            raw_password = form.cleaned_data.get('password1')
-            user = authenticate(username=username, password=raw_password)
-            login(request, user)
-            return redirect('/home/')
-    else:
-        form = SignUpForm()
-    return render(request, 'register/sign_up.html', {'form': form})
-
-
-def sign_in_view(request):
-    error = ''
-    if request.method == 'POST':
-        form = SignInForm(request.POST)
-        if form.is_valid():
-            username = form.cleaned_data.get('username')
-            password = form.cleaned_data.get('password')
-            user = authenticate(username=str(username), password=str(password))
-            if user is not None:
-                if user.is_active:
-                    login(request, user)
-                    return redirect('/home/')
-                else:
-                    error = "The password is valid, but the account has been disabled!"
-            else:
-                error = "The username and password were incorrect."
-    else:
-        form = SignInForm()
-    return render(request, 
-                'register/sign_in.html',
-                {'form': form,
-                'error': error})
-
-
-def logout_view(request):
-    logout(request)
-    return render(request, 
-                'register/logout.html')
-
 
 # ADMIN VIEWS
 def admin_view(request):
@@ -134,8 +84,13 @@ class AdminSharesDeleteView(DeleteView):
 class AdminPagesView(TemplateView):
     template_name = 'admin_panel/pages.html'
 
-class AdminUsersView(TemplateView):
-    template_name = 'admin_panel/users.html'
+class AdminUsersView(ListView):
+    model = Client
+    template_name = 'admin_panel/users/users.html'
+
+class AdminUsersDetailView(DetailView):
+    model = Client
+    template_name = 'admin_panel/shares/shares_detail.html'
 
 class AdminMailingView(TemplateView):
     template_name = 'admin_panel/mailing.html'
@@ -192,9 +147,3 @@ class AdminCinemaDeleteView(DeleteView):
     template_name = 'admin_panel/cinema/cinema_delete.html'
     success_url = reverse_lazy('admin_cinemas')
 #-----
-
-
-
-
-def dashboard_view(request):
-    return render(request, 'admin_panel/dashboard.html')

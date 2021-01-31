@@ -38,6 +38,7 @@
                     <dt>Description:</dt>
                     <dd>{{ shares.description|linebreaks }}</dd>
                     {% for gallery in gallery_list %}
+                    {% if shares.image %}{% endif %}
                         <img src="{{ gallery.image.url }}" alt="{{ gallery.image }}" style="width: 100px;">
                     {% endfor %}
                 </dl>

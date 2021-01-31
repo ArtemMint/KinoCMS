@@ -1,0 +1,24 @@
+{% extends 'registration/base.html' %}
+
+{% block title %}
+    <title>Sign In in site</title>
+{% endblock title %}
+
+{% block header %}
+    <h1>Sign In</h1>
+{% endblock header %}
+
+{% block content %}
+    <form method="POST" class="post-form">
+        {% csrf_token %}
+        {% for field in form %}
+            <p class="field">{{field.label}}</p>
+            <p class="field">{{field}}</p>
+        {% endfor %}
+        <button class="btn btn_user_sign_in" type="submit">Sign In</button><br>
+        <a href="/">Return to Home</a>
+    </form>
+{% if error %}
+    <a>{{error}}</a>
+{% endif %}
+{% endblock %}

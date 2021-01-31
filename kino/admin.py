@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.models import Group
-from kino.models import Client, Film, Cinema, CinemaHall
+# from kino.models import Client, Film, Cinema, CinemaHall
 
 
 # admin.site.unregister(Group)
