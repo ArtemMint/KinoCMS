@@ -17,7 +17,7 @@ class FilmForm(forms.ModelForm):
     
     class Meta:
         model = Film
-        fields = ('name', 'year', 'country', 'director', 'producer', 'music', 'scenarist', 'genre', 'description', 'preview', 'image1', 'image2', 'image3', 'image4', 'image5')
+        fields = ('name', 'year', 'country', 'director', 'producer', 'music', 'scenarist', 'genre', 'description', 'preview','video', 'image1', 'image2', 'image3', 'image4', 'image5')
         widgets = {
             'name': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Name of the film'}),
             'year': forms.Select(attrs={'class':'form-control', 'placeholder':'Year of the film'}),
@@ -28,6 +28,7 @@ class FilmForm(forms.ModelForm):
             'scenarist': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Written By'}),
             'genre': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Genre of the film'}),
             'description': forms.Textarea(attrs={'class':'form-control', 'placeholder':'Description of the film'}),
+            'video': forms.URLInput(attrs={'class':'form-control', 'placeholder':'Video of the film'}),
             'preview': forms.FileInput(attrs={'class':'form-control', 'placeholder':'Image of the film'}),
             'image1': forms.FileInput(attrs={'class':'form-control', 'placeholder':'Image of the film'}),
             'image2': forms.FileInput(attrs={'class':'form-control', 'placeholder':'Image of the film'}),

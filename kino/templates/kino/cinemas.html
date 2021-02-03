@@ -13,12 +13,13 @@
                 {% for cinema in object_list %}
                 <div class="col-md-2">
                     <div class="card mb-2 shadow-sm">
-                        <img class="card-img-top" src="{{ cinema.preview.url }}" alt="{{ cinema.preview }}" style="height: 250px; width: 100%%; display: block;">
+                        <a href="{% url 'cinema_detail' cinema.pk%}"><img class="card-img-top" src="{{ cinema.preview.url }}" alt="{{ cinema.preview }}" style="height: 250px; width: 100%%; display: block;">
                         <div class="card-body">
                             <p class="card-text">{{ cinema.name }}</p>
                             <div class="d-flex justify-content-between align-items-center">
                             </div>
                         </div>
+                        </a>
                     </div>
                 </div>
                 {% endfor %}

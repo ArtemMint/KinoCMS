@@ -2,7 +2,7 @@ from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
 
-from kino.views import HomeView, PosterView, PremiereView, CinemasView, SharesView, NewsView, FilmDetailView
+from kino.views import HomeView, PosterView, PremiereView, CinemasView, CinemaDetailView, SharesView, NewsView, FilmDetailView
 from kino.views import admin_view, AdminStatisticsView, AdminBannersSlidersView, AdminNewsView, AdminSharesView, AdminPagesView, AdminUsersView, AdminMailingView
 #FILM
 from kino.views import AdminFilmsView, AdminFilmDetailView, AdminFilmAddView, AdminFilmUpdateView, AdminFilmDeleteView
@@ -23,6 +23,7 @@ urlpatterns = [
     path('premiere/', PremiereView.as_view(), name='premiere'),
     path('film/<int:pk>', FilmDetailView.as_view(), name='film_detail'),
     path('cinemas/', CinemasView.as_view(), name='cinemas'),
+    path('cinema/<int:pk>', CinemaDetailView.as_view(), name='cinema_detail'),
     path('shares/', SharesView.as_view(), name='shares'),
     path('news/', NewsView.as_view(), name='news'),
 

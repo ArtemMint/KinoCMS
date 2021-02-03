@@ -26,38 +26,33 @@
         </div>
     </div>
     <!-- /.card-header -->
-    <div class="box box-solid">
-            <div class="box-header with-border">
-                <h3 class="box-title">«{{ film.name }}»</h3>
-            </div>
-            <!-- /.box-header -->
-            <div class="box-body">
-                <img src="{{ film.preview.url }}" alt="{{ film.preview }}" style="width: 100px;"></br>
-                <hr>
-                <dl class="dl-horizontal">
-                    <dt>Description:</dt>
-                    <dd>{{ film.description }}</dd>
-                    <dt>Year</dt>
-                    <dd>{{ film.year }}</dd>
-                    <dt>Genre:</dt>
-                    <dd>{{ film.genre }}</dd>
-                    <dt>Director:</dt>
-                    <dd>{{ film.director }}</dd>
-                    <dt>Producer:</dt>
-                    <dd>{{ film.producer }}</dd>
-                    <dt>Music By:</dt>
-                    <dd>{{ film.music }}</dd>
-                    <dt>Written By:</dt>
-                    <dd>{{ film.scenarist }}</dd>
-                    <dt>Country:</dt>
-                    <dd>{{ film.country }}</dd>
-                </dl>
+        <!-- /.box-header -->
+        <div class="box-body">
+            <img src="{{ film.preview.url }}" alt="{{ film.preview }}" style="width: 100px;"></br>
+            <hr>
+            <dl class="dl-horizontal">
+                <dt>Name</dt>
+                <dd>{{ film.name }}</dd>
+                <dt>Year</dt>
+                <dd>{{ film.year }}</dd>
+                <dt>Genre:</dt>
+                <dd>{{ film.genre }}</dd>
+                <dt>Director:</dt>
+                <dd>{{ film.director }}</dd>
+                <dt>Producer:</dt>
+                <dd>{{ film.producer }}</dd>
+                <dt>Music By:</dt>
+                <dd>{{ film.music }}</dd>
+                <dt>Written By:</dt>
+                <dd>{{ film.scenarist }}</dd>
+                <dt>Country:</dt>
+                <dd>{{ film.country }}</dd>
+            </dl>
+            <div class='row'>
+                <div class='col-md-6'>
+                    <iframe width="560" height="315" src="{{ film.video }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
                 <div class="col-md-6">
-                    <div class="card">
-                    <div class="card-header">
-                        <h3 class="card-title">Gallery</h3>
-                    </div>
-                    <!-- /.card-header -->
                     <div class="card-body">
                         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                         <ol class="carousel-indicators">
@@ -67,7 +62,7 @@
                             <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
                             <li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
                         </ol>
-                        <div class="carousel-inner">
+                        <div class="carousel-inner" role="listbox" style=" width:100%; height: 500px !important;">
                             <div class="carousel-item active">
                                 <img class="d-block w-100" src="{{film.image1.url}}" alt="{{film.image1}}">
                             </div>
@@ -97,26 +92,20 @@
                             <span class="sr-only">Next</span>
                         </a>
                         </div>
+                        
                     </div>
                     <!-- /.card-body -->
-                    </div>
-                    <!-- /.card -->
                 </div>
                 <!-- /.col -->
-                </div>
-                <!-- /.row -->
-                <!-- END ACCORDION & CAROUSEL-->
-                    </div>
-                    <!-- /.box-body -->
-                </div>
-            <div class="card-body p-0">
-        
-        
-        
-        
-        
-    <!-- /.film detail -->
+            </div>
+        </div>
+        <!-- /.row -->
+        <!-- END ACCORDION & CAROUSEL-->
+        </div>
+        <!-- /.box-body -->
     </div>
+<!-- /.film detail -->
+</div>
     <!-- /.card-body -->
     <div class="card-footer clearfix">
         <a href="{% url 'admin_update_film' film.pk %}" class="btn btn-sm btn-info float-left">Edit film</a>

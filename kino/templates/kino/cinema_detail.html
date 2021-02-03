@@ -1,49 +1,30 @@
 {% extends 'kino/base.html' %}
 
 {% block title %}
-    <title>Film «{{ film.name }}»</title>
+    <title>Кинотеатр</title>
 {% endblock title %}
-
 
 {% block content %}
 <div class="card container">
-<iframe width="100%" height="600" src="{{ film.video }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<img src="{{ cinema.preview.url }}" alt="{{ cinema.preview }}" style="width: 100%%; height:500;"></br>
     <div class="card-header border-transparent">
     <!-- /.card-header -->
     <div class="row">
         <hr>
         <!-- /.box-header -->
         <div class="col-md-4">
-            <img src="{{ film.preview.url }}" alt="{{ film.preview }}" style="width: 400px;"></br>
             <dl class="dl-horizontal">
-                <dt>Year</dt>
-                <dd>{{ film.year }}</dd>
-                <dt>Genre:</dt>
-                <dd>{{ film.genre }}</dd>
-                <dt>Director:</dt>
-                <dd>{{ film.director }}</dd>
-                <dt>Producer:</dt>
-                <dd>{{ film.producer }}</dd>
-                <dt>Music By:</dt>
-                <dd>{{ film.music }}</dd>
-                <dt>Written By:</dt>
-                <dd>{{ film.scenarist }}</dd>
-                <dt>Country:</dt>
-                <dd>{{ film.country }}</dd>
+                <div class="box-header with-border">
+                    <h3 class="box-title">«{{ cinema.name }}»</h3>
+                </div>
+                <dt>Description:</dt>
+                <dd>{{ cinema.description }}</dd>
             </dl>
         </div>
         
         <div class="col-md-8">
-            <dl class="dl-horizontal">
-                <div class="box-header with-border">
-                    <h3 class="box-title">«{{ film.name }}»</h3>
-                </div>
-                <dt>Description:</dt>
-                <dd>{{ film.description }}</dd>
-            </dl>
             <!-- /.box-body -->
-            <hr>
-            <h3 style="text-align: center;">Frames</h3>
+            <h3 style="text-align: center;">Photo</h3>
             <div id="carouselExampleDark" class="carousel carousel-dark slide container" data-bs-ride="carousel">
                 <ol class="carousel-indicators">
                     <li data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active"></li>
@@ -54,19 +35,19 @@
                 </ol>
                 <div class="carousel-inner" role="listbox" style=" width:100%; height: 500px !important;">
                     <div class="carousel-item active">
-                        <img class="d-block w-100" src="{{film.image1.url}}" alt="{{film.image1}}">
+                        <img class="d-block w-100" src="{{cinema.image1.url}}" alt="{{cinema.image1}}">
                     </div>
                     <div class="carousel-item">
-                        <img class="d-block w-100" src="{{film.image2.url}}" alt="{{film.image2}}">
+                        <img class="d-block w-100" src="{{cinema.image2.url}}" alt="{{cinema.image2}}">
                     </div>
                     <div class="carousel-item">
-                        <img class="d-block w-100" src="{{film.image3.url}}" alt="{{film.image2}}">
+                        <img class="d-block w-100" src="{{cinema.image3.url}}" alt="{{cinema.image2}}">
                     </div>
                     <div class="carousel-item">
-                        <img class="d-block w-100" src="{{film.image4.url}}" alt="{{film.image2}}">
+                        <img class="d-block w-100" src="{{cinema.image4.url}}" alt="{{cinema.image2}}">
                     </div>
                     <div class="carousel-item">
-                        <img class="d-block w-100" src="{{film.image5.url}}" alt="{{film.image2}}">
+                        <img class="d-block w-100" src="{{cinema.image5.url}}" alt="{{cinema.image2}}">
                     </div>
                 </div>
                 <a class="carousel-control-prev" href="#carouselExampleDark" role="button" data-bs-slide="prev">
