@@ -6,7 +6,7 @@ from django.urls import reverse_lazy
 from django.views.generic import TemplateView
 
 from register.models import Client
-from register.forms import ClientForm, EditProfileForm
+from register.forms import CreateClientForm, EditProfileForm
 
 
 class PasswordChangeView(PasswordChangeView):
@@ -19,9 +19,14 @@ class PasswordSuccessView(TemplateView):
     template_name='registration/password_success.html'
 
 class UserRegisterView(CreateView):
-    form_class = UserCreationForm
+    form_class = CreateClientForm
     template_name = 'registration/register.html'
     success_url = reverse_lazy('login')
+
+
+def login_page(request):
+    context={}
+    return render(request,'registration/login.html', context)
 
 class UserEditView(UpdateView):
     form_class = EditProfileForm

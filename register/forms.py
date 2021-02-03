@@ -21,8 +21,8 @@ class EditProfileForm(UserChangeForm):
         }
 
 
-class ClientForm(UserCreationForm):
+class CreateClientForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ('username',)
+        fields = ('username','email','password1','password2',)

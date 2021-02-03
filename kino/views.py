@@ -19,6 +19,30 @@ class HomeView(ListView):
     model = Film
     template_name = 'kino/home.html'
 
+class PosterView(ListView):
+    model = Film
+    template_name = 'kino/poster.html'
+
+class FilmDetailView(DetailView):
+    model = Film
+    template_name = 'kino/film_detail.html'
+
+class PremiereView(ListView):
+    model = Film
+    template_name = 'kino/premiere.html'
+
+class CinemasView(ListView):
+    model = Cinema
+    template_name = 'kino/cinemas.html'
+
+class SharesView(ListView):
+    model = Shares
+    template_name = 'kino/shares.html'
+
+class NewsView(ListView):
+    model = News
+    template_name = 'kino/news.html'
+
 # ADMIN VIEWS
 def admin_view(request):
     return render(request, 'admin_panel/admin.html')

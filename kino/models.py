@@ -43,7 +43,7 @@ class Film(models.Model):
     seo_description = models.CharField(max_length=100, blank=True)
 
     def __str__(self):
-        return self.name
+        return f"{self.name}"
     
     def get_absolute_url(self):
         return reverse("admin_films")
@@ -76,7 +76,7 @@ class Cinema(models.Model):
     seo_description = models.CharField(max_length=100, blank=True)
     
     def __str__(self):
-        return self.name
+        return f"{self.name}"
 
     def get_absolute_url(self):
         return reverse("admin_cinemas")
@@ -102,6 +102,7 @@ class CinemaHall(models.Model):
     seo_title = models.CharField(max_length=50, blank=True)
     seo_keywords = models.CharField(max_length=100, blank=True)
     seo_description = models.CharField(max_length=100, blank=True)
+
     def __str__(self):
         return f'{self.cinema.name} | {self.name}'
 
@@ -113,8 +114,16 @@ def upload_news_preview(instance, filename):
 def upload_news_gallery(instance, filename):
     return f"news/{instance.name}/gallery_of_news/{filename}"
 
-class News(models.Model):
 
+class News(models.Model):
+    """Class News which using for News page
+
+    Args:
+        models (Model): [standart model]
+
+    Returns:
+        [news]: instance of News
+    """
     name = models.CharField(max_length=50, default='')
     pub_date = models.DateField(default=timezone.now)
     description = models.TextField(blank=True)
@@ -131,9 +140,19 @@ class News(models.Model):
     seo_description = models.CharField(max_length=100, blank=True)
 
     def __str__(self):
-        return self.name
+        """Func that returning name of curent news
+
+        Returns:
+            [name]: name of the news
+        """
+        return f"{self.name}"
 
     def get_absolute_url(self):
+        """Func returning url needed after succeed update instance of the news
+
+        Returns:
+            [url]: page after succeed updated
+        """
         return reverse("admin_news")
 
 
@@ -144,8 +163,8 @@ def upload_shares_preview(instance, filename):
 def upload_shares_gallery(instance, filename):
     return f"shares/{instance.name}/gallery_of_shares/{filename}"
 
-class Shares(models.Model):
 
+class Shares(models.Model):
     name = models.CharField(max_length=50, default='')
     pub_date = models.DateField(default=timezone.now)
     description = models.TextField(blank=True)
@@ -162,7 +181,52 @@ class Shares(models.Model):
     seo_description = models.CharField(max_length=100, blank=True)
     
     def __str__(self):
-        return self.name
+        return f"{self.name}"
 
     def get_absolute_url(self):
         return reverse("admin_shares")
+
+
+#   PAGES
+class PageModel(models.Model):
+    name = models.CharField(max_length=50, default='')
+    pub_date = models.DateField(default=timezone.now)
+    description = models.TextField(blank=True)
+    status = models.BooleanField(default=False)
+    preview = models.ImageField(upload_to=upload_shares_preview)
+    image1 = models.ImageField(upload_to=upload_shares_gallery, blank=True, null=True)
+    image2 = models.ImageField(upload_to=upload_shares_gallery, blank=True, null=True)
+    image3 = models.ImageField(upload_to=upload_shares_gallery, blank=True, null=True)
+    image4 = models.ImageField(upload_to=upload_shares_gallery, blank=True, null=True)
+    image5 = models.ImageField(upload_to=upload_shares_gallery, blank=True, null=True)
+    seo_title = models.CharField(max_length=50, blank=True)
+    seo_keywords = models.CharField(max_length=100, blank=True)
+    seo_description = models.CharField(max_length=100, blank=True)
+    
+    def __str__(self):
+        return f'{self.name}'
+
+
+class HomePageModel(models.Model):
+    page = models.OneToOneField(PageModel, on_delete=models.CASCADE)
+    phone1 = models.CharField(max_length=14, blank=True, null=True)
+    phone2 = models.CharField(max_length=14, blank=True, null=True)
+
+    def __str__(self):
+        return f'{self.page.name}'
+
+
+class ContactModel(models.Model):
+    name = models.CharField(max_length=50, default='')
+    pub_date = models.DateField(default=timezone.now)
+    address = models.TextField(blank=True)
+    status = models.BooleanField(default=False)
+    latitude = models.FloatField(max_length=50)
+    longitude = models.FloatField(max_length=50)
+    logo = models.ImageField(upload_to=upload_shares_preview)
+    seo_title = models.CharField(max_length=50, blank=True)
+    seo_keywords = models.CharField(max_length=100, blank=True)
+    seo_description = models.CharField(max_length=100, blank=True)
+    
+    def __str__(self):
+        return f'{self.name}'

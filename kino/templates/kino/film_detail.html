@@ -1,0 +1,43 @@
+{% extends 'kino/base.html' %}
+
+{% block title %}
+    <title>Film «{{ film.name }}»</title>
+{% endblock title %}
+
+
+{% block content %}
+<div class="card">
+    <div class="card-header border-transparent">
+    <!-- /.card-header -->
+    <div class="box box-solid">
+            <div class="box-header with-border">
+                <h3 class="box-title">«{{ film.name }}»</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+                <img src="{{ film.preview.url }}" alt="{{ film.preview }}" style="width: 100px;"></br>
+                <hr>
+                <dl class="dl-horizontal">
+                    <dt>Description:</dt>
+                    <dd>{{ film.description }}</dd>
+                    <dt>Year</dt>
+                    <dd>{{ film.year }}</dd>
+                    <dt>Genre:</dt>
+                    <dd>{{ film.genre }}</dd>
+                    <dt>Director:</dt>
+                    <dd>{{ film.director }}</dd>
+                    <dt>Producer:</dt>
+                    <dd>{{ film.producer }}</dd>
+                    <dt>Music By:</dt>
+                    <dd>{{ film.music }}</dd>
+                    <dt>Written By:</dt>
+                    <dd>{{ film.scenarist }}</dd>
+                    <dt>Country:</dt>
+                    <dd>{{ film.country }}</dd>
+                </dl>
+            </div>
+            <!-- /.box-body -->
+        </div>
+</div>
+
+{% endblock content %}

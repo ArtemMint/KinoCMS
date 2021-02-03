@@ -37,9 +37,8 @@
                 <dl class="dl-horizontal">
                     <dt>Description:</dt>
                     <dd>{{ news.description|linebreaks }}</dd>
-                    {% for gallery in gallery_list %}
-                        <img src="{{ gallery.image.url }}" alt="{{ gallery.image }}" style="width: 100px;">
-                    {% endfor %}
+                    <dt>Published:</dt>
+                    <dd>{{ news.pub_date }}</dd>
                 </dl>
             </div>
             <!-- /.box-body -->

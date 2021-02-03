@@ -2,7 +2,7 @@ from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
 
-from kino.views import HomeView
+from kino.views import HomeView, PosterView, PremiereView, CinemasView, SharesView, NewsView, FilmDetailView
 from kino.views import admin_view, AdminStatisticsView, AdminBannersSlidersView, AdminNewsView, AdminSharesView, AdminPagesView, AdminUsersView, AdminMailingView
 #FILM
 from kino.views import AdminFilmsView, AdminFilmDetailView, AdminFilmAddView, AdminFilmUpdateView, AdminFilmDeleteView
@@ -19,6 +19,12 @@ from kino.views import AdminUsersView, AdminUsersUpdateView, AdminUserDeleteView
 
 urlpatterns = [
     path('', HomeView.as_view(), name='home'),
+    path('poster/', PosterView.as_view(), name='poster'),
+    path('premiere/', PremiereView.as_view(), name='premiere'),
+    path('film/<int:pk>', FilmDetailView.as_view(), name='film_detail'),
+    path('cinemas/', CinemasView.as_view(), name='cinemas'),
+    path('shares/', SharesView.as_view(), name='shares'),
+    path('news/', NewsView.as_view(), name='news'),
 
     path('admin/users/', AdminUsersView.as_view(), name='admin_users'),
     path('admin/users/edit/<int:pk>', AdminUsersUpdateView.as_view(), name='admin_update_users'),

@@ -53,37 +53,37 @@
                     <div class="collapse navbar-collapse" id="navbarNavDropdown">
                         <ul class="nav justify-content-end">
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="#">Афиша</a>
+                                <a class="nav-link" aria-current="page" href="{% url 'poster' %}">Poster</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Расписание</a>
+                                <a class="nav-link" href="#">Schedule</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Скоро</a>
+                                <a class="nav-link" href="{% url 'premiere' %}">Premiere</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Кинотеатры</a>
+                                <a class="nav-link" href="{% url 'cinemas' %}">Cinemas</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Акции</a>
+                                <a class="nav-link" href="{% url 'shares' %}">Shares</a>
                             </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                О кинотеатре
+                                About cinema
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                    <li><a class="dropdown-item" href="#">Новости</a></li>
-                                    <li><a class="dropdown-item" href="#">Кафе-Бар</a></li>
-                                    <li><a class="dropdown-item" href="#">VIP-зал</a></li>
-                                    <li><a class="dropdown-item" href="#">Детская комната</a></li>
-                                    <li><a class="dropdown-item" href="#">Реклама</a></li>
-                                    <li><a class="dropdown-item" href="#">Мобильные приложения</a></li>
-                                    <li><a class="dropdown-item" href="#">Контакты</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'news' %}">News</a></li>
+                                    <li><a class="dropdown-item" href="#">Cafe-Bar</a></li>
+                                    <li><a class="dropdown-item" href="#">VIP-hall</a></li>
+                                    <li><a class="dropdown-item" href="#">Children room</a></li>
+                                    <li><a class="dropdown-item" href="#">Mobile app</a></li>
+                                    <li><a class="dropdown-item" href="#">Contacts</a></li>
                                 </ul>
                             </li>
                             {% if user.is_authenticated %}
+
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{% url 'edit_profile' %}">Edit profile</a>
+                                    <a class="nav-link" href="{% url 'edit_profile' %}">Your Profile, {{user}}</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="{% url 'logout' %}">Logout</a>
@@ -106,9 +106,10 @@
 
         {% comment %} MAIN PLACE {% endcomment %}
         <article>
-            <br> 
-            {% block content %}
-            {% endblock content %}     
+            <div class="album py-5">
+                {% block header %}{% endblock header %}
+                {% block content %}{% endblock content %}
+            </div>
         </article>
 
         {% comment %} FOOTER {% endcomment %}
@@ -117,7 +118,7 @@
                 <div class="col-md-1">
                 </div>
                 <div class="col-md-3">
-                    <h5>Мобильные приложения</h5>
+                    <h5>Mobile apps</h5>
                     <div class=".col-6 .col-md-4">
                         <a class="text-muted" href="#">Google Play</a>
                         <a class="text-muted" href="#">App Store</a>
@@ -126,21 +127,21 @@
                     <small class="d-block text-muted">©KinoCMS 2020, All rights reserved</small>
                 </div>
                 <div class="col-6 col-md">
-                    <h5>Афиша</h5>
+                    <h5><a class="text-muted" href="{% url 'poster' %}">Poster</a></h5>
                     <ul class="list-unstyled text-small">
-                        <li><a class="text-muted" href="#">Расписание</a></li>
-                        <li><a class="text-muted" href="#">Скоро в прокате</a></li>
-                        <li><a class="text-muted" href="#">Кинотеатры</a></li>
-                        <li><a class="text-muted" href="#">Акции</a></li>
+                        <li><a class="text-muted" href="#">Schedule</a></li>
+                        <li><a class="text-muted" href="{% url 'premiere' %}">Premiere</a></li>
+                        <li><a class="text-muted" href="{% url 'cinemas' %}">Cinemas</a></li>
+                        <li><a class="text-muted" href="{% url 'shares' %}">Shares</a></li>
                     </ul>
                 </div>
                 <div class="col-6 col-md">
-                    <h5>О кинотеатре</h5>
+                    <h5><a class="text-muted" href="#">About cinema</a></h5>
                     <ul class="list-unstyled text-small">
-                        <li><a class="text-muted" href="#">Новости</a></li>
-                        <li><a class="text-muted" href="#">Реклама</a></li>
-                        <li><a class="text-muted" href="#">Кафе-Бар</a></li>
-                        <li><a class="text-muted" href="#">Контакты</a></li>
+                        <li><a class="text-muted" href="{% url 'news' %}">News</a></li>
+                        <li><a class="text-muted" href="#">Advertaisment</a></li>
+                        <li><a class="text-muted" href="#">Cafe-Bar</a></li>
+                        <li><a class="text-muted" href="#">Contacts</a></li>
                     </ul>
                 </div>
                 <div class="col-6 col-md">
