@@ -124,10 +124,16 @@ class News(models.Model):
     Returns:
         [news]: instance of News
     """
+
+    STATUS_CHOICES = [
+        ('ON', 'On'),
+        ('OFF', 'Off'),
+        ]
+
     name = models.CharField(max_length=50, default='')
     pub_date = models.DateField(default=timezone.now)
     description = models.TextField(blank=True)
-    status = models.BooleanField(default=False)
+    status = models.CharField(max_length=10 ,default=False, choices=STATUS_CHOICES, blank=True)
     preview = models.ImageField(upload_to=upload_news_preview, null=True)
     image1 = models.ImageField(upload_to=upload_news_gallery, blank=True, null=True)
     image2 = models.ImageField(upload_to=upload_news_gallery, blank=True, null=True)
@@ -155,6 +161,12 @@ class News(models.Model):
         """
         return reverse("admin_news")
 
+    def get_status(self):
+        if self.status == 'ON':
+            return True
+        else:
+            return False
+
 
 #   SHARES MODEL
 def upload_shares_preview(instance, filename):
@@ -165,10 +177,16 @@ def upload_shares_gallery(instance, filename):
 
 
 class Shares(models.Model):
+
+    STATUS_CHOICES = [
+        ('ON', 'On'),
+        ('OFF', 'Off'),
+        ]
+
     name = models.CharField(max_length=50, default='')
     pub_date = models.DateField(default=timezone.now)
     description = models.TextField(blank=True)
-    status = models.BooleanField(default=False)
+    status = models.CharField(max_length=10 ,default=False, choices=STATUS_CHOICES, blank=True)
     preview = models.ImageField(upload_to=upload_shares_preview)
     image1 = models.ImageField(upload_to=upload_shares_gallery, blank=True, null=True)
     image2 = models.ImageField(upload_to=upload_shares_gallery, blank=True, null=True)
@@ -185,6 +203,12 @@ class Shares(models.Model):
 
     def get_absolute_url(self):
         return reverse("admin_shares")
+
+    def get_status(self):
+        if self.status == 'ON':
+            return True
+        else:
+            return False
 
 
 #   PAGES
