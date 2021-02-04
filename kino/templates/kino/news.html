@@ -11,7 +11,7 @@
         <div class="container">
             <div class="row">
                 {% for news in object_list %}
-                    {% if news.status%}
+                    {% if news.status %}
                         <div class="col-md-2">
                             <div class="card mb-2 shadow-sm">
                                 <img class="card-img-top" src="{{ news.preview.url }}" alt="{{ news.preview }}" style="height: 150px; width: 100%%; display: block;">
