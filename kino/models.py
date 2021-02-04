@@ -161,6 +161,12 @@ class News(models.Model):
         """
         return reverse("admin_news")
 
+    def get_status(self):
+        if self.status == 'ON':
+            return True
+        else:
+            return False
+
 
 #   SHARES MODEL
 def upload_shares_preview(instance, filename):
@@ -197,6 +203,12 @@ class Shares(models.Model):
 
     def get_absolute_url(self):
         return reverse("admin_shares")
+
+    def get_status(self):
+        if self.status == 'ON':
+            return True
+        else:
+            return False
 
 
 #   PAGES
