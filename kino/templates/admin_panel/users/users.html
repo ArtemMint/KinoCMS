@@ -45,7 +45,7 @@
                                 <td>{{user.gender}}</td>
                                 <td>{{user.city}}</td>
                                 <td>{{user.address}}</td>
-                                <td><a href="{% url 'admin_update_users' user.pk%}">Update</a>/<a href="{% url 'admin_delete_user' user.pk%}">Delete</a></td>
+                                <td><a class="btn btn-sm btn-warning" href="{% url 'admin_update_users' user.pk%}">Update</a> <a class="btn btn-sm btn-danger" href="{% url 'admin_delete_user' user.pk%}">Delete</a></td>
                             </tr>
                         {% endfor %}
                     </tbody>

@@ -20,7 +20,8 @@ def current_year():
 
 class Film(models.Model):
     name = models.CharField(max_length=100, verbose_name='Name', default='')
-    year = models.IntegerField(verbose_name='Year', choices=YEAR_CHOICES, default=current_year)
+    year = models.IntegerField(
+        verbose_name='Year', choices=YEAR_CHOICES, default=current_year)
     country = models.CharField(max_length=100, default='')
     director = models.CharField(max_length=65, default='')
     producer = models.CharField(max_length=65, default='')
@@ -29,12 +30,13 @@ class Film(models.Model):
     genre = models.CharField(max_length=200, default='')
     description = models.TextField(default='')
     video = models.URLField(blank=True)
-    preview = models.ImageField(upload_to=upload_film_preview, blank=True)
-    image1 = models.ImageField(upload_to=upload_film_gallery, blank=True)
-    image2 = models.ImageField(upload_to=upload_film_gallery, blank=True)
-    image3 = models.ImageField(upload_to=upload_film_gallery, blank=True)
-    image4 = models.ImageField(upload_to=upload_film_gallery, blank=True)
-    image5 = models.ImageField(upload_to=upload_film_gallery, blank=True)
+    premiere = models.DateField()
+    preview = models.ImageField(upload_to=upload_film_preview)
+    image1 = models.ImageField(upload_to=upload_film_gallery)
+    image2 = models.ImageField(upload_to=upload_film_gallery)
+    image3 = models.ImageField(upload_to=upload_film_gallery)
+    image4 = models.ImageField(upload_to=upload_film_gallery)
+    image5 = models.ImageField(upload_to=upload_film_gallery)
     seo_title = models.CharField(max_length=50, blank=True)
     seo_keywords = models.CharField(max_length=100, blank=True)
     seo_description = models.CharField(max_length=100, blank=True)
@@ -44,3 +46,15 @@ class Film(models.Model):
 
     def get_absolute_url(self):
         return reverse("admin_films")
+
+    def get_premiere(self):
+        if self.premiere >= datetime.date.today():
+            return True
+        else:
+            return False
+
+    def get_current(self):
+        if self.premiere < datetime.date.today():
+            return True
+        else:
+            return False
