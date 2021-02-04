@@ -124,10 +124,16 @@ class News(models.Model):
     Returns:
         [news]: instance of News
     """
+
+    STATUS_CHOICES = [
+        ('ON', 'On'),
+        ('OFF', 'Off'),
+        ]
+
     name = models.CharField(max_length=50, default='')
     pub_date = models.DateField(default=timezone.now)
     description = models.TextField(blank=True)
-    status = models.BooleanField(default=False)
+    status = models.CharField(max_length=10 ,default=False, choices=STATUS_CHOICES, blank=True)
     preview = models.ImageField(upload_to=upload_news_preview, null=True)
     image1 = models.ImageField(upload_to=upload_news_gallery, blank=True, null=True)
     image2 = models.ImageField(upload_to=upload_news_gallery, blank=True, null=True)
@@ -165,10 +171,16 @@ def upload_shares_gallery(instance, filename):
 
 
 class Shares(models.Model):
+
+    STATUS_CHOICES = [
+        ('ON', 'On'),
+        ('OFF', 'Off'),
+        ]
+
     name = models.CharField(max_length=50, default='')
     pub_date = models.DateField(default=timezone.now)
     description = models.TextField(blank=True)
-    status = models.BooleanField(default=False)
+    status = models.CharField(max_length=10 ,default=False, choices=STATUS_CHOICES, blank=True)
     preview = models.ImageField(upload_to=upload_shares_preview)
     image1 = models.ImageField(upload_to=upload_shares_gallery, blank=True, null=True)
     image2 = models.ImageField(upload_to=upload_shares_gallery, blank=True, null=True)

@@ -12,29 +12,26 @@
 
 
 {% block content %}
-<div class="album py-5 bg-light">
-    <div class="row">
-        {% if object_list %}
-            {% for cinema in object_list %}
-                <div class="col-md-3">
-                    <div class="card mb-3 shadow-sm">
-                        <a href="{% url 'admin_cinema_detail' cinema.pk%}"><img class="card-img-top" src="{{cinema.preview.url}}" alt="{{cinema.preview}}" style="height: 225px; width: 100%%; display: block; margin: auto;">
-                        <div class="card-body">
-                            <p class="card-text">{{cinema.name}}</p>
-                        </div>
-                        </a>          
-                    </div>
+<div class="card-body"> 
+    <a href="{% url 'admin_add_cinema' %}"><button type="button" class="btn btn-lg btn-block btn-outline-primary">Add New Cinema</button></a>
+</div>
+<div class="row">
+    {% if object_list %}
+        {% for cinema in object_list %}
+            <div class="col-md-2">
+                <div class="card mb-2 shadow-sm">
+                    <a href="{% url 'admin_cinema_detail' cinema.pk%}"><img class="card-img-top" src="{{cinema.preview.url}}" alt="{{cinema.preview}}" style="height: 225px; width: 100%%; display: block; margin: auto;"></a>
+                    <div class="card-body">
+                        <p class="card-text">{{cinema.name}}</p>
+                        <a href="{% url 'admin_update_cinema' cinema.pk %}" class="btn btn-sm btn-warning float-left">Edit film</a>
+                        <a href="{% url 'admin_delete_cinema' cinema.pk %}" class="btn btn-sm btn-danger float-right">Delete film</a>
+                    </div>          
                 </div>
-            {% endfor %} 
-        {% else %}
-            <p>There is no Cinemas yet.</p> 
-        {% endif %} 
-        <div class="col-md-3">
-            <div class="card-body">
-                <a href="{% url 'admin_add_cinema' %}"><button type="button" class="btn btn-lg btn-block btn-outline-primary">Add New Cinema</button></a>
-            </div>   
-        </div>
-    </div>
+            </div>
+        {% endfor %} 
+    {% else %}
+        <p>There is no Cinemas yet.</p> 
+    {% endif %} 
 </div>
 {% endblock content %}
 

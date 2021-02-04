@@ -63,7 +63,7 @@ class NewsForm(forms.ModelForm):
         widgets = {
             'name': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Name of the News'}),
             'description': forms.Textarea(attrs={'class':'form-control', 'placeholder':'Descripton of the News'}),
-            'status': forms.CheckboxInput(),
+            'status': forms.Select(),
             'preview': forms.FileInput(attrs={'class':'form-control', 'placeholder':'Preview of the News'}),
             # 'image1': forms.FileInput(attrs={'class':'form-control'}),
             # 'image2': forms.FileInput(attrs={'class':'form-control'}),
@@ -86,7 +86,7 @@ class SharesForm(forms.ModelForm):
         widgets = {
             'name': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Name of the Shares'}),
             'description': forms.Textarea(attrs={'class':'form-control', 'placeholder':'Descripton of the Shares'}),
-            'status': forms.CheckboxInput(),
+            'status': forms.Select(),
             'preview': forms.FileInput(attrs={'class':'form-control', 'placeholder':'Preview of the Shares'}),
             # 'image1': forms.FileInput(attrs={'class':'form-control'}),
             # 'image2': forms.FileInput(attrs={'class':'form-control'}),
