@@ -4,17 +4,17 @@ from django.utils import timezone
 
 from django.contrib.auth.models import User
 
+
 class Client(models.Model):
-    
     GENDER_CHOICES = [
         ('Мale', 'Male'),
         ('Female', 'Female'),
-        ]
+    ]
 
     LANGUAGE_CHOICES = [
         ('UA', 'Ukrainian'),
         ('RU', 'Russian'),
-        ]
+    ]
 
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     address = models.CharField(max_length=50, blank=True, null=True)

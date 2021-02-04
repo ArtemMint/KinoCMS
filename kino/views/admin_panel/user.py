@@ -1,6 +1,6 @@
 from django.views.generic import ListView, UpdateView, DeleteView
-from register.models import Client
-from register.forms import EditProfileForm
+from register.models.client import Client
+from register.forms.client import EditProfileForm
 from django.urls import reverse_lazy, reverse
 
 

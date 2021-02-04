@@ -1,9 +1,9 @@
 from django.db import models
 from django.urls import reverse
 
-import datetime
+from utils import current_year
 
-YEAR_CHOICES = [(r, r) for r in range(1900, datetime.date.today().year + 1)]
+YEAR_CHOICES = [(r, r) for r in range(1900, current_year() + 1)]
 
 
 def upload_film_preview(instance, filename):
@@ -12,10 +12,6 @@ def upload_film_preview(instance, filename):
 
 def upload_film_gallery(instance, filename):
     return f"films/{instance.name}/gallery/{filename}"
-
-
-def current_year():
-    return datetime.date.today().year
 
 
 class Film(models.Model):
