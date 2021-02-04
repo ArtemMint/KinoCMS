@@ -1,0 +1,9 @@
+{% extends 'register/base.html' %}
+
+{% block content %}
+    <form method="POST" class="post-form">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn btn_user_sign_in" type="submit">Update</button>
+    </form>
+{% endblock %}

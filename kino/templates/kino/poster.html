@@ -1,0 +1,33 @@
+{% extends 'kino/base.html' %}
+
+{% block title %}
+    <title>Poster</title>
+{% endblock title %}
+
+{% block content %}
+
+<div class="container bg-light">
+    <div class="album py-5">
+        <div class="container">
+            <div class="row">
+                {% for film in object_list %}
+                <div class="col-md-2">
+                    <div class="card mb-2 shadow-sm">
+                        <a href="{% url 'film_detail' film.pk%}"><img class="card-img-top" src="{{ film.preview.url }}" alt="{{ film.preview }}" style="height: 250px; width: 90%%; display: block;">
+                        <div class="card-body">
+                            <p class="card-text">{{ film.name }}</a></p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-sm btn-outline-secondary">Buy ticket</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div> 
+    </div>
+
+</div>
+{% endblock  %}

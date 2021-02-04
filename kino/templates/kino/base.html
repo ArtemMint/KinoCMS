@@ -1,0 +1,170 @@
+{% load static %}
+
+<html>
+    {% block title %}
+    {% endblock title %}
+
+    <head>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="{% static 'kino/style.css' %}">
+    </head>
+
+    <body>
+        {% comment %} HEADER {% endcomment %}
+        <header>
+            <nav class="fixed-top navbar-light bg-light">
+                <div style="text-align: center;">    
+                    <a class="navbar-brand" href="#">Покупайте електронные билеты...</a>
+                </div>        
+            </nav> <br>
+            <nav class="navbar navbar-light">
+                <div class="container-md">
+                    <img src="..." class="img-thumbnail" alt="Logo">
+                    <form class="d-flex">
+                        <input class="form-control me-2" type="search" placeholder="Поиск" aria-label="Search">
+                        <button class="btn btn-outline-success" type="submit">Поиск</button>
+                    </form>
+                    <div style="background: white;">
+                        <a href="#" class="fa fa-facebook"></a>
+                        <a href="#" class="fa fa-twitter"></a>
+                        <a href="#" class="fa fa-google"></a>
+                        <a href="#" class="fa fa-linkedin"></a>
+                        <a href="#" class="fa fa-youtube"></a>
+                        <a href="#" class="fa fa-instagram"></a>
+                    </div>
+                    <ul class="nav flex-column">
+                        <li class="nav-item" style="color: white;">
+                            <h3>(048)777-77-77</h3>
+                        </li>
+                        <li class="nav-item" style="color: white;">
+                            <h3>(097)999-99-99</h3>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            <nav class="nav justify-content-end navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                        <ul class="nav justify-content-end">
+                            <li class="nav-item">
+                                <a class="nav-link" aria-current="page" href="{% url 'poster' %}">Poster</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Schedule</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'premiere' %}">Premiere</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'cinemas' %}">Cinemas</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'shares' %}">Shares</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                About cinema
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                    <li><a class="dropdown-item" href="{% url 'news' %}">News</a></li>
+                                    <li><a class="dropdown-item" href="#">Cafe-Bar</a></li>
+                                    <li><a class="dropdown-item" href="#">VIP-hall</a></li>
+                                    <li><a class="dropdown-item" href="#">Children room</a></li>
+                                    <li><a class="dropdown-item" href="#">Mobile app</a></li>
+                                    <li><a class="dropdown-item" href="#">Contacts</a></li>
+                                </ul>
+                            </li>
+                            {% if user.is_authenticated %}
+
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'edit_profile' %}">Your Profile, {{user}}</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                                </li>
+                            {% else %}
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'register' %}">Register</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'login' %}">Login</a>
+                                </li>
+                            {% endif %}
+                            
+                            
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        {% comment %} MAIN PLACE {% endcomment %}
+        <article>
+            <div class="album py-5">
+                {% block header %}{% endblock header %}
+                {% block content %}{% endblock content %}
+            </div>
+        </article>
+
+        {% comment %} FOOTER {% endcomment %}
+        <footer class="pt-4 pt-md-5 border-top bg-light">
+            <div class="row">
+                <div class="col-md-1">
+                </div>
+                <div class="col-md-3">
+                    <h5>Mobile apps</h5>
+                    <div class=".col-6 .col-md-4">
+                        <a class="text-muted" href="#">Google Play</a>
+                        <a class="text-muted" href="#">App Store</a>
+                    </div>
+                    <br>
+                    <small class="d-block text-muted">©KinoCMS 2020, All rights reserved</small>
+                </div>
+                <div class="col-6 col-md">
+                    <h5><a class="text-muted" href="{% url 'poster' %}">Poster</a></h5>
+                    <ul class="list-unstyled text-small">
+                        <li><a class="text-muted" href="#">Schedule</a></li>
+                        <li><a class="text-muted" href="{% url 'premiere' %}">Premiere</a></li>
+                        <li><a class="text-muted" href="{% url 'cinemas' %}">Cinemas</a></li>
+                        <li><a class="text-muted" href="{% url 'shares' %}">Shares</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-md">
+                    <h5><a class="text-muted" href="#">About cinema</a></h5>
+                    <ul class="list-unstyled text-small">
+                        <li><a class="text-muted" href="{% url 'news' %}">News</a></li>
+                        <li><a class="text-muted" href="#">Advertaisment</a></li>
+                        <li><a class="text-muted" href="#">Cafe-Bar</a></li>
+                        <li><a class="text-muted" href="#">Contacts</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-md">
+                    <div>
+                        <a href="#" class="fa fa-facebook"></a>
+                        <a href="#" class="fa fa-twitter"></a>
+                        <a href="#" class="fa fa-google"></a>
+                        <a href="#" class="fa fa-linkedin"></a>
+                        <a href="#" class="fa fa-youtube"></a>
+                        <a href="#" class="fa fa-instagram"></a>
+                    </div>
+                    {% if user %}
+                        <a href="{% url 'admin_home' %}">ADMIN PANEL</a>
+                    {% endif %}
+                </div>
+                
+            </div>
+            <br> 
+            <div class="col-12 col-md">
+                <small class="d-block text-muted" style="text-align: center;">©KinoCMS 2020, All rights reserved</small>
+            </div>
+        </footer>
+
+    </body>  
+</html>
+

@@ -1,0 +1,40 @@
+{% extends 'admin_panel/base.html' %}
+{% load static %}
+
+{% block title %}AdminLTE | List Of Films{% endblock title %}
+
+{% block content_header %}List of films{% endblock content_header %}
+
+{% block breadcrumb %}
+<li class="breadcrumb-item"><a href="{% url 'admin_home' %}">Home</a></li>
+<li class="breadcrumb-item active">Films</li>
+{% endblock breadcrumb %}
+
+
+{% block content %}
+<div class="album py-5 bg-light">
+    <div class="row">
+        {% if object_list %}
+            {% for film in object_list %}
+            <div class="col-md-3">
+                <div class="card mb-3 shadow-sm">
+                    <a href="{% url 'admin_film_detail' film.pk%}"><img class="card-img-top" src="{{film.preview.url}}" alt="{{film.preview}}" style="height: 225px; width: 150px; display: block; margin: auto;">
+                    <div class="card-body">
+                        <p class="card-text">{{film.name}}</p>
+                    </div>
+                    </a>          
+                </div>
+            </div>
+            {% endfor %} 
+        {% else %}
+            <p>There is no Films yet.</p> 
+        {% endif %} 
+        <div class="col-md-3">
+            <div class="card-body">
+                <a href="{% url 'admin_add_film' %}"><button type="button" class="btn btn-lg btn-block btn-outline-primary">Add New Film</button></a>
+            </div>   
+        </div>
+    </div>
+</div>
+{% endblock content %}
+

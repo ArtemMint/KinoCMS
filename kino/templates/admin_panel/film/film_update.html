@@ -1,0 +1,37 @@
+{% extends 'admin_panel/base.html' %}
+{% load static %}
+
+{% block title %}AdminLTE | Update Film{% endblock title %}
+
+
+{% block breadcrumb %}
+    <li class="breadcrumb-item"><a href="{% url 'admin_home' %}">Home</a></li>
+    <li class="breadcrumb-item active"><a href="{% url 'admin_films' %}">Films</a></li>
+    <li class="breadcrumb-item active"><a href="{% url 'admin_film_detail' film.pk%}">{{film.name}}</a></li>
+    <li class="breadcrumb-item active">Update film</li>
+{% endblock breadcrumb %}
+
+
+{% block content %}
+<div class="box box-primary">
+    <div class="box-header with-border">
+        <h3 class="box-title">Update film</h3>
+    </div>
+    <!-- /.box-header -->
+    <!-- form start -->
+    <div class="form-group">
+        <form method="POST" enctype="multipart/form-data">{% csrf_token %}
+            <div class="box-body">
+            <div class="form-group">
+                {{ form.as_p }}
+            </div>
+            <!-- /.box-body -->
+            <div class="box-footer">
+                <button type="submit" class="btn btn-primary">Update</button>
+            </div>
+        </form>
+    </div>
+    
+</div>
+{% endblock content %}
+
