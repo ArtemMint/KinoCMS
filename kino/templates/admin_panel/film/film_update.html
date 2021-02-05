@@ -23,8 +23,10 @@
         <form method="POST" enctype="multipart/form-data">{% csrf_token %}
             <div class="box-body">
             <div class="form-group">
-                {% comment %} {{ form.as_p }} {% endcomment %}
-                {{form.as_p}}
+                {{ form.as_p }}
+                
+                <img src="/media/{{form.preview.value}}" style="height: 225px; width: 150px; display: block; margin: auto;">
+                <img src="/media/{{form.image1.value}}" style="height: 225px; width: 150px; display: block; margin: auto;">
             </div>
             <!-- /.box-body -->
             <div class="box-footer">

@@ -1,5 +1,6 @@
 from django.db import models
 from django.urls import reverse
+from django.utils.html import mark_safe
 
 import datetime
 
@@ -31,7 +32,7 @@ class Film(models.Model):
     description = models.TextField(default='')
     video = models.URLField(blank=True)
     premiere = models.DateField()
-    preview = models.ImageField(upload_to=upload_film_preview)
+    preview = models.FileField(upload_to=upload_film_preview)
     image1 = models.ImageField(upload_to=upload_film_gallery)
     image2 = models.ImageField(upload_to=upload_film_gallery)
     image3 = models.ImageField(upload_to=upload_film_gallery)
@@ -43,6 +44,9 @@ class Film(models.Model):
 
     def __str__(self):
         return f"{self.name}"
+
+    def image_tag(self):
+        return mark_safe('<img src="/directory/%s" width="150" height="150" />' % (self.preview))
 
     def get_absolute_url(self):
         return reverse("admin_films")
