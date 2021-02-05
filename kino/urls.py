@@ -2,7 +2,7 @@ from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
 
-from .views.admin_panel.banners import AdminBannersSlidersView
+from .views.admin_panel.banners import AdminBannersView
 from .views.admin_panel.cinema import *
 from .views.admin_panel.film import *
 from .views.admin_panel.home import admin_view
@@ -36,7 +36,7 @@ urlpatterns = [
                   # Admin
                   path('admin/', admin_view, name='admin_home'),
                   path('admin/statistics/', AdminStatisticsView.as_view(), name='admin_statistics'),
-                  path('admin/banners_sliders/', AdminBannersSlidersView.as_view(), name='admin_banners_sliders'),
+                  path('admin/banners/', AdminBannersView.as_view(), name='admin_banners'),
                   path('admin/shares/', AdminSharesView.as_view(), name='admin_shares'),
                   path('admin/pages/', AdminPagesView.as_view(), name='admin_pages'),
                   path('admin/users/', AdminUsersView.as_view(), name='admin_users'),
