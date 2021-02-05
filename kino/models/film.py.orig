@@ -18,8 +18,12 @@ YEAR_CHOICES = [(r, r) for r in range(1900, current_year() + 1)]
 
 class Film(models.Model):
     name = models.CharField(max_length=100, verbose_name='Name', default='')
+<<<<<<< HEAD
     year = models.IntegerField(
         verbose_name='Year', choices=YEAR_CHOICES, default=current_year)
+=======
+    year = models.IntegerField(verbose_name='Year', choices=YEAR_CHOICES, default=current_year())
+>>>>>>> e827840392e08aad2b0c3c3251198173f408a7ec
     country = models.CharField(max_length=100, default='')
     director = models.CharField(max_length=65, default='')
     producer = models.CharField(max_length=65, default='')
