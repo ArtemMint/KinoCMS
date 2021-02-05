@@ -7,7 +7,7 @@ from register.models.client import Client
 @receiver(post_save, sender=User)
 def create_client(sender, instance, created, **kwargs):
     if created:
-        Profile.objects.create(user=instance)
+        Client.objects.create(user=instance)
 
 
 @receiver(post_save, sender=User)

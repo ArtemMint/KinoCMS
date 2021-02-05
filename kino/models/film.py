@@ -3,8 +3,6 @@ from django.urls import reverse
 
 from utils import current_year
 
-YEAR_CHOICES = [(r, r) for r in range(1900, current_year() + 1)]
-
 
 def upload_film_preview(instance, filename):
     return f"films/{instance.name}/preview/{filename}"
@@ -14,9 +12,12 @@ def upload_film_gallery(instance, filename):
     return f"films/{instance.name}/gallery/{filename}"
 
 
+YEAR_CHOICES = [(r, r) for r in range(1900, current_year() + 1)]
+
+
 class Film(models.Model):
     name = models.CharField(max_length=100, verbose_name='Name', default='')
-    year = models.IntegerField(verbose_name='Year', choices=YEAR_CHOICES, default=current_year)
+    year = models.IntegerField(verbose_name='Year', choices=YEAR_CHOICES, default=current_year())
     country = models.CharField(max_length=100, default='')
     director = models.CharField(max_length=65, default='')
     producer = models.CharField(max_length=65, default='')
