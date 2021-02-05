@@ -10,7 +10,7 @@ from django.http import Http404
 
 
 def adminUserListView(request):
-    contact_list = User.objects.all()
+    contact_list = User.objects.all().order_by('-id')
     paginator = Paginator(contact_list, 5)  # Show 25 contacts per page.
 
     page_number = request.GET.get('page')
