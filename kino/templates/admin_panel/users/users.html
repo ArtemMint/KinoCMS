@@ -31,20 +31,20 @@
                     <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Address</th>
                     <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending">Edit/Delete</th>
                 </thead>
-                {% if object_list %}
+                {% if page_obj %}
                     <tbody>
-                        {% for user in object_list %}
+                        {% for user in page_obj %}
                             <tr role="row">
-                                <td class="sorting_1">{{user.user.id}}</td>
-                                <td>{{user.user.username}}</td>
-                                <td>{{user.user.date_joined}}</td>
-                                <td>{{user.birth_date}}</td>
-                                <td>{{user.user.email}}</td>
-                                <td>{{user.phone}}</td>                     
-                                <td>{{user.user.first_name}} {{user.user.last_name}}</td>
-                                <td>{{user.gender}}</td>
-                                <td>{{user.city}}</td>
-                                <td>{{user.address}}</td>
+                                <td class="sorting_1">{{user.id}}</td>
+                                <td>{{user.username}}</td>
+                                <td>{{user.date_joined}}</td>
+                                <td>{{user.client.birth_date}}</td>
+                                <td>{{user.email}}</td>
+                                <td>{{user.client.phone}}</td>                     
+                                <td>{{user.first_name}} {{user.last_name}}</td>
+                                <td>{{user.client.gender}}</td>
+                                <td>{{user.client.city}}</td>
+                                <td>{{user.client.address}}</td>
                                 <td><a class="btn btn-sm btn-warning" href="{% url 'admin_update_users' user.pk%}">Update</a> <a class="btn btn-sm btn-danger" href="{% url 'admin_delete_user' user.pk%}">Delete</a></td>
                             </tr>
                         {% endfor %}
@@ -53,6 +53,23 @@
                     <p>There is not news yet!</p>
                 {% endif %}
                 </table>
+                <div class="pagination">
+                    <span class="step-links">
+                        {% if page_obj.has_previous %}
+                            <a href="?page=1">&laquo; first</a>
+                            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+                        {% endif %}
+
+                        <span class="current">
+                            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                        </span>
+
+                        {% if page_obj.has_next %}
+                            <a href="?page={{ page_obj.next_page_number }}">next</a>
+                            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+                        {% endif %}
+                    </span>
+                </div>
             </div>
             <!-- /.box-body -->
         </div>

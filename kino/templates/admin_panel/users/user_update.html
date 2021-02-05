@@ -22,7 +22,8 @@
         <form method="POST" enctype="multipart/form-data">{% csrf_token %}
             <div class="box-body">
             <div class="form-group">
-                {{ form.as_p }}
+                {{ user_form.as_p}}
+                {{ client_form.as_p }}
             </div>
             <!-- /.box-body -->
             <div class="box-footer">
