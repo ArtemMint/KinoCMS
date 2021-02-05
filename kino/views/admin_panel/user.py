@@ -9,21 +9,6 @@ from django.contrib import messages
 from django.http import Http404
 
 
-# class AdminUsersView(ListView):
-#     paginate_by = 5
-#     model = Client
-#     template_name = 'admin_panel/users/users.html'
-#     ordering = ['-id']
-
-
-# class AdminUsersUpdateView(UpdateView):
-#     model = Client
-#     form_class = EditProfileForm
-#     template_name = 'admin_panel/users/user_update.html'
-
-#     def get_success_url(self):
-#         return reverse('admin_users')
-
 def adminUserListView(request):
     contact_list = User.objects.all()
     paginator = Paginator(contact_list, 5)  # Show 25 contacts per page.
@@ -37,7 +22,6 @@ def adminUserUpdateView(request, user_id):
     try:
         user = User.objects.get(pk=user_id)
         client = Client.objects.get(user=user)
-        # client = request.user.client
     except client.DoesNotExist:
         raise Http404("Client does not exist")
     if request.method == 'POST':
