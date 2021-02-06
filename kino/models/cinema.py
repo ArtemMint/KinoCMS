@@ -1,6 +1,8 @@
 from django.db import models
 from django.urls import reverse
 
+import datetime
+
 
 def upload_cinema_preview(instance, filename):
     return f"cinema/{instance.name}/preview/{filename}"
@@ -47,6 +49,7 @@ class Cinema(models.Model):
 class CinemaHall(models.Model):
     cinema = models.ForeignKey(Cinema, default='', on_delete=models.CASCADE)
     name = models.CharField(max_length=50, default='')
+    created_date = models.DateField(default=datetime.datetime.now)
     description = models.TextField(blank=True)
     scheme = models.ImageField(upload_to=upload_cinemahall_preview, blank=True)
     preview = models.ImageField(upload_to=upload_cinemahall_preview, blank=True)

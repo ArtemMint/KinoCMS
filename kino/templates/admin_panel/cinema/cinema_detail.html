@@ -85,7 +85,39 @@
                 <span class="sr-only">Next</span>
             </a>
         </div>
-        
+        <div class="box">
+        <!-- /.box-header -->
+            <div class="box-body">
+                <div id="example2_wrapper" class="dataTables_wrapper form-inline dt-bootstrap"><div class="row"><div class="col-sm-6"></div><div class="col-sm-6"></div></div><div class="row"><div class="col-sm-12"><table id="example2" class="table table-bordered table-hover dataTable" role="grid" aria-describedby="example2_info">
+                <div class="card-body"> 
+                    <a href="{% url 'admin_add_cinemahall' cinema.id%}"><button type="button" class="btn btn-lg btn-block btn-outline-primary">Add New Cinemahall</button></a>
+                </div>
+                {% if cinemahalls %}
+                    <thead>
+                    <tr role="row">
+                        <th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Rendering engine: activate to sort column descending" aria-sort="ascending">Name</th>
+                        <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Description</th>
+                        <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Status</th>
+                        {% comment %} <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending">Edit/Delete</th> {% endcomment %}
+                    </thead>
+                    {% for cinemahall in cinemahalls %}
+                        <tbody>
+                            <tr role="row" class="odd">
+                            {% comment %} <a href="{% url 'admin_shares_detail'%}"> {% endcomment %}
+                                <td class="sorting_1">{{cinemahall.name}}</td>
+                                <td>{{cinemahall.created_date}}</td>
+                                <td><a class="btn btn-sm btn-warning" href="#">Update</a> <a class="btn btn-sm btn-danger" href="#">Delete</a></td>
+                            </tr>
+                        </tbody>
+                    {% endfor %}
+                {% else %}
+                    <h3 style="color:red;">There is not halls yet!</h3>
+                {% endif %}
+                </table>
+            </div>
+            <!-- /.box-body -->
+        </div>
+        <!-- /.box -->
     </div>
     <!-- /.card-body -->
         
