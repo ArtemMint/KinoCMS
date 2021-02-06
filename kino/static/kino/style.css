@@ -50,3 +50,13 @@ color: white;
 background: #125688;
 color: white;
 }
+
+.admin-banner{
+    padding: 10px;
+    font-size: 15px;
+    width: 100px;
+    height: 100px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 50%;
+}
