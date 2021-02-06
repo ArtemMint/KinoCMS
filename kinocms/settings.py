@@ -80,9 +80,9 @@ WSGI_APPLICATION = 'kinocms.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'kinocms_db',
-        'USER': 'artemmint',
-        'PASSWORD': '12345',
+        'NAME': 'cinemadb',
+        'USER': 'postgres',
+        'PASSWORD': 'root',
         'HOST': 'localhost',
         'PORT': '5432',
     }

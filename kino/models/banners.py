@@ -12,11 +12,9 @@ class SharesBanner(models.Model):
     spin_speed = models.IntegerField(default=5)
 
 
-class SpinnerBanner(models.Model):
-    image = models.ImageField(blank=False, upload_to='')
+class SliderBanner(models.Model):
+    image = models.ImageField(blank=False)
     url = models.URLField(blank=False)
-    text = models.TextField(max_length=2000,
-                            validators=RegexValidator(regex=r'', message=''))
-    spin_speed = models.IntegerField(default=5)
+    text = models.TextField(blank=True)
 
 # TODO add RegexValidator

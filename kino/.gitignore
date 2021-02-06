@@ -15,3 +15,5 @@ kino/forms/__pycache__/
 register/__pycache__/
 
 register/migrations/__pycache__/
+
+kino/templatetags/__pycache__/
