@@ -31,7 +31,6 @@ def adminUserUpdateView(request, user_id):
         if client_form.is_valid() and user_form.is_valid():
             user_form.save()
             client_form.save()
-            messages.success(request, 'Your Profile has been updated!')
             return redirect('admin_users')
     else:
         client_form = ClientForm(instance=user.client)
