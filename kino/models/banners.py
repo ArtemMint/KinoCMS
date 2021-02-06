@@ -17,8 +17,6 @@ class SpinnerBanner(models.Model):
     url = models.URLField(blank=False)
     text = models.TextField(max_length=2000,
                             validators=RegexValidator(regex=r'', message=''))
-    spin_speed =  models.IntegerField(default=5)
-    # TODO add RegexValidator
+    spin_speed = models.IntegerField(default=5)
 
-
-
+# TODO add RegexValidator
