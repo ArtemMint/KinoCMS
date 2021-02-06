@@ -1,1 +1,17 @@
 /__pycache__
+
+kino/migrations/__pycache__/
+
+kino/models/__pycache__/
+
+kino/views/__pycache__/
+
+kino/views/admin_panel/__pycache__/
+
+kino/views/site/__pycache__/
+
+kino/forms/__pycache__/
+
+register/__pycache__/
+
+register/migrations/__pycache__/
