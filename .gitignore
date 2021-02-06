@@ -3,3 +3,8 @@
 
 # VSCode dir
 /.vscode
+
+# Pycharm`s trash
+/.idea
+
+/__pycache__

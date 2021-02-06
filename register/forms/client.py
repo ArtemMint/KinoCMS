@@ -6,18 +6,35 @@ from register.models.client import Client
 from utils import current_year
 
 
-class EditProfileForm(UserChangeForm):
+class UserForm(UserChangeForm):
+    class Meta:
+        model = User
+        fields = ('username', 'email', 'first_name', 'last_name', 'password')
+
+
+class ClientForm(UserChangeForm):
+    def __init__(self, *args, **kwargs):
+        super(ClientForm, self).__init__(*args, **kwargs)
+        del self.fields['password']
+
     class Meta:
         years_to_display = range(current_year() - 100, current_year())
         model = Client
-        fields = ('address', 'phone', 'city', 'birth_date', 'gender',)
+        fields = '__all__'
+        exclude = ('user',)
         widgets = {
             'birth_date': forms.SelectDateWidget(years=years_to_display),
             'gender': forms.Select(),
         }
 
 
-class CreateClientForm(UserCreationForm):
+class CreateUserForm(UserCreationForm):
     class Meta:
         model = User
         fields = ('username', 'email', 'password1', 'password2',)
+
+
+class CreateClientForm(UserCreationForm):
+    class Meta:
+        model = Client
+        fields = '__all__'
