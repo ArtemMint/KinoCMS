@@ -1,4 +1,4 @@
-from django.views.generic import ListView, UpdateView, DeleteView
+from django.views.generic import DeleteView
 from django.contrib.auth.models import User
 from register.models.client import Client
 from register.forms.client import ClientForm, UserForm
