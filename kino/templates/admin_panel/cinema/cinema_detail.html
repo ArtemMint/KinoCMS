@@ -37,9 +37,6 @@
             <dl class="dl-horizontal">
                 <dt>Description:</dt>
                 <dd>{{ cinema.description|linebreaks }}</dd>
-                {% for gallery in gallery_list %}
-                    <img src="{{ gallery.image.url }}" alt="{{ gallery.image }}" style="width: 100px;">
-                {% endfor %}
             </dl>
         </div>
         <!-- /.box-body -->
@@ -103,10 +100,9 @@
                     {% for cinemahall in cinemahalls %}
                         <tbody>
                             <tr role="row" class="odd">
-                            {% comment %} <a href="{% url 'admin_shares_detail'%}"> {% endcomment %}
-                                <td class="sorting_1">{{cinemahall.name}}</td>
+                                <td class="sorting_1"><a href="{% url 'admin_cinemahall_detail' cinema.id cinemahall.id%}">{{cinemahall.name}}</a></td>
                                 <td>{{cinemahall.created_date}}</td>
-                                <td><a class="btn btn-sm btn-warning" href="#">Update</a> <a class="btn btn-sm btn-danger" href="#">Delete</a></td>
+                                <td><a class="btn btn-sm btn-warning" href="{% url 'admin_update_cinemahall' cinema.id cinemahall.id%}">Update</a> <a class="btn btn-sm btn-danger" href="#">Delete</a></td>
                             </tr>
                         </tbody>
                     {% endfor %}
@@ -128,8 +124,8 @@
     </div>
     <!-- /.card-body -->
     <div class="card-footer clearfix">
-        <a href="{% url 'admin_update_cinema' cinema.pk %}" class="btn btn-sm btn-warning float-left">Edit film</a>
-        <a href="{% url 'admin_delete_cinema' cinema.pk %}" class="btn btn-sm btn-danger float-right">Delete film</a>
+        <a href="{% url 'admin_update_cinema' cinema.pk %}" class="btn btn-sm btn-warning float-left">Edit Cinema</a>
+        <a href="{% url 'admin_delete_cinema' cinema.pk %}" class="btn btn-sm btn-danger float-right">Delete Cinema</a>
     </div>
     <!-- /.card-footer -->
 </div>

@@ -1,6 +1,5 @@
 from django.urls import reverse_lazy
-from django.http import Http404
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404, get_list_or_404
 
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
@@ -14,21 +13,14 @@ class AdminCinemasView(ListView):
 
 
 def adminCinemaDetailView(request, cinema_id):
-    try:
-        cinema = Cinema.objects.get(id=cinema_id)
-        cinemahalls = CinemaHall.objects.filter(cinema=cinema)
-    except cinema.DoesNotExist:
-        raise Http404("Cinema does not exist")
+    cinema = get_object_or_404(Cinema, id=cinema_id)
+    cinemahalls = get_list_or_404(CinemaHall, cinema=cinema)
     context = {'cinema': cinema, 'cinemahalls': cinemahalls}
     return render(request, 'admin_panel/cinema/cinema_detail.html', context)
 
 
 def adminNewCinemahallView(request, cinema_id):
-    try:
-        cinema = Cinema.objects.get(pk=cinema_id)
-    except cinema.DoesNotExist:
-        raise Http404("Cinema does not exist")
-
+    cinema = get_object_or_404(Cinema, id=cinema_id)
     if request.method == "POST":
         form = CinemaHallForm(request.POST, request.FILES)
         if form.is_valid():
@@ -42,6 +34,50 @@ def adminNewCinemahallView(request, cinema_id):
         request,
         'admin_panel/cinema/cinemahall_add.html',
         {'cinemahall_form': form})
+
+
+def adminCinemahallDetailView(request, cinema_id, cinemahall_id):
+    """
+    Detail view for Hall of the Cinema
+    """
+    cinema = get_object_or_404(Cinema, id=cinema_id)
+    cinemahall = get_object_or_404(CinemaHall, id=cinemahall_id)
+    context = {'cinema': cinema, 'cinemahall': cinemahall}
+    return render(request, 'admin_panel/cinema/cinemahall_detail.html', context)
+
+
+def adminCinemahallUpdateView(request, cinema_id, cinemahall_id):
+    """
+    Edit Hall in the Cinema
+    """
+    cinema = get_object_or_404(Cinema, id=cinema_id)
+    cinemahall = get_object_or_404(CinemaHall, id=cinemahall_id)
+
+    if request.method == "POST":
+        form = CinemaHallForm(instance=cinemahall,
+                              data=request.POST, files=request.FILES)
+        if form.is_valid():
+            form = form.save(commit=False)
+            form.save()
+            return redirect('admin_cinemas')
+    else:
+        form = CinemaHallForm()
+    return render(
+        request,
+        'admin_panel/cinema/cinemahall_update.html',
+        {'cinema': cinema, 'cinemahall_form': form})
+
+
+class AdminCinemahallUpdateView(UpdateView):
+    model = CinemaHall
+    form_class = CinemaHallForm
+    template_name = 'admin_panel/cinema/cinemahall_update.html'
+
+
+class AdminCinemahallDeleteView(DeleteView):
+    model = CinemaHall
+    template_name = 'admin_panel/cinema/cinemahall_delete.html'
+    success_url = reverse_lazy('admin_cinemas')
 
 
 class AdminCinemaAddView(CreateView):

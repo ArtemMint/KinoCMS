@@ -72,6 +72,11 @@ urlpatterns = [
          AdminCinemaDeleteView.as_view(), name='admin_delete_cinema'),
     path('admin/new_cinemas/', AdminCinemaAddView.as_view(),
          name='admin_add_cinema'),
+    path('admin/cinemas/<int:cinema_id>/cinemahall/<int:cinemahall_id>/',
+         adminCinemahallDetailView, name='admin_cinemahall_detail'),
+    path('admin/cinemas/<int:cinema_id>/cinemahall/<int:cinemahall_id>/update/',
+         adminCinemahallUpdateView, name='admin_update_cinemahall'),
+    
     path('admin/cinemas/<int:cinema_id>/new_cinemahall/', adminNewCinemahallView,
          name='admin_add_cinemahall'),
 
@@ -85,6 +90,7 @@ urlpatterns = [
     path('admin/news/<int:pk>/delete',
          AdminNewsDeleteView.as_view(), name='admin_delete_news'),
     path('admin/new_news/', AdminNewsAddView.as_view(), name='admin_add_news'),
+
 
     # Shares
     path('admin/shares/', AdminSharesView.as_view(), name='admin_shares'),
