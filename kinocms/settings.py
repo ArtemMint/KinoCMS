@@ -39,8 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_extensions',
-    'kino',
-    'register',
+    'kino.apps.KinoConfig',
+    'register.apps.RegisterConfig',
 ]
 
 MIDDLEWARE = [
