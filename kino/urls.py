@@ -36,26 +36,21 @@ urlpatterns = [
     path('admin/users/<int:pk>/delete',
          AdminUserDeleteView.as_view(), name='admin_delete_user'),
 
-<<<<<<< HEAD
-                  # Admin
-                  path('admin/', admin_view, name='admin_home'),
-                  path('admin/statistics/', AdminStatisticsView.as_view(), name='admin_statistics'),
-                  path('admin/banners/', AdminBannersView.as_view(), name='admin_banners'),
-                  path('admin/shares/', AdminSharesView.as_view(), name='admin_shares'),
-                  path('admin/pages/', AdminPagesView.as_view(), name='admin_pages'),
-                  path('admin/users/', AdminUsersView.as_view(), name='admin_users'),
-                  path('admin/mailing/', AdminMailingView.as_view(), name='admin_mailing'),
-=======
+
     # Admin
     path('admin/', admin_view, name='admin_home'),
     path('admin/statistics/', AdminStatisticsView.as_view(),
          name='admin_statistics'),
-    path('admin/banners_sliders/', AdminBannersSlidersView.as_view(),
-         name='admin_banners_sliders'),
-    path('admin/shares/', AdminSharesView.as_view(), name='admin_shares'),
-    path('admin/pages/', AdminPagesView.as_view(), name='admin_pages'),
-    path('admin/mailing/', AdminMailingView.as_view(), name='admin_mailing'),
->>>>>>> f2751d6b08f77e1f1d621f56c5b909a198e36534
+    path('admin/banners/', AdminBannersView.as_view(),
+         name='admin_banners'),
+    path('admin/shares/', AdminSharesView.as_view(),
+         name='admin_shares'),
+    path('admin/pages/', AdminPagesView.as_view(),
+         name='admin_pages'),
+    path('admin/users/', AdminUsersView.as_view(),
+         name='admin_users'),
+    path('admin/mailing/', AdminMailingView.as_view(),
+         name='admin_mailing'),
 
     # FILMS
     path('admin/films/', AdminFilmsView.as_view(),
