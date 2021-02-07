@@ -8,7 +8,7 @@
     <li class="breadcrumb-item"><a href="{% url 'admin_home' %}">Home</a></li>
     <li class="breadcrumb-item active"><a href="{% url 'admin_cinemas' %}">Cinema</a></li>
     <li class="breadcrumb-item active"><a href="{% url 'admin_cinema_detail' cinema.id%}">{{cinema.name}}</a></li>
-    {% comment %} <li class="breadcrumb-item active"><a href="{% url 'admin_cinemahall_detail' cinemahall.id%}">Hall «{{ cinemahall.name }}»</a></li> {% endcomment %}
+    <li class="breadcrumb-item active"><a href="{% url 'admin_cinemahall_detail' cinema.id cinemahall.id%}">Hall «{{ cinemahall.name }}»</a></li>
     <li class="breadcrumb-item active">Update Hall</li>
 {% endblock breadcrumb %}
 
@@ -23,8 +23,9 @@
     <div class="form-group">
         <form method="POST" enctype="multipart/form-data">{% csrf_token %}
             <div class="box-body">
-            <div class="form-group">
-                {{ cinemahall_form.as_p }}
+                <div class="form-group">
+                    {{ cinemahall_form.as_p }}
+                </div>
             </div>
             <!-- /.box-body -->
             <div class="box-footer">

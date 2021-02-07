@@ -97,12 +97,12 @@
                         <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Status</th>
                         {% comment %} <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending">Edit/Delete</th> {% endcomment %}
                     </thead>
-                    {% for cinemahall in cinemahalls %}
+                    {% for cinemahall in page_obj %}
                         <tbody>
                             <tr role="row" class="odd">
                                 <td class="sorting_1"><a href="{% url 'admin_cinemahall_detail' cinema.id cinemahall.id%}">{{cinemahall.name}}</a></td>
                                 <td>{{cinemahall.created_date}}</td>
-                                <td><a class="btn btn-sm btn-warning" href="{% url 'admin_update_cinemahall' cinema.id cinemahall.id%}">Update</a> <a class="btn btn-sm btn-danger" href="#">Delete</a></td>
+                                <td><a class="btn btn-sm btn-warning" href="{% url 'admin_update_cinemahall' cinema.id cinemahall.id%}">Update</a> <a class="btn btn-sm btn-danger" href="{% url 'admin_delete_cinemahall' cinema.id cinemahall.id%}">Delete</a></td>
                             </tr>
                         </tbody>
                     {% endfor %}
@@ -110,6 +110,23 @@
                     <h3 style="color:red;">There is not halls yet!</h3>
                 {% endif %}
                 </table>
+                <div class="pagination">
+                    <span class="step-links">
+                        {% if page_obj.has_previous %}
+                            <a href="?page=1">&laquo; first</a>
+                            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+                        {% endif %}
+
+                        <span class="current">
+                            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                        </span>
+
+                        {% if page_obj.has_next %}
+                            <a href="?page={{ page_obj.next_page_number }}">next</a>
+                            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+                        {% endif %}
+                    </span>
+                </div>
             </div>
             <!-- /.box-body -->
         </div>

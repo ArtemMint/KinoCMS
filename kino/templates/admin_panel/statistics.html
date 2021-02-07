@@ -4,3 +4,12 @@
 {% block title %}AdminLTE | Statistics{% endblock title %}
 
 {% block content_header %}Statistics{% endblock content_header %}
+
+{% block content %}
+
+<h1><strong>Total users registered</strong>: {{users}} - average age {{avg_age}}</h1>
+<h3><strong>Men</strong>: {{men}} - average age {{men_avg_age}} | <strong>Women</strong>: {{women}} - average age {{women_avg_age}}</h3>
+<h1>Total films exist: {{films}}</h1>
+<h1>Total cinemas exist: {{cinemas}}</h1>
+
+{% endblock content %}

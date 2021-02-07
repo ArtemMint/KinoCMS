@@ -10,7 +10,7 @@ from .views.admin_panel.mailing import AdminMailingView
 from .views.admin_panel.news import *
 from .views.admin_panel.pages import AdminPagesView
 from .views.admin_panel.shares import *
-from .views.admin_panel.statistics import AdminStatisticsView
+from .views.admin_panel.statistics import *
 from .views.admin_panel.user import *
 
 from .views.site.cinema import *
@@ -32,19 +32,18 @@ urlpatterns = [
 
     # Admin USERS
     path('admin/users/', adminUserListView, name='admin_users'),
+    path('admin/users/create/',
+         adminUserCreateView, name='admin_create_users'),
     path('admin/users/edit/<int:user_id>',
          adminUserUpdateView, name='admin_update_users'),
-    path('admin/users/<int:pk>/delete',
-         AdminUserDeleteView.as_view(), name='admin_delete_user'),
-
-
-    # Admin
+    path('admin/users/<int:user_id>/delete',
+         adminUserDeleteView, name='admin_delete_user'),
     path('admin/', admin_view, name='admin_home'),
     path('admin/users/', adminUserListView, name='admin_users'),
 
     # Admin
     path('admin/', admin_view, name='admin_home'),
-    path('admin/statistics/', AdminStatisticsView.as_view(),
+    path('admin/statistics/', adminStatisticsView,
          name='admin_statistics'),
     path('admin/banners_sliders/', AdminBannersView.as_view(),
          name='admin_banners_sliders'),
@@ -84,9 +83,10 @@ urlpatterns = [
          adminCinemahallDetailView, name='admin_cinemahall_detail'),
     path('admin/cinemas/<int:cinema_id>/cinemahall/<int:cinemahall_id>/update/',
          adminCinemahallUpdateView, name='admin_update_cinemahall'),
-
-    path('admin/cinemas/<int:cinema_id>/new_cinemahall/', adminNewCinemahallView,
-         name='admin_add_cinemahall'),
+    path('admin/cinemas/<int:cinema_id>/cinemahall/<int:cinemahall_id>/delete/',
+         adminCinemahallDeleteView, name='admin_delete_cinemahall'),
+    path('admin/cinemas/<int:cinema_id>/new_cinemahall/',
+         adminCinemahallCreateView, name='admin_add_cinemahall'),
 
     # News
     path('admin/news/', AdminNewsView.as_view(), name='admin_news'),
