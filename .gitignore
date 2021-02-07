@@ -9,4 +9,6 @@
 
 /__pycache__
 
+/media
+
 kino/templatetags/__pycache__/
