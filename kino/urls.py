@@ -16,7 +16,7 @@ from .views.admin_panel.user import *
 from .views.site.cinema import *
 from .views.site.film import *
 from .views.site.home import HomeView
-from .views.site.news import NewsView
+from .views.site.news import *
 from .views.site.poster import PosterView
 from .views.site.shares import *
 
@@ -28,8 +28,10 @@ urlpatterns = [
     path('cinemas/', CinemasView.as_view(), name='cinemas'),
     path('cinema/<int:cinema_id>', cinemaDetailView, name='cinema_detail'),
     path('cinema/<int:cinema_id>/hall/<int:cinemahall_id>', cinemahallDetailView, name='cinemahall_detail'),
-    path('shares/', SharesView.as_view(), name='shares'),
-    path('news/', NewsView.as_view(), name='news'),
+    path('shares/', sharesView, name='shares'),
+    path('shares/<int:shares_id>', sharesDetailView, name='shares_detail'),
+    path('news/', newsView, name='news'),
+    path('news/<int:news_id>', newsDetailView, name='news_detail'),
 
     # Admin USERS
     path('admin/users/', adminUserListView, name='admin_users'),

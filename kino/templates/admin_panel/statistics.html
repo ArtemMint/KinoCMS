@@ -9,8 +9,66 @@
 
 <h1><strong>Total users registered</strong>: {{users}} - average age {{avg_age}}</h1>
 <h3><strong>Men</strong>: {{men}} - average age {{men_avg_age}} | <strong>Women</strong>: {{women}} - average age {{women_avg_age}}</h3>
+<div class="row">
+    <div class="col-lg-3 col-6">
+    <!-- small box -->
+    <div class="small-box bg-info">
+        <div class="inner">
+        <h3>{{films}}</h3>
 
-<h1>Total films exist: {{films}}</h1>
-<h1>Total cinemas exist: {{cinemas}}</h1>
+        <p>Total Films</p>
+        </div>
+        <div class="icon">
+        <i class="fas fa-film nav-icon"></i>
+        </div>
+        <a href="{% url 'admin_films' %}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+    </div>
+    </div>
+    <!-- ./col -->
+    <div class="col-lg-3 col-6">
+    <!-- small box -->
+    <div class="small-box bg-success">
+        <div class="inner">
+        <h3>{{cinemas}}</h3>
 
+        <p>Total Cinemas</p>
+        </div>
+        <div class="icon">
+        <i class="fas fa-star nav-icon"></i>
+        </div>
+        <a href="{% url 'admin_cinemas' %}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+    </div>
+    </div>
+    <!-- ./col -->
+    <div class="col-lg-3 col-6">
+    <!-- small box -->
+    <div class="small-box bg-warning">
+        <div class="inner">
+        <h3>{{users}}</h3>
+
+        <p>User Registrations</p>
+        </div>
+        <div class="icon">
+        <i class="ion ion-person-add"></i>
+        </div>
+        <a href="{% url 'admin_users' %}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+    </div>
+    </div>
+    <!-- ./col -->
+    <div class="col-lg-3 col-6">
+    <!-- small box -->
+    <div class="small-box bg-danger">
+        <div class="inner">
+        <h3>number here</h3>
+
+        <p>Unique Visitors</p>
+        </div>
+        <div class="icon">
+        <i class="fas fa-eye"></i>
+        </div>
+        <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+    </div>
+    </div>
+    <!-- ./col -->
+</div>
 {% endblock content %}
