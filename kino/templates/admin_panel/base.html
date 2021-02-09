@@ -220,12 +220,43 @@
                             <p>Statistics</p>
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a href="{% url 'admin_banners' %}" class="nav-link">
-                            <i class="fas fa-sliders-h nav-icon"></i>
-                            <p>Banners/Sliders</p>
+
+
+
+
+                    <li class="nav-item menu-is-opening">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-laptop"></i>
+                            <p>
+                                Banners <i class="right fas fa-angle-left"></i>
+                            </p>
                         </a>
-                    </li>
+                        <ul class="nav nav-treeview" style="display: none;">
+                            <li class="nav-item">
+                                <a href="{% url 'admin_banners_sliders' %}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Slider banner</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{% url 'admin_banners_back' %}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Back banner</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{% url 'admin_banners_shares' %}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Shares banner</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li> 
+
+
+
+
+
                     <li class="nav-item">
                         <a href="{% url 'admin_films' %}" class="nav-link">
                             <i class="fas fa-film nav-icon"></i>
