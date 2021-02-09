@@ -1,5 +1,5 @@
 from django import forms
-from kino.models.cinema import Cinema
+from kino.models.cinema import Cinema, CinemaHall
 
 
 class CinemaForm(forms.ModelForm):
@@ -11,6 +11,24 @@ class CinemaForm(forms.ModelForm):
             'name': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Name of the cinema'}),
             'description': forms.Textarea(attrs={'class':'form-control', 'placeholder':'Descripton of the cinema'}),
             'preview': forms.FileInput(attrs={'class':'form-control', 'placeholder':'Preview of the cinema'}),
+            'image1': forms.FileInput(attrs={'class':'form-control'}),
+            'image2': forms.FileInput(attrs={'class':'form-control'}),
+            'image3': forms.FileInput(attrs={'class':'form-control'}),
+            'image4': forms.FileInput(attrs={'class':'form-control'}),
+            'image5': forms.FileInput(attrs={'class':'form-control'}),
+        }
+
+
+class CinemaHallForm(forms.ModelForm):
+    preview = forms.ImageField()
+    class Meta:
+        model = CinemaHall
+        fields = '__all__'
+        exclude = ('cinema','created_date',)
+        widgets = {
+            'name': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Name of the cinemahall'}),
+            'description': forms.Textarea(attrs={'class':'form-control', 'placeholder':'Descripton of the cinemahall'}),
+            'preview': forms.FileInput(attrs={'class':'form-control', 'placeholder':'Preview of the cinemahall'}),
             'image1': forms.FileInput(attrs={'class':'form-control'}),
             'image2': forms.FileInput(attrs={'class':'form-control'}),
             'image3': forms.FileInput(attrs={'class':'form-control'}),

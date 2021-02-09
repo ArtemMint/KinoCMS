@@ -1,33 +1,33 @@
 {% extends 'admin_panel/base.html' %}
 {% load static %}
 
-{% block title %}AdminLTE | Delete Cinema{% endblock title %}
+{% block title %}AdminLTE | Add Cinemahall{% endblock title %}
 
 
 {% block breadcrumb %}
     <li class="breadcrumb-item"><a href="{% url 'admin_home' %}">Home</a></li>
     <li class="breadcrumb-item active"><a href="{% url 'admin_cinemas' %}">Cinemas</a></li>
-    <li class="breadcrumb-item active"><a href="{% url 'admin_cinema_detail' cinema.pk%}">{{cinema.name}}</a></li>
-    <li class="breadcrumb-item active">Delete Cinema</li>
+    <li class="breadcrumb-item active">New Cinemahall</li>
 {% endblock breadcrumb %}
 
 
 {% block content %}
 <div class="box box-primary">
     <div class="box-header with-border">
-        <h3 class="box-title">Delete Cinema "{{cinema.name}}"</h3>
+        <h3 class="box-title">Add new Cinemahall</h3>
     </div>
     <!-- /.box-header -->
     <!-- form start -->
     <div class="form-group">
         <form method="POST" enctype="multipart/form-data">{% csrf_token %}
             <div class="box-body">
-            <div class="form-group">
-                <strong>Are you sure?</strong>
-            </div>
-            <!-- /.box-body -->
-            <div class="box-footer">
-                <button type="submit" class="btn btn-outline-danger">Delete!</button>
+                <div class="form-group">
+                    {{ cinemahall_form.as_p }}
+                </div>
+                <!-- /.box-body -->
+                <div class="box-footer">
+                <button type="submit" class="btn btn-primary">Add new Cinemahall</button>
+                </div>
             </div>
         </form>
     </div>
