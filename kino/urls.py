@@ -20,7 +20,6 @@ from kino.views.site.news import *
 from kino.views.site.poster import *
 from kino.views.site.shares import *
 
-
 urlpatterns = [
     path('', homePageView, name='home'),
     path('poster/', posterView, name='poster'),
@@ -43,26 +42,33 @@ urlpatterns = [
          adminUserUpdateView, name='admin_update_users'),
     path('admin/users/<int:user_id>/delete',
          adminUserDeleteView, name='admin_delete_user'),
-    path('admin/', admin_view, name='admin_home'),
     path('admin/users/', adminUserListView, name='admin_users'),
 
     # Admin
-    path('admin/', admin_view, name='admin_home'),
     path('admin/statistics/', adminStatisticsView,
          name='admin_statistics'),
-    path('admin/banners/', AdminBannersView.as_view(),
-         name='admin_banners'),
+    path('admin/banners/sliders', slider_banners_update,
+         name='admin_banners_sliders'),
+    path('admin/banners/back', back_banners_update,
+         name='admin_banners_back'),
+    path('admin/banners/shares', shares_banners_update,
+         name='admin_banners_shares'),
     path('admin/shares/', AdminSharesView.as_view(),
          name='admin_shares'),
     path('admin/pages/', adminPagesView,
          name='admin_pages'),
     path('admin/pages/home/', adminHomePageView, name='admin_homepage'),
-    path('admin/pages/contacts/', adminContactsPageView, name='admin_contacts_page'),
+    path('admin/pages/contacts/', adminContactsPageView,
+         name='admin_contacts_page'),
     path('admin/pages/about/', adminAboutPageView, name='admin_about_page'),
-    path('admin/pages/cafe-bar/', adminCafeBarPageView, name='admin_cafe-bar_page'),
-    path('admin/pages/vip-hall/', adminVipHallPageView, name='admin_vip-hall_page'),
-    path('admin/pages/advertising/', adminAdvertisingPageView, name='admin_advertsing_page'),
-    path('admin/pages/children_room/', adminChildrenRoomPageView, name='admin_children_room_page'),
+    path('admin/pages/cafe-bar/', adminCafeBarPageView,
+         name='admin_cafe-bar_page'),
+    path('admin/pages/vip-hall/', adminVipHallPageView,
+         name='admin_vip-hall_page'),
+    path('admin/pages/advertising/', adminAdvertisingPageView,
+         name='admin_advertsing_page'),
+    path('admin/pages/children_room/', adminChildrenRoomPageView,
+         name='admin_children_room_page'),
     path('admin/mailing/', AdminMailingView.as_view(),
          name='admin_mailing'),
     path('admin/mailing/', AdminMailingView.as_view(),
@@ -110,7 +116,6 @@ urlpatterns = [
          AdminNewsDeleteView.as_view(), name='admin_delete_news'),
     path('admin/new_news/', AdminNewsAddView.as_view(),
          name='admin_add_news'),
-
 
     # Shares
     path('admin/shares/', AdminSharesView.as_view(),
