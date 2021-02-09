@@ -2,23 +2,24 @@ from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
 
-from .views.admin_panel.banners import AdminBannersView
-from .views.admin_panel.cinema import *
-from .views.admin_panel.film import *
-from .views.admin_panel.home import admin_view
-from .views.admin_panel.mailing import AdminMailingView
-from .views.admin_panel.news import *
-from .views.admin_panel.pages import AdminPagesView
-from .views.admin_panel.shares import *
-from .views.admin_panel.statistics import *
-from .views.admin_panel.user import *
+from kino.views.admin_panel.banners import *
+from kino.views.admin_panel.cinema import *
+from kino.views.admin_panel.film import *
+from kino.views.admin_panel.home import *
+from kino.views.admin_panel.mailing import *
+from kino.views.admin_panel.news import *
+from kino.views.admin_panel.pages import *
+from kino.views.admin_panel.shares import *
+from kino.views.admin_panel.statistics import *
+from kino.views.admin_panel.user import *
 
-from .views.site.cinema import *
-from .views.site.film import *
-from .views.site.home import HomeView
-from .views.site.news import *
-from .views.site.poster import PosterView
-from .views.site.shares import *
+from kino.views.site.cinema import *
+from kino.views.site.film import *
+from kino.views.site.home import HomeView
+from kino.views.site.news import *
+from kino.views.site.poster import PosterView
+from kino.views.site.shares import *
+
 
 urlpatterns = [
     path('', HomeView.as_view(), name='home'),
@@ -27,7 +28,8 @@ urlpatterns = [
     path('film/<int:pk>', FilmDetailView.as_view(), name='film_detail'),
     path('cinemas/', CinemasView.as_view(), name='cinemas'),
     path('cinema/<int:cinema_id>', cinemaDetailView, name='cinema_detail'),
-    path('cinema/<int:cinema_id>/hall/<int:cinemahall_id>', cinemahallDetailView, name='cinemahall_detail'),
+    path('cinema/<int:cinema_id>/hall/<int:cinemahall_id>',
+         cinemahallDetailView, name='cinemahall_detail'),
     path('shares/', sharesView, name='shares'),
     path('shares/<int:shares_id>', sharesDetailView, name='shares_detail'),
     path('news/', newsView, name='news'),
@@ -52,8 +54,9 @@ urlpatterns = [
          name='admin_banners'),
     path('admin/shares/', AdminSharesView.as_view(),
          name='admin_shares'),
-    path('admin/pages/', AdminPagesView.as_view(),
+    path('admin/pages/', adminPagesView,
          name='admin_pages'),
+    path('admin/pages/homepage/', adminHomePageView, name='admin_homepage'),
     path('admin/mailing/', AdminMailingView.as_view(),
          name='admin_mailing'),
     path('admin/mailing/', AdminMailingView.as_view(),

@@ -57,13 +57,15 @@ def adminCinemahallUpdateView(request, cinema_id, cinemahall_id):
     """
     cinema = get_object_or_404(Cinema, id=cinema_id)
     cinemahall = get_object_or_404(CinemaHall, id=cinemahall_id)
-    form = CinemaHallForm(instance=cinemahall)
+    
 
     if request.method == "POST":
         form = CinemaHallForm(request.POST, instance=cinemahall)
         if form.is_valid():
             form.save()
             return redirect('admin_cinema_detail', cinema_id=cinema.id)
+    else:
+        form = CinemaHallForm(instance=cinemahall)
     context = {'cinema': cinema,
                'cinemahall': cinemahall, 'cinemahall_form': form}
     return render(
