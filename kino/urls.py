@@ -12,11 +12,11 @@ from .views.admin_panel.pages import AdminPagesView
 from .views.admin_panel.shares import *
 from .views.admin_panel.statistics import *
 from .views.admin_panel.user import *
-
+from .views.admin_panel.statistics import *
 from .views.site.cinema import *
 from .views.site.film import *
 from .views.site.home import HomeView
-from .views.site.news import NewsView
+from .views.site.news import *
 from .views.site.poster import PosterView
 from .views.site.shares import *
 
@@ -26,16 +26,22 @@ urlpatterns = [
                   path('premiere/', FilmPremiereView.as_view(), name='premiere'),
                   path('film/<int:pk>', FilmDetailView.as_view(), name='film_detail'),
                   path('cinemas/', CinemasView.as_view(), name='cinemas'),
-                  path('cinema/<int:pk>', CinemaDetailView.as_view(), name='cinema_detail'),
-                  path('shares/', SharesView.as_view(), name='shares'),
-                  path('news/', NewsView.as_view(), name='news'),
+                  path('cinema/<int:pk>', cinemaDetailView, name='cinema_detail'),
+                  path('cinema/<int:cinema_id>/hall/<int:cinemahall_id>', cinemahallDetailView,
+                       name='cinemahall_detail'),
+                  path('shares/', sharesView, name='shares'),
+                  path('news/', newsView, name='news'),
 
                   # Admin USERS
                   path('admin/users/', adminUserListView, name='admin_users'),
+                  path('admin/users/create/',
+                       adminUserCreateView, name='admin_create_users'),
                   path('admin/users/edit/<int:user_id>',
                        adminUserUpdateView, name='admin_update_users'),
-                  path('admin/users/<int:pk>/delete',
-                       AdminUserDeleteView.as_view(), name='admin_delete_user'),
+                  path('admin/users/<int:user_id>/delete',
+                       adminUserDeleteView, name='admin_delete_user'),
+                  path('admin/', admin_view, name='admin_home'),
+                  path('admin/users/', adminUserListView, name='admin_users'),
 
                   # Admin
                   path('admin/', admin_view, name='admin_home'),
@@ -43,7 +49,7 @@ urlpatterns = [
 
                   # Admin
                   path('admin/', admin_view, name='admin_home'),
-                  path('admin/statistics/', AdminStatisticsView.as_view(),
+                  path('admin/statistics/', adminStatisticsView,
                        name='admin_statistics'),
                   path('admin/banners/sliders', slider_banners_update,
                        name='admin_banners_sliders'),
@@ -87,9 +93,10 @@ urlpatterns = [
                        adminCinemahallDetailView, name='admin_cinemahall_detail'),
                   path('admin/cinemas/<int:cinema_id>/cinemahall/<int:cinemahall_id>/update/',
                        adminCinemahallUpdateView, name='admin_update_cinemahall'),
-
-                  path('admin/cinemas/<int:cinema_id>/new_cinemahall/', adminNewCinemahallView,
-                       name='admin_add_cinemahall'),
+                  path('admin/cinemas/<int:cinema_id>/cinemahall/<int:cinemahall_id>/delete/',
+                       adminCinemahallDeleteView, name='admin_delete_cinemahall'),
+                  path('admin/cinemas/<int:cinema_id>/new_cinemahall/',
+                       adminCinemahallCreateView, name='admin_add_cinemahall'),
 
                   # News
                   path('admin/news/', AdminNewsView.as_view(), name='admin_news'),
