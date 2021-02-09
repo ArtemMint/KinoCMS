@@ -15,12 +15,14 @@ class AdminCinemasView(ListView):
 
 def adminCinemaDetailView(request, cinema_id):
     cinema = get_object_or_404(Cinema, id=cinema_id)
-    cinemahalls = get_list_or_404(CinemaHall.objects.order_by('-id'), cinema=cinema)
+    cinemahalls = get_list_or_404(
+        CinemaHall.objects.order_by('-id'), cinema=cinema)
     paginator = Paginator(cinemahalls, 5)
 
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
-    context = {'cinema': cinema, 'cinemahalls': cinemahalls, 'page_obj': page_obj}
+    context = {'cinema': cinema,
+               'cinemahalls': cinemahalls, 'page_obj': page_obj}
     return render(request, 'admin_panel/cinema/cinema_detail.html', context)
 
 
@@ -57,13 +59,14 @@ def adminCinemahallUpdateView(request, cinema_id, cinemahall_id):
     """
     cinema = get_object_or_404(Cinema, id=cinema_id)
     cinemahall = get_object_or_404(CinemaHall, id=cinemahall_id)
-    form = CinemaHallForm(instance=cinemahall)
 
     if request.method == "POST":
         form = CinemaHallForm(request.POST, instance=cinemahall)
         if form.is_valid():
             form.save()
             return redirect('admin_cinema_detail', cinema_id=cinema.id)
+    else:
+        form = CinemaHallForm(instance=cinemahall)
     context = {'cinema': cinema,
                'cinemahall': cinemahall, 'cinemahall_form': form}
     return render(
