@@ -24,10 +24,13 @@
             <div class="box-body">
             <div class="form-group">
                 {{ form.as_p }}
+                
+                <img src="/media/{{form.preview.value}}" style="height: 225px; width: 150px; display: block; margin: auto;">
+                <img src="/media/{{form.image1.value}}" style="height: 225px; width: 150px; display: block; margin: auto;">
             </div>
             <!-- /.box-body -->
             <div class="box-footer">
-                <button type="submit" class="btn btn-primary">Update</button>
+                <button type="submit" class="btn btn-success">Update</button>
             </div>
         </form>
     </div>

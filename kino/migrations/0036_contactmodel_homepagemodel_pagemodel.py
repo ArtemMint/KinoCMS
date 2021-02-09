@@ -3,7 +3,7 @@
 from django.db import migrations, models
 import django.db.models.deletion
 import django.utils.timezone
-import kino.models
+from kino.models.shares import *
 
 
 class Migration(migrations.Migration):
@@ -23,7 +23,7 @@ class Migration(migrations.Migration):
                 ('status', models.BooleanField(default=False)),
                 ('latitude', models.FloatField(max_length=50)),
                 ('longitude', models.FloatField(max_length=50)),
-                ('logo', models.ImageField(upload_to=kino.models.upload_shares_preview)),
+                ('logo', models.ImageField(upload_to=upload_shares_preview)),
                 ('seo_title', models.CharField(blank=True, max_length=50)),
                 ('seo_keywords', models.CharField(blank=True, max_length=100)),
                 ('seo_description', models.CharField(blank=True, max_length=100)),
@@ -37,12 +37,12 @@ class Migration(migrations.Migration):
                 ('pub_date', models.DateField(default=django.utils.timezone.now)),
                 ('description', models.TextField(blank=True)),
                 ('status', models.BooleanField(default=False)),
-                ('preview', models.ImageField(upload_to=kino.models.upload_shares_preview)),
-                ('image1', models.ImageField(blank=True, null=True, upload_to=kino.models.upload_shares_gallery)),
-                ('image2', models.ImageField(blank=True, null=True, upload_to=kino.models.upload_shares_gallery)),
-                ('image3', models.ImageField(blank=True, null=True, upload_to=kino.models.upload_shares_gallery)),
-                ('image4', models.ImageField(blank=True, null=True, upload_to=kino.models.upload_shares_gallery)),
-                ('image5', models.ImageField(blank=True, null=True, upload_to=kino.models.upload_shares_gallery)),
+                ('preview', models.ImageField(upload_to=upload_shares_preview)),
+                ('image1', models.ImageField(blank=True, null=True, upload_to=upload_shares_gallery)),
+                ('image2', models.ImageField(blank=True, null=True, upload_to=upload_shares_gallery)),
+                ('image3', models.ImageField(blank=True, null=True, upload_to=upload_shares_gallery)),
+                ('image4', models.ImageField(blank=True, null=True, upload_to=upload_shares_gallery)),
+                ('image5', models.ImageField(blank=True, null=True, upload_to=upload_shares_gallery)),
                 ('seo_title', models.CharField(blank=True, max_length=50)),
                 ('seo_keywords', models.CharField(blank=True, max_length=100)),
                 ('seo_description', models.CharField(blank=True, max_length=100)),

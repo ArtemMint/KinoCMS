@@ -37,9 +37,6 @@
             <dl class="dl-horizontal">
                 <dt>Description:</dt>
                 <dd>{{ cinema.description|linebreaks }}</dd>
-                {% for gallery in gallery_list %}
-                    <img src="{{ gallery.image.url }}" alt="{{ gallery.image }}" style="width: 100px;">
-                {% endfor %}
             </dl>
         </div>
         <!-- /.box-body -->
@@ -85,7 +82,55 @@
                 <span class="sr-only">Next</span>
             </a>
         </div>
-        
+        <div class="box">
+        <!-- /.box-header -->
+            <div class="box-body">
+                <div id="example2_wrapper" class="dataTables_wrapper form-inline dt-bootstrap"><div class="row"><div class="col-sm-6"></div><div class="col-sm-6"></div></div><div class="row"><div class="col-sm-12"><table id="example2" class="table table-bordered table-hover dataTable" role="grid" aria-describedby="example2_info">
+                <div class="card-body"> 
+                    <a href="{% url 'admin_add_cinemahall' cinema.id%}"><button type="button" class="btn btn-lg btn-block btn-outline-primary">Add New Cinemahall</button></a>
+                </div>
+                {% if cinemahalls %}
+                    <thead>
+                    <tr role="row">
+                        <th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Rendering engine: activate to sort column descending" aria-sort="ascending">Name</th>
+                        <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Description</th>
+                        <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Status</th>
+                        {% comment %} <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending">Edit/Delete</th> {% endcomment %}
+                    </thead>
+                    {% for cinemahall in page_obj %}
+                        <tbody>
+                            <tr role="row" class="odd">
+                                <td class="sorting_1"><a href="{% url 'admin_cinemahall_detail' cinema.id cinemahall.id%}">{{cinemahall.name}}</a></td>
+                                <td>{{cinemahall.created_date}}</td>
+                                <td><a class="btn btn-sm btn-warning" href="{% url 'admin_update_cinemahall' cinema.id cinemahall.id%}">Update</a> <a class="btn btn-sm btn-danger" href="{% url 'admin_delete_cinemahall' cinema.id cinemahall.id%}">Delete</a></td>
+                            </tr>
+                        </tbody>
+                    {% endfor %}
+                {% else %}
+                    <h3 style="color:red;">There is not halls yet!</h3>
+                {% endif %}
+                </table>
+                <div class="pagination">
+                    <span class="step-links">
+                        {% if page_obj.has_previous %}
+                            <a href="?page=1">&laquo; first</a>
+                            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+                        {% endif %}
+
+                        <span class="current">
+                            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                        </span>
+
+                        {% if page_obj.has_next %}
+                            <a href="?page={{ page_obj.next_page_number }}">next</a>
+                            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+                        {% endif %}
+                    </span>
+                </div>
+            </div>
+            <!-- /.box-body -->
+        </div>
+        <!-- /.box -->
     </div>
     <!-- /.card-body -->
         
@@ -96,8 +141,8 @@
     </div>
     <!-- /.card-body -->
     <div class="card-footer clearfix">
-        <a href="{% url 'admin_update_cinema' cinema.pk %}" class="btn btn-sm btn-info float-left">Edit film</a>
-        <a href="{% url 'admin_delete_cinema' cinema.pk %}" class="btn btn-sm btn-secondary float-right">Delete film</a>
+        <a href="{% url 'admin_update_cinema' cinema.pk %}" class="btn btn-sm btn-warning float-left">Edit Cinema</a>
+        <a href="{% url 'admin_delete_cinema' cinema.pk %}" class="btn btn-sm btn-danger float-right">Delete Cinema</a>
     </div>
     <!-- /.card-footer -->
 </div>

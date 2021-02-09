@@ -2,7 +2,7 @@
 
 from django.db import migrations, models
 import django.db.models.deletion
-import kino.models
+from kino.models.cinema import *
 
 
 class Migration(migrations.Migration):
@@ -36,7 +36,7 @@ class Migration(migrations.Migration):
             name='CinemaGallery',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('images', models.FileField(upload_to=kino.models.upload_cinema_gallery)),
+                ('images', models.FileField(upload_to=upload_cinema_gallery)),
                 ('cinema', models.ForeignKey(default='', on_delete=django.db.models.deletion.CASCADE, to='kino.cinema')),
             ],
             options={

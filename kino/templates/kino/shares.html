@@ -10,19 +10,21 @@
     <div class="album py-5">
         <div class="container">
             <div class="row">
-                {% for shares in object_list %}
-                    {% if shares.status %}
-                        <div class="col-md-2">
-                            <div class="card mb-2 shadow-sm">
-                                <img class="card-img-top" src="{{ shares.preview.url }}" alt="{{ shares.preview }}" style="height: 250px; width: 100%%; display: block;">
-                                <div class="card-body">
-                                    <p class="card-text">{{ shares.name }}</p>
-                                    <p class="card-text">Published: {{ shares.pub_date }}</p>
-                                    <div class="d-flex justify-content-between align-items-center">
+                {% for shares in shares_list %}
+                    {% if shares.get_status %}
+                        {% with shares.get_status as s %}
+                            <div class="col-md-2">
+                                <div class="card mb-2 shadow-sm">
+                                    <a href="{% url 'shares_detail' shares.id%}"><img class="card-img-top" src="{{ shares.preview.url }}" alt="{{ shares.preview }}" style="height: 250px; width: 100%%; display: block;"></a>
+                                    <div class="card-body">
+                                        <p class="card-text">{{ shares.name }}</p>
+                                        <p class="card-text">Published: {{ shares.pub_date }}</p>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        {% endwith %}
                     {% endif %}
                 {% endfor %}
             </div>

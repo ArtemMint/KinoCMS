@@ -2,7 +2,8 @@
 
 from django.db import migrations, models
 import django.db.models.deletion
-import kino.models
+from kino.models.news import *
+from kino.models.cinema import *
 
 
 class Migration(migrations.Migration):
@@ -19,7 +20,7 @@ class Migration(migrations.Migration):
                 ('name', models.CharField(default='', max_length=50)),
                 ('pub_date', models.DateField()),
                 ('description', models.TextField(default='')),
-                ('preview', models.ImageField(default='', upload_to=kino.models.upload_news_preview)),
+                ('preview', models.ImageField(default='', upload_to=upload_news_preview)),
                 ('status', models.BooleanField(default=False)),
             ],
         ),
@@ -74,7 +75,7 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='cinema',
             name='preview',
-            field=models.ImageField(default='', upload_to=kino.models.upload_cinema_preview),
+            field=models.ImageField(default='', upload_to=upload_cinema_preview),
         ),
         migrations.AlterField(
             model_name='cinemahall',
@@ -89,7 +90,7 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='cinemahall',
             name='preview',
-            field=models.ImageField(default='', upload_to=kino.models.upload_cinemahall_preview),
+            field=models.ImageField(default='', upload_to=upload_cinemahall_preview),
         ),
         migrations.AlterField(
             model_name='film',
@@ -150,7 +151,7 @@ class Migration(migrations.Migration):
             name='NewsGallery',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('image', models.FileField(upload_to=kino.models.upload_cinemahall_gallery)),
+                ('image', models.FileField(upload_to=upload_cinemahall_gallery)),
                 ('news', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='kino.news')),
             ],
             options={
