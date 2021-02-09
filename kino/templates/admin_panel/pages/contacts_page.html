@@ -1,26 +1,26 @@
 {% extends 'admin_panel/base.html' %}
 {% load static %}
 
-{% block title %}AdminLTE | Update Home Page{% endblock title %}
+{% block title %}AdminLTE | Update Contacts Page{% endblock title %}
 
 
 {% block breadcrumb %}
     <li class="breadcrumb-item"><a href="{% url 'admin_home' %}">Home</a></li>
-    <li class="breadcrumb-item active">Update Home page</li>
+    <li class="breadcrumb-item active">Update Contacts page</li>
 {% endblock breadcrumb %}
 
 
 {% block content %}
 <div class="box box-primary">
     <div class="box-header with-border">
-        <h3 class="box-title">Update Home page</h3>
+        <h3 class="box-title">Update Contacts page</h3>
     </div>
     <!-- /.box-header -->
     <!-- form start -->
     <div class="form-group">
         <form method="POST" enctype="multipart/form-data">{% csrf_token %}
             <div class="form-group">
-                {{ home_form.as_p}}
+                {{ form.as_p}}
             </div>
             <!-- /.box-body -->
             <div class="box-footer">

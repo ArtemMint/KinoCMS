@@ -15,14 +15,14 @@ from kino.views.admin_panel.user import *
 
 from kino.views.site.cinema import *
 from kino.views.site.film import *
-from kino.views.site.home import HomeView
+from kino.views.site.home import *
 from kino.views.site.news import *
 from kino.views.site.poster import PosterView
 from kino.views.site.shares import *
 
 
 urlpatterns = [
-    path('', HomeView.as_view(), name='home'),
+    path('', homePageView, name='home'),
     path('poster/', PosterView.as_view(), name='poster'),
     path('premiere/', FilmPremiereView.as_view(), name='premiere'),
     path('film/<int:pk>', FilmDetailView.as_view(), name='film_detail'),
@@ -56,7 +56,13 @@ urlpatterns = [
          name='admin_shares'),
     path('admin/pages/', adminPagesView,
          name='admin_pages'),
-    path('admin/pages/homepage/', adminHomePageView, name='admin_homepage'),
+    path('admin/pages/home/', adminHomePageView, name='admin_homepage'),
+    path('admin/pages/contacts/', adminContactsPageView, name='admin_contacts_page'),
+    path('admin/pages/about/', adminAboutPageView, name='admin_about_page'),
+    path('admin/pages/cafe-bar/', adminCafeBarPageView, name='admin_cafe-bar_page'),
+    path('admin/pages/vip-hall/', adminVipHallPageView, name='admin_vip-hall_page'),
+    path('admin/pages/advertising/', adminAdvertisingPageView, name='admin_advertsing_page'),
+    path('admin/pages/children_room/', adminChildrenRoomPageView, name='admin_children_room_page'),
     path('admin/mailing/', AdminMailingView.as_view(),
          name='admin_mailing'),
     path('admin/mailing/', AdminMailingView.as_view(),
