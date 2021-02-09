@@ -17,16 +17,16 @@ from kino.views.site.cinema import *
 from kino.views.site.film import *
 from kino.views.site.home import *
 from kino.views.site.news import *
-from kino.views.site.poster import PosterView
+from kino.views.site.poster import *
 from kino.views.site.shares import *
 
 
 urlpatterns = [
     path('', homePageView, name='home'),
-    path('poster/', PosterView.as_view(), name='poster'),
-    path('premiere/', FilmPremiereView.as_view(), name='premiere'),
+    path('poster/', posterView, name='poster'),
+    path('premiere/', premiereView, name='premiere'),
     path('film/<int:pk>', FilmDetailView.as_view(), name='film_detail'),
-    path('cinemas/', CinemasView.as_view(), name='cinemas'),
+    path('cinemas/', cinameView, name='cinemas'),
     path('cinema/<int:cinema_id>', cinemaDetailView, name='cinema_detail'),
     path('cinema/<int:cinema_id>/hall/<int:cinemahall_id>',
          cinemahallDetailView, name='cinemahall_detail'),

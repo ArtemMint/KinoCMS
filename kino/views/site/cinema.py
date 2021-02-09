@@ -4,11 +4,16 @@ from django.core.paginator import Paginator
 
 
 from kino.models.cinema import Cinema, CinemaHall
+from kino.models.pages import *
 
 
-class CinemasView(ListView):
-    model = Cinema
+def cinameView(request):
+    cinema_list = get_list_or_404(Cinema.objects.order_by('-id'))
+    home_page = HomePage.objects.get(id=0)
+
+    context = {"cinema_list": cinema_list, 'home_page': home_page}
     template_name = 'kino/cinemas.html'
+    return render(request, template_name, context)
 
 
 def cinemaDetailView(request, cinema_id):

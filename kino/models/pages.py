@@ -5,8 +5,8 @@ from .shares import upload_shares_gallery, upload_shares_preview
 
 class HomePage(models.Model):
 
-    phone1 = models.CharField(max_length=9, blank=True, null=True)
-    phone2 = models.CharField(max_length=9, blank=True, null=True)
+    phone1 = models.CharField(max_length=15, blank=True, null=True)
+    phone2 = models.CharField(max_length=15, blank=True, null=True)
     seo_text = models.TextField(max_length=500)
     seo_title = models.CharField(max_length=50, blank=True)
     seo_keywords = models.CharField(max_length=100, blank=True)
