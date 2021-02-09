@@ -11,6 +11,9 @@
 {% endblock breadcrumb %}
 
 {% block content %}
+<div class="box-header">
+    <h3 class="box-title"><a href="{% url 'admin_create_users' %}"><button type="button" class="btn btn-lg btn-block btn-outline-primary">Add News</button></a></h3>
+</div>
 <div class="row">
     <div class="col-xs-12">
         <div class="box">
@@ -23,6 +26,7 @@
                     <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Username</th>
                     <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Registration date</th>
                     <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Birth date</th>
+                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Age</th>
                     <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Email</th>
                     <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Phone</th>
                     <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Full name</th>
@@ -39,6 +43,7 @@
                                 <td>{{user.username}}</td>
                                 <td>{{user.date_joined}}</td>
                                 <td>{{user.client.birth_date}}</td>
+                                <td>{{user.client.get_age}}</td>
                                 <td>{{user.email}}</td>
                                 <td>{{user.client.phone}}</td>                     
                                 <td>{{user.first_name}} {{user.last_name}}</td>

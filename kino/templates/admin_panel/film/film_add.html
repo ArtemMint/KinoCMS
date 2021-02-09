@@ -19,7 +19,8 @@
     <!-- /.box-header -->
     <!-- form start -->
     <div class="form-group">
-        <form method="POST" enctype="multipart/form-data">{% csrf_token %}
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
             <div class="box-body">
             <div class="form-group">
                 {{ form.as_p }}

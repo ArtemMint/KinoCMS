@@ -31,10 +31,11 @@ class ClientForm(UserChangeForm):
 class CreateUserForm(UserCreationForm):
     class Meta:
         model = User
-        fields = ('username', 'email', 'password1', 'password2',)
+        fields = ('username', 'email', 'password1', 'password2','first_name', 'last_name',)
 
 
-class CreateClientForm(UserCreationForm):
+class CreateClientForm(forms.ModelForm):
     class Meta:
         model = Client
         fields = '__all__'
+        exclude = ('user', )

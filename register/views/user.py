@@ -7,12 +7,11 @@ from django.http import Http404
 from django.contrib.auth.models import User
 from register.models.client import Client
 
-from register.forms.client import CreateClientForm, ClientForm
-from register.forms.client import ClientForm, UserForm
+from register.forms.client import CreateUserForm, CreateClientForm, ClientForm, UserForm
 
 
 class UserRegisterView(CreateView):
-    form_class = CreateClientForm
+    form_class = CreateUserForm
     template_name = 'registration/register.html'
     success_url = reverse_lazy('login')
 

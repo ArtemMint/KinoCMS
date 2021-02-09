@@ -83,7 +83,7 @@ DATABASES = {
         'NAME': 'kinocms_db',
         'USER': 'artemmint',
         'PASSWORD': '12345',
-        'HOST': '127.0.0.1',
+        'HOST': 'localhost',
         'PORT': '5432',
     }
 }

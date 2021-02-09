@@ -37,10 +37,10 @@
                     </div>
                     <ul class="nav flex-column">
                         <li class="nav-item" style="color: white;">
-                            <h3>(048)777-77-77</h3>
+                            <h3>{{home_page.phone1}}</h3>
                         </li>
                         <li class="nav-item" style="color: white;">
-                            <h3>(097)999-99-99</h3>
+                            <h3>{{home_page.phone2}}</h3>
                         </li>
                     </ul>
                 </div>
@@ -154,7 +154,7 @@
                         <a href="#" class="fa fa-instagram"></a>
                     </div>
                     {% if user %}
-                        <a href="{% url 'admin_home' %}">ADMIN PANEL</a>
+                        <a href="{% url 'admin_statistics' %}">ADMIN PANEL</a>
                     {% endif %}
                 </div>
                 
