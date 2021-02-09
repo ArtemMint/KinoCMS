@@ -45,6 +45,7 @@ urlpatterns = [
     path('admin/users/', adminUserListView, name='admin_users'),
 
     # Admin
+    path('admin/', admin_view, name='admin_home'),
     path('admin/statistics/', adminStatisticsView,
          name='admin_statistics'),
     path('admin/banners/sliders', slider_banners_update,
