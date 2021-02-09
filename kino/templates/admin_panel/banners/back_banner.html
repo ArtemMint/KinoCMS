@@ -1,0 +1,45 @@
+{% extends 'admin_panel/base.html' %}
+
+{% load static %}
+
+{% load filters %}
+
+{% block title %}
+Admin | Back Banner
+{% endblock title %}
+
+{% block content_header %}
+Banners
+{% endblock content_header %}
+
+
+{% block breadcrumb %}
+<li class="breadcrumb-item"><a href="{% url 'admin_home' %}">Home</a></li>
+<li class="breadcrumb-item active"><a href="{% url 'admin_films' %}">Back banner</a></li>
+{% endblock breadcrumb %}
+
+{% block content %}
+
+
+<form action="{% url 'admin_banners_back' %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div style="margin: 1rem">
+        {% for field in form.visible_fields %}
+
+            {{ field.label }}
+            {{ field }}
+
+            {% if field.errors %}
+            {% for error in field.errors %}
+            <ul style="color: red">
+                <li>{{ error }}</li>
+            </ul>
+            {% endfor %}
+            {% endif %}
+
+        {% endfor%}
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save</button>
+</form>
+{% endblock content %}

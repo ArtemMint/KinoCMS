@@ -7,6 +7,26 @@ class SliderBannerForm(forms.ModelForm):
         model = SliderBanner
         fields = '__all__'
         widgets = {
+            'image': forms.FileInput(
+                attrs={'accept': '.jpg, .jpeg, .png', 'style': "width:180px;"}),
             'url': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Url...'}),
-            'text': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Text'})
+            'text': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Text...'})
+        }
+
+
+class BackBannerForm(forms.ModelForm):
+    class Meta:
+        model = BackBanner
+        fields = '__all__'
+        widgets = {'image': forms.FileInput(attrs={'accept': '.jpg, .jpeg, .png'})}
+
+
+class SharesBannerForm(forms.ModelForm):
+    class Meta:
+        model = SharesBanner
+        fields = '__all__'
+        widgets = {
+            'image': forms.FileInput(
+                attrs={'accept': '.jpg, .jpeg, .png', 'style': "width:180px;"}),
+            'url': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Url...'}),
         }

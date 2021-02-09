@@ -7,10 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta property="og:url" content="{% block url %}{% endblock url %}">
     <title>{% block title %}{% endblock title %}</title>
-
-    <meta name="description" property="og:description" content="{% block discription %}{% endblock discription %}">
-    <meta name="keywords" content="{% block keywords %}{% endblock keywords %}">
-
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
@@ -220,12 +216,43 @@
                             <p>Statistics</p>
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a href="{% url 'admin_banners' %}" class="nav-link">
-                            <i class="fas fa-sliders-h nav-icon"></i>
-                            <p>Banners/Sliders</p>
+
+
+
+
+                    <li class="nav-item menu-is-opening">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-laptop"></i>
+                            <p>
+                                Banners <i class="right fas fa-angle-left"></i>
+                            </p>
                         </a>
-                    </li>
+                        <ul class="nav nav-treeview" style="display: none;">
+                            <li class="nav-item">
+                                <a href="{% url 'admin_banners_sliders' %}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Slider banner</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{% url 'admin_banners_back' %}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Back banner</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{% url 'admin_banners_shares' %}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Shares banner</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li> 
+
+
+
+
+
                     <li class="nav-item">
                         <a href="{% url 'admin_films' %}" class="nav-link">
                             <i class="fas fa-film nav-icon"></i>
@@ -251,7 +278,7 @@
                         </a>
                     </li>
                     <li class="nav-item menu-is-opening">
-                        <a href="#" class="nav-link">
+                        <a href="{% url 'admin_pages' %}" class="nav-link">
                             <i class="nav-icon fas fa-laptop"></i>
                             <p>
                                 Pages<i class="right fas fa-angle-left"></i>
@@ -259,43 +286,43 @@
                         </a>
                         <ul class="nav nav-treeview" style="display: none;">
                             <li class="nav-item">
-                                <a href="#" class="nav-link">
+                                <a href="{% url 'admin_homepage' %}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Home</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="#" class="nav-link">
+                                <a href="{% url 'admin_about_page' %}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>About</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="#" class="nav-link">
+                                <a href="{% url 'admin_cafe-bar_page' %}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Cafe-Bar</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="#" class="nav-link">
+                                <a href="{% url 'admin_vip-hall_page' %}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Vip-hall</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="#" class="nav-link">
+                                <a href="{% url 'admin_advertsing_page' %}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Advertising</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="#" class="nav-link">
+                                <a href="{% url 'admin_children_room_page' %}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Children room</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="#" class="nav-link">
+                                <a href="{% url 'admin_contacts_page' %}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Contacts</p>
                                 </a>
