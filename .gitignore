@@ -3,3 +3,12 @@
 
 # VSCode dir
 /.vscode
+
+# Pycharm`s trash
+/.idea
+
+/__pycache__
+
+/media
+
+/kino/templatetags/__pycache__/

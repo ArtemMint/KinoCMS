@@ -2,7 +2,7 @@
 
 from django.db import migrations, models
 import django.db.models.deletion
-import kino.models
+from kino.models.cinema import upload_cinemahall_gallery
 
 
 class Migration(migrations.Migration):
@@ -20,6 +20,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='cinemahallgallery',
             name='images',
-            field=models.FileField(upload_to=kino.models.upload_cinemahall_gallery),
+            field=models.FileField(upload_to=upload_cinemahall_gallery),
         ),
     ]

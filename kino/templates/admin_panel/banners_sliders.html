@@ -1,6 +1,48 @@
 {% extends 'admin_panel/base.html' %}
+
 {% load static %}
 
-{% block title %}AdminLTE | Banners And Sliders{% endblock title %}
+{% load filters %}
 
-{% block content_header %}Banners And Sliders{% endblock content_header %}
+{% block title %}
+Admin | Banners
+{% endblock title %}
+
+{% block content_header %}
+Banners
+{% endblock content_header %}
+
+
+{% block breadcrumb %}
+<li class="breadcrumb-item"><a href="{% url 'admin_home' %}">Home</a></li>
+<li class="breadcrumb-item active"><a href="{% url 'admin_films' %}">Banners</a></li>
+{% endblock breadcrumb %}
+
+{% block content %}
+<div style="background: white;">
+    <a href="#" class="fa fa-facebook"></a>
+</div>
+
+<form method="post" action="#">
+    {% csrf_token %}
+    <div class="row" >
+        {% for number in 5|times %}
+        <div class="card" style="width: 13rem; padding: 1.3rem; margin-right: 2rem;" >
+            {% for field in form.visible_fields %}
+            <div>
+                {{ field.label }}
+                {{ field }}
+            </div>
+            {% endfor %}
+
+        </div>
+        {% endfor%}
+    </div>
+<!--    <button type="submit" class="btn btn-info" value="Save" style="align: center">Save</button>-->
+    <button type="submit" class="btn btn-primary">Save</button>
+</form>
+{% endblock content %}
+
+
+
+
