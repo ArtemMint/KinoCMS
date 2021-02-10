@@ -28,7 +28,7 @@ SECRET_KEY = '$4h_uzy_##=#pf0i*6+231fasca^*$k&jflt&&s0&yh2j2)bj6xw3=$__='
 DEBUG = True
 
 
-ALLOWED_HOSTS = ["artemmint-web-project.herokuapp.com", "127.0.0.1"]
+ALLOWED_HOSTS = ["https://kinocms-admin.herokuapp.com/", "127.0.0.1"]
 
 
 # Application definition
