@@ -6,8 +6,8 @@ from kino.models.pages import HomePage
 
 
 def homePageView(request):
-    films = get_list_or_404(Film)
-    home_page = get_object_or_404(HomePage)
+    films = Film.objects.all()
+    home_page = HomePage.objects.get(id=0)
 
     context = {"films": films, "home_page": home_page}
     template_name = 'kino/home.html'

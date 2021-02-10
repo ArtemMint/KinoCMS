@@ -8,7 +8,7 @@ from kino.models.pages import *
 
 
 def cinameView(request):
-    cinema_list = get_list_or_404(Cinema.objects.order_by('-id'))
+    cinema_list = Cinema.objects.order_by('-id')
     home_page = HomePage.objects.get(id=0)
 
     context = {"cinema_list": cinema_list, 'home_page': home_page}
