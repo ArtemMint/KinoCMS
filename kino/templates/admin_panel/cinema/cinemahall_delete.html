@@ -5,7 +5,7 @@
 
 
 {% block breadcrumb %}
-    <li class="breadcrumb-item"><a href="{% url 'admin_home' %}">Home</a></li>
+    <li class="breadcrumb-item"><a href="{% url 'admin_statistics' %}">Home</a></li>
     <li class="breadcrumb-item active"><a href="{% url 'admin_cinemas' %}">Cinema</a></li>
     <li class="breadcrumb-item active"><a href="{% url 'admin_cinema_detail' cinema.id%}">{{cinema.name}}</a></li>
     <li class="breadcrumb-item active"><a href="{% url 'admin_cinemahall_detail' cinema.id cinemahall.id%}">Hall «{{ cinemahall.name }}»</a></li>
