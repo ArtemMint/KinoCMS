@@ -5,7 +5,7 @@
 
 
 {% block breadcrumb %}
-    <li class="breadcrumb-item"><a href="{% url 'admin_home' %}">Home</a></li>
+    <li class="breadcrumb-item"><a href="{% url 'admin_statistics' %}">Home</a></li>
     <li class="breadcrumb-item active"><a href="{% url 'admin_shares' %}">Shares</a></li>
     <li class="breadcrumb-item active"><a href="{% url 'admin_shares_detail' shares.pk%}">{{shares.name}}</a></li>
     <li class="breadcrumb-item active">Delete Shares</li>
