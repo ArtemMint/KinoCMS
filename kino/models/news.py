@@ -27,7 +27,7 @@ class News(models.Model):
     ]
 
     name = models.CharField(max_length=50, default='')
-    pub_date = models.DateField(default=timezone.now)
+    pub_date = models.DateField(editable=True, default=timezone.now)
     description = models.TextField(blank=True)
     status = models.CharField(max_length=10, default=False, choices=STATUS_CHOICES, blank=True)
     preview = models.ImageField(upload_to=upload_news_preview, null=True)

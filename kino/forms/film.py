@@ -3,8 +3,6 @@ from kino.models.film import Film
 
 
 class FilmForm(forms.ModelForm):
-    # premiere = forms.DateField()
-
     class Meta:
         model = Film
         fields = '__all__'
