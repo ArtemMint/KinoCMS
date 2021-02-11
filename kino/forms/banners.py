@@ -9,7 +9,7 @@ class SliderBannerForm(forms.ModelForm):
         widgets = {
             'image': forms.FileInput(
                 attrs={'accept': '.jpg, .jpeg, .png', 'style': "width:180px;"}),
-            'url': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Url...'}),
+            'url': forms.URLInput(attrs={'class': 'form-control', 'placeholder': 'Url...'}),
             'text': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Text...'})
         }
 
@@ -28,5 +28,5 @@ class SharesBannerForm(forms.ModelForm):
         widgets = {
             'image': forms.FileInput(
                 attrs={'accept': '.jpg, .jpeg, .png', 'style': "width:180px;"}),
-            'url': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Url...'}),
+            'url': forms.URLInput(attrs={'class': 'form-control', 'placeholder': 'Url...'}),
         }

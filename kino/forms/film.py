@@ -3,8 +3,6 @@ from kino.models.film import Film
 
 
 class FilmForm(forms.ModelForm):
-    premiere = forms.DateField()
-
     class Meta:
         model = Film
         fields = '__all__'
@@ -19,6 +17,7 @@ class FilmForm(forms.ModelForm):
             'genre': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Genre of the film'}),
             'description': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Description of the film'}),
             'video': forms.URLInput(attrs={'class': 'form-control', 'placeholder': 'Video of the film'}),
+            'premiere': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
             # 'preview': forms.FileInput(attrs={'class': 'form-control', 'placeholder': 'Image of the film'}),
             # 'image1': forms.FileInput(attrs={'class': 'form-control', 'placeholder': 'Image of the film'}),
             # 'image2': forms.FileInput(attrs={'class': 'form-control', 'placeholder': 'Image of the film'}),
