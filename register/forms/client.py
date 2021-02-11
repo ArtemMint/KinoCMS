@@ -23,7 +23,7 @@ class ClientForm(UserChangeForm):
         fields = '__all__'
         exclude = ('user',)
         widgets = {
-            'birth_date': forms.SelectDateWidget(years=years_to_display),
+            'birth_date': forms.DateInput(attrs={'type': 'date'}),
             'gender': forms.Select(),
         }
 

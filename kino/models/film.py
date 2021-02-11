@@ -2,7 +2,6 @@ from django.db import models
 from django.urls import reverse
 from django.utils.html import mark_safe
 from django.utils import timezone
-import datetime
 from utils import current_year
 
 
@@ -29,7 +28,7 @@ class Film(models.Model):
     genre = models.CharField(max_length=200, default='')
     description = models.TextField(default='')
     video = models.URLField(blank=True)
-    premiere = models.DateField(editable=True, default=timezone.now())
+    premiere = models.DateField(editable=True, default=timezone.now)
     preview = models.FileField(upload_to=upload_film_preview)
     image1 = models.ImageField(upload_to=upload_film_gallery)
     image2 = models.ImageField(upload_to=upload_film_gallery)
@@ -50,13 +49,13 @@ class Film(models.Model):
         return reverse("admin_films")
 
     def get_premiere(self):
-        if self.premiere >= datetime.date.today():
+        if self.premiere >= timezone.now():
             return True
         else:
             return False
 
     def get_current(self):
-        if self.premiere < datetime.date.today():
+        if self.premiere < timezone.now()():
             return True
         else:
             return False
