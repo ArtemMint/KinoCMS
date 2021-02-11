@@ -17,8 +17,9 @@ class AdminFilmsView(ListView):
 
 def admin_film_detail_view(request, film_id):
     film = Film.objects.get(id=film_id)
+    image_list = Image.objects.filter(film=film)
     template_name = 'admin_panel/film/film_detail.html'
-    context = {'film': film}
+    context = {'film': film, 'image_list': image_list}
     return render(request, template_name, context)
 
 
@@ -29,7 +30,7 @@ class AdminFilmAddView(CreateView):
 
 
 def admin_film_update_view(request, film_id):
-    FilmFormSet = inlineformset_factory(Film, Image, fields='__all__', extra=5, max_num=5)
+    FilmFormSet = inlineformset_factory(Film, Image, fields='__all__', extra=5, max_num=5) #can_delete-bool
     film = Film.objects.get(id=film_id)
     form = FilmForm(instance=film)
     formset = FilmFormSet(instance=film)
