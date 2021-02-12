@@ -1,6 +1,7 @@
 from django.db import models
 from django.urls import reverse
 import datetime
+from phonenumber_field.modelfields import PhoneNumberField
 
 from django.contrib.auth.models import User
 
@@ -24,7 +25,7 @@ class Client(models.Model):
         max_length=10, choices=GENDER_CHOICES, blank=True, null=True)
     language = models.CharField(
         max_length=2, choices=LANGUAGE_CHOICES, blank=True, null=True)
-    phone = models.CharField(max_length=14, blank=True, null=True)
+    phone = PhoneNumberField(null=False, blank=False, unique=True)
     city = models.CharField(max_length=50, blank=True, null=True)
 
     USERNAME_FIELD = user.primary_key

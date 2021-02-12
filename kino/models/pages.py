@@ -1,11 +1,15 @@
 from django.utils import timezone
 from django.db import models
 from .shares import upload_shares_gallery, upload_shares_preview
+from phonenumber_field.modelfields import PhoneNumberField
+
+# class Client(models.Model, Importable):
+#     phone = PhoneNumberField(null=False, blank=False, unique=True)
 
 
 class HomePage(models.Model):
-    phone1 = models.CharField(max_length=15, blank=True, null=True)
-    phone2 = models.CharField(max_length=15, blank=True, null=True)
+    phone1 = PhoneNumberField(null=False, blank=False, unique=True)
+    phone2 = PhoneNumberField(null=False, blank=False, unique=True)
     seo_text = models.TextField(max_length=500)
     seo_title = models.CharField(max_length=50, blank=True)
     seo_keywords = models.CharField(max_length=100, blank=True)
