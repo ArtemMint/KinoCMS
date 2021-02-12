@@ -15,11 +15,18 @@ class FilmImage(models.Model):
 
 
 class CinemaImage(models.Model):
-    
+
     cinema = models.ForeignKey(Cinema, on_delete=models.CASCADE)
     image = models.FileField(upload_to='images')
 
+
 class CinemaHallImage(models.Model):
-    
+
     cinema_hall = models.ForeignKey(CinemaHall, on_delete=models.CASCADE)
+    image = models.FileField(upload_to='images')
+
+
+class NewsImage(models.Model):
+
+    news = models.ForeignKey(News, on_delete=models.CASCADE)
     image = models.FileField(upload_to='images')

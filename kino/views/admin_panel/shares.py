@@ -3,6 +3,7 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView, D
 
 from kino.forms.shares import SharesForm
 from kino.models.shares import Shares
+# from kino.models.image import 
 
 
 class AdminSharesView(ListView):

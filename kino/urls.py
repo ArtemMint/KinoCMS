@@ -86,7 +86,7 @@ urlpatterns = [
          admin_film_update_view, name='admin_update_film'),
     path('admin/films/<int:pk>/delete',
          AdminFilmDeleteView.as_view(), name='admin_delete_film'),
-    path('admin/new_film/', AdminFilmAddView.as_view(),
+    path('admin/film/new', AdminFilmAddView.as_view(),
          name='admin_add_film'),
 
     # CINEMA
@@ -98,7 +98,7 @@ urlpatterns = [
          admin_cinema_update_view, name='admin_update_cinema'),
     path('admin/cinemas/<int:pk>/delete/',
          AdminCinemaDeleteView.as_view(), name='admin_delete_cinema'),
-    path('admin/cinemas/new/', admin_cinema_create_view,
+    path('admin/cinemas/create/', admin_cinema_create_view,
          name='admin_add_cinema'),
     path('admin/cinemas/<int:cinema_id>/cinemahall/<int:cinemahall_id>/',
          admin_cinemahall_detail_view, name='admin_cinemahall_detail'),
@@ -106,19 +106,20 @@ urlpatterns = [
          admin_cinemahall_update_view, name='admin_update_cinemahall'),
     path('admin/cinemas/<int:cinema_id>/cinemahall/<int:cinemahall_id>/delete/',
          admin_cinemahall_delete_view, name='admin_delete_cinemahall'),
-    path('admin/cinemas/<int:cinema_id>/new_cinemahall/',
+    path('admin/cinemas/<int:cinema_id>/cinemahall/create/',
          admin_cinemahall_create_view, name='admin_add_cinemahall'),
 
     # News
+    path('admin/news/create/', admin_news_create_view,
+         name='admin_create_news'),
     path('admin/news/', AdminNewsView.as_view(), name='admin_news'),
-    path('admin/news/<int:pk>', AdminNewsDetailView.as_view(),
+    path('admin/news/<int:news_id>', admin_news_detail_view,
          name='admin_news_detail'),
-    path('admin/news/<int:pk>/update/',
-         AdminNewsUpdateView.as_view(), name='admin_update_news'),
+    path('admin/news/<int:news_id>/update/',
+         admin_news_update_view, name='admin_update_news'),
     path('admin/news/<int:pk>/delete',
          AdminNewsDeleteView.as_view(), name='admin_delete_news'),
-    path('admin/new_news/', AdminNewsAddView.as_view(),
-         name='admin_add_news'),
+
 
     # Shares
     path('admin/shares/', AdminSharesView.as_view(),
@@ -129,7 +130,7 @@ urlpatterns = [
          AdminSharesUpdateView.as_view(), name='admin_update_shares'),
     path('admin/shares/<int:pk>/delete',
          AdminSharesDeleteView.as_view(), name='admin_delete_shares'),
-    path('admin/new_shares/', AdminSharesAddView.as_view(),
-         name='admin_add_shares'),
+    path('admin/shares/create/', AdminSharesAddView.as_view(),
+         name='admin_create_shares'),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

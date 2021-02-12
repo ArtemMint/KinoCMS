@@ -12,7 +12,7 @@
 
 {% block content %}
 <div class="box-header">
-    <h3 class="box-title"><a href="{% url 'admin_add_news' %}"><button type="button" class="btn btn-lg btn-block btn-outline-primary">Add News</button></a></h3>
+    <h3 class="box-title"><a href="{% url 'admin_create_news' %}"><button type="button" class="btn btn-lg btn-block btn-outline-primary">Add News</button></a></h3>
 </div>
 <div class="row">
     <div class="col-xs-12">
@@ -31,10 +31,10 @@
                     <tbody>
                         {% for news in object_list %}
                             <tr role="row" class="odd">
-                                <td class="sorting_1"><a href="{% url 'admin_news_detail' news.pk%}">{{news.name}}</a></td>
+                                <td class="sorting_1"><a href="{% url 'admin_news_detail' news.id%}">{{news.name}}</a></td>
                                 <td>{{news.pub_date}}</td>
                                 <td>{{news.status}}</td>
-                                <td><a class="btn btn-sm btn-warning" href="{% url 'admin_update_news' news.pk%}">Update</a>  <a class="btn btn-sm btn-danger" href="{% url 'admin_delete_news' news.pk%}">Delete</a></td>
+                                <td><a class="btn btn-sm btn-warning" href="{% url 'admin_update_news' news.id%}">Update</a>  <a class="btn btn-sm btn-danger" href="{% url 'admin_delete_news' news.id%}">Delete</a></td>
                             </tr>
                         {% endfor %}
                     </tbody>
