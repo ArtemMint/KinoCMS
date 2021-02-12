@@ -28,7 +28,7 @@ SECRET_KEY = '$4h_uzy_##=#pf0i*6+231fasca^*$k&jflt&&s0&yh2j2)bj6xw3=$__='
 DEBUG = True
 
 
-ALLOWED_HOSTS = ["https://kinocms-admin.herokuapp.com/", "127.0.0.1"]
+ALLOWED_HOSTS = ["kinocms-admin.herokuapp.com", "127.0.0.1"]
 
 
 # Application definition
@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django_extensions',
     'kino.apps.KinoConfig',
     'register.apps.RegisterConfig',
+    'phonenumber_field',
 ]
 
 MIDDLEWARE = [
@@ -78,6 +79,7 @@ WSGI_APPLICATION = 'kinocms.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
@@ -128,6 +130,7 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
+
 
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
