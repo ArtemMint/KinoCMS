@@ -18,10 +18,4 @@ class FilmForm(forms.ModelForm):
             'description': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Description of the film'}),
             'video': forms.URLInput(attrs={'class': 'form-control', 'placeholder': 'Video of the film'}),
             'premiere': forms.DateInput(attrs={'type': 'date'}),
-            # 'preview': forms.FileInput(attrs={'class': 'form-control', 'placeholder': 'Image of the film'}),
-            # 'image1': forms.FileInput(attrs={'class': 'form-control', 'placeholder': 'Image of the film'}),
-            # 'image2': forms.FileInput(attrs={'class': 'form-control', 'placeholder': 'Image of the film'}),
-            # 'image3': forms.FileInput(attrs={'class': 'form-control', 'placeholder': 'Image of the film'}),
-            # 'image4': forms.FileInput(attrs={'class': 'form-control', 'placeholder': 'Image of the film'}),
-            # 'image5': forms.FileInput(attrs={'class': 'form-control', 'placeholder': 'Image of the film'}),
         }

@@ -38,16 +38,6 @@ class Page(models.Model):
     description = models.TextField(blank=True)
     status = models.BooleanField(default=False)
     preview = models.ImageField(upload_to=upload_shares_preview)
-    image1 = models.ImageField(
-        upload_to=upload_shares_gallery, blank=True, null=True)
-    image2 = models.ImageField(
-        upload_to=upload_shares_gallery, blank=True, null=True)
-    image3 = models.ImageField(
-        upload_to=upload_shares_gallery, blank=True, null=True)
-    image4 = models.ImageField(
-        upload_to=upload_shares_gallery, blank=True, null=True)
-    image5 = models.ImageField(
-        upload_to=upload_shares_gallery, blank=True, null=True)
     seo_title = models.CharField(max_length=50, blank=True)
     seo_keywords = models.CharField(max_length=100, blank=True)
     seo_description = models.CharField(max_length=100, blank=True)

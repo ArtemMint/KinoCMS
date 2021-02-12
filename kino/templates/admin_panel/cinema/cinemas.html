@@ -20,11 +20,11 @@
         {% for cinema in object_list %}
             <div class="col-md-2">
                 <div class="card mb-2 shadow-sm">
-                    <a href="{% url 'admin_cinema_detail' cinema.id%}"><img class="card-img-top" src="{{cinema.preview.url}}" alt="{{cinema.preview}}" style="height: 225px; width: 100%%; display: block; margin: auto;"></a>
+                    <a href="{% url 'admin_cinema_detail' cinema.id %}"><img class="card-img-top" src="{{cinema.preview.url}}" alt="{{cinema.preview}}" style="height: 225px; width: 100%%; display: block; margin: auto;"></a>
                     <div class="card-body">
                         <p class="card-text">{{cinema.name}}</p>
-                        <a href="{% url 'admin_update_cinema' cinema.pk %}" class="btn btn-sm btn-warning float-left">Edit cinema</a>
-                        <a href="{% url 'admin_delete_cinema' cinema.pk %}" class="btn btn-sm btn-danger float-right">Delete cinema</a>
+                        <a href="{% url 'admin_update_cinema' cinema.id %}" class="btn btn-sm btn-warning float-left">Edit cinema</a>
+                        <a href="{% url 'admin_delete_cinema' cinema.id %}" class="btn btn-sm btn-danger float-right">Delete cinema</a>
                     </div>          
                 </div>
             </div>
