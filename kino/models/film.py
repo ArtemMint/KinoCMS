@@ -44,13 +44,13 @@ class Film(models.Model):
         return reverse("admin_films")
 
     def get_premiere(self):
-        if self.premiere >= timezone.now():
+        if self.premiere >= timezone.now().date():
             return True
         else:
             return False
 
     def get_current(self):
-        if self.premiere < timezone.now()():
+        if self.premiere < timezone.now().date():
             return True
         else:
             return False
