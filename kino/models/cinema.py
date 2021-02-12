@@ -46,9 +46,8 @@ class CinemaHall(models.Model):
     name = models.CharField(max_length=50, default='')
     created_date = models.DateField(default=datetime.datetime.now)
     description = models.TextField(blank=True)
-    scheme = models.ImageField(upload_to=upload_cinemahall_preview, blank=True)
-    preview = models.ImageField(
-        upload_to=upload_cinemahall_preview, blank=True)
+    scheme = models.ImageField(upload_to='images')
+    preview = models.ImageField(upload_to='images')
     seo_title = models.CharField(max_length=50, blank=True)
     seo_keywords = models.CharField(max_length=100, blank=True)
     seo_description = models.CharField(max_length=100, blank=True)

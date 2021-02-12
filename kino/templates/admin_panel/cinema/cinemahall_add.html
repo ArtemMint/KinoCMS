@@ -22,7 +22,20 @@
         <form method="POST" enctype="multipart/form-data">{% csrf_token %}
             <div class="box-body">
                 <div class="form-group">
-                    {{ cinemahall_form.as_p }}
+                    {{ formset.management_form }}
+                    {{ form.as_p }}
+                    {% for form in formset %}
+                        <div class="row">
+                            <div class='col-md-2'>
+                                <div class='card mb-2 shadow-sm'>
+                                    <img src="/media/{{form.image.value}}" style="height: 200px; width: 160px; display: block; margin: auto;">
+                                    <div class="card-body">
+                                        {{form}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
                 </div>
                 <!-- /.box-body -->
                 <div class="box-footer">
