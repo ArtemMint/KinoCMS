@@ -7,10 +7,6 @@ from ...repositories.users import get_all_users_email_list
 from ...services.mailing import mail_users
 
 
-class AdminMailingView(TemplateView):
-    template_name = 'admin_panel/mailing.html'
-
-
 @require_http_methods(['GET', 'POST'])
 def mailing_all_users(request):
     """ This controller helps to send message from admin to all registered users."""
@@ -25,5 +21,4 @@ def mailing_all_users(request):
 def mailing_selected_users(request):
     """ This controller helps to send message from admin to a couple select users,
         that are registered"""
-
     return redirect(reverse('home'))
