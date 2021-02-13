@@ -18,4 +18,7 @@ class FilmForm(forms.ModelForm):
             'description': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Description of the film'}),
             'video': forms.URLInput(attrs={'class': 'form-control', 'placeholder': 'Video of the film'}),
             'premiere': forms.DateInput(attrs={'type': 'date'}),
+            'seo_title': forms.TextInput(attrs={'class':'form-control', 'placeholder':'SEO title of the cinema'}),
+            'seo_keywords': forms.TextInput(attrs={'class':'form-control', 'placeholder':'SEO keywords of the cinema'}),
+            'seo_description': forms.Textarea(attrs={'class':'form-control', 'placeholder':'SEO descripton of the cinema'}),
         }

@@ -23,23 +23,18 @@ def adminUserListView(request):
 
 def adminUserCreateView(request):
 
-    user_form = CreateUserForm(request.POST)
-    client_form = CreateClientForm(request.POST, request.FILES)
+    user_form = CreateUserForm()
+    client_form = CreateClientForm()
 
-    if request.method == "POST" and user_form.is_valid() and client_form.is_valid():
-        user_form.save(commit=False)
-        client_form.save(commit=False)
-        username = user_form.cleaned_data.get('username')
-        raw_password = user_form.cleaned_data.get('password1')
-        authenticate(username=username, password=raw_password)
-        user_form.save()
-        user = User.objects.get(username=username)
-        Client.objects.create(user=user)
-        client_form.save()
-        return redirect('admin_users')
-    else:
-        user_form = CreateUserForm()
-        client_form = CreateClientForm()
+    if request.method == "POST" :
+        user_form = CreateUserForm(request.POST)
+        client_form = CreateClientForm(request.POST)
+        if user_form.is_valid() and client_form.is_valid():
+            username = user_form.cleaned_data.get('username')
+            raw_password = user_form.cleaned_data.get('password1')
+            user_form.save()
+            client_form.save()
+            return redirect('admin_users')
 
     context = {'user_form': user_form, 'client_form': client_form}
     return render(request, 'admin_panel/users/user_add.html', context)
@@ -47,8 +42,7 @@ def adminUserCreateView(request):
 
 def adminUserUpdateView(request, user_id):
 
-    user = get_object_or_404(User, id=user_id)
-
+    user = User.objects.get(id=user_id)
     if request.method == 'POST':
         user_form = UserForm(request.POST, instance=user)
         client_form = ClientForm(
