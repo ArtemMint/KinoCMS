@@ -7,10 +7,7 @@ django-adminlte3==0.1.6
 django-betterforms==1.2
 django-extensions==3.1.0
 django-heroku==0.3.1
-<<<<<<< HEAD
-=======
 django-phonenumber-field==5.0.0
->>>>>>> ceb387be7751357c92d286947222bfe1b4e62b3a
 gunicorn==20.0.4
 isort==5.7.0
 lazy-object-proxy==1.4.3
