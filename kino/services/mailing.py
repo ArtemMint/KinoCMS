@@ -8,5 +8,3 @@ def mail_users(form, to_email_list: list) -> None:
                   message=form.cleaned_data['message'],
                   from_email=EMAIL_HOST_USER,
                   recipient_list=to_email_list)
-
-
