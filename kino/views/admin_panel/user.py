@@ -11,7 +11,7 @@ from django.http import Http404
 
 
 def adminUserListView(request):
-    contact_list = get_list_or_404(User.objects.order_by('-id'))
+    contact_list = User.objects.order_by('-id')
     paginator = Paginator(contact_list, 5)
 
     page_number = request.GET.get('page')
