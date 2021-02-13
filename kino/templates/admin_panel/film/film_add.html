@@ -19,15 +19,28 @@
     <!-- /.box-header -->
     <!-- form start -->
     <div class="form-group">
-        <form method="POST" enctype="multipart/form-data">
-            {% csrf_token %}
+        <form method="POST" enctype="multipart/form-data">{% csrf_token %}
             <div class="box-body">
-            <div class="form-group">
-                {{ form.as_p }}
-            </div>
-            <!-- /.box-body -->
-            <div class="box-footer">
-                <button type="submit" class="btn btn-primary">Add new film</button>
+                <div class="form-group">
+                    {{ formset.management_form }}
+                    {{ form.as_p }}
+                    <div class="row">
+                    {% for form in formset %}
+                        <div class='col-md-2'>
+                            <div class='card mb-2 shadow-sm'>
+                                <img src="/media/{{form.image.value}}" style="height: 200px; width: 160px; display: block; margin: auto;">
+                                <div class="card-body">
+                                    {{form}}
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                    </div>
+                </div>
+                <!-- /.box-body -->
+                <div class="box-footer">
+                <button type="submit" class="btn btn-primary">Add new Cinema</button>
+                </div>
             </div>
         </form>
     </div>

@@ -32,7 +32,7 @@ class Cinema(models.Model):
     preview = models.ImageField(upload_to=upload_cinema_preview, blank=True)
     seo_title = models.CharField(max_length=50, blank=True)
     seo_keywords = models.CharField(max_length=100, blank=True)
-    seo_description = models.CharField(max_length=100, blank=True)
+    seo_description = models.TextField(max_length=100, blank=True)
 
     def __str__(self):
         return f"{self.name}"

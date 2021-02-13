@@ -82,12 +82,12 @@ urlpatterns = [
          name='admin_films'),
     path('admin/films/<int:film_id>',
          admin_film_detail_view, name='admin_film_detail'),
-    path('admin/films/update/<int:film_id>',
+    path('admin/films/<int:film_id>/update/',
          admin_film_update_view, name='admin_update_film'),
     path('admin/films/<int:pk>/delete',
          AdminFilmDeleteView.as_view(), name='admin_delete_film'),
-    path('admin/film/new', AdminFilmAddView.as_view(),
-         name='admin_add_film'),
+    path('admin/films/create/', admin_film_create_view,
+         name='admin_create_film'),
 
     # CINEMA
     path('admin/cinemas/', AdminCinemasView.as_view(),
@@ -99,7 +99,7 @@ urlpatterns = [
     path('admin/cinemas/<int:pk>/delete/',
          AdminCinemaDeleteView.as_view(), name='admin_delete_cinema'),
     path('admin/cinemas/create/', admin_cinema_create_view,
-         name='admin_add_cinema'),
+         name='admin_create_cinema'),
     path('admin/cinemas/<int:cinema_id>/cinemahall/<int:cinemahall_id>/',
          admin_cinemahall_detail_view, name='admin_cinemahall_detail'),
     path('admin/cinemas/<int:cinema_id>/cinemahall/<int:cinemahall_id>/update/',
@@ -122,15 +122,16 @@ urlpatterns = [
 
 
     # Shares
+    path('admin/shares/create/', admin_shares_create_view,
+         name='admin_create_shares'),
     path('admin/shares/', AdminSharesView.as_view(),
          name='admin_shares'),
-    path('admin/shares/<int:pk>', AdminSharesDetailView.as_view(),
+    path('admin/shares/<int:shares_id>', admin_shares_detail_view,
          name='admin_shares_detail'),
-    path('admin/shares/<int:pk>/update/',
-         AdminSharesUpdateView.as_view(), name='admin_update_shares'),
+    path('admin/shares/<int:shares_id>/update/',
+         admin_shares_update_view, name='admin_update_shares'),
     path('admin/shares/<int:pk>/delete',
          AdminSharesDeleteView.as_view(), name='admin_delete_shares'),
-    path('admin/shares/create/', AdminSharesAddView.as_view(),
-         name='admin_create_shares'),
+
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
