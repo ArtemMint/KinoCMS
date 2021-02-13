@@ -15,18 +15,23 @@ def adminPagesView(request):
 def adminHomePageView(request):
     try:
         homepage = HomePage.objects.get(id=0)
+<<<<<<< HEAD
     except ObjectDoesNotExist:
+=======
+    except HomePage.DoesNotExist:
+        homepage = None
+>>>>>>> ceb387be7751357c92d286947222bfe1b4e62b3a
         HomePage.objects.create(
             id=0, seo_title='', seo_keywords='', seo_description='', phone1='', phone2='')
         homepage = get_object_or_404(HomePage, id=0)
+
+    form = HomepageForm(request.POST or None, instance=homepage or None)
 
     if request.method == "POST":
         form = HomepageForm(request.POST, instance=homepage)
         if form.is_valid():
             form.save()
             return redirect('admin_users')
-    else:
-        form = HomepageForm(instance=homepage)
 
     context = {'form': form}
 
