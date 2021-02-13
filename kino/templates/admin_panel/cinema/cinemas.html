@@ -1,9 +1,9 @@
 {% extends 'admin_panel/base.html' %}
 {% load static %}
 
-{% block title %}AdminLTE | List Of Cinemas{% endblock title %}
+{% block title %}AdminLTE | LIST OF CINEMAS{% endblock title %}
 
-{% block content_header %}List of Cinemas{% endblock content_header %}
+{% block content_header %}LIST OF CINEMAS{% endblock content_header %}
 
 {% block breadcrumb %}
     <li class="breadcrumb-item"><a href="{% url 'admin_statistics' %}">Home</a></li>
@@ -13,7 +13,7 @@
 
 {% block content %}
 <div class="card-body"> 
-    <a href="{% url 'admin_create_cinema' %}"><button type="button" class="btn btn-lg btn-block btn-outline-primary">Add New Cinema</button></a>
+    <a href="{% url 'admin_create_cinema' %}"><button type="button" class="btn btn-lg btn-block btn-outline-primary">ADD CINEMA ✍️</button></a>
 </div>
 {% if object_list %}
     <div class="row">
@@ -32,7 +32,7 @@
     </div>
 {% else %}
     <blockquote class="text-center">
-        <p class="blockquote text-center">There is no Cinemas yet...</p> 
+        <p class="blockquote text-center">There`re no cinemas yet 🙄</p> 
     </blockquote>
 {% endif %} 
 {% endblock content %}

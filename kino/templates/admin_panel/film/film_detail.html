@@ -15,18 +15,6 @@
 
 {% block content %}
     <div class="card container">
-        <div class="card-header border-transparent">
-            
-            <div class="card-tools">
-                <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                    <i class="fas fa-minus"></i>
-                </button>
-                <button type="button" class="btn btn-tool" data-card-widget="remove">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-        </div>
-
         <div class="box-body container">
             <h1>{{ film.name }}</h1>
             <img src="{{ film.preview.url }}" alt="{{ film.preview }}" style="width: 1000px;"></br>
