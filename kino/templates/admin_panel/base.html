@@ -246,12 +246,34 @@
                             <p>Users</p>
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a href="{% url 'admin_mailing' %}" class="nav-link">
+
+
+
+
+
+                    <li class="nav-item menu-is-opening">
+                        <a href="#" class="nav-link">
                             <i class="fas fa-paper-plane nav-icon"></i>
                             <p>Mailing</p>
+                            <i class="right fas fa-angle-left"></i>
                         </a>
+                        <ul class="nav nav-treeview" style="display: none;">
+                            <li class="nav-item">
+                                <a href="{% url 'mailing_all_users' %}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Mail all users</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{% url 'mailing_selected_users' %}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Mail selected</p>
+                                </a>
+                            </li>
+                        </ul>
                     </li>
+
+
                 </ul>
             </nav>
             <!-- /.sidebar-menu -->

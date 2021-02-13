@@ -1,0 +1,30 @@
+{% extends 'admin_panel/base.html' %}
+
+{% load static %}
+
+{% load filters %}
+
+{% block title %}
+Admin | Mailing
+{% endblock title %}
+
+{% block content_header %}
+Mailing to all users
+{% endblock content_header %}
+
+
+{% block breadcrumb %}
+<li class="breadcrumb-item"><a href="{% url 'admin_statistics' %}">Home</a></li>
+<li class="breadcrumb-item active"><a href="{% url 'mailing_all_users' %}">Mailing</a></li>
+{% endblock breadcrumb %}
+
+{% block content %}
+<form action="{% url 'mailing_all_users' %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div style="margin: 1rem">
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-success" onclick="#">Mail all users</button>
+        <button type="submit" class="btn btn-primary">Mail selected</button>
+    </div>
+</form>
+{% endblock content %}

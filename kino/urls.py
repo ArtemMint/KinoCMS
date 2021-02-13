@@ -72,10 +72,10 @@ urlpatterns = [
          name='admin_advertsing_page'),
     path('admin/pages/children_room/', adminChildrenRoomPageView,
          name='admin_children_room_page'),
-    path('admin/mailing/', mailing_list_form,
-         name='admin_mailing'),
-    path('admin/mailing/mail/all', mailing_all_users,
+    path('admin/mailing/all', mailing_all_users,
          name='mailing_all_users'),
+    path('admin/mailing/selected', mailing_selected_users,
+         name='mailing_selected_users'),
 
     # FILMS
     path('admin/films/', AdminFilmsView.as_view(),
