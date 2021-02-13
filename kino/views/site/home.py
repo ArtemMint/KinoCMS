@@ -6,7 +6,7 @@ from kino.models.pages import HomePage
 
 
 def homePageView(request):
-    films = get_list_or_404(Film)
+    films = Film.objects.order_by('-id')
     home_page = get_object_or_404(HomePage)
 
     context = {"films": films, "home_page": home_page}
