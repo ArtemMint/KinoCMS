@@ -23,10 +23,24 @@ def admin_film_detail_view(request, film_id):
     return render(request, template_name, context)
 
 
-class AdminFilmAddView(CreateView):
-    model = Film
-    form_class = FilmForm
+def admin_film_create_view(request):
+    FilmFormSet = inlineformset_factory(
+        Film, FilmImage, fields='__all__', extra=5, max_num=5)
+
+    form = FilmForm()
+    formset = FilmFormSet()
+    if request.method == "POST":
+        form = FilmForm(request.POST, request.FILES)
+        formset = FilmFormSet(request.POST, request.FILES,
+                              instance=form.instance)
+        if formset.is_valid() and form.is_valid():
+            form.save()
+            formset.save()
+            return redirect('admin_films')
+
     template_name = 'admin_panel/film/film_add.html'
+    context = {'form': form, 'formset': formset}
+    return render(request, template_name, context)
 
 
 def admin_film_update_view(request, film_id):
@@ -44,7 +58,7 @@ def admin_film_update_view(request, film_id):
             return redirect('admin_films')
 
     template_name = 'admin_panel/film/film_update.html'
-    context = {'form': form, 'formset': formset}
+    context = {'film': film,'form': form, 'formset': formset}
     return render(request, template_name, context)
 
 

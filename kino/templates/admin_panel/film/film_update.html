@@ -7,7 +7,7 @@
 {% block breadcrumb %}
     <li class="breadcrumb-item"><a href="{% url 'admin_statistics' %}">Home</a></li>
     <li class="breadcrumb-item active"><a href="{% url 'admin_films' %}">Films</a></li>
-    {% comment %} <li class="breadcrumb-item active"><a href="{% url 'admin_film_detail' film.id%}">{{film.name}}</a></li> {% endcomment %}
+    <li class="breadcrumb-item active"><a href="{% url 'admin_film_detail' film.id%}">{{film.name}}</a></li>
     <li class="breadcrumb-item active">Update film</li>
 {% endblock breadcrumb %}
 
@@ -25,8 +25,8 @@
             <div class="form-group">
                 {{ formset.management_form }}
                 {{ form.as_p }}
-                {% for form in formset %}
-                    <div class="row">
+                <div class="row">
+                    {% for form in formset %}
                         <div class='col-md-2'>
                             <div class='card mb-2 shadow-sm'>
                                 <img src="/media/{{form.image.value}}" style="height: 225px; width: 200px; display: block; margin: auto;">
@@ -35,8 +35,8 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                {% endfor %}
+                    {% endfor %}
+                </div>
             </div>
             <!-- /.box-body -->
             <div class="box-footer">

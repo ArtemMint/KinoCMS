@@ -24,19 +24,19 @@
             <div class="box-body">
             <div class="form-group">
                 {{ formset.management_form }}
-                    {{ form.as_p }}
-                    {% for form in formset %}
-                        <div class="row">
-                            <div class='col-md-2'>
-                                <div class='card mb-2 shadow-sm'>
-                                    <img src="/media/{{form.image.value}}" style="height: 200px; width: 160px; display: block; margin: auto;">
-                                    <div class="card-body">
-                                        {{form}}
-                                    </div>
-                                </div>
+                {{ form.as_p }}
+                <div class="row">
+                {% for form in formset %}
+                    <div class='col-md-2'>
+                        <div class='card mb-2 shadow-sm'>
+                            <img src="/media/{{form.image.value}}" style="height: 200px; width: 160px; display: block; margin: auto;">
+                            <div class="card-body">
+                                {{form}}
                             </div>
                         </div>
-                    {% endfor %}
+                    </div>
+                {% endfor %}
+                </div>
             </div>
             <!-- /.box-body -->
             <div class="box-footer">

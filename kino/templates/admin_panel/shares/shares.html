@@ -31,10 +31,10 @@
                     <tbody>
                         {% for shares in object_list %}
                             <tr role="row" class="odd">
-                                <td class="sorting_1"><a href="{% url 'admin_shares_detail' shares.pk%}">{{shares.name}}</a></td>
+                                <td class="sorting_1"><a href="{% url 'admin_shares_detail' shares.id%}">{{shares.name}}</a></td>
                                 <td>{{shares.pub_date}}</td>
                                 <td>{{shares.status}}</td>
-                                <td><a class="btn btn-sm btn-warning" href="{% url 'admin_update_shares' shares.pk%}">Update</a> <a class="btn btn-sm btn-danger" href="{% url 'admin_delete_shares' shares.pk%}">Delete</a></td>
+                                <td><a class="btn btn-sm btn-warning" href="{% url 'admin_update_shares' shares.id%}">Update</a> <a class="btn btn-sm btn-danger" href="{% url 'admin_delete_shares' shares.id%}">Delete</a></td>
                             </tr>
                         {% endfor %}
                     </tbody>
