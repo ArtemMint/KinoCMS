@@ -18,7 +18,8 @@ class BackBannerForm(forms.ModelForm):
     class Meta:
         model = BackBanner
         fields = '__all__'
-        widgets = {'image': forms.FileInput(attrs={'accept': '.jpg, .jpeg, .png'})}
+        widgets = {'image': forms.FileInput(
+            attrs={'accept': '.jpg, .jpeg, .png'})}
 
 
 class SharesBannerForm(forms.ModelForm):

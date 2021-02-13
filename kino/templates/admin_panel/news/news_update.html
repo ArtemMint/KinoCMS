@@ -5,9 +5,9 @@
 
 
 {% block breadcrumb %}
-    <li class="breadcrumb-item"><a href="{% url 'admin_home' %}">Home</a></li>
+    <li class="breadcrumb-item"><a href="{% url 'admin_statistics' %}">Home</a></li>
     <li class="breadcrumb-item active"><a href="{% url 'admin_news' %}">News</a></li>
-    <li class="breadcrumb-item active"><a href="{% url 'admin_cinema_detail' news.pk%}">{{news.name}}</a></li>
+    <li class="breadcrumb-item active"><a href="{% url 'admin_news_detail' news.id%}">{{news.name}}</a></li>
     <li class="breadcrumb-item active">Update News</li>
 {% endblock breadcrumb %}
 
@@ -23,7 +23,20 @@
         <form method="POST" enctype="multipart/form-data">{% csrf_token %}
             <div class="box-body">
             <div class="form-group">
-                {{ form.as_p }}
+                {{ formset.management_form }}
+                    {{ form.as_p }}
+                    {% for form in formset %}
+                        <div class="row">
+                            <div class='col-md-2'>
+                                <div class='card mb-2 shadow-sm'>
+                                    <img src="/media/{{form.image.value}}" style="height: 200px; width: 160px; display: block; margin: auto;">
+                                    <div class="card-body">
+                                        {{form}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
             </div>
             <!-- /.box-body -->
             <div class="box-footer">

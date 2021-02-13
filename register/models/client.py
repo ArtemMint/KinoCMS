@@ -1,5 +1,7 @@
 from django.db import models
 from django.urls import reverse
+from django.utils import timezone
+import datetime 
 import datetime
 from phonenumber_field.modelfields import PhoneNumberField
 
@@ -20,7 +22,7 @@ class Client(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     address = models.CharField(max_length=50, blank=True, null=True)
     num_card = models.CharField(max_length=16, blank=True, null=True)
-    birth_date = models.DateField(null=True, blank=True)
+    birth_date = models.DateField(editable=True, default=timezone.now)
     gender = models.CharField(
         max_length=10, choices=GENDER_CHOICES, blank=True, null=True)
     language = models.CharField(
