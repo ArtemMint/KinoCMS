@@ -1,7 +1,6 @@
 from django.db import models
 from django.urls import reverse
 from django.utils import timezone
-import datetime 
 import datetime
 from phonenumber_field.modelfields import PhoneNumberField
 

@@ -9,7 +9,7 @@ from utils import get_avg_age
 
 def adminStatisticsView(request):
     """
-    Statistics page which containe all main information about DB
+    Statistics page which contains all main information about DB
     """
     all = Client.objects.all()
     men = Client.objects.filter(gender='Male')
@@ -30,4 +30,5 @@ def adminStatisticsView(request):
     context = {'users': num_users, 'men': num_men, 'women': num_women,
                'avg_age': avg_age, 'men_avg_age': men_avg_age, 'women_avg_age': women_avg_age,
                'films': num_films, 'cinemas': num_cinemas}
+
     return render(request, 'admin_panel/statistics.html', context)
