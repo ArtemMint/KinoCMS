@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 import os
 from pathlib import Path
+import django_heroku
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -26,7 +28,7 @@ SECRET_KEY = '$4h_uzy_##=#pf0i*6+231fasca^*$k&jflt&&s0&yh2j2)bj6xw3=$__='
 DEBUG = True
 
 
-ALLOWED_HOSTS = ["https://kinocms-admin.herokuapp.com/", "127.0.0.1"]
+ALLOWED_HOSTS = ["kinocms-admin.herokuapp.com", "127.0.0.1"]
 
 
 # Application definition
@@ -41,10 +43,12 @@ INSTALLED_APPS = [
     'django_extensions',
     'kino.apps.KinoConfig',
     'register.apps.RegisterConfig',
+    'phonenumber_field',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',

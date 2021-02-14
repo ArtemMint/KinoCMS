@@ -5,7 +5,7 @@ from kino.models.news import News
 
 
 def newsView(request):
-    news_list = get_list_or_404(News)
+    news_list = News.objects.all()
 
     context = {"news_list": news_list}
     return render(request, 'kino/news.html', context)

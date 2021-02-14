@@ -3,7 +3,6 @@ from django.views.generic import CreateView, UpdateView
 from django.urls import reverse_lazy
 from django.contrib import messages
 from django.http import Http404
-
 from django.contrib.auth.models import User
 from register.models.client import Client
 

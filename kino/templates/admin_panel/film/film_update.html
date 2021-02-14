@@ -7,7 +7,7 @@
 {% block breadcrumb %}
     <li class="breadcrumb-item"><a href="{% url 'admin_statistics' %}">Home</a></li>
     <li class="breadcrumb-item active"><a href="{% url 'admin_films' %}">Films</a></li>
-    <li class="breadcrumb-item active"><a href="{% url 'admin_film_detail' film.pk%}">{{film.name}}</a></li>
+    <li class="breadcrumb-item active"><a href="{% url 'admin_film_detail' film.id%}">{{film.name}}</a></li>
     <li class="breadcrumb-item active">Update film</li>
 {% endblock breadcrumb %}
 
@@ -23,10 +23,20 @@
         <form method="POST" enctype="multipart/form-data">{% csrf_token %}
             <div class="box-body">
             <div class="form-group">
+                {{ formset.management_form }}
                 {{ form.as_p }}
-                
-                <img src="/media/{{form.preview.value}}" style="height: 225px; width: 150px; display: block; margin: auto;">
-                <img src="/media/{{form.image1.value}}" style="height: 225px; width: 150px; display: block; margin: auto;">
+                <div class="row">
+                    {% for form in formset %}
+                        <div class='col-md-2'>
+                            <div class='card mb-2 shadow-sm'>
+                                <img src="/media/{{form.image.value}}" style="height: 225px; width: 200px; display: block; margin: auto;">
+                                <div class="card-body">
+                                    {{form}}
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
             </div>
             <!-- /.box-body -->
             <div class="box-footer">

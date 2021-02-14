@@ -1,9 +1,9 @@
 {% extends 'admin_panel/base.html' %}
 {% load static %}
 
-{% block title %}AdminLTE | List Of Cinemas{% endblock title %}
+{% block title %}AdminLTE | LIST OF CINEMAS{% endblock title %}
 
-{% block content_header %}List of Cinemas{% endblock content_header %}
+{% block content_header %}LIST OF CINEMAS{% endblock content_header %}
 
 {% block breadcrumb %}
     <li class="breadcrumb-item"><a href="{% url 'admin_statistics' %}">Home</a></li>
@@ -13,25 +13,27 @@
 
 {% block content %}
 <div class="card-body"> 
-    <a href="{% url 'admin_add_cinema' %}"><button type="button" class="btn btn-lg btn-block btn-outline-primary">Add New Cinema</button></a>
+    <a href="{% url 'admin_create_cinema' %}"><button type="button" class="btn btn-lg btn-block btn-outline-primary">ADD CINEMA ✍️</button></a>
 </div>
-<div class="row">
-    {% if object_list %}
+{% if object_list %}
+    <div class="row">
         {% for cinema in object_list %}
             <div class="col-md-2">
                 <div class="card mb-2 shadow-sm">
-                    <a href="{% url 'admin_cinema_detail' cinema.id%}"><img class="card-img-top" src="{{cinema.preview.url}}" alt="{{cinema.preview}}" style="height: 225px; width: 100%%; display: block; margin: auto;"></a>
+                    <a href="{% url 'admin_cinema_detail' cinema.id %}"><img class="card-img-top" src="{{cinema.preview.url}}" alt="{{cinema.preview}}" style="height: 225px; width: 100%%; display: block; margin: auto;"></a>
                     <div class="card-body">
                         <p class="card-text">{{cinema.name}}</p>
-                        <a href="{% url 'admin_update_cinema' cinema.pk %}" class="btn btn-sm btn-warning float-left">Edit cinema</a>
-                        <a href="{% url 'admin_delete_cinema' cinema.pk %}" class="btn btn-sm btn-danger float-right">Delete cinema</a>
+                        <a href="{% url 'admin_update_cinema' cinema.id %}" class="btn btn-sm btn-warning float-left">Edit cinema</a>
+                        <a href="{% url 'admin_delete_cinema' cinema.id %}" class="btn btn-sm btn-danger float-right">Delete cinema</a>
                     </div>          
                 </div>
             </div>
         {% endfor %} 
-    {% else %}
-        <p>There is no Cinemas yet.</p> 
-    {% endif %} 
-</div>
+    </div>
+{% else %}
+    <blockquote class="text-center">
+        <p class="blockquote text-center">There`re no cinemas yet 🙄</p> 
+    </blockquote>
+{% endif %} 
 {% endblock content %}
 

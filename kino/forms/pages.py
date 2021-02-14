@@ -10,14 +10,14 @@ class HomepageForm(forms.ModelForm):
 
 
 class ContactsForm(forms.ModelForm):
-    
+
     class Meta:
         model = Contacts
         fields = "__all__"
 
 
 class PageForm(forms.ModelForm):
-    
+
     class Meta:
         model = Page
         fields = "__all__"

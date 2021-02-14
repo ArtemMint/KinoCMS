@@ -5,7 +5,7 @@ from kino.models.shares import Shares
 
 
 def sharesView(request):
-    shares_list = get_list_or_404(Shares)
+    shares_list = Shares.objects.all()
 
     context = {"shares_list": shares_list}
     return render(request, 'kino/shares.html', context)
