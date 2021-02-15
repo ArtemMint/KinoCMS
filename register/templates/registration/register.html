@@ -36,7 +36,7 @@
                 </div>
                 {{ form.password2 }}
             </div>
-            {{form.errors}}
+            <span class="errors-text">{{form.errors}}</span>
             <div class="d-flex justify-content-center mt-3 login_container">
                 <input class="btn login_btn" type="submit" value="Register Account">
             </div>
@@ -45,12 +45,12 @@
     </div>
     <div class="mt-4">
         <div class="d-flex justify-content-center links">
-            Already have an account? <a href="{% url 'login' %}" class="ml-2">Login</a>
+            <span class="help-text">Already have an account?</span> <a href="{% url 'login' %}" class="ml-2">Login</a>
         </div>
     </div>
 
     <script>
-						/* Because i didn't set placeholder values in forms.py they will be set here using vanilla Javascript
+		/* Because i didn't set placeholder values in forms.py they will be set here using vanilla Javascript
 		//We start indexing at one because CSRF_token is considered and input field 
 		 */
 

@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, reverse
 from django.views.decorators.http import require_http_methods
 from django.contrib.auth.models import User
+
 from ...forms.mailing import MalingUsersForm, MalingGroupUsersForm
 from ...repositories.users import get_all_users_email_list
 from ...services.mailing import mail_users
