@@ -26,11 +26,11 @@ def adminUserCreateView(request):
     user_form = CreateUserForm()
     # client_form = CreateClientForm()
 
-    if request.method == "POST" :
+    if request.method == "POST":
         user_form = CreateUserForm(request.POST)
         # client_form = CreateClientForm(request.POST)
         if user_form.is_valid():
-        # if user_form.is_valid() and client_form.is_valid():
+            # if user_form.is_valid() and client_form.is_valid():
             user_form.save(commit=False)
             # client_form.save(commit=False)
             username = user_form.cleaned_data.get('username')
