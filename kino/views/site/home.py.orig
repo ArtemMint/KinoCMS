@@ -4,8 +4,16 @@ from kino.models.pages import HomePage
 
 
 def homePageView(request):
+<<<<<<< HEAD
+    try:
+        films = Film.objects.all()
+        home_page = HomePage.objects.get(id=0)
+    except home_page.DoesNotExist():
+        redirect('home_page')
+=======
     films = Film.objects.order_by('-id')
     home_page = get_object_or_404(HomePage)
+>>>>>>> 0c0d98717fb4cded435675bad90b4b7785e37382
 
     context = {"films": films, "home_page": home_page}
     template_name = 'kino/home.html'
