@@ -4,28 +4,44 @@ from django.urls import reverse_lazy
 from django.contrib import messages
 from django.http import Http404
 from django.contrib.auth.models import User
+from django.contrib.auth import authenticate
+
 from register.models.client import Client
+from register.forms.client import *
 
-from register.forms.client import CreateUserForm, CreateClientForm, ClientForm, UserForm
 
+def user_register_view(request):
+    form = RegisterUserForm
 
-class UserRegisterView(CreateView):
-    form_class = CreateUserForm
+    if request.method == 'POST':
+        form = RegisterUserForm(request.POST)
+        if form.is_valid():
+            user = form.cleaned_data.get('username')
+            form.save()
+            return redirect('login')
+
     template_name = 'registration/register.html'
-    success_url = reverse_lazy('login')
+    context = {'form': form}
+    return render(request, template_name, context)
 
 
-def login_page(request):
+def user_login_view(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = authenticate(request, username=username, password=password)
+
+        if user is not None:
+            login(request, user)
+            return redirect('edit_profile')
+
     context = {}
     return render(request, 'registration/login.html', context)
 
 
-def userUpdateView(request):
-    try:
-        user = request.user
-        client = Client.objects.get(user=user)
-    except client.DoesNotExist:
-        raise Http404("Client does not exist")
+def user_update_view(request):
+    user = request.user
+    client = Client.objects.get(user=user)
     if request.method == 'POST':
         client_form = ClientForm(
             request.POST, request.FILES, instance=request.user.client)

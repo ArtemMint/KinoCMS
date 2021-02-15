@@ -23,6 +23,6 @@ from django.urls import path, include
 urlpatterns = [
     path('djadmin/', admin.site.urls),
     path('', include('kino.urls')),
-    path('register/', include('django.contrib.auth.urls')),
-    path('register/', include('register.urls')),
+    path('profile/', include('django.contrib.auth.urls')),
+    path('profile/', include('register.urls')),
 ]

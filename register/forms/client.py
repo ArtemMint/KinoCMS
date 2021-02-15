@@ -20,12 +20,9 @@ class UserForm(UserChangeForm):
 
 
 class ClientForm(UserChangeForm):
-    def __init__(self, *args, **kwargs):
-        super(ClientForm, self).__init__(*args, **kwargs)
-        del self.fields['password']
 
     class Meta:
-        years_to_display = range(current_year() - 100, current_year())
+        # years_to_display = range(current_year() - 100, current_year())
         model = Client
         fields = '__all__'
         exclude = ('user',)
@@ -37,6 +34,19 @@ class ClientForm(UserChangeForm):
             'language': forms.Select(attrs={'class': 'form-control'}),
             'phone': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Example: +380971234567'}),
             'city': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Example: Kyiv'}),
+        }
+
+
+class RegisterUserForm(UserCreationForm):
+    class Meta:
+        model = User
+        fields = ('username', 'email', 'password1',
+                  'password2',)
+        widgets = {
+            'username': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Input username: example1551'}),
+            'email': forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Input email: example@gmail.com'}),
+            'password1': forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Input password'}),
+            'password2': forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Repeate password'}),
         }
 
 

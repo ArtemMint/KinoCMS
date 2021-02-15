@@ -15,8 +15,7 @@ def adminPagesView(request):
 def adminHomePageView(request):
     try:
         homepage = HomePage.objects.get(id=0)
-    except HomePage.DoesNotExist:
-        homepage = None
+    except ObjectDoesNotExist:
         HomePage.objects.create(
             id=0, seo_title='', seo_keywords='', seo_description='', phone1='', phone2='')
         homepage = get_object_or_404(HomePage, id=0)
