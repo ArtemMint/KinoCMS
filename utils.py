@@ -7,7 +7,7 @@ def current_year():
 
 def get_avg_age(set_of_users):
     avg_age = 0
-    if set_of_users.count == 0:
+    if not set_of_users:
         return int(0)
     for user in set_of_users:
         if user.birth_date == None:

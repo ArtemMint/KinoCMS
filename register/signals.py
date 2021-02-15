@@ -7,8 +7,8 @@ from register.models.client import Client
 @receiver(post_save, sender=User)
 def create_client(sender, instance, created, **kwargs):
     if created:
-        Client.objects.create(user=instance, address='', num_card='',
-                              birth_date=None, gender='', language='', city='')
+        Client.objects.create(user=instance, address=None, num_card=None,
+                              birth_date=None, gender=None, language=None, city=None)
 
 
 @receiver(post_save, sender=User)

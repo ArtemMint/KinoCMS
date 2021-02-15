@@ -86,8 +86,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'kinocms_db',
-        'USER': 'postgres',
-        'PASSWORD': 'root',
+        'USER': 'artemmint',
+        'PASSWORD': '12345',
         'HOST': 'localhost',
         'PORT': '5432',
     }
