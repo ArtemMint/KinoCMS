@@ -24,19 +24,24 @@ def adminUserListView(request):
 def adminUserCreateView(request):
 
     user_form = CreateUserForm()
-    client_form = CreateClientForm()
+    # client_form = CreateClientForm()
 
-    if request.method == "POST" :
+    if request.method == "POST":
         user_form = CreateUserForm(request.POST)
-        client_form = CreateClientForm(request.POST)
-        if user_form.is_valid() and client_form.is_valid():
+        # client_form = CreateClientForm(request.POST)
+        if user_form.is_valid():
+            # if user_form.is_valid() and client_form.is_valid():
+            user_form.save(commit=False)
+            # client_form.save(commit=False)
             username = user_form.cleaned_data.get('username')
             raw_password = user_form.cleaned_data.get('password1')
             user_form.save()
-            client_form.save()
+            # client_form.user = username
+            # client_form.save()
             return redirect('admin_users')
 
-    context = {'user_form': user_form, 'client_form': client_form}
+    # context = {'user_form': user_form, 'client_form': client_form}
+    context = {'user_form': user_form}
     return render(request, 'admin_panel/users/user_add.html', context)
 
 

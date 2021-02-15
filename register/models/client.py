@@ -17,25 +17,25 @@ class Client(models.Model):
     ]
 
     LANGUAGE_CHOICES = [
-        ('ENG', 'English'),
         ('UA', 'Ukrainian'),
         ('RU', 'Russian'),
     ]
 
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    address = models.CharField(max_length=50)
-    num_card = models.CharField(max_length=20)
-    birth_date = models.DateField(editable=True, default=timezone.now)
+    address = models.CharField(max_length=50, null=True)
+    num_card = models.CharField(max_length=20, null=True)
+    birth_date = models.DateField(
+        editable=True, default=timezone.now, null=True)
     gender = models.CharField(
-        max_length=20, choices=GENDER_CHOICES, default=GENDER_CHOICES[0])
+        max_length=20, choices=GENDER_CHOICES, null=True)
     language = models.CharField(
-        max_length=20, choices=LANGUAGE_CHOICES, default=LANGUAGE_CHOICES[0])
-    phone = PhoneNumberField(max_length=14, null=False,
+        max_length=20, choices=LANGUAGE_CHOICES, null=True)
+    phone = PhoneNumberField(max_length=13, null=True,
                              blank=False, unique=True)
     city = models.CharField(max_length=50, blank=True, null=True)
 
-    USERNAME_FIELD = user.primary_key
-    REQUIRED_FIELDS = []
+    # USERNAME_FIELD = user.primary_key
+    # REQUIRED_FIELDS = []
 
     def __str__(self):
         return f'{self.user}'
