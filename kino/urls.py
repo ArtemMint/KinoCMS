@@ -74,8 +74,8 @@ urlpatterns = [
          name='admin_children_room_page'),
     path('admin/mailing/all', mailing_all_users,
          name='mailing_all_users'),
-    path('admin/mailing/selected', mailing_selected_users,
-         name='mailing_selected_users'),
+    path('admin/mailing/group', mailing_group_of_users,
+         name='mailing_group_of_users'),
 
     # FILMS
     path('admin/films/', AdminFilmsView.as_view(),

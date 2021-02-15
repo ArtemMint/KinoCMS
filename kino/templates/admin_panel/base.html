@@ -32,6 +32,8 @@
 
     <link rel="stylesheet" href="{% static 'kino/style.css' %}">
 
+    <link rel="stylesheet" href="{% static 'mailing/select_checkbox.css' %}">
+
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -265,9 +267,9 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="{% url 'mailing_selected_users' %}" class="nav-link">
+                                <a href="{% url 'mailing_group_of_users' %}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
-                                    <p>Selected</p>
+                                    <p>Group</p>
                                 </a>
                             </li>
                         </ul>
@@ -371,6 +373,7 @@
 <script src="{% static 'dist/js/pages/dashboard.js' %}"></script>
 
 <!--Mailing scripts-->
+<script src="{% static 'mailing/mailing.js' %}"></script>
 
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
