@@ -1,8 +1,20 @@
-from ..models.banners import *
+"""This is the banners form module.
+
+This module has baners forms for display view.
+"""
+
+__all__ = ['SliderBannerForm', 'BackBannerForm','SharesBannerForm',]
+__version__ = '0.1'
+__author__ = 'Ivan Humeniuk'
+
 from django import forms
+
+from kino.models.banners import *
 
 
 class SliderBannerForm(forms.ModelForm):
+    """SliderBannerForm has connect with model SliderBanner and fields:
+    image, url,text.""" 
     class Meta:
         model = SliderBanner
         fields = '__all__'
@@ -14,6 +26,7 @@ class SliderBannerForm(forms.ModelForm):
 
 
 class BackBannerForm(forms.ModelForm):
+    """BackBannerForm has connect with model BackBanner and field: image.""" 
     class Meta:
         model = BackBanner
         fields = '__all__'
@@ -23,6 +36,8 @@ class BackBannerForm(forms.ModelForm):
 
 
 class SharesBannerForm(forms.ModelForm):
+    """SharesBannerForm has connect with model SharesBanner and fields:
+    image, url.""" 
     class Meta:
         model = SharesBanner
         fields = '__all__'
