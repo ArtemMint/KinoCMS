@@ -1,23 +1,46 @@
-from django.urls import reverse_lazy
-from django.shortcuts import render, redirect, get_object_or_404, get_list_or_404
-from django.core.paginator import Paginator
-from django.forms import inlineformset_factory
-from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+"""This is the cinema module.
 
-from kino.forms.cinema import CinemaForm, CinemaHallForm
-from kino.models.cinema import Cinema, CinemaHall
-from kino.models.image import CinemaImage, CinemaHallImage
+This module has cinema and cinema hall views.
+"""
+
+__version__ = '0.1'
+__author__ = 'Artem Yurchak'
+
+from django.urls import reverse_lazy
+from django.forms import inlineformset_factory
+from django.shortcuts import render, redirect, \
+    get_object_or_404, get_list_or_404
+
+from django.core.paginator import Paginator
+from django.views.generic import ListView, DetailView, \
+    CreateView, UpdateView, DeleteView
+
+from kino.forms.cinema import *
+from kino.models.cinema import *
+from kino.models.image import *
 
 
 # Cinema
 class AdminCinemasView(ListView):
+    """This class-based view and display 
+    html template of list of cinemas."""
     model = Cinema
     template_name = 'admin_panel/cinema/cinemas.html'
 
 
+class AdminCinemaDeleteView(DeleteView):
+    """This class-based view and display 
+    html template of delete cinema."""
+    model = Cinema
+    template_name = 'admin_panel/cinema/cinema_delete.html'
+    success_url = reverse_lazy('admin_cinemas')
+
+
 def admin_cinema_create_view(request):
+    """This view which display html template of create cinema."""
     CinemaFormSet = inlineformset_factory(
-        Cinema, CinemaImage, fields='__all__', extra=5, max_num=5)
+        Cinema, CinemaImage, fields='__all__', extra=5, max_num=5,
+    )
 
     form = CinemaForm()
     formset = CinemaFormSet()
@@ -33,13 +56,18 @@ def admin_cinema_create_view(request):
 
     template_name = 'admin_panel/cinema/cinema_add.html'
     context = {'form': form, 'formset': formset}
+
     return render(request, template_name, context)
 
 
 def admin_cinema_update_view(request, cinema_id):
+    """This view which display html template of update cinema."""
     CinemaFormSet = inlineformset_factory(
-        Cinema, CinemaImage, fields='__all__', extra=5, max_num=5)
+        Cinema, CinemaImage, fields='__all__', extra=5, max_num=5
+    )
+
     cinema = Cinema.objects.get(id=cinema_id)
+
     form = CinemaForm(instance=cinema)
     formset = CinemaFormSet(instance=cinema)
 
@@ -53,10 +81,12 @@ def admin_cinema_update_view(request, cinema_id):
 
     template_name = 'admin_panel/cinema/cinema_update.html'
     context = {'cinema': cinema, 'form': form, 'formset': formset}
+
     return render(request, template_name, context)
 
 
 def admin_cinema_detail_view(request, cinema_id):
+    """This view which display html template of detail info cinema."""
     cinema = Cinema.objects.get(id=cinema_id)
     cinemahalls = CinemaHall.objects.filter(cinema=cinema).order_by('-id')
     image_list = CinemaImage.objects.filter(cinema=cinema)
@@ -64,16 +94,23 @@ def admin_cinema_detail_view(request, cinema_id):
 
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
+
+    template_name = 'admin_panel/cinema/cinema_detail.html'
     context = {'cinema': cinema, 'cinemahalls': cinemahalls,
                'page_obj': page_obj, 'image_list': image_list}
-    return render(request, 'admin_panel/cinema/cinema_detail.html', context)
+
+    return render(request, template_name, context)
 
 
-#   CinemaHall
+# CinemaHall
 def admin_cinemahall_create_view(request, cinema_id):
+    """This view which display html template of create cinema hall."""
     CinemaHallFormSet = inlineformset_factory(
-        CinemaHall, CinemaHallImage, fields='__all__', extra=5, max_num=5)
+        CinemaHall, CinemaHallImage, fields='__all__', extra=5, max_num=5
+    )
+
     cinema = get_object_or_404(Cinema, id=cinema_id)
+
     form = CinemaHallForm()
     formset = CinemaHallFormSet(instance=form.instance)
 
@@ -86,84 +123,74 @@ def admin_cinemahall_create_view(request, cinema_id):
             form.cinema = cinema
             form.save()
             formset.save()
+
             return redirect('admin_cinema_detail', cinema_id=cinema.id)
 
     template_name = 'admin_panel/cinema/cinemahall_add.html',
     context = {'form': form, 'formset': formset}
+
     return render(request, template_name, context)
 
 
 def admin_cinemahall_detail_view(request, cinema_id, cinemahall_id):
-    """
-    Detail view for Hall of the Cinema
-    """
+    """This view which display html template of detail info cinema hall."""
     cinema = get_object_or_404(Cinema, id=cinema_id)
     cinemahall = get_object_or_404(CinemaHall, id=cinemahall_id)
     image_list = CinemaHallImage.objects.filter(cinema_hall=cinemahall)
+
+    template_name = 'admin_panel/cinema/cinemahall_detail.html'
     context = {'cinema': cinema, 'cinemahall': cinemahall,
                'image_list': image_list}
-    return render(request, 'admin_panel/cinema/cinemahall_detail.html', context)
+
+    return render(request, template_name, context)
 
 
 def admin_cinemahall_update_view(request, cinema_id, cinemahall_id):
-    """
-    Edit Hall in the Cinema
-    """
+    """This view which display html template of update cinema hall."""
     CinemaHallFormSet = inlineformset_factory(
-        CinemaHall, CinemaHallImage, fields='__all__', extra=5, max_num=5)
+        CinemaHall, CinemaHallImage, fields='__all__', extra=5, max_num=5
+    )
+
     cinema = get_object_or_404(Cinema, id=cinema_id)
     cinemahall = get_object_or_404(CinemaHall, id=cinemahall_id)
+
     form = CinemaHallForm(instance=cinemahall)
     formset = CinemaHallFormSet(instance=cinemahall)
 
     if request.method == "POST":
-        form = CinemaHallForm(request.POST, request.FILES, instance=cinemahall)
+        form = CinemaHallForm(request.POST,
+                              request.FILES,
+                              instance=cinemahall)
         formset = CinemaHallFormSet(
             request.POST, request.FILES, instance=cinemahall)
+
         if form.is_valid() and formset.is_valid():
             form = form.save(commit=False)
             form.cinema = cinema
             form.save()
             formset.save()
+
             return redirect('admin_cinema_detail', cinema_id=cinema.id)
 
     template_name = 'admin_panel/cinema/cinemahall_update.html'
     context = {'cinema': cinema, 'cinemahall': cinemahall,
                'form': form, 'formset': formset}
+
     return render(request, template_name, context)
 
 
 def admin_cinemahall_delete_view(request, cinema_id, cinemahall_id):
-    """
-    Delete Hall in the Cinema
-    """
+    """This view which display html template of delete cinema hall."""
     cinema = get_object_or_404(Cinema, id=cinema_id)
     cinemahall = get_object_or_404(CinemaHall, id=cinemahall_id)
 
     if request.method == "POST":
         cinemahall.delete()
+
         return redirect('admin_cinema_detail', cinema_id=cinema.id)
+
+    template_name = 'admin_panel/cinema/cinemahall_delete.html'
     context = {'cinema': cinema,
                'cinemahall': cinemahall}
-    return render(
-        request,
-        'admin_panel/cinema/cinemahall_delete.html', context
-    )
 
-
-class AdminCinemahallUpdateView(UpdateView):
-    model = CinemaHall
-    form_class = CinemaHallForm
-    template_name = 'admin_panel/cinema/cinemahall_update.html'
-
-
-class AdminCinemahallDeleteView(DeleteView):
-    model = CinemaHall
-    template_name = 'admin_panel/cinema/cinemahall_delete.html'
-    success_url = reverse_lazy('admin_cinemas')
-
-
-class AdminCinemaDeleteView(DeleteView):
-    model = Cinema
-    template_name = 'admin_panel/cinema/cinema_delete.html'
-    success_url = reverse_lazy('admin_cinemas')
+    return render(request, template_name, context)

@@ -1,5 +1,6 @@
 from django.urls import path
 from django.conf import settings
+
 from django.conf.urls.static import static
 
 from kino.views.admin_panel.banners import *
@@ -12,7 +13,6 @@ from kino.views.admin_panel.pages import *
 from kino.views.admin_panel.shares import *
 from kino.views.admin_panel.statistics import *
 from kino.views.admin_panel.user import *
-
 from kino.views.site.cinema import *
 from kino.views.site.film import *
 from kino.views.site.home import *
@@ -20,21 +20,23 @@ from kino.views.site.news import *
 from kino.views.site.poster import *
 from kino.views.site.shares import *
 
-urlpatterns = [
-    path('', homePageView, name='home'),
-    path('poster/', posterView, name='poster'),
-    path('premiere/', premiereView, name='premiere'),
-    path('film/<int:pk>', FilmDetailView.as_view(), name='film_detail'),
-    path('cinemas/', cinameView, name='cinemas'),
-    path('cinema/<int:cinema_id>', cinemaDetailView, name='cinema_detail'),
-    path('cinema/<int:cinema_id>/hall/<int:cinemahall_id>',
-         cinemahallDetailView, name='cinemahall_detail'),
-    path('shares/', sharesView, name='shares'),
-    path('shares/<int:shares_id>', sharesDetailView, name='shares_detail'),
-    path('news/', newsView, name='news'),
-    path('news/<int:news_id>', newsDetailView, name='news_detail'),
 
-    # Admin USERS
+urlpatterns = [
+    # Site KinoCMS.
+    path('', home_page_view, name='home'),
+    path('poster/', poster_view, name='poster'),
+    path('premiere/', premiere_view, name='premiere'),
+    path('film/<int:film_id>', film_detail_view, name='film_detail'),
+    path('cinemas/', ciname_view, name='cinemas'),
+    path('cinema/<int:cinema_id>', cinema_detail_view, name='cinema_detail'),
+    path('cinema/<int:cinema_id>/hall/<int:cinemahall_id>',
+         cinemahall_detail_view, name='cinemahall_detail'),
+    path('shares/', shares_view, name='shares'),
+    path('shares/<int:shares_id>', shares_detail_view, name='shares_detail'),
+    path('news/', news_view, name='news'),
+    path('news/<int:news_id>', news_detail_view, name='news_detail'),
+
+    # Admin users.
     path('admin/users/', adminUserListView, name='admin_users'),
     path('admin/users/create/',
          adminUserCreateView, name='admin_create_users'),
@@ -44,75 +46,81 @@ urlpatterns = [
          adminUserDeleteView, name='admin_delete_user'),
     path('admin/users/', adminUserListView, name='admin_users'),
 
-    # Admin
+    # Admin sidebar,
     path('admin/', admin_view, name='admin_home'),
     path('admin/statistics/', adminStatisticsView,
          name='admin_statistics'),
-    path('admin/banners/sliders', slider_banners_update,
+    path('admin/banners/sliders/', slider_banners_update,
          name='admin_banners_sliders'),
-    path('admin/banners/back', back_banners_update,
+    path('admin/banners/background/', back_banners_update,
          name='admin_banners_back'),
-    path('admin/banners/shares', shares_banners_update,
+    path('admin/banners/shares/', shares_banners_update,
          name='admin_banners_shares'),
     path('admin/shares/', AdminSharesView.as_view(),
          name='admin_shares'),
-    path('admin/pages/', adminPagesView,
+    path('admin/pages/', admin_pages_view,
          name='admin_pages'),
-    path('admin/pages/home/', adminHomePageView,
+    path('admin/pages/home/', admin_home_page_view,
          name='admin_homepage'),
-    path('admin/pages/contacts/', adminContactsPageView,
+    path('admin/pages/contacts/', admin_contacts_page_view,
          name='admin_contacts_page'),
-    path('admin/pages/about/', adminAboutPageView,
+    path('admin/pages/about/', admin_about_page_view,
          name='admin_about_page'),
-    path('admin/pages/cafe-bar/', adminCafeBarPageView,
+    path('admin/pages/cafe-bar/', admin_cafe_bar_page_view,
          name='admin_cafe-bar_page'),
-    path('admin/pages/vip-hall/', adminVipHallPageView,
+    path('admin/pages/vip-hall/', admin_vip_hall_page_view,
          name='admin_vip-hall_page'),
-    path('admin/pages/advertising/', adminAdvertisingPageView,
+    path('admin/pages/advertising/', admin_advertising_page_view,
          name='admin_advertsing_page'),
-    path('admin/pages/children_room/', adminChildrenRoomPageView,
+    path('admin/pages/children_room/', admin_children_room_page_view,
          name='admin_children_room_page'),
-    path('admin/mailing/', AdminMailingView.as_view(),
-         name='admin_mailing'),
-    path('admin/mailing/', AdminMailingView.as_view(),
-         name='admin_mailing'),
 
-    # FILMS
+    # Mailing of users.
+    path('admin/mailing/all/', mailing_all_users,
+         name='mailing_all_users'),
+    path('admin/mailing/group/', mailing_group_of_users,
+         name='mailing_group_of_users'),
+
+    # Admin films.
     path('admin/films/', AdminFilmsView.as_view(),
          name='admin_films'),
+    path('admin/films/create/', admin_film_create_view,
+         name='admin_create_film'),
     path('admin/films/<int:film_id>',
          admin_film_detail_view, name='admin_film_detail'),
     path('admin/films/<int:film_id>/update/',
          admin_film_update_view, name='admin_update_film'),
     path('admin/films/<int:pk>/delete',
          AdminFilmDeleteView.as_view(), name='admin_delete_film'),
-    path('admin/films/create/', admin_film_create_view,
-         name='admin_create_film'),
 
-    # CINEMA
+    # Admin cinemas.
     path('admin/cinemas/', AdminCinemasView.as_view(),
          name='admin_cinemas'),
+    path('admin/cinemas/create/', admin_cinema_create_view,
+         name='admin_create_cinema'),
     path('admin/cinemas/<int:cinema_id>/',
          admin_cinema_detail_view, name='admin_cinema_detail'),
     path('admin/cinemas/<int:cinema_id>/update/',
          admin_cinema_update_view, name='admin_update_cinema'),
     path('admin/cinemas/<int:pk>/delete/',
          AdminCinemaDeleteView.as_view(), name='admin_delete_cinema'),
-    path('admin/cinemas/create/', admin_cinema_create_view,
-         name='admin_create_cinema'),
-    path('admin/cinemas/<int:cinema_id>/cinemahall/<int:cinemahall_id>/',
-         admin_cinemahall_detail_view, name='admin_cinemahall_detail'),
-    path('admin/cinemas/<int:cinema_id>/cinemahall/<int:cinemahall_id>/update/',
-         admin_cinemahall_update_view, name='admin_update_cinemahall'),
-    path('admin/cinemas/<int:cinema_id>/cinemahall/<int:cinemahall_id>/delete/',
-         admin_cinemahall_delete_view, name='admin_delete_cinemahall'),
+
+    # Admin cinema hall.
     path('admin/cinemas/<int:cinema_id>/cinemahall/create/',
          admin_cinemahall_create_view, name='admin_add_cinemahall'),
+    path('admin/cinemas/<int:cinema_id>/cinemahall/<int:cinemahall_id>/',
+         admin_cinemahall_detail_view, name='admin_cinemahall_detail'),
+    path(
+        'admin/cinemas/<int:cinema_id>/cinemahall/<int:cinemahall_id>/update/',
+        admin_cinemahall_update_view, name='admin_update_cinemahall'),
+    path(
+        'admin/cinemas/<int:cinema_id>/cinemahall/<int:cinemahall_id>/delete/',
+        admin_cinemahall_delete_view, name='admin_delete_cinemahall'),
 
-    # News
+    # Admin news.
+    path('admin/news/', AdminNewsView.as_view(), name='admin_news'),
     path('admin/news/create/', admin_news_create_view,
          name='admin_create_news'),
-    path('admin/news/', AdminNewsView.as_view(), name='admin_news'),
     path('admin/news/<int:news_id>', admin_news_detail_view,
          name='admin_news_detail'),
     path('admin/news/<int:news_id>/update/',
@@ -120,12 +128,11 @@ urlpatterns = [
     path('admin/news/<int:pk>/delete',
          AdminNewsDeleteView.as_view(), name='admin_delete_news'),
 
-
-    # Shares
-    path('admin/shares/create/', admin_shares_create_view,
-         name='admin_create_shares'),
+    # Admin shares.
     path('admin/shares/', AdminSharesView.as_view(),
          name='admin_shares'),
+    path('admin/shares/create/', admin_shares_create_view,
+         name='admin_create_shares'),
     path('admin/shares/<int:shares_id>', admin_shares_detail_view,
          name='admin_shares_detail'),
     path('admin/shares/<int:shares_id>/update/',

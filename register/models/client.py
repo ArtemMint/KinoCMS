@@ -24,14 +24,19 @@ class Client(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     address = models.CharField(max_length=50, null=True)
     num_card = models.CharField(max_length=20, null=True)
+
     birth_date = models.DateField(
         editable=True, default=timezone.now, null=True)
+
     gender = models.CharField(
         max_length=20, choices=GENDER_CHOICES, null=True)
+
     language = models.CharField(
         max_length=20, choices=LANGUAGE_CHOICES, null=True)
-    phone = PhoneNumberField(max_length=13, null=True,
-                             blank=False, unique=True)
+
+    phone = PhoneNumberField(
+        max_length=13, null=True, blank=False, unique=True)
+
     city = models.CharField(max_length=50, blank=True, null=True)
 
     # USERNAME_FIELD = user.primary_key

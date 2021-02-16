@@ -1,17 +1,21 @@
-from django.views.generic import ListView
-from django.shortcuts import redirect, render, get_list_or_404, get_object_or_404
+from django.shortcuts import redirect, render
+from django.core.exceptions import ObjectDoesNotExist
 
 from kino.models.film import Film
+from kino.models.image import FilmImage
 from kino.models.pages import HomePage
 
 
-def homePageView(request):
+def home_page_view(request):
+    films = Film.objects.all()
+    gallery = FilmImage.objects.filter(film=1)  # should be slider banner on Home page
     try:
-        films = Film.objects.all()
         home_page = HomePage.objects.get(id=0)
-    except home_page.DoesNotExist():
-        redirect('home_page')
+    except HomePage.DoesNotExist:
+        home_page = None
 
-    context = {"films": films, "home_page": home_page}
+    context = {
+        "films": films, "home_page": home_page, 'gallery': gallery
+    }
     template_name = 'kino/home.html'
     return render(request, template_name, context)

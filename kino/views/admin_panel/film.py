@@ -1,5 +1,6 @@
 from django.urls import reverse_lazy
-from django.views.generic import DetailView, CreateView, UpdateView, DeleteView, ListView
+from django.views.generic import DetailView, CreateView, \
+    UpdateView, DeleteView, ListView
 from django.shortcuts import render, redirect
 from django.forms import inlineformset_factory
 from django.core.paginator import Paginator
@@ -18,8 +19,10 @@ class AdminFilmsView(ListView):
 def admin_film_detail_view(request, film_id):
     film = Film.objects.get(id=film_id)
     image_list = FilmImage.objects.filter(film=film)
+
     template_name = 'admin_panel/film/film_detail.html'
     context = {'film': film, 'image_list': image_list}
+
     return render(request, template_name, context)
 
 
@@ -45,7 +48,7 @@ def admin_film_create_view(request):
 
 def admin_film_update_view(request, film_id):
     FilmFormSet = inlineformset_factory(
-        Film, FilmImage, fields='__all__', extra=5, max_num=5)  # can_delete-bool
+        Film, FilmImage, fields='__all__', extra=5, max_num=5)
     film = Film.objects.get(id=film_id)
     form = FilmForm(instance=film)
     formset = FilmFormSet(instance=film)
@@ -58,7 +61,8 @@ def admin_film_update_view(request, film_id):
             return redirect('admin_films')
 
     template_name = 'admin_panel/film/film_update.html'
-    context = {'film': film,'form': form, 'formset': formset}
+    context = {'film': film, 'form': form, 'formset': formset}
+
     return render(request, template_name, context)
 
 

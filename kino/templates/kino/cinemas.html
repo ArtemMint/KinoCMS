@@ -1,25 +1,28 @@
 {% extends 'kino/base.html' %}
+{% load static %}
 
-{% comment %} <head>
-    <meta name="description" property="og:description" content="{{home_page.seo_description}}">
-    <meta name="keywords" content="{{home_page.seo_keywords}}">    
-</head> {% endcomment %}
+<head>
+    <meta name="description" property="og:description" content="{{cinema.seo_description}}">
+    <meta name="keywords" content="{{cinema.seo_keywords}}">    
+</head>
 
 {% block title %}
     <title>Cinemas</title>
 {% endblock title %}
 
 {% block content %}
-<div class="container bg-light">
-    <div class="album py-5">
+<div class="row" style="min-height: 70vh;">
+    <div class="col-md-1"></div>    
+    <div class="col-md-9 bg-light">
         <div class="container">
+            <h1 class="text-center">Cinemas</h1>
             <div class="row">
                 {% for cinema in cinema_list %}
-                    <div class="col-md-2">
-                        <div class="card mb-2 shadow-sm">
-                            <a href="{% url 'cinema_detail' cinema.id%}"><img class="card-img-top" src="{{ cinema.preview.url }}" alt="{{ cinema.preview }}" style="height: 250px; width: 100%%; display: block;">
+                    <div class="col-md-6">
+                        <div class="card mb-6 shadow-sm">
+                            <a class="text-decoration-none" href="{% url 'cinema_detail' cinema.id%}"><img class="card-img-top" src="{{ cinema.preview.url }}" alt="{{ cinema.preview }}" style="height: 250px; width: 100%%; display: block;">
                             <div class="card-body">
-                                <p class="card-text">{{ cinema.name }}</p>
+                                <h4 class="card-text text-center ">{{ cinema.name }}</h4>
                                 <div class="d-flex justify-content-between align-items-center">
                                 </div>
                             </div>
@@ -28,6 +31,12 @@
                     </div>
                 {% endfor %}
             </div>
+        </div>
+    </div> 
+    <div class="col-md-2">
+        <div class="text-center">
+            <img src="{% static 'kino/images/1000x500.png' %}" class="img-fluid" alt="Context_ads" style="max-width: 100%%; height:500px;">
+            <p>CONTEXT ADS</p>
         </div> 
     </div>
 </div>
