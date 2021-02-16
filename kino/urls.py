@@ -23,7 +23,7 @@ from kino.views.site.shares import *
 
 urlpatterns = [
     # Site KinoCMS.
-    path('', homePageView, name='home'),
+    path('', home_page_view, name='home'),
     path('poster/', posterView, name='poster'),
     path('premiere/', premiereView, name='premiere'),
     path('film/<int:pk>', FilmDetailView.as_view(), name='film_detail'),
@@ -58,21 +58,21 @@ urlpatterns = [
          name='admin_banners_shares'),
     path('admin/shares/', AdminSharesView.as_view(),
          name='admin_shares'),
-    path('admin/pages/', adminPagesView,
+    path('admin/pages/', admin_pages_view,
          name='admin_pages'),
-    path('admin/pages/home/', adminHomePageView,
+    path('admin/pages/home/', admin_home_page_view,
          name='admin_homepage'),
-    path('admin/pages/contacts/', adminContactsPageView,
+    path('admin/pages/contacts/', admin_contacts_page_view,
          name='admin_contacts_page'),
-    path('admin/pages/about/', adminAboutPageView,
+    path('admin/pages/about/', admin_about_page_view,
          name='admin_about_page'),
-    path('admin/pages/cafe-bar/', adminCafeBarPageView,
+    path('admin/pages/cafe-bar/', admin_cafe_bar_page_view,
          name='admin_cafe-bar_page'),
-    path('admin/pages/vip-hall/', adminVipHallPageView,
+    path('admin/pages/vip-hall/', admin_vip_hall_page_view,
          name='admin_vip-hall_page'),
-    path('admin/pages/advertising/', adminAdvertisingPageView,
+    path('admin/pages/advertising/', admin_advertising_page_view,
          name='admin_advertsing_page'),
-    path('admin/pages/children_room/', adminChildrenRoomPageView,
+    path('admin/pages/children_room/', admin_Children_room_page_view,
          name='admin_children_room_page'),
 
     # Mailing of users.

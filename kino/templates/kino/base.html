@@ -80,6 +80,9 @@
                                     <li><a class="dropdown-item" href="#">Contacts</a></li>
                                 </ul>
                             </li>
+                            {% if user.is_superuser %}
+                                <a href="{% url 'admin_statistics' %}" class="nav-link btn btn-danger">ADMIN PANEL</a>
+                            {% endif %}
                             {% if user.is_authenticated %}
 
                                 <li class="nav-item">
@@ -117,31 +120,31 @@
             <div class="row">
                 <div class="col-md-1">
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-3 text-center">
                     <h5>Mobile apps</h5>
                     <div class=".col-6 .col-md-4">
-                        <a class="text-muted" href="#">Google Play</a>
-                        <a class="text-muted" href="#">App Store</a>
+                        <a class="text-muted text-decoration-none" href="#">Google Play</a>
+                        <a class="text-muted text-decoration-none" href="#">App Store</a>
                     </div>
                     <br>
                     <small class="d-block text-muted">©KinoCMS 2020, All rights reserved</small>
                 </div>
                 <div class="col-6 col-md">
-                    <h5><a class="text-muted" href="{% url 'poster' %}">Poster</a></h5>
+                    <h5><a class="text-muted text-decoration-none" href="{% url 'poster' %}">Poster</a></h5>
                     <ul class="list-unstyled text-small">
-                        <li><a class="text-muted" href="#">Schedule</a></li>
-                        <li><a class="text-muted" href="{% url 'premiere' %}">Premiere</a></li>
-                        <li><a class="text-muted" href="{% url 'cinemas' %}">Cinemas</a></li>
-                        <li><a class="text-muted" href="{% url 'shares' %}">Shares</a></li>
+                        <li><a class="text-muted text-decoration-none" href="#">Schedule</a></li>
+                        <li><a class="text-muted text-decoration-none" href="{% url 'premiere' %}">Premiere</a></li>
+                        <li><a class="text-muted text-decoration-none" href="{% url 'cinemas' %}">Cinemas</a></li>
+                        <li><a class="text-muted text-decoration-none" href="{% url 'shares' %}">Shares</a></li>
                     </ul>
                 </div>
                 <div class="col-6 col-md">
-                    <h5><a class="text-muted" href="#">About cinema</a></h5>
+                    <h5><a class="text-muted text-decoration-none" href="#">About cinema</a></h5>
                     <ul class="list-unstyled text-small">
-                        <li><a class="text-muted" href="{% url 'news' %}">News</a></li>
-                        <li><a class="text-muted" href="#">Advertaisment</a></li>
-                        <li><a class="text-muted" href="#">Cafe-Bar</a></li>
-                        <li><a class="text-muted" href="#">Contacts</a></li>
+                        <li><a class="text-muted text-decoration-none" href="{% url 'news' %}">News</a></li>
+                        <li><a class="text-muted text-decoration-none" href="#">Advertaisment</a></li>
+                        <li><a class="text-muted text-decoration-none" href="#">Cafe-Bar</a></li>
+                        <li><a class="text-muted text-decoration-none" href="#">Contacts</a></li>
                     </ul>
                 </div>
                 <div class="col-6 col-md">
@@ -153,13 +156,9 @@
                         <a href="#" class="fa fa-youtube"></a>
                         <a href="#" class="fa fa-instagram"></a>
                     </div>
-                    {% if user.is_superuser %}
-                        <a href="{% url 'admin_statistics' %}">ADMIN PANEL</a>
-                    {% endif %}
                 </div>
                 
             </div>
-            <br> 
             <div class="col-12 col-md">
                 <small class="d-block text-muted" style="text-align: center;">©KinoCMS 2020, All rights reserved</small>
             </div>

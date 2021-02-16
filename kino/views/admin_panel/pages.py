@@ -1,23 +1,27 @@
-from django.shortcuts import render, redirect, get_list_or_404, get_object_or_404
+from django.shortcuts import render, redirect, \
+    get_list_or_404, get_object_or_404
+
 from django.core.exceptions import ObjectDoesNotExist
 
 from kino.models.pages import HomePage, Contacts, Page
 from kino.forms.pages import HomepageForm, ContactsForm, PageForm
 
 
-def adminPagesView(request):
+def admin_pages_view(request):
     pages = HomePage.objects.all()
 
     context = {'pages': pages}
     return render(request, 'admin_panel/pages.html', context)
 
 
-def adminHomePageView(request):
+def admin_home_page_view(request):
     try:
         homepage = HomePage.objects.get(id=0)
     except ObjectDoesNotExist:
         HomePage.objects.create(
-            id=0, seo_title='', seo_keywords='', seo_description='', phone1='', phone2='')
+            id=0, seo_title='', seo_keywords='',
+            seo_description='', phone1='', phone2=''
+        )
         homepage = get_object_or_404(HomePage, id=0)
 
     form = HomepageForm(request.POST or None, instance=homepage or None)
@@ -33,12 +37,14 @@ def adminHomePageView(request):
     return render(request, 'admin_panel/pages/home_page.html', context)
 
 
-def adminContactsPageView(request):
+def admin_contacts_page_view(request):
     try:
         contacts = Contacts.objects.get(id=0)
     except ObjectDoesNotExist:
-        Contacts.objects.create(id=0, seo_title='', seo_keywords='',
-                                seo_description='', name='', address='', status=False, coordinates='0')
+        Contacts.objects.create(
+            id=0, seo_title='', seo_keywords='', seo_description='',
+            name='', address='', status=False, coordinates='0'
+        )
         contacts = get_object_or_404(Contacts, id=0)
 
     if request.method == "POST":
@@ -54,12 +60,14 @@ def adminContactsPageView(request):
     return render(request, template_name, context)
 
 
-def adminAboutPageView(request):
+def admin_about_page_view(request):
     try:
         about = Page.objects.get(id=0)
     except ObjectDoesNotExist:
-        Page.objects.create(id=0, seo_title='', seo_keywords='', seo_description='', name='', description='',
-                            status=False, preview='', image1='', image2='', image3='', image4='', image5='')
+        Page.objects.create(
+            id=0, seo_title='', seo_keywords='', seo_description='',
+            name='', description='', status=False, preview=''
+        )
         about = get_object_or_404(Page, id=0)
 
     if request.method == "POST":
@@ -75,12 +83,14 @@ def adminAboutPageView(request):
     return render(request, template_name, context)
 
 
-def adminCafeBarPageView(request):
+def admin_cafe_bar_page_view(request):
     try:
         cafe = Page.objects.get(id=1)
     except ObjectDoesNotExist:
-        Page.objects.create(id=1, seo_title='', seo_keywords='', seo_description='', name='', description='',
-                            status=False, preview='', image1='', image2='', image3='', image4='', image5='')
+        Page.objects.create(
+            id=1, seo_title='', seo_keywords='', seo_description='',
+            name='', description='', status=False, preview='',
+        )
         cafe = get_object_or_404(Page, id=1)
 
     if request.method == "POST":
@@ -96,12 +106,14 @@ def adminCafeBarPageView(request):
     return render(request, template_name, context)
 
 
-def adminVipHallPageView(request):
+def admin_vip_hall_page_view(request):
     try:
         viphall = Page.objects.get(id=2)
     except ObjectDoesNotExist:
-        Page.objects.create(id=2, seo_title='', seo_keywords='', seo_description='', name='', description='',
-                            status=False, preview='', image1='', image2='', image3='', image4='', image5='')
+        Page.objects.create(
+            id=2, seo_title='', seo_keywords='', seo_description='',
+            name='', description='', status=False, preview=''
+        )
         viphall = get_object_or_404(Page, id=2)
 
     if request.method == "POST":
@@ -117,12 +129,14 @@ def adminVipHallPageView(request):
     return render(request, template_name, context)
 
 
-def adminAdvertisingPageView(request):
+def admin_advertising_page_view(request):
     try:
         advertising = Page.objects.get(id=3)
     except ObjectDoesNotExist:
-        Page.objects.create(id=3, seo_title='', seo_keywords='', seo_description='', name='', description='',
-                            status=False, preview='', image1='', image2='', image3='', image4='', image5='')
+        Page.objects.create(
+            id=3, seo_title='', seo_keywords='', seo_description='',
+            name='', description='', status=False, preview=''
+        )
         advertising = get_object_or_404(Page, id=3)
 
     if request.method == "POST":
@@ -138,12 +152,14 @@ def adminAdvertisingPageView(request):
     return render(request, template_name, context)
 
 
-def adminChildrenRoomPageView(request):
+def admin_Children_room_page_view(request):
     try:
         children = Page.objects.get(id=4)
     except ObjectDoesNotExist:
-        Page.objects.create(id=4, seo_title='', seo_keywords='', seo_description='', name='', description='',
-                            status=False, preview='', image1='', image2='', image3='', image4='', image5='')
+        Page.objects.create(
+            id=4, seo_title='', seo_keywords='', seo_description='',
+            name='', description='', status=False, preview=''
+        )
         children = get_object_or_404(Page, id=4)
 
     if request.method == "POST":
