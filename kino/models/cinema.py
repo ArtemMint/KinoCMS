@@ -1,7 +1,7 @@
+import datetime
+
 from django.db import models
 from django.urls import reverse
-
-import datetime
 
 
 def upload_cinema_preview(instance, filename):
