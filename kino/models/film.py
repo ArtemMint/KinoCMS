@@ -1,7 +1,9 @@
 from django.db import models
 from django.urls import reverse
-from django.utils.html import mark_safe
 from django.utils import timezone
+
+from django.utils.html import mark_safe
+
 from utils import current_year
 
 
@@ -19,7 +21,10 @@ YEAR_CHOICES = [(r, r) for r in range(1900, current_year() + 1)]
 class Film(models.Model):
     name = models.CharField(max_length=100, verbose_name='Name', default='')
     year = models.IntegerField(
-        verbose_name='Year', choices=YEAR_CHOICES, default=timezone.now().year)
+        verbose_name='Year',
+        choices=YEAR_CHOICES,
+        default=timezone.now().year
+    )
     country = models.CharField(max_length=100, default='')
     director = models.CharField(max_length=65, default='')
     producer = models.CharField(max_length=65, default='')
@@ -38,7 +43,9 @@ class Film(models.Model):
         return f"{self.name}"
 
     def image_tag(self):
-        return mark_safe('<img src="/directory/%s" width="150" height="150" />' % (self.preview))
+        return mark_safe(
+            '<img src="/directory/%s" width="150" height="150" />'
+            % (self.preview))
 
     def get_absolute_url(self):
         return reverse("admin_films")
