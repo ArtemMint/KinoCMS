@@ -1,22 +1,34 @@
+<<<<<<< HEAD
+from django.shortcuts import redirect, render, \
+    get_object_or_404
+=======
 from django.shortcuts import redirect, render, get_object_or_404
+from django.core.exceptions import ObjectDoesNotExist
+>>>>>>> 495137f34bfb65aacf0a9cca3454bf6d65312ac5
 
 from kino.models.film import Film
 from kino.models.image import FilmImage
 from kino.models.pages import HomePage
 
 
-<<<<<<< HEAD
 def home_page_view(request):
-    
-    films = Film.objects.all()
-    gallery = FilmImage.objects.filter(film=1) # should be slider banner on Home page
-    home_page = HomePage.objects.get(id=0)   
-=======
-def homePageView(request):
-    films = Film.objects.order_by('-id')
-    home_page = get_object_or_404(HomePage)
->>>>>>> 563755e9307c384077a825e0f5a08dfc4480a3a2
+<<<<<<< HEAD
 
-    context = {"films": films, "home_page": home_page, 'gallery': gallery}
+    films = Film.objects.all()
+    # should be slider banner on Home page
+    gallery = FilmImage.objects.filter(film=1)
+    home_page = HomePage.objects.get(id=0)
+=======
+    films = Film.objects.all()
+    gallery = FilmImage.objects.filter(film=1)  # should be slider banner on Home page
+    try:
+        home_page = HomePage.objects.get(id=0)
+    except HomePage.DoesNotExist:
+        home_page = None
+>>>>>>> 495137f34bfb65aacf0a9cca3454bf6d65312ac5
+
+    context = {
+        "films": films, "home_page": home_page, 'gallery': gallery
+    }
     template_name = 'kino/home.html'
     return render(request, template_name, context)

@@ -1,5 +1,4 @@
 from django import forms
-
 from kino.repositories.users import get_all_users_email_list
 
 

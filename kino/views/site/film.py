@@ -13,7 +13,6 @@ def premiereView(request):
     film_list = Film.objects.all()
     home_page = HomePage.objects.get(id=0)
 
-
     template_name = 'kino/premiere.html'
     context = {"film_list": film_list, "home_page": home_page}
     return render(request, template_name, context)
