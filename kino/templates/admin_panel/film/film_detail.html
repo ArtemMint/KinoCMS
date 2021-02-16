@@ -17,7 +17,7 @@
     <div class="card container">
         <div class="box-body container">
             <h1>{{ film.name }}</h1>
-            <img src="{{ film.preview.url }}" alt="{{ film.preview }}" style="width: 1000px;"></br>
+            <img src="{{ film.preview.url }}" alt="{{ film.preview }}" style="max-width: 100%%; max-height:500px;"></br>
             <hr>
             <dl class="dl-horizontal">
                 <dt>Year</dt>
@@ -48,48 +48,45 @@
                 <div class="col-md-6">
                     <div class="card-body">
                         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                        <ol class="carousel-indicators">
-                            {% comment %} DYNAMIC CAROUSEL BOTTOM INDICATOR {% endcomment %}
-                            {% for image in image_list %}
-                                {% if forloop.counter0|divisibleby:"1" %}
-                                 <li data-target="#carouselExampleIndicators" data-slide-to="{{forloop}}" {% if forloop.first %} class="active" {% endif %}></li>
-                                {% endif %}
-                            {% endfor %}
-                        </ol>
-                        
-                        {% comment %} DYNAMIC SLIDER {% endcomment %}
-                        <div class="carousel-inner" role="listbox" style=" width:100%; height: 400px !important;">
-                            {% for image in image_list %}
-                                {% if forloop.counter0|divisibleby:"1" %}
-                                    <div class="carousel-item {% if forloop.first %} active {% endif %}"> 
-                                        <div class="row">{% endif %}
-                                            <img class="d-block w-100" src="{{image.image.url}}" alt="{{image.image1}}">
-                                            {% if forloop.counter0|divisibleby:"1" %}
+                            <ol class="carousel-indicators">
+                                {% comment %} DYNAMIC CAROUSEL BOTTOM INDICATOR {% endcomment %}
+                                {% for image in image_list %}
+                                    {% if forloop.counter0|divisibleby:"1" %}
+                                    <li data-target="#carouselExampleIndicators" data-slide-to="{{forloop}}" {% if forloop.first %} class="active" {% endif %}></li>
+                                    {% endif %}
+                                {% endfor %}
+                            </ol>
+                            
+                            {% comment %} DYNAMIC SLIDER {% endcomment %}
+                            <div class="carousel-inner" role="listbox" style=" width:100%; height: 400px !important;">
+                                {% for image in image_list %}
+                                    {% if forloop.counter0|divisibleby:"1" %}
+                                        <div class="carousel-item {% if forloop.first %} active {% endif %}"> 
+                                            <div class="row">{% endif %}
+                                                <img class="d-block w-100" src="{{image.image.url}}" alt="{{image.image1}}">
+                                                {% if forloop.counter0|divisibleby:"1" %}
+                                            </div>
                                         </div>
-                                    </div>
-                                {% endif %}
-                            {% endfor %}
-                        </div>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
 
-                        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                            <span class="carousel-control-custom-icon" aria-hidden="true">
-                            <i class="fas fa-chevron-left"></i>
-                            </span>
-                            <span class="sr-only">Previous</span>
-                        </a>
+                            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                                <span class="carousel-control-custom-icon" aria-hidden="true">
+                                <i class="fas fa-chevron-left"></i>
+                                </span>
+                                <span class="sr-only">Previous</span>
+                            </a>
 
-                        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                            <span class="carousel-control-custom-icon" aria-hidden="true">
-                            <i class="fas fa-chevron-right"></i>
-                            </span>
-                            <span class="sr-only">Next</span>
-                        </a>
-
+                            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                                <span class="carousel-control-custom-icon" aria-hidden="true">
+                                <i class="fas fa-chevron-right"></i>
+                                </span>
+                                <span class="sr-only">Next</span>
+                            </a>
                         </div>
                     </div>
-                    <!-- /.card-body -->
                 </div>
-                <!-- /.col -->
                 {% else %}
                     <h3> No images yet...</h3>
                 {% endif %}
