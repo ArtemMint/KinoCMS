@@ -1,14 +1,14 @@
 """This is the banners module.
 
-This module has baners models for display view.
+This module has banners models for database
+table creating display view.
 """
 
-__all__ = ['SliderBanner', 'BackBanner','SharesBanner',]
+__all__ = ['SliderBanner', 'BackBanner', 'SharesBanner', ]
 __version__ = '0.1'
 __author__ = 'Ivan Humeniuk'
 
 from django.db import models
-
 from django.core.validators import RegexValidator
 
 
