@@ -10,12 +10,12 @@
 
 {% block content %}                
 <div class="container bg-light">
-    <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
         <ol class="carousel-indicators">
             {% comment %} DYNAMIC CAROUSEL BOTTOM INDICATOR {% endcomment %}
             {% for image in gallery %}
                 {% if forloop.counter0|divisibleby:"1" %}
-                    <li data-bs-target="#carouselExampleCaptions" data-bs-slide-to="{{forloop}}"{% if forloop.first %} class="active" {% endif %}></li>
+                    <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{forloop}}"{% if forloop.first %} class="active" {% endif %}></li>
                 {% endif %}
             {% endfor %}
         </ol>
