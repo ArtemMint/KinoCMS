@@ -12,9 +12,7 @@
 
 kino/__pycache__/
 
-kino/repositories/__pycache__/
-
-kino/templatetags/__pycache__/
+kino/templatetags/__pycache__
 
 kino/migrations/__pycache__/
 
