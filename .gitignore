@@ -12,6 +12,8 @@
 
 kino/__pycache__/
 
+kino/includs/__pycache__/
+
 kino/repositories/__pycache__/
 
 kino/templatetags/__pycache__/
