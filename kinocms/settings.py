@@ -81,11 +81,11 @@ WSGI_APPLICATION = 'kinocms.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-
+# kinocms_db
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'kinocms_db',
+        'NAME': 'test',
         'USER': 'artemmint',
         'PASSWORD': '12345',
         'HOST': 'localhost',
