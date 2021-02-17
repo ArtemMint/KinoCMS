@@ -30,6 +30,14 @@ kino/views/site/__pycache__/
 
 kino/forms/__pycache__/
 
+kino/repositories/__pycache__/
+
+kino/includs/__pycache__/
+
+kino/repositories/__pycache__/
+
+kino/services/__pycache__/
+
 kinocms/__pycache__/
 
 register/__pycache__/
@@ -42,13 +50,13 @@ register/models/__pycache__/
 
 register/views/__pycache__/
 
+register/includs/__pycache__/
+
+register/repositories/__pycache__/
+
+register/services/__pycache__/
+
 media
 
-kino/repositories/__pycache__/
 
-kino/includs/__pycache__/
-
-kino/repositories/__pycache__/
-
-kino/services/__pycache__/
 
