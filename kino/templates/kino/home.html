@@ -13,25 +13,27 @@
     <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
         <ol class="carousel-indicators">
             {% comment %} DYNAMIC CAROUSEL BOTTOM INDICATOR {% endcomment %}
-            {% for image in gallery %}
+            {% for banner in slider_banners %}
             {% if forloop.counter0|divisibleby:"1" %}
             <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{forloop}}" {% if forloop.first %}
                 class="active" {% endif %}></li>
             {% endif %}
             {% endfor %}
         </ol>
-
+        <!--        SLIDERS BANNERS HERE-->
         <div class="carousel-inner">
-            {% for image in gallery %}
+            {% for banner in slider_banners %}
             {% if forloop.counter0|divisibleby:"1" %}
             <div class="carousel-item {% if forloop.first %} active {% endif %}">
                 <div class="row">
                     {% endif %}
-                    <a href="{{ image.url }}#"><img class="d-block w-100" src="{{image.image.url}}"
-                                                    alt="{{image.image1}}"></a>
+                    <a href="{{ banner.url }}#">
+                        <img class="d-block w-100" src="{{ banner.image.url }}"
+                             alt="{{ banner.image }}">
+                    </a>
                     {% if forloop.counter0|divisibleby:"1" %}
                     <div class="carousel-caption d-none d-md-block">
-                        <h5>{{image.text}} SLIDER_TEXT</h5>
+                        <h5>{{ banner.text }}</h5>
                     </div>
                 </div>
             </div>
@@ -50,6 +52,7 @@
         </a>
     </div>
 
+<!--  LIST of Films  -->
     <div class="album py-5">
         <h1 class="text-center">See now</h1>
         <div class="container">
@@ -111,24 +114,26 @@
     </div>
 </div>
 <hr>
+
+<!--News and Shares banners here-->
 <h3 class="text-center"> News and Shares</h3>
 <div id="carouselExampleSlidesOnly" class="carousel slide carousel-fade" data-bs-ride="carousel">
     <ol class="carousel-indicators">
         {% comment %} DYNAMIC CAROUSEL BOTTOM INDICATOR {% endcomment %}
-        {% for image in gallery %}
+        {% for banner in shares_banners %}
         {% if forloop.counter0|divisibleby:"1" %}
         <li data-bs-target="#carouselExampleFade" data-bs-slide-to="{{forloop}}" {% if forloop.first %} class="active"
             {% endif %}></li>
         {% endif %}
         {% endfor %}
-    </ol>
+    </ol>3
 
     <div class="carousel-inner">
-        {% for image in gallery %}
+        {% for banner in shares_banners %}
         {% if forloop.counter0|divisibleby:"1" %}
         <div class="carousel-item {% if forloop.first %} active {% endif %}">
             <div class="row">{% endif %}
-                <a href="{{ image.url }}#"><img class="d-block w-100" src="{{image.image.url}}" alt="{{image.image1}}"></a>
+                <a href="{{ image.url }}#"><img class="d-block w-100" src="{{banner.image.url}}" alt="{{image.image1}}"></a>
                 {% if forloop.counter0|divisibleby:"1" %}
             </div>
         </div>
