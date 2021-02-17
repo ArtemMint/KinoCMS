@@ -1,13 +1,12 @@
 from django.urls import reverse_lazy
-from django.views.generic import DetailView, CreateView, \
-    UpdateView, DeleteView, ListView
+from django.views.generic import DeleteView, ListView
 from django.shortcuts import render, redirect
 from django.forms import inlineformset_factory
-from django.core.paginator import Paginator
-
 from kino.forms.film import FilmForm
 from kino.models.film import Film
 from kino.models.image import FilmImage
+from ...repositories.film import get_film_by_id
+from ...repositories.image import get_film_image_list_by_id
 
 
 class AdminFilmsView(ListView):
@@ -17,13 +16,14 @@ class AdminFilmsView(ListView):
 
 
 def admin_film_detail_view(request, film_id):
-    film = Film.objects.get(id=film_id)
-    image_list = FilmImage.objects.filter(film=film)
-
-    template_name = 'admin_panel/film/film_detail.html'
-    context = {'film': film, 'image_list': image_list}
-
-    return render(request, template_name, context)
+    return render(
+        request,
+        'admin_panel/film/film_detail.html',
+        {
+            'film': get_film_by_id(film_id),
+            'image_list': get_film_image_list_by_id(film_id)
+        }
+    )
 
 
 def admin_film_create_view(request):
