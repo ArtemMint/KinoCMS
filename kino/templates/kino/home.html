@@ -26,12 +26,13 @@
             {% for image in gallery %}
                 {% if forloop.counter0|divisibleby:"1" %}
                     <div class="carousel-item {% if forloop.first %} active {% endif %}"> 
-                        <div class="row">{% endif %}
-                            <a href="{{ image.url }}#"><img class="d-block w-100" src="{{image.image.url}}" alt="{{image.image1}}"></a>
+                        <div class="row">
+                            <a href="{{ image.url }}"><img class="d-block w-100" src="{{image.image.url}}" alt="{{image.image}}"></a>
                             {% if forloop.counter0|divisibleby:"1" %}
                             <div class="carousel-caption d-none d-md-block">
                                 <h5>{{image.text}} SLIDER_TEXT</h5>
                             </div>
+                            {% endif %}
                         </div>
                     </div>
                 {% endif %}
