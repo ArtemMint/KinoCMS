@@ -29,7 +29,8 @@
                 <div class="row">
                     {% endif %}
                     <a href="{{ banner.url }}">
-                        <img class="d-block w-100" src="media/banners/slider/photo_2019-07-16_13-02-00_doseqh"
+                        <img class="d-block w-100"
+                             src="{{ banner.image.url }}"
                              alt="{{ banner.image }}">
                     </a>
                     {% if forloop.counter0|divisibleby:"1" %}
