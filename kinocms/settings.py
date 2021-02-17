@@ -39,11 +39,13 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'cloudinary_storage',
     'django.contrib.staticfiles',
     'django_extensions',
     'kino.apps.KinoConfig',
     'register.apps.RegisterConfig',
     'phonenumber_field',
+    'cloudinary',
 ]
 
 MIDDLEWARE = [
@@ -153,3 +155,11 @@ EMAIL_PORT = '587'
 EMAIL_HOST_USER = 'troyt3325@gmail.com'
 EMAIL_HOST_PASSWORD = 'GOVEG2021'
 EMAIL_USE_TLS = 'True'
+
+# Cloudinary
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'hc2yofuve',
+    'API_KEY': '175342362726441',
+    'API_SECRET': 'IFYe3ZJ210YmSx6i7cs9xuVYxg8',
+}
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
