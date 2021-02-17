@@ -7,7 +7,7 @@ from ...repositories.banners import get_slider_banners, get_shares_banners
 
 def home_page_view(request):
     # banners news and shares
-    gallery = FilmImage.objects.filter(film=1)  # should be slider banner on Home page
+    # gallery = FilmImage.objects.filter(film=1)  # should be slider banner on Home page
     return render(
         request, 'kino/home.html',
         {

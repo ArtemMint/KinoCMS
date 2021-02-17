@@ -6,7 +6,7 @@ def get_slider_banners():
         slider_banners = SliderBanner.objects.all()[::-1][:5]
     except SliderBanner.DoesNotExist:
         slider_banners = None
-    print([banner.image for banner in slider_banners])
+    print([banner.image.url for banner in slider_banners])
     return slider_banners
 
 
