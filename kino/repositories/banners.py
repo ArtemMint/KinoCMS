@@ -1,4 +1,4 @@
-from ..models.banners import *
+from kino.models.banners import *
 
 
 def get_slider_banners():

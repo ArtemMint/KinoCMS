@@ -39,10 +39,12 @@
         <div class="">
             {{ cinema.description}}
         </div>
+        <br>
         <div class="">
             <h3 class="text-center">Scheme of hall</h3>
-            <img class ="img-fluid" src="{{ cinemahall.scheme.url }}" alt="{{ cinemahall.scheme }}" style="max-width: 100%%; height:auto;">
+            <img class ="img-fluid" src="{{ cinemahall.scheme.url }}" alt="{{ cinemahall.scheme }}" style="min-width: 100%%; height:auto;">
         </div>
+        <br>
         <h3 class="text-center">Gallery</h3>
         <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel"> 
             <ol class="carousel-indicators">
@@ -62,7 +64,7 @@
                                 <a href="{{ image.url }}#"><img class="d-block w-100" src="{{image.image.url}}" alt="{{image.image1}}"></a>
                                 {% if forloop.counter0|divisibleby:"1" %}
                                 <div class="carousel-caption d-none d-md-block">
-                                    <h5>{{image.text}} SLIDER_TEXT</h5>
+                                    <h5>{{image.text}}</h5>
                                 </div>
                             </div>
                         </div>

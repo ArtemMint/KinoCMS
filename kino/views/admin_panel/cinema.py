@@ -7,7 +7,7 @@ __version__ = '0.1'
 __author__ = 'Artem Yurchak'
 
 from django.urls import reverse_lazy
-from django.forms import inlineformset_factory
+from django.forms import inlineformset_factory, formset_factory
 from django.shortcuts import render, redirect, \
     get_object_or_404, get_list_or_404
 

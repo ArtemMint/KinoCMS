@@ -26,7 +26,6 @@
             {% if forloop.counter0|divisibleby:"1" %}
             <div class="carousel-item {% if forloop.first %} active {% endif %}">
                 <div class="row">
-                    {% endif %}
                     <a href="{{ banner.url }}">
                         <img class="d-block w-100" src="{{ banner.image.url }}"
                              alt="{{ banner.image }}">
@@ -35,6 +34,7 @@
                     <div class="carousel-caption d-none d-md-block">
                         <h5>{{ banner.text }}</h5>
                     </div>
+                    {% endif %}
                 </div>
             </div>
             {% endif %}
@@ -65,7 +65,7 @@
                         <a href="{% url 'film_detail' film.pk%}"><img class="card-img-top" src="{{ film.preview.url }}"
                                                                       alt="{{ film.preview }}"
                                                                       style="height: 250px; width: 90%%; display: block;">
-                        </a>>
+                        </a>
                         <div class="card-body">
                             <p class="card-text">{{ film.name }}</p>
                             <p class="btn btn-block btn-outline-warning">Came out<br> {{ film.premiere}}</p>
@@ -131,15 +131,14 @@
             {% endif %}
             {% endfor %}
         </ol>
-        3
 
         <div class="carousel-inner">
             {% for banner in shares_banners %}
             {% if forloop.counter0|divisibleby:"1" %}
             <div class="carousel-item {% if forloop.first %} active {% endif %}">
                 <div class="row">{% endif %}
-                    <a href="{{ image.url }}#"><img class="d-block w-100" src="{{banner.image.url}}"
-                                                    alt="{{image.image1}}"></a>
+                    <a href="{{ banner.url }}"><img class="d-block w-100" src="{{banner.image.url}}"
+                                                    alt="{{banner.image}}"></a>
                     {% if forloop.counter0|divisibleby:"1" %}
                 </div>
             </div>

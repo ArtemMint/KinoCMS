@@ -1,4 +1,4 @@
-from ..models.pages import HomePage
+from kino.models.pages import HomePage
 from django.core.exceptions import ObjectDoesNotExist
 
 

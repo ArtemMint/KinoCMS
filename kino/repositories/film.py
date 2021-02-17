@@ -1,4 +1,4 @@
-from ..models.film import Film
+from kino.models.film import Film
 
 
 def get_all_films():
