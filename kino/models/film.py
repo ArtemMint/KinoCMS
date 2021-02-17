@@ -1,7 +1,6 @@
 from django.db import models
 from django.urls import reverse
 from django.utils import timezone
-
 from django.utils.html import mark_safe
 
 from utils import current_year

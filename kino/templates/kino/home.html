@@ -3,42 +3,44 @@
 
 <head>
     <meta name="description" property="og:description" content="{{home_page.seo_description}}">
-    <meta name="keywords" content="{{home_page.seo_keywords}}">    
+    <meta name="keywords" content="{{home_page.seo_keywords}}">
 </head>
 
-{% block title %}<title>{{home_page.seo_title}}</title>{% endblock title %} 
+{% block title %}<title>{{home_page.seo_title}}</title>{% endblock title %}
 
-{% block content %}     
-     
+{% block content %}
 <div class="container bg-light">
     <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-    <hr>      
         <ol class="carousel-indicators">
             {% comment %} DYNAMIC CAROUSEL BOTTOM INDICATOR {% endcomment %}
-            {% for image in gallery %}
-                {% if forloop.counter0|divisibleby:"1" %}
-                    <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{forloop}}"{% if forloop.first %} class="active" {% endif %}></li>
-                {% endif %}
+            {% for banner in slider_banners %}
+            {% if forloop.counter0|divisibleby:"1" %}
+            <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ forloop }}" {% if forloop.first %}
+                class="active" {% endif %}></li>
+            {% endif %}
             {% endfor %}
         </ol>
-        
+        <!--        SLIDERS BANNERS HERE-->
         <div class="carousel-inner">
-            {% for image in gallery %}
-                {% if forloop.counter0|divisibleby:"1" %}
-                    <div class="carousel-item {% if forloop.first %} active {% endif %}"> 
-                        <div class="row">
-                            <a href="{{ image.url }}"><img class="d-block w-100" src="{{image.image.url}}" alt="{{image.image}}"></a>
-                            {% if forloop.counter0|divisibleby:"1" %}
-                            <div class="carousel-caption d-none d-md-block">
-                                <h5>{{image.text}} SLIDER_TEXT</h5>
-                            </div>
-                            {% endif %}
-                        </div>
+            {% for banner in slider_banners %}
+            {% if forloop.counter0|divisibleby:"1" %}
+            <div class="carousel-item {% if forloop.first %} active {% endif %}">
+                <div class="row">
+                    {% endif %}
+                    <a href="{{ banner.url }}">
+                        <img class="d-block w-100" src="{{ banner.image.url }}"
+                             alt="{{ banner.image }}">
+                    </a>
+                    {% if forloop.counter0|divisibleby:"1" %}
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>{{ banner.text }}</h5>
                     </div>
-                {% endif %}
+                </div>
+            </div>
+            {% endif %}
             {% endfor %}
         </div>
-    
+
         <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Previous</span>
@@ -50,84 +52,111 @@
         </a>
     </div>
 
-    <h1 class="text-center">See now</h1>
-    <div class="container">
-        <div class="row">
-            {% for film in films %}
-            {% if film.get_current %}
+    <!--  LIST of Films  -->
+    <div class="album py-5">
+        <h1 class="text-center">See now</h1>
+        <div class="container">
+            <div class="row">
+                {% for film in films %}
+                {% if film.get_current %}
                 {% with firm.get_current as p %}
-                    <div class="col-md-2">
-                        <div class="card mb-2 shadow-sm">
-                            <a class="text-decoration-none" href="{% url 'film_detail' film.pk%}"><img class="card-img-top" src="{{ film.preview.url }}" alt="{{ film.preview }}" style="height: 250px; width: 90%%; display: block;">
-                            <div class="card-body text-center">
-                                <h4 class="card-text">{{ film.name }}</h4></a>
-                                <p class="btn btn-block btn-outline-success">Premiere<br> {{ film.premiere}}</p>
-                                <button type="button" class="btn btn-sm btn-outline-secondary">Buy ticket</button>
+                <div class="col-md-2">
+                    <div class="card mb-2 shadow-sm">
+                        <a href="{% url 'film_detail' film.pk%}"><img class="card-img-top" src="{{ film.preview.url }}"
+                                                                      alt="{{ film.preview }}"
+                                                                      style="height: 250px; width: 90%%; display: block;">
+                        </a>>
+                        <div class="card-body">
+                            <p class="card-text">{{ film.name }}</p>
+                            <p class="btn btn-block btn-outline-warning">Came out<br> {{ film.premiere}}</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-sm btn-outline-secondary">Buy ticket
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
+                </div>
                 {% endwith %}
                 {% endif %}
-            {% endfor %}
+                {% endfor %}
+            </div>
         </div>
-    </div> 
-    
-    <div class="container">
-        <h1 class="text-center">Premiere</h1>
-        <div class="row">
-            {% for film in films %}
-            {% if film.get_premiere %}
+    </div>
+
+    <div class="album py-5">
+        <div class="container">
+            <h1 class="text-center">Premiere</h1>
+            <div class="row">
+                {% for film in films %}
+                {% if film.get_premiere %}
                 {% with firm.get_premiere as p %}
-                    <div class="col-md-2">
-                        <div class="card mb-2 shadow-sm">
-                            <a class="text-decoration-none" href="{% url 'film_detail' film.pk%}"><img class="card-img-top" src="{{ film.preview.url }}" alt="{{ film.preview }}" style="height: 250px; width: 90%%; display: block;">
-                            <div class="card-body text-center">
-                                <h4 class="card-text">{{ film.name }}</h4></a>
-                                <p class="btn btn-block btn-outline-success">Premiere<br> {{ film.premiere}}</p>
-                                <button type="button" class="btn btn-sm btn-outline-secondary">Buy ticket</button>
+                <div class="col-md-2">
+                    <div class="card mb-2 shadow-sm">
+                        <a href="{% url 'film_detail' film.pk%}"><img class="card-img-top" src="{{ film.preview.url }}"
+                                                                      alt="{{ film.preview }}"
+                                                                      style="height: 250px; width: 90%%; display: block;">
+                        </a>
+                        <div class="card-body">
+                            <p class="card-text">{{ film.name }}
+                            </p>
+                            <p class="btn btn-block btn-outline-warning">Came out<br> {{ film.premiere}}</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-sm btn-outline-secondary">Buy ticket</button>
+                                </div>
                             </div>
                         </div>
                     </div>
+                </div>
                 {% endwith %}
                 {% endif %}
-            {% endfor %}
+                {% endfor %}
+            </div>
         </div>
-    </div> 
+    </div>
     <hr>
+
+    <!--News and Shares banners here-->
     <h3 class="text-center"> News and Shares</h3>
     <div id="carouselExampleSlidesOnly" class="carousel slide carousel-fade" data-bs-ride="carousel">
         <ol class="carousel-indicators">
             {% comment %} DYNAMIC CAROUSEL BOTTOM INDICATOR {% endcomment %}
-            {% for image in gallery %}
-                {% if forloop.counter0|divisibleby:"1" %}
-                    <li data-bs-target="#carouselExampleFade" data-bs-slide-to="{{forloop}}"{% if forloop.first %} class="active" {% endif %}></li>
-                {% endif %}
+            {% for banner in shares_banners %}
+            {% if forloop.counter0|divisibleby:"1" %}
+            <li data-bs-target="#carouselExampleFade" data-bs-slide-to="{{forloop}}" {% if forloop.first %}
+                class="active"
+                {% endif %}></li>
+            {% endif %}
             {% endfor %}
         </ol>
-        
+        3
+
         <div class="carousel-inner">
-            {% for image in gallery %}
-                {% if forloop.counter0|divisibleby:"1" %}
-                    <div class="carousel-item {% if forloop.first %} active {% endif %}"> 
-                        <div class="row">{% endif %}
-                            <a href="{{ image.url }}#"><img class="d-block w-100" src="{{image.image.url}}" alt="{{image.image1}}"></a>
-                            {% if forloop.counter0|divisibleby:"1" %}
-                        </div>
-                    </div>
-                {% endif %}
+            {% for banner in shares_banners %}
+            {% if forloop.counter0|divisibleby:"1" %}
+            <div class="carousel-item {% if forloop.first %} active {% endif %}">
+                <div class="row">{% endif %}
+                    <a href="{{ image.url }}#"><img class="d-block w-100" src="{{banner.image.url}}"
+                                                    alt="{{image.image1}}"></a>
+                    {% if forloop.counter0|divisibleby:"1" %}
+                </div>
+            </div>
+            {% endif %}
             {% endfor %}
         </div>
     </div>
 
     <hr>
     <div class="text-center">
-        <img src="{% static 'kino/images/1000x500.png' %}" class="img-fluid" alt="Context_ads"style="min-width: 100vh; max-height:200px;">
-    </div> 
+        <img src="{% static 'kino/images/1000x500.png' %}" class="img-fluid" alt="Context_ads">
+    </div>
     <br>
     <div class="container">
-        <h6 class="text-center">SEO text</h1>
+        <h6 class="text-center">SEO text</h6>
         <p class="text-muted">{{home_page.seo_text}}</p>
-    </div> 
+    </div>
     <hr>
 </div>
 {% endblock content %}
