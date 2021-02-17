@@ -15,7 +15,8 @@
             {% comment %} DYNAMIC CAROUSEL BOTTOM INDICATOR {% endcomment %}
             {% for banner in slider_banners %}
             {% if forloop.counter0|divisibleby:"1" %}
-            <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ forloop }}" {% if forloop.first %}
+            <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ forloop }}"
+                {% if forloop.first %}
                 class="active" {% endif %}></li>
             {% endif %}
             {% endfor %}
@@ -27,7 +28,8 @@
             <div class="carousel-item {% if forloop.first %} active {% endif %}">
                 <div class="row">
                     <a href="{{ banner.url }}">
-                        <img class="d-block w-100" src="{{ banner.image.url }}"
+                        <img class="d-block w-100"
+                             src="{{ banner.image.url }}"
                              alt="{{ banner.image }}">
                     </a>
                     {% if forloop.counter0|divisibleby:"1" %}

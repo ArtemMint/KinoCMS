@@ -12,6 +12,8 @@
 
 kino/__pycache__
 
+kino/includs/__pycache__
+
 kino/repositories/__pycache__
 
 kino/templatetags/__pycache__
@@ -29,12 +31,6 @@ kino/views/admin_panel/__pycache__
 kino/views/site/__pycache__
 
 kino/forms/__pycache__
-
-kino/repositories/__pycache__
-
-kino/includs/__pycache__
-
-kino/services/__pycache__
 
 kinocms/__pycache__
 
@@ -55,3 +51,6 @@ register/repositories/__pycache__
 register/services/__pycache__
 
 media
+
+kino/repositories/__pycache__
+
