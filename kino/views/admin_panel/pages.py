@@ -152,7 +152,7 @@ def admin_advertising_page_view(request):
     return render(request, template_name, context)
 
 
-def admin_Children_room_page_view(request):
+def admin_children_room_page_view(request):
     try:
         children = Page.objects.get(id=4)
     except ObjectDoesNotExist:

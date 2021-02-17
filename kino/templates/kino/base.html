@@ -89,7 +89,7 @@
                             {% if user.is_authenticated %}
 
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{% url 'edit_profile' %}">Your Profile, {{user}}</a>
+                                    <a class="nav-link" href="{% url 'edit_profile' %}">{{user}}</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="{% url 'logout' %}">Logout</a>
@@ -109,16 +109,16 @@
                 </div>
             </nav>
         </header>
+        <br>
 
         {% comment %} MAIN PLACE {% endcomment %}
         <article>
-            <div class="album py-5">
                 {% block header %}{% endblock header %}
                 {% block content %}{% endblock content %}
-            </div>
         </article>
 
         {% comment %} FOOTER {% endcomment %}
+        <br>
         <footer class="pt-4 pt-md-5 border-top bg-light">
             <div class="row">
                 <div class="col-md-1">

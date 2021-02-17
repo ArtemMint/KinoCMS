@@ -1,4 +1,5 @@
 {% extends 'kino/base.html' %}
+{% load static %}
 
 {% block title %}
     <title>Shares</title>
@@ -6,30 +7,42 @@
 
 {% block content %}
 
-<div class="container bg-light">
-    <div class="album py-5">
-        <div class="container">
-            <div class="row">
-                {% for shares in shares_list %}
-                    {% if shares.get_status %}
-                        {% with shares.get_status as s %}
-                            <div class="col-md-2">
-                                <div class="card mb-2 shadow-sm">
-                                    <a href="{% url 'shares_detail' shares.id%}"><img class="card-img-top" src="{{ shares.preview.url }}" alt="{{ shares.preview }}" style="height: 250px; width: 100%%; display: block;"></a>
-                                    <div class="card-body">
-                                        <p class="card-text">{{ shares.name }}</p>
-                                        <p class="card-text">Published: {{ shares.pub_date }}</p>
-                                        <div class="d-flex justify-content-between align-items-center">
+<div class="row" style="min-height: 70vh;">
+    <div class="col-md-1"></div>   
+    <div class="col-md-9 bg-light">
+        <div class="album py-3">
+            <div class="container">
+                <h1 class="text-center">Shares</h1>
+                <div class="row">
+                    {% for shares in shares_list %}
+                        {% if shares.get_status %}
+                            {% with shares.get_status as s %}
+                                <div class="col-md-3">
+                                    <div class="card mb-3 shadow-sm">
+                                        <a class="text-decoration-none" href="{% url 'shares_detail' shares.id%}"><img class="card-img-top" src="{{ shares.preview.url }}" alt="{{ shares.preview }}" style="height: 250px; width: 100%%; display: block;">
+                                        <div class="card-body">
+                                            <h4 class="card-text text-center">{{ shares.name }}</h4></a>
+                                            <p class="card-text">{{ shares.pub_date }}</p>
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                {{shares.description|truncatechars:70}}
+                                            </div>
                                         </div>
+                                        
                                     </div>
                                 </div>
-                            </div>
-                        {% endwith %}
-                    {% endif %}
-                {% endfor %}
-            </div>
+                            {% endwith %}
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div> 
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div class="text-center">
+            <img src="{% static 'kino/images/1000x500.png' %}" class="img-fluid" alt="Context_ads" style="max-width: 100%%; height:500px;">
+            <p>CONTEXT ADS</p>
         </div> 
     </div>
-
 </div>
+
 {% endblock  %}

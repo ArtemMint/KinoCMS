@@ -24,17 +24,17 @@ from kino.views.site.shares import *
 urlpatterns = [
     # Site KinoCMS.
     path('', home_page_view, name='home'),
-    path('poster/', posterView, name='poster'),
-    path('premiere/', premiereView, name='premiere'),
-    path('film/<int:pk>', FilmDetailView.as_view(), name='film_detail'),
-    path('cinemas/', cinameView, name='cinemas'),
-    path('cinema/<int:cinema_id>', cinemaDetailView, name='cinema_detail'),
+    path('poster/', poster_view, name='poster'),
+    path('premiere/', premiere_view, name='premiere'),
+    path('film/<int:film_id>', film_detail_view, name='film_detail'),
+    path('cinemas/', ciname_view, name='cinemas'),
+    path('cinema/<int:cinema_id>', cinema_detail_view, name='cinema_detail'),
     path('cinema/<int:cinema_id>/hall/<int:cinemahall_id>',
-         cinemahallDetailView, name='cinemahall_detail'),
-    path('shares/', sharesView, name='shares'),
-    path('shares/<int:shares_id>', sharesDetailView, name='shares_detail'),
-    path('news/', newsView, name='news'),
-    path('news/<int:news_id>', newsDetailView, name='news_detail'),
+         cinemahall_detail_view, name='cinemahall_detail'),
+    path('shares/', shares_view, name='shares'),
+    path('shares/<int:shares_id>', shares_detail_view, name='shares_detail'),
+    path('news/', news_view, name='news'),
+    path('news/<int:news_id>', news_detail_view, name='news_detail'),
 
     # Admin users.
     path('admin/users/', adminUserListView, name='admin_users'),
@@ -72,7 +72,7 @@ urlpatterns = [
          name='admin_vip-hall_page'),
     path('admin/pages/advertising/', admin_advertising_page_view,
          name='admin_advertsing_page'),
-    path('admin/pages/children_room/', admin_Children_room_page_view,
+    path('admin/pages/children_room/', admin_children_room_page_view,
          name='admin_children_room_page'),
 
     # Mailing of users.
