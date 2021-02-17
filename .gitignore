@@ -44,5 +44,11 @@ register/views/__pycache__/
 
 media
 
-kino/repositories/__pycache__
+kino/repositories/__pycache__/
+
+kino/includs/__pycache__/
+
+kino/repositories/__pycache__/
+
+kino/services/__pycache__/
 
