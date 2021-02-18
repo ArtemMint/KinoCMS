@@ -41,6 +41,17 @@ class CafeBarImage(models.Model):
     cafe_bar = models.ForeignKey(Page, on_delete=models.ForeignKey)
     image = models.FileField(upload_to='images/cafe_bar')
 
+
 class VipHallImage(models.Model):
     vip_hall = models.ForeignKey(Page, on_delete=models.ForeignKey)
     image = models.FileField(upload_to='images/vip_hall')
+
+
+class AboutImage(models.Model):
+    about = models.ForeignKey(Page, on_delete=models.ForeignKey)
+    image = models.FileField(upload_to='images/about')
+
+
+class AdvertisingImage(models.Model):
+    advertising = models.ForeignKey(Page, on_delete=models.ForeignKey)
+    image = models.FileField(upload_to='images/advertising')

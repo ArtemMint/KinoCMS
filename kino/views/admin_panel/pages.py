@@ -5,8 +5,8 @@ from django.shortcuts import render, redirect, \
 from django.core.exceptions import ObjectDoesNotExist
 
 from kino.models.pages import HomePage, Contacts, Page
-from kino.models.image import ChildrenRoomImage
-from kino.forms.pages import HomepageForm, ContactsForm, PageForm
+from kino.models.image import *
+from kino.forms.pages import *
 
 
 def admin_pages_view(request):
@@ -63,6 +63,9 @@ def admin_contacts_page_view(request):
 
 
 def admin_about_page_view(request):
+    PageFormSet = inlineformset_factory(
+        Page, AboutImage, fields='__all__', extra=5, max_num=5)
+    
     try:
         about = Page.objects.get(id=0)
     except ObjectDoesNotExist:
@@ -74,18 +77,24 @@ def admin_about_page_view(request):
 
     if request.method == "POST":
         form = PageForm(request.POST, request.FILES, instance=about)
-        if form.is_valid():
+        formset = PageFormSet(request.POST, request.FILES,
+                              instance=about)
+        if form.is_valid() and formset.is_valid():
             form.save()
+            formset.save()
             return redirect('admin_statistics')
     else:
         form = PageForm(instance=about)
+        formset = PageFormSet(instance=about)
 
-    context = {'form': form}
+    context = {'form': form, 'formset': formset}
     template_name = 'admin_panel/pages/about_page.html'
     return render(request, template_name, context)
 
 
 def admin_cafe_bar_page_view(request):
+    PageFormSet = inlineformset_factory(
+        Page, CafeBarImage, fields='__all__', extra=5, max_num=5)
     try:
         cafe = Page.objects.get(id=1)
     except ObjectDoesNotExist:
@@ -97,18 +106,24 @@ def admin_cafe_bar_page_view(request):
 
     if request.method == "POST":
         form = PageForm(request.POST, request.FILES, instance=cafe)
-        if form.is_valid():
+        formset = PageFormSet(request.POST, request.FILES,
+                              instance=cafe)
+        if form.is_valid() and formset.is_valid():
             form.save()
+            formset.save()
             return redirect('admin_statistics')
     else:
         form = PageForm(instance=cafe)
+        formset = PageFormSet(instance=cafe)
 
-    context = {'form': form}
+    context = {'form': form, 'formset': formset}
     template_name = 'admin_panel/pages/cafe_bar.html'
     return render(request, template_name, context)
 
 
 def admin_vip_hall_page_view(request):
+    PageFormSet = inlineformset_factory(
+        Page, VipHallImage, fields='__all__', extra=5, max_num=5)
     try:
         viphall = Page.objects.get(id=2)
     except ObjectDoesNotExist:
@@ -120,18 +135,24 @@ def admin_vip_hall_page_view(request):
 
     if request.method == "POST":
         form = PageForm(request.POST, request.FILES, instance=viphall)
-        if form.is_valid():
+        formset = PageFormSet(request.POST, request.FILES,
+                              instance=viphall)
+        if form.is_valid() and formset.is_valid():
             form.save()
+            formset.save()
             return redirect('admin_statistics')
     else:
         form = PageForm(instance=viphall)
+        formset = PageFormSet(instance=viphall)
 
-    context = {'form': form}
+    context = {'form': form, 'formset': formset}
     template_name = 'admin_panel/pages/vip_hall.html'
     return render(request, template_name, context)
 
 
 def admin_advertising_page_view(request):
+    PageFormSet = inlineformset_factory(
+        Page, AdvertisingImage, fields='__all__', extra=5, max_num=5)
     try:
         advertising = Page.objects.get(id=3)
     except ObjectDoesNotExist:
@@ -143,13 +164,17 @@ def admin_advertising_page_view(request):
 
     if request.method == "POST":
         form = PageForm(request.POST, request.FILES, instance=advertising)
-        if form.is_valid():
+        formset = PageFormSet(request.POST, request.FILES,
+                              instance=advertising)
+        if form.is_valid() and formset.is_valid():
             form.save()
+            formset.save()
             return redirect('admin_statistics')
     else:
         form = PageForm(instance=advertising)
+        formset = PageFormSet(instance=advertising)
 
-    context = {'form': form}
+    context = {'form': form, 'formset': formset}
     template_name = 'admin_panel/pages/advertising.html'
     return render(request, template_name, context)
 
