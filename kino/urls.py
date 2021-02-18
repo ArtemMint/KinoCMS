@@ -13,10 +13,12 @@ from kino.views.admin_panel.pages import *
 from kino.views.admin_panel.shares import *
 from kino.views.admin_panel.statistics import *
 from kino.views.admin_panel.user import *
+from kino.views.admin_panel.schedule import *
 from kino.views.site.cinema import *
 from kino.views.site.film import *
 from kino.views.site.home import *
 from kino.views.site.news import *
+from kino.views.site.schedule import *
 from kino.views.site.poster import *
 from kino.views.site.shares import *
 from kino.views.site.children_room import *
@@ -27,6 +29,7 @@ from kino.views.site.advertising import *
 urlpatterns = [
     # Site KinoCMS.
     path('', home_page_view, name='home'),
+    path('schedule/', schedule_page_view, name='schedule'),
     path('poster/', poster_view, name='poster'),
     path('premiere/', premiere_view, name='premiere'),
     path('film/<int:film_id>', film_detail_view, name='film_detail'),
@@ -48,19 +51,25 @@ urlpatterns = [
     path('mobile-app/', children_room_page_view, name='mobile_app'),
     path('about/', children_room_page_view, name='about'),
 
-
+    # Admin schedule.
+    path('admin/schedule/', admin_schedule_view, name='admin_schedule'),
+    path('admin/schedule/add/', admin_schedule_create_view,
+         name='admin_create_schedule'),
+    path('admin/schedule/<int:schedule_id>/update/',
+         admin_schedule_update_view, name='admin_update_schedule'),
+    path('admin/schedule/<int:pk>/delete/',
+         AdminScheduleDeleteView.as_view(), name='admin_delete_schedule'),
 
     # Admin users.
     path('admin/users/', adminUserListView, name='admin_users'),
-    path('admin/users/create/',
-         adminUserCreateView, name='admin_create_users'),
+    path('admin/users/create/', adminUserCreateView, name='admin_create_users'),
     path('admin/users/edit/<int:user_id>',
          adminUserUpdateView, name='admin_update_users'),
     path('admin/users/<int:user_id>/delete',
          adminUserDeleteView, name='admin_delete_user'),
     path('admin/users/', adminUserListView, name='admin_users'),
 
-    # Admin sidebar,
+    # Admin sidebar.
     path('admin/', admin_view, name='admin_home'),
     path('admin/statistics/', adminStatisticsView,
          name='admin_statistics'),
