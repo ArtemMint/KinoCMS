@@ -31,7 +31,8 @@
                     <a href="{{ banner.url }}">
                         <img class="d-block w-100"
                              src="{{ banner.image.url }}"
-                             alt="{{ banner.image }}">
+                             alt="{{ banner.image }}"
+                             style="height: 80vh !important;">
                     </a>
                     {% if forloop.counter0|divisibleby:"1" %}
                     <div class="carousel-caption d-none d-md-block">
@@ -141,7 +142,8 @@
             <div class="carousel-item {% if forloop.first %} active {% endif %}">
                 <div class="row">{% endif %}
                     <a href="{{ banner.url }}"><img class="d-block w-100" src="{{banner.image.url}}"
-                                                    alt="{{banner.image}}"></a>
+                                                    alt="{{banner.image}}"
+                                                    style="height: 90vh !important;"></a>
                     {% if forloop.counter0|divisibleby:"1" %}
                 </div>
             </div>
