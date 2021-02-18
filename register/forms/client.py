@@ -21,6 +21,10 @@ class UserForm(UserChangeForm):
 
 class ClientForm(UserChangeForm):
 
+    def __init__(self, *args, **kwargs):
+            super(ClientForm, self).__init__(*args, **kwargs)
+            del self.fields['password']
+
     class Meta:
         # years_to_display = range(current_year() - 100, current_year())
         model = Client
