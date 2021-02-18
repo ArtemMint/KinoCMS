@@ -13,7 +13,8 @@
         <form method="POST" class="post-form">{% csrf_token %}
             {{ user_form.as_p }}
             {{ client_form.as_p }}
-            <button class="btn btn-block btn-outline-success" type="submit">Update</button>
+            <button class="btn btn-block btn-success" type="submit">Update</button>
         </form>
+        <br>
     </div>
 {% endblock %}
