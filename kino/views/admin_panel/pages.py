@@ -1,9 +1,11 @@
+
+from django.forms import inlineformset_factory
 from django.shortcuts import render, redirect, \
     get_list_or_404, get_object_or_404
-
 from django.core.exceptions import ObjectDoesNotExist
 
 from kino.models.pages import HomePage, Contacts, Page
+from kino.models.image import ChildrenRoomImage
 from kino.forms.pages import HomepageForm, ContactsForm, PageForm
 
 
@@ -30,7 +32,7 @@ def admin_home_page_view(request):
         form = HomepageForm(request.POST, instance=homepage)
         if form.is_valid():
             form.save()
-            return redirect('admin_users')
+            return redirect('admin_statistics')
 
     context = {'form': form}
 
@@ -51,7 +53,7 @@ def admin_contacts_page_view(request):
         form = ContactsForm(request.POST, request.FILES, instance=contacts)
         if form.is_valid():
             form.save()
-            return redirect('admin_users')
+            return redirect('admin_statistics')
     else:
         form = ContactsForm(instance=contacts)
 
@@ -74,7 +76,7 @@ def admin_about_page_view(request):
         form = PageForm(request.POST, request.FILES, instance=about)
         if form.is_valid():
             form.save()
-            return redirect('admin_users')
+            return redirect('admin_statistics')
     else:
         form = PageForm(instance=about)
 
@@ -97,7 +99,7 @@ def admin_cafe_bar_page_view(request):
         form = PageForm(request.POST, request.FILES, instance=cafe)
         if form.is_valid():
             form.save()
-            return redirect('admin_users')
+            return redirect('admin_statistics')
     else:
         form = PageForm(instance=cafe)
 
@@ -120,7 +122,7 @@ def admin_vip_hall_page_view(request):
         form = PageForm(request.POST, request.FILES, instance=viphall)
         if form.is_valid():
             form.save()
-            return redirect('admin_users')
+            return redirect('admin_statistics')
     else:
         form = PageForm(instance=viphall)
 
@@ -143,7 +145,7 @@ def admin_advertising_page_view(request):
         form = PageForm(request.POST, request.FILES, instance=advertising)
         if form.is_valid():
             form.save()
-            return redirect('admin_users')
+            return redirect('admin_statistics')
     else:
         form = PageForm(instance=advertising)
 
@@ -153,6 +155,9 @@ def admin_advertising_page_view(request):
 
 
 def admin_children_room_page_view(request):
+    PageFormSet = inlineformset_factory(
+        Page, ChildrenRoomImage, fields='__all__', extra=5, max_num=5)
+
     try:
         children = Page.objects.get(id=4)
     except ObjectDoesNotExist:
@@ -164,12 +169,16 @@ def admin_children_room_page_view(request):
 
     if request.method == "POST":
         form = PageForm(request.POST, request.FILES, instance=children)
-        if form.is_valid():
+        formset = PageFormSet(request.POST, request.FILES,
+                              instance=children)
+        if form.is_valid() and formset.is_valid():
             form.save()
-            return redirect('admin_users')
+            formset.save()
+            return redirect('admin_statistics')
     else:
         form = PageForm(instance=children)
+        formset = PageFormSet(instance=children)
 
-    context = {'form': form}
+    context = {'form': form, 'formset': formset}
     template_name = 'admin_panel/pages/children_room.html'
     return render(request, template_name, context)
