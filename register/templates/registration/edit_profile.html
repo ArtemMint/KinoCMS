@@ -1,13 +1,15 @@
 {% extends 'kino/base.html' %}
 
 {% block title %}
-    <title>Profile</title>
+    <title >Profile</title>
 {% endblock title %}
 
 
 {% block content %}
     <div class="container bg-light">
-        <h1 clas>Profile</h1>
+    <br>
+        <h1 class="text-center">Profile</h1>
+        <br>
         <form method="POST" class="post-form">{% csrf_token %}
             {{ user_form.as_p }}
             {{ client_form.as_p }}
