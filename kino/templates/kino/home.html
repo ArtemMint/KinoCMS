@@ -59,7 +59,7 @@
     <!--  LIST of Films  -->
     <div class="album py-5">
         <h1 class="text-center">See now</h1>
-        <div class="container">
+        <div class="container text-center">
             <div class="row">
                 {% for film in films %}
                 {% if film.get_current %}
@@ -92,7 +92,7 @@
     <div class="album py-5">
         <div class="container">
             <h1 class="text-center">Premiere</h1>
-            <div class="row">
+            <div class="row text-center">
                 {% for film in films %}
                 {% if film.get_premiere %}
                 {% with firm.get_premiere as p %}
@@ -105,7 +105,7 @@
                         <div class="card-body">
                             <p class="card-text">{{ film.name }}
                             </p>
-                            <p class="btn btn-block btn-outline-warning">Came out<br> {{ film.premiere}}</p>
+                            <p class="btn btn-block btn-outline-danger">Premiere date<br> {{ film.premiere}}</p>
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-sm btn-outline-secondary">Buy ticket</button>
@@ -154,10 +154,10 @@
 
     <hr>
     <div class="text-center">
-        <img src="{% static 'kino/images/1000x500.png' %}" class="img-fluid" alt="Context_ads">
-    </div>
+        <img src="{% static 'kino/images/1000x500.png' %}" class="img-fluid" alt="Context_ads"style="min-width: 100vh; max-height:200px;">
+    </div> 
     <br>
-    <div class="container">
+    <div class="container text-center">
         <h6 class="text-center">SEO text</h6>
         <p class="text-muted">{{home_page.seo_text}}</p>
     </div>
