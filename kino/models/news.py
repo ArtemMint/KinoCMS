@@ -7,10 +7,6 @@ def upload_news_preview(instance, filename):
     return f"news/{instance.name}/preview/{filename}"
 
 
-def upload_news_gallery(instance, filename):
-    return f"news/{instance.name}/gallery_of_news/{filename}"
-
-
 class News(models.Model):
     """Class News which using for News pageW"""
 

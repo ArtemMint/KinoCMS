@@ -8,20 +8,12 @@ def upload_cinema_preview(instance, filename):
     return f"cinema/{instance.name}/preview/{filename}"
 
 
-def upload_cinema_gallery(instance, filename):
-    return f"cinema/{instance.name}/gallery_of_cinema/{filename}"
-
-
 def upload_cinema_logo(instance, filename):
     return f"cinema/{instance.name}/logo_of_cinema/{filename}"
 
 
 def upload_cinemahall_preview(instance, filename):
     return f"cinema/{instance.cinema.name}/halls/{instance.name}/preview/{filename}"
-
-
-def upload_cinemahall_gallery(instance, filename):
-    return f"cinema/{instance.cinema.name}/halls/{instance.name}/gallery/{filename}"
 
 
 class Cinema(models.Model):

@@ -3,9 +3,6 @@ from django.db import models
 from .shares import upload_shares_gallery, upload_shares_preview
 from phonenumber_field.modelfields import PhoneNumberField
 
-# class Client(models.Model, Importable):
-#     phone = PhoneNumberField(null=False, blank=False, unique=True)
-
 
 class HomePage(models.Model):
     phone1 = PhoneNumberField(null=False, blank=False, unique=True)
