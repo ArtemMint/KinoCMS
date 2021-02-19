@@ -14,21 +14,23 @@ from django.core.validators import RegexValidator
 
 class SliderBanner(models.Model):
     """SliderBanner model has fields:
-    image, url,text.""" 
-    image = models.ImageField(blank=False, upload_to='banners/slider')
+    image, url,text.
+    """
+    image = models.FileField(blank=False, upload_to='banners/slider')
     url = models.URLField(blank=False)
     text = models.TextField(blank=True)
     # spin_speed = models.IntegerField(default=5)
 
 
 class BackBanner(models.Model):
-    """BackBanner model has field: image.""" 
-    image = models.ImageField(blank=False, upload_to='banners/back')
+    """BackBanner model has field: image."""
+    image = models.FileField(blank=False, upload_to='banners/back')
 
 
 class SharesBanner(models.Model):
     """SharesBanner model has fields:
-    image, url.""" 
-    image = models.ImageField(blank=False, upload_to='banners/shares')
+    image, url.
+    """
+    image = models.FileField(blank=False, upload_to='banners/shares')
     url = models.URLField(blank=False)
     # spin_speed = models.IntegerField(default=5)

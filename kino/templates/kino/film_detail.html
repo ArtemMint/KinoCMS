@@ -66,7 +66,11 @@
                         {% if forloop.counter0|divisibleby:"1" %}
                             <div class="carousel-item {% if forloop.first %} active {% endif %}"> 
                                 <div class="row">{% endif %}
-                                    <a href="{{ image.url }}#"><img class="d-block w-100" src="{{image.image.url}}" alt="{{image.image1}}"></a>
+                                    <a href="{{ image.url }}#">
+                                        <img class="d-block w-100"
+                                             src="{{image.image.url}}"
+                                             alt="{{image.image1}}">
+                                    </a>
                                     {% if forloop.counter0|divisibleby:"1" %}
                                     <div class="carousel-caption d-none d-md-block">
                                     </div>

@@ -11,23 +11,19 @@
 {% block content %}
 <div class="container bg-light">
     <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-        <ol class="carousel-indicators">
-            {% comment %} DYNAMIC CAROUSEL BOTTOM INDICATOR {% endcomment %}
-            {% for banner in slider_banners %}
-            {% if forloop.counter0|divisibleby:"1" %}
-            <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ forloop }}"
-                {% if forloop.first %}
-                class="active" {% endif %}></li>
-            {% endif %}
-            {% endfor %}
-        </ol>
+                <ol class="carousel-indicators">
+                    {% for banner in slider_banners %}
+                        {% if forloop.counter0|divisibleby:"1" %}
+                            <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{forloop}}"{% if forloop.first %} class="active" {% endif %}></li>
+                        {% endif %}
+                    {% endfor %}
+                </ol>
         <!--        SLIDERS BANNERS HERE-->
         <div class="carousel-inner">
             {% for banner in slider_banners %}
             {% if forloop.counter0|divisibleby:"1" %}
             <div class="carousel-item {% if forloop.first %} active {% endif %}">
-                <div class="row">
-                    {% endif %}
+                <div class="row">{% endif %}
                     <a href="{{ banner.url }}">
                         <img class="d-block w-100"
                              src="{{ banner.image.url }}"
@@ -35,7 +31,6 @@
                     </a>
                     {% if forloop.counter0|divisibleby:"1" %}
                     <div class="carousel-caption d-none d-md-block">
-                        <h5>{{ banner.text }}</h5>
                     </div>
                 </div>
             </div>
@@ -141,7 +136,7 @@
             <div class="carousel-item {% if forloop.first %} active {% endif %}">
                 <div class="row">{% endif %}
                     <a href="{{ image.url }}#"><img class="d-block w-100" src="{{banner.image.url}}"
-                                                    alt="{{image.image1}}"></a>
+                                                    alt="{{image.image}}"></a>
                     {% if forloop.counter0|divisibleby:"1" %}
                 </div>
             </div>
