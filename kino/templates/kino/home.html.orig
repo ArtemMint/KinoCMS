@@ -24,7 +24,11 @@
             {% for banner in slider_banners %}
             {% if forloop.counter0|divisibleby:"1" %}
             <div class="carousel-item {% if forloop.first %} active {% endif %}">
+<<<<<<< HEAD
                 <div class="row">
+=======
+                <div class="row">{% endif %}
+>>>>>>> 78f27541f6b81772a0b9721175f019c89b892563
                     <a href="{{ banner.url }}">
                         <img class="d-block w-100"
                              src="{{ banner.image.url }}"
@@ -137,9 +141,14 @@
             {% if forloop.counter0|divisibleby:"1" %}
             <div class="carousel-item {% if forloop.first %} active {% endif %}">
                 <div class="row">{% endif %}
+<<<<<<< HEAD
                     <a href="{{ banner.url }}"><img class="d-block w-100" src="{{banner.image.url}}"
                                                     alt="{{banner.image}}"
                                                     style="height: 90vh !important;"></a>
+=======
+                    <a href="{{ image.url }}#"><img class="d-block w-100" src="{{banner.image.url}}"
+                                                    alt="{{image.image}}"></a>
+>>>>>>> 78f27541f6b81772a0b9721175f019c89b892563
                     {% if forloop.counter0|divisibleby:"1" %}
                 </div>
             </div>

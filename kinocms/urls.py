@@ -19,10 +19,9 @@ from django.contrib.staticfiles.urls import static, staticfiles_urlpatterns
 from django.contrib import admin
 from django.urls import path, include
 
-
 urlpatterns = [
-    path('djadmin/', admin.site.urls),
-    path('', include('kino.urls')),
-    path('profile/', include('django.contrib.auth.urls')),
-    path('profile/', include('register.urls')),
-]
+                  path('djadmin/', admin.site.urls),
+                  path('', include('kino.urls')),
+                  path('profile/', include('django.contrib.auth.urls')),
+                  path('profile/', include('register.urls')),
+              ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
