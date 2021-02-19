@@ -9,7 +9,7 @@ __author__ = 'Ivan Humeniuk'
 
 from django import forms
 
-from kino.models.banners import *
+from ..models.banners import *
 
 
 class SliderBannerForm(forms.ModelForm):
