@@ -21,35 +21,44 @@ Mailing to group of users
 {% block content %}
 <form action="{% url 'mailing_group_of_users' %}" method="post" enctype="multipart/form-data" style="margin: 1rem">
     {% csrf_token %}
+    {% if messages %}
+
+    {% for message in messages %}
+    <div class="alert alert-success" style="text-align: center;">
+        {{ message }}
+    </div>
+    {% endfor %}
+
+    {% endif %}
 
     <div class="form-group">
-<!--        <label class="input-label">Emails</label>-->
-<!--        <div class="selectBox" onclick="showCheckboxes('checkboxesIndustry')">-->
-<!--            <select id="exampleFormControlSelect1" class="form-control">-->
-<!--                <option class="input-label" for="exampleFormControlSelect1">-->
-<!--                    Choose branch-->
-<!--                </option>-->
-<!--            </select>-->
-<!--            <div class="overSelect"></div>-->
-<!--        </div>-->
-<!--        <div id="checkboxesIndustry">-->
-<!--            <label for="email1">-->
-<!--                <input type="checkbox" id="ArtificialIntelligence"/>email1-->
-<!--            </label>-->
+        <!--        <label class="input-label">Emails</label>-->
+        <!--        <div class="selectBox" onclick="showCheckboxes('checkboxesIndustry')">-->
+        <!--            <select id="exampleFormControlSelect1" class="form-control">-->
+        <!--                <option class="input-label" for="exampleFormControlSelect1">-->
+        <!--                    Choose branch-->
+        <!--                </option>-->
+        <!--            </select>-->
+        <!--            <div class="overSelect"></div>-->
+        <!--        </div>-->
+        <!--        <div id="checkboxesIndustry">-->
+        <!--            <label for="email1">-->
+        <!--                <input type="checkbox" id="ArtificialIntelligence"/>email1-->
+        <!--            </label>-->
 
-<!--            <label for="email12">-->
-<!--                <input type="checkbox" id="email2"/>email2</label>-->
+        <!--            <label for="email12">-->
+        <!--                <input type="checkbox" id="email2"/>email2</label>-->
 
-<!--            <label for="email3">-->
-<!--                <input type="checkbox" id="email3"/>email3</label>-->
+        <!--            <label for="email3">-->
+        <!--                <input type="checkbox" id="email3"/>email3</label>-->
 
-<!--            <label for="email4">-->
-<!--                <input type="checkbox" id="email4"/>email4-->
-<!--            </label>-->
-<!--        </div>-->
+        <!--            <label for="email4">-->
+        <!--                <input type="checkbox" id="email4"/>email4-->
+        <!--            </label>-->
+        <!--        </div>-->
         <div style="margin-top: 1.5%">
             <label>{{ form.emails.label }}:</label>
-            <div style="border:2px solid #ccc; width: 95%; height: 200px; overflow-y: scroll; margin-bottom: 2%">
+            <div class="form-control" style="border:2px solid #ccc; width: 100%; height: 200px; overflow-y: scroll; margin-bottom: 2%">
                 {{ form.emails }}
             </div>
             <p>
