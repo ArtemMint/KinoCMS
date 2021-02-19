@@ -1,4 +1,4 @@
-from kino.forms.banners import *
+from ..forms.banners import *
 from django.core.handlers.wsgi import WSGIRequest
 from django.forms.models import ModelFormMetaclass
 
