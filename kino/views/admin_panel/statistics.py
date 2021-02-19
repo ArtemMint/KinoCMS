@@ -1,9 +1,11 @@
-from django.shortcuts import render, redirect, get_object_or_404, get_list_or_404
+from django.shortcuts import render, redirect, \
+    get_object_or_404, get_list_or_404
 from django.contrib.auth.models import User
 
 from register.models.client import Client
 from kino.models.cinema import Cinema, CinemaHall
 from kino.models.film import Film
+from kino.models.news import News
 from utils import get_avg_age
 
 
@@ -26,9 +28,10 @@ def adminStatisticsView(request):
 
     num_films = Film.objects.count()
     num_cinemas = Cinema.objects.count()
+    num_news = News.objects.count()
 
     context = {'users': num_users, 'men': num_men, 'women': num_women,
                'avg_age': avg_age, 'men_avg_age': men_avg_age, 'women_avg_age': women_avg_age,
-               'films': num_films, 'cinemas': num_cinemas}
+               'films': num_films, 'cinemas': num_cinemas, 'num_news': num_news}
 
     return render(request, 'admin_panel/statistics.html', context)

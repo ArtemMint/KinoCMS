@@ -26,7 +26,7 @@
                                         <a class="text-decoration-none" href="{% url 'film_detail' film.pk%}"><img class="card-img-top" src="{{ film.preview.url }}" alt="{{ film.preview }}" style="height: 250px; width: 90%%; display: block;">
                                         <div class="card-body text-center">
                                             <h4 class="card-text">{{ film.name }}</h4></a>
-                                            <p class="btn btn-block btn-outline-success">Premiere<br> {{ film.premiere}}</p>
+                                            <p class="btn btn-block btn-outline-danger">Premiere<br> {{ film.premiere}}</p>
                                             <button type="button" class="btn btn-sm btn-outline-secondary">Buy ticket</button>
                                         </div>
                                     </div>

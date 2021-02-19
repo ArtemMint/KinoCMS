@@ -17,17 +17,19 @@
         <header>
             <nav class="fixed-top navbar-light bg-light">
                 <div style="text-align: center;">    
-                    <a class="navbar-brand" href="#">Покупайте електронные билеты...</a>
-                </div>        
-            </nav> <br>
+                    <a class="navbar-brand" href="#">Buy ticket here...</a>
+                </div>
+                        
+            </nav> 
+            <br>
             <nav class="navbar navbar-light">
                 <div class="container-md">
-                    <img src="..." class="img-thumbnail" alt="Logo">
+                    <img src="{% static 'kino/images/logo.jpg' %}" class="img-thumbnail" alt="Logo" style="max-width:10vh">
                     <form class="d-flex">
                         <input class="form-control me-2" type="search" placeholder="Поиск" aria-label="Search">
-                        <button class="btn btn-outline-success" type="submit">Поиск</button>
+                        <button class="btn btn-success" type="submit">Поиск</button>
                     </form>
-                    <div style="background: white;">
+                    <div >
                         <a href="#" class="fa fa-facebook"></a>
                         <a href="#" class="fa fa-twitter"></a>
                         <a href="#" class="fa fa-google"></a>
@@ -45,13 +47,11 @@
                     </ul>
                 </div>
             </nav>
-            <nav class="nav justify-content-end navbar-expand-lg navbar-light bg-light">
-                <div class="container-fluid">
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
+            {% comment %} Nav with main pages of the site {% endcomment %}
+            <nav class="nav container justify-content-end navbar-expand-lg navbar-light bg-light">
+                <div class="container">
                     <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                        <ul class="nav justify-content-end">
+                        <ul class="nav nav-pills">
                             <li class="nav-item">
                                 <a class="nav-link" aria-current="page" href="{% url 'home' %}">Home</a>
                             </li>
@@ -59,7 +59,7 @@
                                 <a class="nav-link" aria-current="page" href="{% url 'poster' %}">Poster</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Schedule</a>
+                                <a class="nav-link" href="{% url 'schedule' %}">Schedule</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{% url 'premiere' %}">Premiere</a>
@@ -76,15 +76,17 @@
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                     <li><a class="dropdown-item" href="{% url 'news' %}">News</a></li>
-                                    <li><a class="dropdown-item" href="#">Cafe-Bar</a></li>
-                                    <li><a class="dropdown-item" href="#">VIP-hall</a></li>
-                                    <li><a class="dropdown-item" href="#">Children room</a></li>
-                                    <li><a class="dropdown-item" href="#">Mobile app</a></li>
-                                    <li><a class="dropdown-item" href="#">Contacts</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'cafe_bar' %}">Cafe-Bar</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'vip_hall' %}">VIP-hall</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'children_room' %}">Children room</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'mobile_app' %}">Mobile app</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'contacts' %}">Contacts</a></li>
                                 </ul>
                             </li>
                             {% if user.is_superuser %}
-                                <a href="{% url 'admin_statistics' %}" class="nav-link btn btn-danger">ADMIN PANEL</a>
+                                <li class="nav-item">
+                                    <a href="{% url 'admin_statistics' %}" class="nav-link btn btn-danger">ADMIN PANEL</a>
+                                </li>
                             {% endif %}
                             {% if user.is_authenticated %}
 
@@ -92,7 +94,7 @@
                                     <a class="nav-link" href="{% url 'edit_profile' %}">{{user}}</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                                    <a class="nav-link ml-auto" href="{% url 'logout' %}">Logout</a>
                                 </li>
                             {% else %}
                                 <li class="nav-item">
@@ -135,19 +137,19 @@
                 <div class="col-6 col-md">
                     <h5><a class="text-muted text-decoration-none" href="{% url 'poster' %}">Poster</a></h5>
                     <ul class="list-unstyled text-small">
-                        <li><a class="text-muted text-decoration-none" href="#">Schedule</a></li>
+                        <li><a class="text-muted text-decoration-none" href="{% url 'schedule' %}">Schedule</a></li>
                         <li><a class="text-muted text-decoration-none" href="{% url 'premiere' %}">Premiere</a></li>
                         <li><a class="text-muted text-decoration-none" href="{% url 'cinemas' %}">Cinemas</a></li>
                         <li><a class="text-muted text-decoration-none" href="{% url 'shares' %}">Shares</a></li>
                     </ul>
                 </div>
                 <div class="col-6 col-md">
-                    <h5><a class="text-muted text-decoration-none" href="#">About cinema</a></h5>
+                    <h5><a class="text-muted text-decoration-none" href="{% url 'about' %}">About cinema</a></h5>
                     <ul class="list-unstyled text-small">
                         <li><a class="text-muted text-decoration-none" href="{% url 'news' %}">News</a></li>
-                        <li><a class="text-muted text-decoration-none" href="#">Advertaisment</a></li>
-                        <li><a class="text-muted text-decoration-none" href="#">Cafe-Bar</a></li>
-                        <li><a class="text-muted text-decoration-none" href="#">Contacts</a></li>
+                        <li><a class="text-muted text-decoration-none" href="{% url 'advertising' %}">Advertaisment</a></li>
+                        <li><a class="text-muted text-decoration-none" href="{% url 'cafe_bar' %}">Cafe-Bar</a></li>
+                        <li><a class="text-muted text-decoration-none" href="{% url 'contacts' %}">Contacts</a></li>
                     </ul>
                 </div>
                 <div class="col-6 col-md">

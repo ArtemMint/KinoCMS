@@ -6,13 +6,13 @@
 {% endblock title %}
 
 {% block content %}
-<div class="card container">
+<div class="card container" style="min-width: 180vh !important;">
     <br>
     <div class="row" style="min-height: 70vh;">
         <div class="col-md-10">
             <div class="row">
                 <div class="col-md-4">
-                    <img src="{{ news.preview.url }}" alt="{{ news.preview }}" style="max-width: 100%%; height:150px;"></br>
+                    <img src="{{ news.preview.url }}" alt="{{ news.preview }}"  width="100%"  style="height:35vh;"></br>
                 </div>
                 <div class="col-md-8">
                     <dl class="dl-horizontal">
@@ -26,6 +26,7 @@
                     </dl>
                 </div>
             </div>
+            <hr>
             <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel"> 
                 <ol class="carousel-indicators">
                     {% comment %} DYNAMIC CAROUSEL BOTTOM INDICATOR {% endcomment %}
@@ -41,10 +42,10 @@
                         {% if forloop.counter0|divisibleby:"1" %}
                             <div class="carousel-item {% if forloop.first %} active {% endif %}"> 
                                 <div class="row">{% endif %}
-                                    <a href="{{ image.url }}#"><img class="d-block w-100" src="{{image.image.url}}" alt="{{image.image1}}"></a>
+                                    <a href="{{ image.url }}#"><img class="d-block w-100" src="{{image.image.url}}" alt="{{image.image1}}" style="height: 90vh !important;"></a>
                                     {% if forloop.counter0|divisibleby:"1" %}
                                     <div class="carousel-caption d-none d-md-block">
-                                        <h5>{{image.text}} SLIDER_TEXT</h5>
+                                        <h5>{{image.text}}</h5>
                                     </div>
                                 </div>
                             </div>
@@ -62,6 +63,7 @@
                     <span class="visually-hidden">Next</span>
                 </a>
             </div>
+            <br>
         </div>
         <div class="col-md-2">
             <div class="text-center">
@@ -69,7 +71,6 @@
                 <p>CONTEXT ADS</p>
             </div>
         </div>
-        <br>
     </div>
 </div>
 {% endblock content %}

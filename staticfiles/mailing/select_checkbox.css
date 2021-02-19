@@ -1,0 +1,46 @@
+.multiselect {
+    width: 200px;
+}
+
+.selectBox {
+    position: relative;
+}
+
+.overSelect {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+
+#checkboxesIndustry, #checkboxesSeniority{
+    display: none;
+    border: 1px #0666f752 solid;
+}
+
+#checkboxesIndustry label, #checkboxesSeniority label{
+    display: block;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    margin-left: 20px;
+    padding-left: 0.4em;
+    word-break: break-word;
+}
+
+
+#checkboxesIndustry label input, #checkboxesSeniority label input{
+    margin-right:10px;
+ }
+
+#checkboxesIndustry label:hover, #checkboxesSeniority label:hover{
+    background-color: #FFFFFF;
+}
+
+ion-icon {
+    margin-left: .05rem;
+    font-size: 1.1rem;
+    text-align: center;
+    width: 1.6rem;
+    margin-bottom: -2.3px;
+  }

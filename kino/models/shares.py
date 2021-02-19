@@ -7,10 +7,6 @@ def upload_shares_preview(instance, filename):
     return f"shares/{instance.name}/preview/{filename}"
 
 
-def upload_shares_gallery(instance, filename):
-    return f"shares/{instance.name}/gallery_of_shares/{filename}"
-
-
 class Shares(models.Model):
     STATUS_CHOICES = [
         ('ON', 'On'),

@@ -37,7 +37,6 @@
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
-    <img src="{% static 'register/img/all_all_big-t1542033033-r1w768h425q90zc1.jpg' %}">
 
     <!-- Navbar -->
     <nav class="main-header navbar navbar-expand navbar-white navbar-light">
@@ -162,10 +161,12 @@
                         </ul>
                     </li> 
 
-
-
-
-
+                    <li class="nav-item">
+                        <a href="{% url 'admin_schedule' %}" class="nav-link">
+                            <i class="fas fa-calendar nav-icon"></i>
+                            <p>Schedule</p>
+                        </a>
+                    </li>
                     <li class="nav-item">
                         <a href="{% url 'admin_films' %}" class="nav-link">
                             <i class="fas fa-film nav-icon"></i>

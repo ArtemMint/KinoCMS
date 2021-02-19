@@ -1,12 +1,5 @@
 from django.shortcuts import render, redirect
-from django.views.generic import CreateView, UpdateView
-from django.urls import reverse_lazy
-from django.contrib import messages
-from django.http import Http404
-from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
-
-from register.models.client import Client
 from register.forms.client import *
 
 
