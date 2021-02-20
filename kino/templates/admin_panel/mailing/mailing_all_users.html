@@ -22,6 +22,16 @@ Mailing to all users
 <form action="{% url 'mailing_all_users' %}" method="post" enctype="multipart/form-data">
     {% csrf_token %}
     <div style="margin: 1rem">
+        {% if messages %}
+
+        {% for message in messages %}
+        <div class="alert alert-success" style="text-align: center;">
+          {{ message }}
+        </div>
+        {% endfor %}
+
+        {% endif %}
+
         {{ form.as_p }}
         <button type="submit" style="margin-left: 89.5%" class="btn btn-success">Send message</button>
     </div>
