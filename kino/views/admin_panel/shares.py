@@ -11,6 +11,7 @@ class AdminSharesView(ListView):
     model = Shares
     template_name = 'admin_panel/shares/shares.html'
     ordering = ['-id']
+    paginate_by = 15
 
 
 def admin_shares_detail_view(request, shares_id):

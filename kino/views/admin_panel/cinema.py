@@ -26,6 +26,7 @@ class AdminCinemasView(ListView):
     html template of list of cinemas."""
     model = Cinema
     template_name = 'admin_panel/cinema/cinemas.html'
+    paginate_by = 4
 
 
 class AdminCinemaDeleteView(DeleteView):

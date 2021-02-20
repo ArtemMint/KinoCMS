@@ -6,7 +6,7 @@ from django.core.paginator import Paginator
 
 def adminUserListView(request):
     contact_list = User.objects.order_by('-id')
-    paginator = Paginator(contact_list, 5)
+    paginator = Paginator(contact_list, 15)
 
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)

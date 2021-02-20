@@ -46,7 +46,7 @@ class CinemaForm(forms.ModelForm):
                 attrs={'class': 'form-control',
                        'placeholder': 'SEO keywords of the cinema'}
             ),
-            'seo_description': forms.Textarea(
+            'seo_description': forms.TextInput(
                 attrs={'class': 'form-control',
                        'placeholder': 'SEO descripton of the cinema'}
             ),

@@ -13,7 +13,7 @@ class HomepageForm(forms.ModelForm):
             'seo_title': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'SEO title of the cinema...'}),
             'seo_keywords': forms.TextInput(
                 attrs={'class': 'form-control', 'placeholder': 'SEO keywords of the cinema'}),
-            'seo_description': forms.Textarea(
+            'seo_description': forms.TextInput(
                 attrs={'class': 'form-control', 'placeholder': 'SEO descripton of the cinema'}),
         }
 
@@ -29,7 +29,7 @@ class ContactsForm(forms.ModelForm):
             'seo_title': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'SEO title of the cinema...'}),
             'seo_keywords': forms.TextInput(
                 attrs={'class': 'form-control', 'placeholder': 'SEO keywords of the cinema'}),
-            'seo_description': forms.Textarea(
+            'seo_description': forms.TextInput(
                 attrs={'class': 'form-control', 'placeholder': 'SEO descripton of the cinema'}),
         }
 
@@ -44,6 +44,6 @@ class PageForm(forms.ModelForm):
             'seo_title': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'SEO title of the cinema...'}),
             'seo_keywords': forms.TextInput(
                 attrs={'class': 'form-control', 'placeholder': 'SEO keywords of the cinema'}),
-            'seo_description': forms.Textarea(
+            'seo_description': forms.TextInput(
                 attrs={'class': 'form-control', 'placeholder': 'SEO descripton of the cinema'}),
         }
