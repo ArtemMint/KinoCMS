@@ -16,7 +16,7 @@ def admin_schedule_view(request):
         request,
         'admin_panel/schedule/schedule.html',
         {
-            'schedule_list': get_schedule_list(),
+            'schedule_list': get_schedule_list_order_by_date_desc(),
         }
     )
 

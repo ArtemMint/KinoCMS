@@ -27,6 +27,10 @@ class ScheduleForm(forms.ModelForm):
                 attrs={'class': 'form-control',
                        'placeholder': 'Choose cinema hall..'}
             ),
+            'cost': forms.TextInput(
+                attrs={'class': 'form-control',
+                       'placeholder': 'Minimun cost of the ticket..'}
+            ),
             'date': forms.DateTimeInput(
                 attrs={'class': 'form-control',
                        'type': 'date',

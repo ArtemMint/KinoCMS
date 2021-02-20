@@ -11,7 +11,7 @@ def film_detail_view(request, film_id):
         {
             "film": get_film_by_id(film_id),
             "home_page": get_home_page(),
-            'gallery': get_film_image_list_by_id(film_id),
+            "gallery": get_film_image_list_by_id(film_id),
         }
     )
 

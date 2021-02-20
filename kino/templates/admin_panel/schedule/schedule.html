@@ -15,29 +15,34 @@
     <h3 class="box-title"><a href="{% url 'admin_create_schedule' %}"><button type="button" class="btn btn-lg btn-block btn-outline-primary">ADD SCHEDULE ✍️</button></a></h3>
 </div>
 {% if schedule_list %}
+{% regroup schedule_list by date as date_list %}
+    {% for day in date_list%}
+    <h3>{{day.grouper}}</h3>
     <div class="box-body">
         <table id="example2" class="table table-bordered table-hover dataTable" role="grid" aria-describedby="example2_info">
             <thead class="thead-dark">
             <tr role="row">
-                <th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Rendering engine: activate to sort column descending" aria-sort="ascending">Date</th>
-                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Cinema hall</th>
-                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Film</th>
-                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Time</th>
+                <th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Rendering engine: activate to sort column descending" aria-sort="ascending">Time</th>
+                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Film</th>
+                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Cinema hall</th>
+                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Minimum cost</th>
                 <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending">Edit/Delete</th>
+            </tr>
             </thead>
             <tbody>
-                {% for schedule in schedule_list %}
+                {% for item in day.list %}
                     <tr role="row" class="odd">
-                        <td class="sorting_1">{{schedule.date}}</td>
-                        <td>{{schedule.cinemahall}}</td>
-                        <td>{{schedule.film}}</td>
-                        <td>{{schedule.time}}</td>
-                        <td style="width:20% "><a class="btn btn-sm btn-warning" href="{% url 'admin_update_schedule' schedule.id%}">Update</a>  <a class="btn btn-sm btn-danger" href="{% url 'admin_delete_schedule' schedule.id%}">Delete</a></td>
+                        <td class="sorting_1">{{item.time}}</td>
+                        <td>{{item.film}}</td>
+                        <td>{{item.cinemahall}}</td>
+                        <td>{{item.cost}}</td>
+                        <td style="width:20% "><a class="btn btn-sm btn-warning" href="{% url 'admin_update_schedule' item.id%}">Update</a>  <a class="btn btn-sm btn-danger" href="{% url 'admin_delete_schedule' item.id%}">Delete</a></td>
                     </tr>
                 {% endfor %}
             </tbody>
         </table>
     </div>
+    {% endfor %}
 {% else %}
     <blockquote class="text-center">
         <p class="blockquote text-center">There`re no schedule yet 🙄</p> 
