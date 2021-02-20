@@ -1,8 +1,13 @@
 import datetime
+from django.utils import timezone
 
 
 def current_year():
     return datetime.datetime.now().year
+
+
+def get_current_date():
+    return timezone.now()
 
 
 def get_avg_age(set_of_users):

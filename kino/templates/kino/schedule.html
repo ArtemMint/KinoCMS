@@ -15,31 +15,32 @@
             <div class="container">
                 <h1 class="text-center">Schedule</h1>
                 <div class="row">
-                    {% regroup schedule_list by date as date_list %}
-                    {% for day in date_list%}
-                        <h3>{{day.grouper}}</h3>
-                        <table id="example2" class="table table-bordered table-hover dataTable" role="grid" aria-describedby="example2_info">
-                            <thead class="thead-dark">
-                                <tr role="row">
-                                    <th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Rendering engine: activate to sort column descending" aria-sort="ascending">Start time</th>
-                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Film</th>
-                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Hall</th>
-                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Minimum cost</th>
-                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending">Book a ticket</th>
-                                </tr>
-                            </thead>
-                            <tbody> 
-                                {% for item in day.list %}
-                                    <tr role="row" class="odd">
-                                        <td width="5%">{{item.time}}</td>
-                                        <td width="25%">{{item.film}}</td>
-                                        <td width="10%">{{item.cinemahall}}</td>
-                                        <td width="10%">{{item.cost}}</td>
-                                        <td width="5%"><a href="#"><i class="fa fa-ticket"></i></a></td>
-                                    </tr>
-                                {% endfor %}
-                            </tbody>
-                        </table>
+                    {% regroup schedule_list by date as day_list %}
+                    {% for day in day_list%}                                 
+                                <h3>{{day.grouper}}</h3>
+                                <table id="example2" class="table table-bordered table-hover dataTable" role="grid" aria-describedby="example2_info">
+                                    <thead class="thead-dark">
+                                        <tr role="row">
+                                            <th class="sorting_asc text-center" tabindex="0" aria-controls="example2" rowspan="1" colspan="1">Start time</th>
+                                            <th class="sorting text-center" tabindex="0" aria-controls="example2" rowspan="1" colspan="1">Film</th>
+                                            <th class="sorting text-center" tabindex="0" aria-controls="example2" rowspan="1" colspan="1">Hall</th>
+                                            <th class="sorting text-center" tabindex="0" aria-controls="example2" rowspan="1" colspan="1">Minimum cost</th>
+                                            <th class="sorting text-center" tabindex="0" aria-controls="example2" rowspan="1" colspan="1">Book a ticket</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody> 
+                                        {% for item in day.list %}
+                                            <tr role="row" class="odd">
+                                                <td class="text-center" width="5%">{{item.time}}</td>
+                                                <td class="text-center" width="25%">{{item.film}}</td>
+                                                <td class="text-center" width="5%">{{item.cinemahall}}</td>
+                                                <td class="text-center" width="5%">{{item.cost}}</td>
+                                                <td class="text-center" width="5%"><a href="#"><i class="fa fa-ticket"></i></a></td>
+                                            </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+     
                     {% endfor %}
                 </div>
             </div> 
