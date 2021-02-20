@@ -3,8 +3,6 @@
 
 {% block title %}AdminLTE | LIST OF FILMS{% endblock title %}
 
-{% block content_header %}LIST OF FILMS{% endblock content_header %}
-
 {% block breadcrumb %}
 <li class="breadcrumb-item"><a href="{% url 'admin_statistics' %}">Home</a></li>
 <li class="breadcrumb-item active">Films</li>
@@ -12,7 +10,7 @@
 
 
 {% block content %}
-<div class="card-body">
+<div class="card">
     <a href="{% url 'admin_create_film' %}"><button type="button" class="btn btn-lg btn-block btn-outline-primary">ADD FILM ✍️</button></a>
 </div>
 {% if object_list %}
@@ -20,9 +18,9 @@
     {% for film in object_list %}
     <div class="col-md-2">
         <div class="card mb-2 shadow-sm">
-            <a href="{% url 'admin_film_detail' film.id%}"><img class="card-img-top" src="{{film.preview.url}}" alt="{{film.preview}}" style="height: 225px; width: 100%%; display: block; margin: auto;"></a> 
+            <a href="{% url 'admin_film_detail' film.id%}"><img class="card-img-top" src="{{film.preview.url}}" alt="{{film.preview}}" style="height: 40vh; width: 100%%; display: block; margin: auto;"></a> 
             <div class="card-body">
-                <p class="card-text">{{film.name}}</p>
+                <h2 class="card-text text-center">{{film.name}}</h2>
                 <a href="{% url 'admin_update_film' film.id %}" class="btn btn-sm btn-warning float-left">Edit film</a>
                 <a href="{% url 'admin_delete_film' film.id %}" class="btn btn-sm btn-danger float-right">Delete film</a>
             </div>

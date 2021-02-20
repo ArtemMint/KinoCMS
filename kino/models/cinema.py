@@ -18,8 +18,8 @@ def upload_cinemahall_preview(instance, filename):
 
 class Cinema(models.Model):
     name = models.CharField(max_length=50, default='')
-    description = models.TextField(blank=True)
-    conditions = models.TextField(blank=True)
+    description = models.TextField(max_length=1000, blank=True)
+    conditions = models.TextField(max_length=1000, blank=True)
     logo = models.ImageField(upload_to=upload_cinema_logo, blank=True)
     preview = models.ImageField(upload_to=upload_cinema_preview, blank=True)
     seo_title = models.CharField(max_length=50, blank=True)

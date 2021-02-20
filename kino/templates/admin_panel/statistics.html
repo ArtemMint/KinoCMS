@@ -3,72 +3,60 @@
 
 {% block title %}AdminLTE | Statistics{% endblock title %}
 
-{% block content_header %}Statistics{% endblock content_header %}
-
 {% block content %}
-
-<h1><strong>Total users registered</strong>: {{users}} - average age {{avg_age}}</h1>
-<h3><strong>Men</strong>: {{men}} - average age {{men_avg_age}} | <strong>Women</strong>: {{women}} - average age {{women_avg_age}}</h3>
+<div class="text-center">
+    <h1><strong>Total users registered</strong>: {{users}} - average age {{avg_age}}</h1>
+    <h3><strong>Men</strong>: {{men}} - average age {{men_avg_age}} | <strong>Women</strong>: {{women}} - average age {{women_avg_age}}</h3>
+</div>
+<hr>
 <div class="row">
     <div class="col-lg-3 col-6">
-    <!-- small box -->
-    <div class="small-box bg-info">
-        <div class="inner">
-        <h3>{{films}}</h3>
-
-        <p>Total Films</p>
+        <div class="small-box bg-info">
+            <div class="inner">
+                <h3>{{films}}</h3>
+                <p>Total Films</p>
+            </div>
+            <div class="icon">
+                <i class="fas fa-film nav-icon"></i>
+            </div>
+            <a href="{% url 'admin_films' %}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
         </div>
-        <div class="icon">
-        <i class="fas fa-film nav-icon"></i>
-        </div>
-        <a href="{% url 'admin_films' %}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
     </div>
-    </div>
-    <!-- ./col -->
     <div class="col-lg-3 col-6">
-    <!-- small box -->
-    <div class="small-box bg-success">
-        <div class="inner">
-        <h3>{{cinemas}}</h3>
-
-        <p>Total Cinemas</p>
+        <div class="small-box bg-success">
+            <div class="inner">
+                <h3>{{cinemas}}</h3>
+                <p>Total Cinemas</p>
+            </div>
+            <div class="icon">
+                <i class="fas fa-star nav-icon"></i>
+            </div>
+            <a href="{% url 'admin_cinemas' %}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
         </div>
-        <div class="icon">
-        <i class="fas fa-star nav-icon"></i>
-        </div>
-        <a href="{% url 'admin_cinemas' %}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
     </div>
-    </div>
-    <!-- ./col -->
     <div class="col-lg-3 col-6">
-    <!-- small box -->
-    <div class="small-box bg-warning">
-        <div class="inner">
-        <h3>{{users}}</h3>
-
-        <p>User Registrations</p>
+        <div class="small-box bg-warning">
+            <div class="inner">
+                <h3>{{users}}</h3>
+                <p>User Registrations</p>
+            </div>
+            <div class="icon">
+                <i class="ion ion-person-add"></i>
+            </div>
+            <a href="{% url 'admin_users' %}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
         </div>
-        <div class="icon">
-        <i class="ion ion-person-add"></i>
-        </div>
-        <a href="{% url 'admin_users' %}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
     </div>
-    </div>
-    <!-- ./col -->
     <div class="col-lg-3 col-6">
-    <!-- small box -->
-    <div class="small-box bg-danger">
-        <div class="inner">
-        <h3>{{num_news}}</h3>
-
-        <p>News Total</p>
+        <div class="small-box bg-danger">
+            <div class="inner">
+                <h3>{{num_news}}</h3>
+                <p>News Total</p>
+            </div>
+            <div class="icon">
+                <i class="fas fa-eye"></i>
+            </div>
+            <a href="{% url 'admin_news' %}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
         </div>
-        <div class="icon">
-        <i class="fas fa-eye"></i>
-        </div>
-        <a href="{% url 'admin_news' %}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
     </div>
-    </div>
-    <!-- ./col -->
 </div>
 {% endblock content %}

@@ -3,8 +3,6 @@
 
 {% block title %}AdminLTE | Hall «{{ cinema.name }}»{% endblock title %}
 
-
-
 {% block breadcrumb %}
     <li class="breadcrumb-item"><a href="{% url 'admin_statistics' %}">Home</a></li>
     <li class="breadcrumb-item active"><a href="{% url 'admin_cinemas' %}">Cinemas</a></li>
@@ -17,18 +15,24 @@
 <div class="card">
     <div class="box box-solid">
         <div class="box-header with-border">
-            <h3 class="box-title">«{{ cinemahall.name }}»</h3>
+            <h1 class="box-title text-center">Hall «{{ cinemahall.name }}»</h1>
         </div>
-        <!-- /.box-header -->
-        <div class="box-body">
-            <img src="{{ cinemahall.preview.url }}" alt="{{ cinemahall.preview }}" style="width: 600px;"></br>
-            <hr>
-            <dl class="dl-horizontal">
-                <dt>Description:</dt>
-                <dd>{{ cinemahall.description|linebreaks }}</dd>
-            </dl>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-4">
+                    <img class="img-fluid" src="{{ cinemahall.preview.url }}" alt="{{ cinemahall.preview }}" style="width: 100vh;"></br>
+                </div>
+                <div class="col-md-4">
+                    <img class="img-fluid" src="{{ cinemahall.scheme.url }}" alt="{{ cinemahall.scheme }}" style="width: 100hv;"></br>
+                </div>
+                <div class="col-md-4">
+                    <dl class="dl-horizontal">
+                        <dt>Description:</dt>
+                        <dd>{{ cinemahall.description|truncatechars:'500'|linebreaks }}</dd>
+                    </dl>
+                </div>
+            </div>
         </div>
-        <!-- /.box-body -->
     </div>
     {% if image_list %}
     <div class="card-body p-0">
@@ -44,33 +48,39 @@
             </ol>
             
             {% comment %} DYNAMIC SLIDER {% endcomment %}
-            <div class="carousel-inner" role="listbox" style=" width:100%; height: 500px !important;">
+            <div class="carousel-inner" role="listbox" style=" width:100%; height: 90vh !important;">
                 {% for image in image_list %}
                     {% if forloop.counter0|divisibleby:"1" %}
                         <div class="carousel-item {% if forloop.first %} active {% endif %}"> 
                             <div class="row">{% endif %}
-                                <img class="d-block w-100" src="{{image.image.url}}" alt="{{image.image1}}">
+                                <img class="d-block w-100" src="{{image.image.url}}" alt="{{image.image1}}" style="width:100%; height: 100vh !important;">
                                 {% if forloop.counter0|divisibleby:"1" %}
                             </div>
                         </div>
                     {% endif %}
                 {% endfor %}
             </div>
+            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                <span class="carousel-control-custom-icon" aria-hidden="true">
+                <i class="fas fa-chevron-left"></i>
+                </span>
+                <span class="sr-only">Previous</span>
+            </a>
+
+            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                <span class="carousel-control-custom-icon" aria-hidden="true">
+                <i class="fas fa-chevron-right"></i>
+                </span>
+                <span class="sr-only">Next</span>
+            </a>
         </div>
     </div>
     {% endif %}
-        
-        
-        
-        
-    <!-- /.film detail -->
-    </div>
-    <!-- /.card-body -->
+    
     <div class="card-footer clearfix">
-        <a href="{% url 'admin_update_cinema' cinema.pk %}" class="btn btn-sm btn-warning float-left">Edit film</a>
-        <a href="{% url 'admin_delete_cinema' cinema.pk %}" class="btn btn-sm btn-danger float-right">Delete film</a>
+        <a href="{% url 'admin_update_cinemahall' cinema.pk cinemahall.pk %}" class="btn btn-sm btn-warning float-left">Edit hall</a>
+        <a href="{% url 'admin_delete_cinemahall' cinema.pk cinemahall.pk %}" class="btn btn-sm btn-danger float-right">Delete hall</a>
     </div>
-    <!-- /.card-footer -->
 </div>
 
 {% endblock content %}

@@ -3,8 +3,6 @@
 
 {% block title %}AdminLTE | LIST OF SCHEDULE{% endblock title %}
 
-{% block content_header %}LIST OF SCHEDULE{% endblock content_header %}
-
 {% block breadcrumb %}
     <li class="breadcrumb-item"><a href="{% url 'admin_statistics' %}">Home</a></li>
     <li class="breadcrumb-item active">Schedule</li>
@@ -17,30 +15,32 @@
 {% if schedule_list %}
 {% regroup schedule_list by date as day_list %}
     {% for day in day_list%}
-    <h3>{{day.grouper}}</h3>
-    <div class="box-body">
-        <table id="example2" class="table table-bordered table-hover dataTable" role="grid" aria-describedby="example2_info">
-            <thead class="thead-dark">
-            <tr role="row">
-                <th class="sorting_asc text-center" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Rendering engine: activate to sort column descending" aria-sort="ascending">Time</th>
-                <th class="sorting text-center" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Film</th>
-                <th class="sorting text-center" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Cinema hall</th>
-                <th class="sorting text-center" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Minimum cost</th>
-                <th class="sorting text-center" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending">Edit/Delete</th>
-            </tr>
-            </thead>
-            <tbody>
-                {% for item in day.list %}
-                    <tr role="row" class="odd">
-                        <td class="text-center" width="5%">{{item.time}}</td>
-                        <td class="text-center" width="25%">{{item.film}}</td>
-                        <td class="text-center" width="5%">{{item.cinemahall}}</td>
-                        <td class="text-center" width="5%">{{item.cost}}</td>
-                        <td class="text-center" style="width:5% "><a class="btn btn-sm btn-warning" href="{% url 'admin_update_schedule' item.id%}">Update</a>  <a class="btn btn-sm btn-danger" href="{% url 'admin_delete_schedule' item.id%}">Delete</a></td>
+    <div class="card">
+        <h3 class="text-center">{{day.grouper}}</h3>
+        <div class="box-body">
+            <table id="example2" class="table table-bordered table-hover dataTable" role="grid" aria-describedby="example2_info">
+                <thead class="thead-dark">
+                    <tr role="row">
+                        <th class="sorting_asc text-center" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Rendering engine: activate to sort column descending" aria-sort="ascending">Time</th>
+                        <th class="sorting text-center" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Film</th>
+                        <th class="sorting text-center" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Cinema hall</th>
+                        <th class="sorting text-center" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Minimum cost</th>
+                        <th class="sorting text-center" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending">Edit/Delete</th>
                     </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    {% for item in day.list %}
+                        <tr role="row" class="odd">
+                            <td class="text-center" width="5%">{{item.time}}</td>
+                            <td class="text-center" width="25%">{{item.film}}</td>
+                            <td class="text-center" width="5%">{{item.cinemahall}}</td>
+                            <td class="text-center" width="5%">{{item.cost}}</td>
+                            <td class="text-center" width="5%"><a class="btn btn-sm btn-warning" href="{% url 'admin_update_schedule' item.id%}">Update</a>  <a class="btn btn-sm btn-danger" href="{% url 'admin_delete_schedule' item.id%}">Delete</a></td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
     </div>
     {% endfor %}
 {% else %}

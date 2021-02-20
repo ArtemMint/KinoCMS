@@ -27,7 +27,7 @@ class Film(models.Model):
     scenarist = models.CharField(
         verbose_name='Written By:', max_length=65, default='')
     genre = models.CharField(max_length=200, default='')
-    description = models.TextField(default='')
+    description = models.TextField(max_length=1000, default='')
     video = models.URLField(blank=True)
     premiere = models.DateField(editable=True, default=timezone.now)
     preview = models.FileField(upload_to=upload_film_preview)
