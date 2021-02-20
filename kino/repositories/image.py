@@ -1,5 +1,5 @@
-from kino.models.image import FilmImage
-from kino.models.film import Film
+from ..models.image import FilmImage
+from ..models.film import Film
 
 
 def get_film_image_list_by_id(film_id):

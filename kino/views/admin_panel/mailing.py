@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, reverse
 from django.views.decorators.http import require_http_methods
-from django.contrib.auth.models import User
+from django.contrib import messages
 
 from ...forms.mailing import MalingUsersForm, MalingGroupUsersForm
 from ...repositories.users import get_all_users_email_list
@@ -13,7 +13,8 @@ def mailing_all_users(request):
     form = MalingUsersForm(request.POST or None)
     if request.method == 'POST':
         mail_users(form, get_all_users_email_list())
-        return redirect(reverse('home'))
+        messages.success(request, 'Successfully mailed ')
+        return redirect(reverse('mailing_all_users'))
     return render(request, 'admin_panel/mailing/mailing_all_users.html', context={'form': form})
 
 
@@ -23,6 +24,7 @@ def mailing_group_of_users(request):
     form = MalingGroupUsersForm(request.POST or None)
     if request.method == 'POST':
         mail_users(form, get_all_users_email_list(), group=True)
-        return redirect(reverse('mailing_all_users'))
+        messages.success(request, 'Successfully mailed ')
+        return redirect(reverse('mailing_group_of_users'))
     return render(request, 'admin_panel/mailing/mailing_group_of_users.html',
                   context={'form': form})
