@@ -11,6 +11,13 @@ from django import forms
 
 from kino.models.film import Film
 
+GENRES = (
+    ('Sci-Fi','Sci-Fi'),
+    ('Detective','Detective'),
+    ('Horror','Horror'),
+    ('Anime','Anime'),
+    ('Thriller','Thriller'),
+)
 
 class FilmForm(forms.ModelForm):
     """FilmForm has connect with Film model and fields:
@@ -18,6 +25,11 @@ class FilmForm(forms.ModelForm):
     name, year, country, director, producer, music, scenarist, 
     genre, description, video, premiere, seo_title, seo_keywords, 
     seo_description."""
+    
+    genre = forms.MultipleChoiceField(
+        widget=forms.SelectMultiple,
+        choices=GENRES)
+    
     class Meta:
         model = Film
         fields = '__all__'
@@ -48,10 +60,7 @@ class FilmForm(forms.ModelForm):
             'scenarist': forms.TextInput(
                 attrs={'class': 'form-control', 'placeholder': 'Written By'}
             ),
-            'genre': forms.TextInput(
-                attrs={'class': 'form-control',
-                       'placeholder': 'Genre of the film'}
-            ),
+            
             'description': forms.Textarea(
                 attrs={'class': 'form-control',
                        'placeholder': 'Description of the film'}
@@ -61,6 +70,7 @@ class FilmForm(forms.ModelForm):
                        'placeholder': 'Video of the film'}
             ),
             'premiere': forms.DateInput(
+                format=('%Y-%m-%d'),
                 attrs={'type': 'date'}
             ),
             'seo_title': forms.TextInput(

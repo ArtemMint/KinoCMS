@@ -16,6 +16,9 @@ class Schedule(models.Model):
     time = models.TimeField(editable=True, null=True,
                             default=timezone.now, verbose_name='Start time:')
 
+    def __str__(self):
+        return str(self.date)
+
     def get_status(self):
         if self.date >= timezone.now().date():
             return True

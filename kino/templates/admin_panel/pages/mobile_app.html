@@ -1,31 +1,25 @@
 {% extends 'admin_panel/base.html' %}
 {% load static %}
 
-{% block title %}AdminLTE | Update News{% endblock title %}
+{% block title %}AdminLTE | Update Mobile App Page{% endblock title %}
 
 
 {% block breadcrumb %}
-    <li class="breadcrumb-item"><a href="{% url 'admin_statistics' %}">Home</a></li>
-    <li class="breadcrumb-item active"><a href="{% url 'admin_news' %}">News</a></li>
-    <li class="breadcrumb-item active"><a href="{% url 'admin_news_detail' news.id%}">{{news.name}}</a></li>
-    <li class="breadcrumb-item active">Update News</li>
+    <li class="breadcrumb-item"><a href="{% url 'admin_home' %}">Home</a></li>
+    <li class="breadcrumb-item active">Update Mobile App page</li>
 {% endblock breadcrumb %}
 
 
 {% block content %}
 <div class="box box-primary">
     <div class="box-header with-border">
-        <h3 class="box-title">Update News</h3>
+        <h3 class="box-title text-center">Update Mobile App page</h3>
     </div>
-    <!-- /.box-header -->
-    <!-- form start -->
     <div class="form-group">
         <form method="POST" enctype="multipart/form-data">{% csrf_token %}
-            <div class="box-body">
             <div class="form-group">
                 {{ formset.management_form }}
                 {{ form.as_p }}
-                <h3 class="text-center">Gallery</h3>
                 <div class="row">
                     {% for form in formset %}
                         <div class='col-md-2'>
@@ -39,7 +33,6 @@
                     {% endfor %}    
                 </div>
             </div>
-            <!-- /.box-body -->
             <div class="box-footer">
                 <button type="submit" class="btn btn-primary">Update</button>
             </div>
@@ -48,5 +41,3 @@
     
 </div>
 {% endblock content %}
-
-s

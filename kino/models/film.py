@@ -2,6 +2,7 @@ from django.db import models
 from django.urls import reverse
 from django.utils import timezone
 from django.utils.html import mark_safe
+
 from utils import current_year
 
 
@@ -11,6 +12,13 @@ def upload_film_preview(instance, filename):
 
 YEAR_CHOICES = [(r, r) for r in range(1900, current_year() + 1)]
 
+GENRES = (
+    (1,'Sci-Fi'),
+    (2,'Detective'),
+    (3,'Horror'),
+    (4,'Anime'),
+    (5,'Thriller'),
+)
 
 class Film(models.Model):
     name = models.CharField(max_length=100, verbose_name='Name', default='')
@@ -26,7 +34,7 @@ class Film(models.Model):
                              max_length=65, default='')
     scenarist = models.CharField(
         verbose_name='Written By:', max_length=65, default='')
-    genre = models.CharField(max_length=200, default='')
+    genre = models.CharField(max_length=50, null=True)
     description = models.TextField(max_length=1000, default='')
     video = models.URLField(blank=True)
     premiere = models.DateField(editable=True, default=timezone.now)

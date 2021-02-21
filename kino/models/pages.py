@@ -17,7 +17,7 @@ class HomePage(models.Model):
 
 class Contacts(models.Model):
     name = models.CharField(max_length=50, default='')
-    address = models.TextField(blank=True)
+    address = models.TextField(max_length=100,blank=True)
     status = models.BooleanField(default=False)
     coordinates = models.CharField(max_length=50)
     logo = models.ImageField(upload_to='images/logo/contacts')
@@ -31,7 +31,7 @@ class Contacts(models.Model):
 
 class Page(models.Model):
     name = models.CharField(max_length=50, default='')
-    description = models.TextField(blank=True)
+    description = models.TextField(max_length=500,blank=True)
     status = models.BooleanField(default=False)
     preview = models.ImageField(upload_to='images/preview')
     seo_title = models.CharField(max_length=50, blank=True)
