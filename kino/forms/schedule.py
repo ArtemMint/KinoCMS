@@ -32,14 +32,13 @@ class ScheduleForm(forms.ModelForm):
                        'placeholder': 'Minimun cost of the ticket..'}
             ),
             'date': forms.DateTimeInput(
-                attrs={'class': 'form-control',
-                       'type': 'date',
+                format=('%Y-%m-%d'),
+                attrs={'type': 'date',
                        'placeholder': 'Input date of session..'}
             ),
             'time': forms.TimeInput(
                 format='%H:%M',
-                attrs={'class': 'form-control',
-                       'type': 'time',
+                attrs={'type': 'time',
                        'placeholder': 'Input duration of film..'}
             ),
         }

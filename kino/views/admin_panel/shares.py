@@ -11,6 +11,7 @@ class AdminSharesView(ListView):
     model = Shares
     template_name = 'admin_panel/shares/shares.html'
     ordering = ['-id']
+    paginate_by = 15
 
 
 def admin_shares_detail_view(request, shares_id):
@@ -20,7 +21,6 @@ def admin_shares_detail_view(request, shares_id):
     template_name = 'admin_panel/shares/shares_detail.html'
     context = {'shares': shares, 'image_list': image_list}
     return render(request, template_name, context)
-    
 
 
 def admin_shares_create_view(request):
@@ -61,9 +61,8 @@ def admin_shares_update_view(request, shares_id):
             return redirect('admin_shares')
 
     template_name = 'admin_panel/shares/shares_update.html'
-    context = {'shares': shares,'form': form, 'formset': formset}
+    context = {'shares': shares, 'form': form, 'formset': formset}
     return render(request, template_name, context)
-    
 
 
 class AdminSharesDeleteView(DeleteView):

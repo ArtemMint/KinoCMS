@@ -55,3 +55,8 @@ class AboutImage(models.Model):
 class AdvertisingImage(models.Model):
     advertising = models.ForeignKey(Page, on_delete=models.ForeignKey)
     image = models.FileField(upload_to='images/advertising')
+
+
+class MobileAppImage(models.Model):
+    mobile = models.ForeignKey(Page, on_delete=models.ForeignKey)
+    image = models.FileField(upload_to='images/mobile_app')

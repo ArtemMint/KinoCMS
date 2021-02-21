@@ -15,8 +15,8 @@
                 <h1 class="text-center">News</h1>
                 <div class="row">
                     {% for news in news_list %}
-                        {% if news.get_status %}
-                            {% with news.get_status as s %}
+                        {% with news.get_status as s %}
+                            {% if news.get_status %}
                                 <div class="col-md-3">
                                     <div class="card mb-3 shadow-sm">
                                         <a class="text-decoration-none" href="{% url 'news_detail' news.id%}"><img class="card-img-top" src="{{ news.preview.url }}" alt="{{ news.preview }}" style="height: 250px; width: 100%%; display: block;">
@@ -28,8 +28,8 @@
                                         </div>
                                     </div>
                                 </div>
-                            {% endwith %}
-                        {% endif %}
+                            {% endif %} 
+                        {% endwith %}
                     {% endfor %}
                 </div>
             </div> 

@@ -15,6 +15,7 @@ class NewsForm(forms.ModelForm):
                        'placeholder': 'Name of the News'}
             ),
             'pub_date': forms.DateInput(
+                format=('%Y-%m-%d'),
                 attrs={'type': 'date'}),
             'description': forms.Textarea(
                 attrs={'class': 'form-control',

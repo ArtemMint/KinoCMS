@@ -75,3 +75,19 @@ def get_advertising_image_list_by_id(advertising):
     except AdvertisingImage.DoesNotExist:
         advertising_image_list = None
     return advertising_image_list
+
+
+def get_mobile_app_page() -> HomePage or None:
+    try:
+        mobile_app = Page.objects.get(id=5)
+    except HomePage.DoesNotExist:
+        mobile_app = None
+    return mobile_app
+
+
+def get_mobile_app_image_list_by_id(mobile_app):
+    try:
+        mobile_app_list = MobileAppImage.objects.filter(mobile=mobile_app)
+    except AdvertisingImage.DoesNotExist:
+        mobile_app_list = None
+    return mobile_app_list

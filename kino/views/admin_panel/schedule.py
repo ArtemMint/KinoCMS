@@ -4,19 +4,15 @@ from django.views.generic import DeleteView
 
 from kino.models.film import Film
 from kino.models.cinema import CinemaHall
-from ...repositories.schedule import *
-
-
-# delete
 from kino.forms.schedule import ScheduleForm
-
+from ...repositories.schedule import *
 
 def admin_schedule_view(request):
     return render(
         request,
         'admin_panel/schedule/schedule.html',
         {
-            'schedule_list': get_schedule_list_order_by_date_desc(),
+            'schedule_list': get_schedule_list_order_by_date_asc(),
         }
     )
 

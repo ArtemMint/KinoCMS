@@ -207,3 +207,33 @@ def admin_children_room_page_view(request):
     context = {'form': form, 'formset': formset}
     template_name = 'admin_panel/pages/children_room.html'
     return render(request, template_name, context)
+
+
+def admin_mobile_app_page_view(request):
+    PageFormSet = inlineformset_factory(
+        Page, MobileAppImage, fields='__all__', extra=5, max_num=5)
+
+    try:
+        mobile_app = Page.objects.get(id=5)
+    except ObjectDoesNotExist:
+        Page.objects.create(
+            id=5, seo_title='', seo_keywords='', seo_description='',
+            name='', description='', status=False, preview=''
+        )
+    mobile_app = get_object_or_404(Page, id=5)
+
+    if request.method == "POST":
+        form = PageForm(request.POST, request.FILES, instance=mobile_app)
+        formset = PageFormSet(request.POST, request.FILES,
+                              instance=mobile_app)
+        if form.is_valid() and formset.is_valid():
+            form.save()
+            formset.save()
+            return redirect('admin_statistics')
+    else:
+        form = PageForm(instance=mobile_app)
+        formset = PageFormSet(instance=mobile_app)
+
+    context = {'form': form, 'formset': formset}
+    template_name = 'admin_panel/pages/mobile_app.html'
+    return render(request, template_name, context)

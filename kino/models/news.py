@@ -17,7 +17,7 @@ class News(models.Model):
 
     name = models.CharField(max_length=50, default='')
     pub_date = models.DateField(editable=True, default=timezone.now)
-    description = models.TextField()
+    description = models.TextField(max_length=1000)
     status = models.CharField(
         max_length=10, default=STATUS_CHOICES[1], choices=STATUS_CHOICES
     )

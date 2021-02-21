@@ -13,6 +13,7 @@ class AdminFilmsView(ListView):
     model = Film
     template_name = 'admin_panel/film/films.html'
     ordering = ['-id']
+    paginate_by = 15
 
 
 def admin_film_detail_view(request, film_id):
