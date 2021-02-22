@@ -6,8 +6,8 @@
 {% block breadcrumb %}
     <li class="breadcrumb-item"><a href="{% url 'admin_statistics' %}">Home</a></li>
     <li class="breadcrumb-item active"><a href="{% url 'admin_cinemas' %}">Cinemas</a></li>
-    <li class="breadcrumb-item active"><a href="{% url 'admin_cinema_detail' cinema.pk%}">{{cinema.name}}</a></li>
-    <li class="breadcrumb-item active">Hall «{{ cinemahall.name }}»</li>
+    <li class="breadcrumb-item active"><a href="{% url 'admin_cinema_detail' cinema.pk%}">Cinema {{cinema.name|truncatechars:15}}</a></li>
+    <li class="breadcrumb-item active">Hall «{{ cinemahall.name|truncatechars:10}}»</li>
 {% endblock breadcrumb %}
 
 
@@ -20,14 +20,16 @@
         <div class="card-body">
             <div class="row">
                 <div class="col-md-4">
+                    <h3>Preview</h3>
                     <img class="img-fluid" src="{{ cinemahall.preview.url }}" alt="{{ cinemahall.preview }}" style="width: 100vh;"></br>
                 </div>
                 <div class="col-md-4">
+                    <h3>Scheme</h3>
                     <img class="img-fluid" src="{{ cinemahall.scheme.url }}" alt="{{ cinemahall.scheme }}" style="width: 100hv;"></br>
                 </div>
                 <div class="col-md-4">
                     <dl class="dl-horizontal">
-                        <dt>Description:</dt>
+                        <dt><h3>Description:</h3></dt>
                         <dd>{{ cinemahall.description|truncatechars:'500'|linebreaks }}</dd>
                     </dl>
                 </div>
@@ -36,6 +38,7 @@
     </div>
     {% if image_list %}
     <div class="card-body p-0">
+        <h3 class="text-center">Gallery</h3>
         <div class="card-body">
             <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
             <ol class="carousel-indicators">

@@ -22,7 +22,7 @@ def admin_film_detail_view(request, film_id):
         'admin_panel/film/film_detail.html',
         {
             'film': get_film_by_id(film_id),
-            'image_list': get_film_image_list_by_id(film_id)
+            'gallery': get_film_image_list_by_id(film_id)
         }
     )
 

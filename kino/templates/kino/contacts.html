@@ -17,27 +17,27 @@
         <hr>
         {% if contacts %}
         <div class="container">
-            <h1 class="text-center">Cinemas</h1>
+            <h1 class="text-center">Our contacts</h1>
             <div class="card">
             <div class="row">
                 {% for cinema in cinema_list %}
-                        <div class="col-md-6" style="min-height: 50vh;">
-                            <div class="col-md-12" style="min-height: 20vh;">
-                                <h1>{{ cinema.name }}</h1>
-                                <img class="float-right"  src="{{ cinema.logo.url }}" alt="{{ cinema.logo }}" width="100px" height="100px">
-                            </div>
-                            <div class="col-md-12" style="min-height: 30vh;">
-                                <img class="img-fluid" src="{{ cinema.preview.url }}" alt="{{ cinema.preview }}">
-                            </div>
+                    <div class="col-md-6 text-center" style="min-height: 50vh;">
+                        <div class="col-md-12" style="min-height: 20vh;">
+                            <h3>{{ cinema.name }}</h3>
+                            <img class="float-right"  src="{{ cinema.logo.url }}" alt="{{ cinema.logo }}" width="100px" height="100px">
                         </div>
-                        <div class="col-md-6" style="min-height: 50vh;">
-                            <div class="col-md-12"style="min-height: 20vh;">
-                                {{ contacts.address|linebreaks}}
-                            </div>
-                            <div class="col-md-12"style="min-height: 30vh;">
-                                Coordinates {{ contacts.coordinates }}
-                            </div>
+                        <div class="col-md-12" style="min-height: 30vh;">
+                            <img class="img-fluid" src="{{ cinema.preview.url }}" alt="{{ cinema.preview }}">
                         </div>
+                    </div>
+                    <div class="col-md-6" style="min-height: 50vh;">
+                        <div class="col-md-12"style="min-height: 20vh;">
+                            {{ contacts.address|linebreaks}}
+                        </div>
+                        <div class="col-md-12"style="min-height: 30vh;">
+                            Coordinates {{ contacts.coordinates }}
+                        </div>
+                    </div>
                     </div>
                 {% endfor %}
             </div>

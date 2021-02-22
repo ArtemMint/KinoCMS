@@ -26,7 +26,7 @@
             <tbody>
                 {% for news in object_list %}
                     <tr role="row" class="odd">
-                        <td class="text-center"  width="25%"><a href="{% url 'admin_news_detail' news.id%}">{{news.name}}</a></td>
+                        <td class="text-center"  width="25%"><a href="{% url 'admin_news_detail' news.id%}">{{news.name|truncatechars:25}}</a></td>
                         <td class="text-center"  width="10%">{{news.pub_date}}</td>
                         <td class="text-center"  width="10%">{{news.status}}</td>
                         <td class="text-center"  width="5%"><a class="btn btn-sm btn-warning" href="{% url 'admin_update_news' news.id%}">Update</a>  <a class="btn btn-sm btn-danger" href="{% url 'admin_delete_news' news.id%}">Delete</a></td>

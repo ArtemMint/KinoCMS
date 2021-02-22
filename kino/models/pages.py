@@ -21,7 +21,7 @@ class Contacts(models.Model):
     cinema = models.ForeignKey(Cinema, on_delete=models.CASCADE, null=True)
     address = models.TextField(max_length=200,blank=True)
     status = models.BooleanField(default=False)
-    coordinates = models.CharField(max_length=50)
+    coordinates = models.CharField(max_length=100)
     seo_title = models.CharField(max_length=50, blank=True)
     seo_keywords = models.CharField(max_length=100, blank=True)
     seo_description = models.CharField(max_length=100, blank=True)

@@ -22,7 +22,7 @@
                         <a href="{% url 'admin_cinema_detail' cinema.id %}"><img class="card-img-top" src="{{cinema.preview.url}}" alt="{{cinema.preview}}" style="height: 40vh; width: 100%%; display: block; margin: auto;"></a>
                     </div>
                     <div class="card-body">
-                        <h3 class="card-text text-center">{{cinema.name}}</h3>
+                        <h3 class="card-text text-center">{{cinema.name|truncatechars:25}}</h3>
                         <a href="{% url 'admin_update_cinema' cinema.id %}" class="btn btn-sm btn-warning float-left">Edit cinema</a>
                         <a href="{% url 'admin_delete_cinema' cinema.id %}" class="btn btn-sm btn-danger float-right">Delete cinema</a>
                     </div>          

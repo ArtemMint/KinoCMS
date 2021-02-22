@@ -45,7 +45,7 @@ def admin_contacts_page_view(request):
     except ObjectDoesNotExist:
         Contacts.objects.create(
             id=0, seo_title='', seo_keywords='', seo_description='',
-            name='', address='', status=False, coordinates='0'
+            address='', status=False, coordinates='0',
         )
         contacts = get_object_or_404(Contacts, id=0)
 

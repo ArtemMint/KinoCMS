@@ -8,7 +8,7 @@
 {% block breadcrumb %}
     <li class="breadcrumb-item"><a href="{% url 'admin_statistics' %}">Home</a></li>
     <li class="breadcrumb-item active"><a href="{% url 'admin_shares' %}">Shares</a></li>
-    <li class="breadcrumb-item active">«{{ shares.name }}»</li>
+    <li class="breadcrumb-item active">«{{ shares.name|truncatechars:20 }}»</li>
 {% endblock breadcrumb %}
 
 
@@ -16,7 +16,7 @@
 <div class="card">
     <div class="box box-solid">
         <div class="box-header with-border">
-            <h1 class="box-title text-center">«{{ shares.name }}»</h1>
+            <h1 class="box-title text-center">«{{ shares.name|truncatechars:25 }}»</h1>
         </div>
         <div class="card-body">
             <div class="row">
@@ -28,13 +28,14 @@
                         <dt>Published:</dt>
                         <dd>{{ shares.pub_date }}</dd>
                         <dt>Description:</dt>
-                        <dd>{{ shares.description|linebreaks }}</dd>
+                        <dd>{{ shares.description|linebreaks|truncatechars:500 }}</dd>
                     </dl>
                 </div>
             </div>
         </div>
     {% if image_list %}
-        <div class="card-body p-0">
+        <div class="card-body p-0 text-center">
+            <h3>Gallery</h3>
             <div class="card-body">
                 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                 <ol class="carousel-indicators">

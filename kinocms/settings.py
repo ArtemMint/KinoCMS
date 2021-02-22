@@ -87,7 +87,7 @@ WSGI_APPLICATION = 'kinocms.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'test',
+        'NAME': 'kinocms_db',
         'USER': 'artemmint',
         'PASSWORD': '12345',
         'HOST': 'localhost',

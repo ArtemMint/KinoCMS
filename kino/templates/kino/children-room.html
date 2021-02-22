@@ -17,7 +17,7 @@
 
 {% block content %}
 {% if children_room %}
-<img class="img-fluid" src="{{ children_room.preview.url }}" alt="{{ children_room.preview }}" width="100%" style="min-height:50vh !important;">
+<img class="img-fluid" src="{{ children_room.preview.url }}" alt="{{ children_room.preview }}" width="100%" style="max-height:100vh !important;">
 {% endif %}     
 <br><br>
 
@@ -27,7 +27,7 @@
         <hr>
         {% if children_room %}
         <h3 class="text-center">{{children_room.name}}</h3>
-        <div class="">
+        <div style="word-break: break-all;">
             {{ children_room.description}}
         </div>
         <br>
@@ -46,12 +46,8 @@
                 {% for image in gallery %}
                     {% if forloop.counter0|divisibleby:"1" %}
                         <div class="carousel-item {% if forloop.first %} active {% endif %}"> 
-                            <div class="row">{% endif %}
-                                <a href="{{ image.url }}#"><img class="d-block w-100" src="{{image.image.url}}" alt="{{image.image1}}" style="height: 80vh !important;"></a>
-                                {% if forloop.counter0|divisibleby:"1" %}
-                                <div class="carousel-caption d-none d-md-block">
-                                    <h5>{{image.text}}</h5>
-                                </div>
+                            <div class="row">
+                                <a href="{{ image.url }}#"><img class="d-block w-100" src="{{image.image.url}}" alt="{{image.image}}" style="height: 80vh !important;"></a>
                             </div>
                         </div>
                     {% endif %}

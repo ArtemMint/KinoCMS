@@ -17,7 +17,7 @@
 
 {% block content %}
 {% if mobile_app %}
-<img class="img-fluid" src="{{ mobile_app.preview.url }}" alt="{{ mobile_app.preview }}" width="100%" style="max-height:70vh !important;">
+<img class="img-fluid" src="{{ mobile_app.preview.url }}" alt="{{ mobile_app.preview }}" width="100%" style="max-height:100vh !important;">
 {% endif %}
 <br><br>
 
@@ -27,7 +27,7 @@
         <hr>
         {% if mobile_app %}
         <h3 class="text-center">{{mobile_app.name}}</h3>
-        <div class="">
+        <div style="word-break: break-all;">
             {{ mobile_app.description}}
         </div>
         <br>
