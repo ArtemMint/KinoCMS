@@ -13,6 +13,7 @@
         <div class="album py-3">
             <div class="container">
                 <h1 class="text-center">News</h1>
+                {% if news %}
                 <div class="row">
                     {% for news in news_list %}
                         {% with news.get_status as s %}
@@ -32,6 +33,11 @@
                         {% endwith %}
                     {% endfor %}
                 </div>
+                {% else %}
+                    <blockquote class="text-center">
+                        <p class="blockquote text-center">Sooo empty.. 🙄</p> 
+                    </blockquote>
+                {% endif %}
             </div> 
         </div>
     </div>

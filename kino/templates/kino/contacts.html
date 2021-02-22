@@ -14,6 +14,8 @@
 <div class="row" style="min-height: 70vh;">
     <div class="col-md-1"></div>    
     <div class="col-md-9 bg-light">
+        <hr>
+        {% if contacts %}
         <div class="container">
             <h1 class="text-center">Cinemas</h1>
             <div class="card">
@@ -41,6 +43,11 @@
             </div>
         </div>
         <br>
+        {% else %}
+            <blockquote class="text-center">
+                <p class="blockquote text-center">Sooo empty.. 🙄</p> 
+            </blockquote>
+        {% endif %}
     </div> 
     <div class="col-md-2">
         <div class="text-center">

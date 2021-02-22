@@ -24,7 +24,7 @@
             <br>
             <nav class="navbar navbar-light">
                 <div class="container-md">
-                    <img src="{% static 'kino/images/logo.jpg' %}" class="img-thumbnail" alt="Logo" style="max-width:10vh">
+                    <a href="{% url 'home' %}"><img src="{% static 'kino/images/logo.jpg' %}" class="img-thumbnail" alt="Logo" style="max-width:10vh"></a>
                     <form class="d-flex">
                         <input class="form-control me-2" type="search" placeholder="Поиск" aria-label="Search">
                         <button class="btn btn-success" type="submit">Поиск</button>
@@ -80,6 +80,7 @@
                                     <li><a class="dropdown-item" href="{% url 'vip_hall' %}">VIP-hall</a></li>
                                     <li><a class="dropdown-item" href="{% url 'children_room' %}">Children room</a></li>
                                     <li><a class="dropdown-item" href="{% url 'mobile_app' %}">Mobile app</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'advertising' %}">Advertising</a></li>
                                     <li><a class="dropdown-item" href="{% url 'contacts' %}">Contacts</a></li>
                                 </ul>
                             </li>
@@ -144,10 +145,10 @@
                     </ul>
                 </div>
                 <div class="col-6 col-md">
-                    <h5><a class="text-muted text-decoration-none" href="{% url 'about' %}">About cinema</a></h5>
+                    <h5><a class="text-muted text-decoration-none" href="{% url 'vip_hall' %}">VIP-hall</a></h5>
                     <ul class="list-unstyled text-small">
                         <li><a class="text-muted text-decoration-none" href="{% url 'news' %}">News</a></li>
-                        <li><a class="text-muted text-decoration-none" href="{% url 'advertising' %}">Advertaisment</a></li>
+                        <li><a class="text-muted text-decoration-none" href="{% url 'advertising' %}">Advertising</a></li>
                         <li><a class="text-muted text-decoration-none" href="{% url 'cafe_bar' %}">Cafe-Bar</a></li>
                         <li><a class="text-muted text-decoration-none" href="{% url 'contacts' %}">Contacts</a></li>
                     </ul>

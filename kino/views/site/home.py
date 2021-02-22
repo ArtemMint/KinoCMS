@@ -1,4 +1,6 @@
 from django.shortcuts import render
+
+from ...repositories.banners import * 
 from ...repositories.film import get_all_films
 from ...repositories.pages import get_home_page
 
@@ -13,6 +15,3 @@ def home_page_view(request):
             'shares_banners': get_shares_banners()
         }
     )
-    context = {
-        "films": films, "home_page": home_page, 'gallery': gallery
-    }

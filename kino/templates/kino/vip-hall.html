@@ -7,17 +7,25 @@
 </head>
 
 {% block title %}
-    <title>{{vip_hall.seo_title}}</title>
-{% endblock title %}
+<title>
+{% if vip_hall %}
+{{vip_hall.seo_title}}
+{% else %}
+    VIP-Hall
+{% endif %}
+</title>{% endblock title %}
 
 {% block content %}
-<img class="img-fluid" src="{{ vip_hall.preview.url }}" alt="{{ vip_hall.preview }}" width="100%" style="min-height:50vh !important;">
+{% if vip_hall %}
+    <img class="img-fluid" src="{{ vip_hall.preview.url }}" alt="{{ vip_hall.preview }}" width="100%" style="min-height:50vh !important;">
+{% endif %}
 <br><br>
 
 <div class="row bg-light" style="min-height: 70vh;">
     <div class="col-md-1"></div>
     <div class="col-md-8">
         <hr>
+        {% if vip_hall %}
         <h3 class="text-center">{{vip_hall.name}}</h3>
         <div class="">
             {{ vip_hall.description}}
@@ -61,6 +69,11 @@
             </a>
         </div>
         <br>
+        {% else %}
+            <blockquote class="text-center">
+                <p class="blockquote text-center">Sooo empty.. 🙄</p> 
+            </blockquote>
+        {% endif %}
     </div>
     <div class="col-md-2">
         <div class="text-center">

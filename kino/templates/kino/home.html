@@ -6,11 +6,19 @@
     <meta name="keywords" content="{{home_page.seo_keywords}}">
 </head>
 
-{% block title %}<title>{{home_page.seo_title}}</title>{% endblock title %}
+{% block title %}
+<title>
+{% if home_page %}
+{{home_page.seo_title}}
+{% else %}
+    Home
+{% endif %}
+</title>{% endblock title %}
 
 {% block content %}
 <div class="container bg-light">
     <br>
+    {% if slider_banners %}
     <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
                 <ol class="carousel-indicators">
                     {% for banner in slider_banners %}
@@ -51,16 +59,64 @@
             <span class="visually-hidden">Next</span>
         </a>
     </div>
+    {% else %}
+        <blockquote class="text-center">
+            <p class="blockquote text-center">There are no announcement yet.. </p> 
+        </blockquote>
+    {% endif %}
 
     <!--  LIST of Films  -->
+    <div class="album py-5">
+        <h1 class="text-center">See now</h1>
+        {% if films %}
         <div class="container text-center">
+            <div class="row">
+                {% for film in films %}
+                {% if film.get_current %}
+                {% with firm.get_current as p %}
+                <div class="col-md-2">
+                    <div class="card mb-2 shadow-sm">
                         <a href="{% url 'film_detail' film.pk%}"><img class="card-img-top" src="{{ film.preview.url }}"
                                                                       alt="{{ film.preview }}"
                                                                       style="height: 250px; width: 90%%; display: block;">
                         </a>
+                        <div class="card-body">
+                            <p class="card-text">{{ film.name }}</p>
+                            <p class="btn btn-block btn-outline-warning">Came out<br> {{ film.premiere}}</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
                                     <button type="button" class="btn btn-sm btn-outline-secondary">Buy ticket
                                     </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endwith %}
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+        {% else %}
+            <blockquote class="text-center">
+                <p class="blockquote text-center">Sooo empty.. </p> 
+            </blockquote>
+        {% endif %}
+    </div>
+
+    <div class="album py-5">
+        <div class="container">
+            <h1 class="text-center">Premiere</h1>
+            {% if films %}
             <div class="row text-center">
+                {% for film in films %}
+                {% if film.get_premiere %}
+                {% with firm.get_premiere as p %}
+                <div class="col-md-2">
+                    <div class="card mb-2 shadow-sm">
+                        <a href="{% url 'film_detail' film.pk%}"><img class="card-img-top" src="{{ film.preview.url }}"
+                                                                      alt="{{ film.preview }}"
+                                                                      style="height: 250px; width: 90%%; display: block;">
                         </a>
                         <div class="card-body">
                             <p class="card-text">{{ film.name }}
@@ -78,11 +134,17 @@
                 {% endif %}
                 {% endfor %}
             </div>
+            {% else %}
+                <blockquote class="text-center">
+                    <p class="blockquote text-center">Sooo empty.. </p> 
+                </blockquote>
+            {% endif %}
         </div>
     </div>
     <hr>
 
     <!--News and Shares banners here-->
+    {% if shares_banners %}
     <h3 class="text-center"> News and Shares</h3>
     <div id="carouselExampleSlidesOnly" class="carousel slide carousel-fade" data-bs-ride="carousel">
         <ol class="carousel-indicators">
@@ -111,15 +173,26 @@
             {% endfor %}
         </div>
     </div>
+    {% else %}
+        <blockquote class="text-center">
+            <p class="blockquote text-center">There are no news and shares yet.. </p> 
+        </blockquote>
+    {% endif %}
 
-<hr>
-<div class="text-center">
+    <hr>
+    <div class="text-center">
         <img src="{% static 'kino/images/1000x500.png' %}" class="img-fluid" alt="Context_ads"style="min-width: 100vh; max-height:200px;">
-</div>
-<br>
+    </div> 
+    <br>
     <div class="container text-center">
         <h6 class="text-center">SEO text</h6>
-        <p class="text-muted">{{home_page.seo_text}}</p>
+        {% if home_page.seo_text %}
+            <p class="text-muted">{{home_page.seo_text}}</p>
+        {% else %}
+            <blockquote class="text-center">
+                <p class="blockquote text-center">Empty.. </p> 
+            </blockquote>
+        {% endif %}
     </div>
     <hr>
 </div>

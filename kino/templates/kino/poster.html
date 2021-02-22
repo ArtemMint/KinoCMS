@@ -15,6 +15,7 @@
     </div>
     <div class="col-md-9 bg-light">
         <h1 style="text-align: center;">Poster</h1>
+        {% if films %}
         <div class="album py-5">
             <div class="container">
                 <div class="row">
@@ -37,6 +38,11 @@
                 </div>
             </div> 
         </div>
+        {% else %}
+            <blockquote class="text-center">
+                <p class="blockquote text-center">Sooo empty.. 🙄</p> 
+            </blockquote>
+        {% endif %}
     </div>
     <div class="col-md-1"></div>   
 </div>

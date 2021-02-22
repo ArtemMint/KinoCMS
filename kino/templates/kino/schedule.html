@@ -14,6 +14,7 @@
         <div class="album py-3">
             <div class="container">
                 <h1 class="text-center">Schedule</h1>
+                {% if schedule_list %}
                 <div class="row">
                     {% regroup schedule_list by date as day_list %}
                     {% for day in day_list%}                                 
@@ -43,6 +44,11 @@
      
                     {% endfor %}
                 </div>
+                {% else %}
+                <blockquote class="text-center">
+                    <p class="blockquote text-center">There is no schedule yet.. </p> 
+                </blockquote>
+                {% endif %}
             </div> 
         </div>
     </div>

@@ -16,6 +16,7 @@
     <div class="col-md-9 bg-light">
         <div class="container">
             <h1 class="text-center">Cinemas</h1>
+            {% if cinema_list %}
             <div class="row">
                 {% for cinema in cinema_list %}
                     <div class="col-md-6">
@@ -31,6 +32,11 @@
                     </div>
                 {% endfor %}
             </div>
+            {% else %}
+                <blockquote class="text-center">
+                    <p class="blockquote text-center">Sooo empty.. 🙄</p> 
+                </blockquote>
+            {% endif %}
         </div>
     </div> 
     <div class="col-md-2">

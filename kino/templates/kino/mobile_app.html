@@ -7,17 +7,25 @@
 </head>
 
 {% block title %}
-    <title>{{mobile_app.seo_title}}</title>
-{% endblock title %}
+<title>
+{% if mobile_app %}
+{{mobile_app.seo_title}}
+{% else %}
+    Mobile App
+{% endif %}
+</title>{% endblock title %}
 
 {% block content %}
+{% if mobile_app %}
 <img class="img-fluid" src="{{ mobile_app.preview.url }}" alt="{{ mobile_app.preview }}" width="100%" style="max-height:70vh !important;">
+{% endif %}
 <br><br>
 
 <div class="row bg-light" style="min-height: 70vh;">
     <div class="col-md-1"></div>
     <div class="col-md-8">
         <hr>
+        {% if mobile_app %}
         <h3 class="text-center">{{mobile_app.name}}</h3>
         <div class="">
             {{ mobile_app.description}}
@@ -57,6 +65,11 @@
             </a>
         </div>
         <br>
+        {% else %}
+            <blockquote class="text-center">
+                <p class="blockquote text-center">Sooo empty.. 🙄</p> 
+            </blockquote>
+        {% endif %}
     </div>
     <div class="col-md-2">
         <div class="text-center">
