@@ -26,6 +26,7 @@ from kino.views.site.cafe_bar import *
 from kino.views.site.vip_hall import *
 from kino.views.site.advertising import *
 from kino.views.site.mobile_app import *
+from kino.views.site.contacts import *
 
 
 urlpatterns = [
@@ -49,7 +50,7 @@ urlpatterns = [
     path('cafe-bar/', cafe_bar_page_view, name='cafe_bar'),
     path('vip-hall/', vip_hall_page_view, name='vip_hall'),
     path('advertising/', advertising_page_view, name='advertising'),
-    path('contacts/', children_room_page_view, name='contacts'),
+    path('contacts/', contacts_page_view, name='contacts'),
     path('mobile_app/', mobile_app_page_view, name='mobile_app'),
     path('about/', children_room_page_view, name='about'),
 

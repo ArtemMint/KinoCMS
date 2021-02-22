@@ -1,5 +1,7 @@
 from django.utils import timezone
 from django.db import models
+
+from kino.models.cinema import Cinema
 from phonenumber_field.modelfields import PhoneNumberField
 
 
@@ -16,11 +18,10 @@ class HomePage(models.Model):
 
 
 class Contacts(models.Model):
-    name = models.CharField(max_length=50, default='')
-    address = models.TextField(max_length=100,blank=True)
+    cinema = models.ForeignKey(Cinema, on_delete=models.CASCADE, null=True)
+    address = models.TextField(max_length=200,blank=True)
     status = models.BooleanField(default=False)
     coordinates = models.CharField(max_length=50)
-    logo = models.ImageField(upload_to='images/logo/contacts')
     seo_title = models.CharField(max_length=50, blank=True)
     seo_keywords = models.CharField(max_length=100, blank=True)
     seo_description = models.CharField(max_length=100, blank=True)
