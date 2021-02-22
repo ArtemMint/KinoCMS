@@ -15,8 +15,8 @@ class SharesForm(forms.ModelForm):
                        'placeholder': 'Name of the Shares'}
             ),
             'pub_date': forms.DateInput(
-                attrs={'class': 'form-control',
-                       'type': 'date'}
+                format=('%Y-%m-%d'),    
+                attrs={'type': 'date'}
             ),
             'description': forms.Textarea(
                 attrs={'class': 'form-control',

@@ -15,21 +15,24 @@
 {% block content %}
 <div class="card">
     <div class="box box-solid">
-            <div class="box-header with-border">
-                <h3 class="box-title">«{{ shares.name }}»</h3>
+        <div class="box-header with-border">
+            <h1 class="box-title text-center">«{{ shares.name }}»</h1>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-4 text-center">
+                    <img class="img-fluid" src="{{ shares.preview.url }}" alt="{{ shares.preview }}" style="max-height:500px;"></br>
+                </div>
+                <div class="col-md-8">
+                    <dl class="dl-horizontal">
+                        <dt>Published:</dt>
+                        <dd>{{ shares.pub_date }}</dd>
+                        <dt>Description:</dt>
+                        <dd>{{ shares.description|linebreaks }}</dd>
+                    </dl>
+                </div>
             </div>
-            <!-- /.box-header -->
-            <div class="box-body">
-                <img src="{{ shares.preview.url }}" alt="{{ shares.preview }}" style="width: 600px;"></br>
-                <hr>
-                <dl class="dl-horizontal">
-                    <dt>Description:</dt>
-                    <dd>{{ shares.description|linebreaks }}</dd>
-                    <p class="card-text">Published: {{ shares.pub_date }}</p>
-                </dl>
-            </div>
-            <!-- /.box-body -->
-          </div>
+        </div>
     {% if image_list %}
         <div class="card-body p-0">
             <div class="card-body">
@@ -44,12 +47,12 @@
                 </ol>
                 
                 {% comment %} DYNAMIC SLIDER {% endcomment %}
-                <div class="carousel-inner" role="listbox" style=" width:100%; height: 500px !important;">
+                <div class="carousel-inner" role="listbox" style=" width:100%; height: 90vh !important;">
                     {% for image in image_list %}
                         {% if forloop.counter0|divisibleby:"1" %}
                             <div class="carousel-item {% if forloop.first %} active {% endif %}"> 
                                 <div class="row">{% endif %}
-                                    <img class="d-block w-100" src="{{image.image.url}}" alt="{{image.image1}}">
+                                    <img class="d-block w-100" src="{{image.image.url}}" alt="{{image.image1}}" style="width:100%; height: 100vh !important;">
                                     {% if forloop.counter0|divisibleby:"1" %}
                                 </div>
                             </div>
@@ -78,7 +81,6 @@
         <a href="{% url 'admin_update_shares' shares.id %}" class="btn btn-sm btn-info float-left">Edit shares</a>
         <a href="{% url 'admin_delete_shares' shares.id %}" class="btn btn-sm btn-secondary float-right">Delete shares</a>
     </div>
-    <!-- /.card-footer -->
 </div>
 
 {% endblock %}

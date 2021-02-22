@@ -1,17 +1,12 @@
-from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
-from register.models.client import Client
-from register.forms.client import ClientForm, UserForm, CreateClientForm, CreateUserForm
-from django.urls import reverse_lazy, reverse
-from django.shortcuts import render, redirect, get_object_or_404, get_list_or_404
+from register.forms.client import ClientForm, UserForm, CreateUserForm
+from django.shortcuts import render, redirect, get_object_or_404
 from django.core.paginator import Paginator
-from django.contrib import messages
-from django.http import Http404
 
 
 def adminUserListView(request):
     contact_list = User.objects.order_by('-id')
-    paginator = Paginator(contact_list, 5)
+    paginator = Paginator(contact_list, 15)
 
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)

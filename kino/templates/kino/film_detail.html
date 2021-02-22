@@ -13,12 +13,14 @@
 
 {% block content %}
 <div class="card container">
-<iframe width="100%" height="600" src="{{ film.video }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<br>
+<iframe width="100%" height="800" src="{{ film.video }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     <div class="row">
         <hr>
         <div class="col-md-4">
-            <img src="{{ film.preview.url }}" alt="{{ film.preview }}" style="width: 400px; max-height:450px"></br>
-            <dl class="dl-horizontal">
+            <img src="{{ film.preview.url }}" alt="{{ film.preview }}" style="width: 400px; max-height:450px">
+            <dl class="dl-horizontal text-center">
+                <br>
                 <dt>Year</dt>
                 <dd>{{ film.year }}</dd>
                 <dt>Genre:</dt>
@@ -39,7 +41,7 @@
         <div class="col-md-8">
             <dl class="dl-horizontal">
                 <div class="text-center">
-                    <a class="btn btn-success" href="#">But ticket</a>
+                    <a class="btn btn-success" href="#">Buy ticket</a>
                 </div>
                 <br>
                 <div class="box-header with-border">
@@ -61,12 +63,12 @@
                     {% endfor %}
                 </ol>
                 
-                <div class="carousel-inner">
+                <div class="carousel-inner" >
                     {% for image in gallery %}
                         {% if forloop.counter0|divisibleby:"1" %}
                             <div class="carousel-item {% if forloop.first %} active {% endif %}"> 
                                 <div class="row">{% endif %}
-                                    <a href="{{ image.url }}#"><img class="d-block w-100" src="{{image.image.url}}" alt="{{image.image1}}"></a>
+                                    <a href="{{ image.url }}#"><img class="d-block w-100" src="{{image.image.url}}" alt="{{image.image1}}" style="width:100%; height: 60vh !important;"></a>
                                     {% if forloop.counter0|divisibleby:"1" %}
                                     <div class="carousel-caption d-none d-md-block">
                                     </div>

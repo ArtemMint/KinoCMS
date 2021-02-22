@@ -1,0 +1,67 @@
+#Virtual env
+/venv
+
+# VSCode dir
+/.vscode
+
+# Pycharm`s trash
+/.idea
+
+#PYCACHE 
+/__pycache__
+
+kino/__pycache__
+
+<<<<<<< HEAD
+kino/includs/__pycache__/
+
+kino/repositories/__pycache__/
+=======
+kino/includs/__pycache__
+>>>>>>> cb8fc024af6b7e0737efb33df8447ed81ae69d58
+
+kino/repositories/__pycache__
+
+kino/templatetags/__pycache__
+
+kino/migrations/__pycache__
+
+kino/models/__pycache__
+
+kino/services/__pycache__
+
+kino/views/__pycache__
+
+kino/views/admin_panel/__pycache__
+
+kino/views/site/__pycache__
+
+kino/forms/__pycache__
+
+kinocms/__pycache__
+
+register/__pycache__
+
+register/migrations/__pycache__
+
+register/forms/__pycache__
+
+register/models/__pycache__
+
+register/views/__pycache__
+
+register/includs/__pycache__
+
+register/repositories/__pycache__
+
+register/services/__pycache__
+
+media
+
+kino/repositories/__pycache__/
+
+register/repositories/__pycache__/
+
+register/services/__pycache__/
+
+register/includs/__pycache__/

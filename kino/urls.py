@@ -13,40 +13,66 @@ from kino.views.admin_panel.pages import *
 from kino.views.admin_panel.shares import *
 from kino.views.admin_panel.statistics import *
 from kino.views.admin_panel.user import *
+from kino.views.admin_panel.schedule import *
 from kino.views.site.cinema import *
 from kino.views.site.film import *
 from kino.views.site.home import *
 from kino.views.site.news import *
+from kino.views.site.schedule import *
 from kino.views.site.poster import *
 from kino.views.site.shares import *
+from kino.views.site.children_room import *
+from kino.views.site.cafe_bar import *
+from kino.views.site.vip_hall import *
+from kino.views.site.advertising import *
+from kino.views.site.mobile_app import *
+from kino.views.site.contacts import *
 
 
 urlpatterns = [
     # Site KinoCMS.
     path('', home_page_view, name='home'),
+    path('schedule/', schedule_page_view, name='schedule'),
     path('poster/', poster_view, name='poster'),
     path('premiere/', premiere_view, name='premiere'),
     path('film/<int:film_id>', film_detail_view, name='film_detail'),
     path('cinemas/', ciname_view, name='cinemas'),
-    path('cinema/<int:cinema_id>', cinema_detail_view, name='cinema_detail'),
+    path('cinema/<int:cinema_id>',
+         cinema_detail_view, name='cinema_detail'),
     path('cinema/<int:cinema_id>/hall/<int:cinemahall_id>',
          cinemahall_detail_view, name='cinemahall_detail'),
     path('shares/', shares_view, name='shares'),
-    path('shares/<int:shares_id>', shares_detail_view, name='shares_detail'),
+    path('shares/<int:shares_id>',
+         shares_detail_view, name='shares_detail'),
     path('news/', news_view, name='news'),
     path('news/<int:news_id>', news_detail_view, name='news_detail'),
+    path('children-room/', children_room_page_view, name='children_room'),
+    path('cafe-bar/', cafe_bar_page_view, name='cafe_bar'),
+    path('vip-hall/', vip_hall_page_view, name='vip_hall'),
+    path('advertising/', advertising_page_view, name='advertising'),
+    path('contacts/', contacts_page_view, name='contacts'),
+    path('mobile_app/', mobile_app_page_view, name='mobile_app'),
+    path('about/', children_room_page_view, name='about'),
+
+    # Admin schedule.
+    path('admin/schedule/', admin_schedule_view, name='admin_schedule'),
+    path('admin/schedule/add/', admin_schedule_create_view,
+         name='admin_create_schedule'),
+    path('admin/schedule/<int:schedule_id>/update/',
+         admin_schedule_update_view, name='admin_update_schedule'),
+    path('admin/schedule/<int:pk>/delete/',
+         AdminScheduleDeleteView.as_view(), name='admin_delete_schedule'),
 
     # Admin users.
     path('admin/users/', adminUserListView, name='admin_users'),
-    path('admin/users/create/',
-         adminUserCreateView, name='admin_create_users'),
+    path('admin/users/create/', adminUserCreateView, name='admin_create_users'),
     path('admin/users/edit/<int:user_id>',
          adminUserUpdateView, name='admin_update_users'),
     path('admin/users/<int:user_id>/delete',
          adminUserDeleteView, name='admin_delete_user'),
     path('admin/users/', adminUserListView, name='admin_users'),
 
-    # Admin sidebar,
+    # Admin sidebar.
     path('admin/', admin_view, name='admin_home'),
     path('admin/statistics/', adminStatisticsView,
          name='admin_statistics'),
@@ -74,6 +100,8 @@ urlpatterns = [
          name='admin_advertsing_page'),
     path('admin/pages/children_room/', admin_children_room_page_view,
          name='admin_children_room_page'),
+    path('admin/pages/mobile_app/', admin_mobile_app_page_view,
+         name='admin_mobile_app_page'),
 
     # Mailing of users.
     path('admin/mailing/all/', mailing_all_users,
@@ -139,6 +167,5 @@ urlpatterns = [
          admin_shares_update_view, name='admin_update_shares'),
     path('admin/shares/<int:pk>/delete',
          AdminSharesDeleteView.as_view(), name='admin_delete_shares'),
-
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

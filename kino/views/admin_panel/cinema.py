@@ -7,7 +7,7 @@ __version__ = '0.1'
 __author__ = 'Artem Yurchak'
 
 from django.urls import reverse_lazy
-from django.forms import inlineformset_factory
+from django.forms import inlineformset_factory, formset_factory
 from django.shortcuts import render, redirect, \
     get_object_or_404, get_list_or_404
 
@@ -26,6 +26,7 @@ class AdminCinemasView(ListView):
     html template of list of cinemas."""
     model = Cinema
     template_name = 'admin_panel/cinema/cinemas.html'
+    paginate_by = 4
 
 
 class AdminCinemaDeleteView(DeleteView):
@@ -54,10 +55,11 @@ def admin_cinema_create_view(request):
             formset.save()
             return redirect('admin_cinemas')
 
-    template_name = 'admin_panel/cinema/cinema_add.html'
-    context = {'form': form, 'formset': formset}
-
-    return render(request, template_name, context)
+    return render(
+        request,
+        'admin_panel/cinema/cinema_add.html',
+        {'form': form, 'formset': formset}
+    )
 
 
 def admin_cinema_update_view(request, cinema_id):
@@ -79,10 +81,11 @@ def admin_cinema_update_view(request, cinema_id):
             formset.save()
             return redirect('admin_cinemas')
 
-    template_name = 'admin_panel/cinema/cinema_update.html'
-    context = {'cinema': cinema, 'form': form, 'formset': formset}
-
-    return render(request, template_name, context)
+    return render(
+        request,
+        'admin_panel/cinema/cinema_update.html',
+        {'cinema': cinema, 'form': form, 'formset': formset}
+    )
 
 
 def admin_cinema_detail_view(request, cinema_id):
@@ -95,11 +98,12 @@ def admin_cinema_detail_view(request, cinema_id):
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
-    template_name = 'admin_panel/cinema/cinema_detail.html'
-    context = {'cinema': cinema, 'cinemahalls': cinemahalls,
-               'page_obj': page_obj, 'image_list': image_list}
-
-    return render(request, template_name, context)
+    return render(
+        request,
+        'admin_panel/cinema/cinema_detail.html',
+        {'cinema': cinema, 'cinemahalls': cinemahalls,
+         'page_obj': page_obj, 'image_list': image_list}
+    )
 
 
 # CinemaHall
@@ -126,10 +130,11 @@ def admin_cinemahall_create_view(request, cinema_id):
 
             return redirect('admin_cinema_detail', cinema_id=cinema.id)
 
-    template_name = 'admin_panel/cinema/cinemahall_add.html',
-    context = {'form': form, 'formset': formset}
-
-    return render(request, template_name, context)
+    return render(
+        request,
+        'admin_panel/cinema/cinemahall_add.html',
+        {'form': form, 'formset': formset}
+    )
 
 
 def admin_cinemahall_detail_view(request, cinema_id, cinemahall_id):
@@ -138,11 +143,12 @@ def admin_cinemahall_detail_view(request, cinema_id, cinemahall_id):
     cinemahall = get_object_or_404(CinemaHall, id=cinemahall_id)
     image_list = CinemaHallImage.objects.filter(cinema_hall=cinemahall)
 
-    template_name = 'admin_panel/cinema/cinemahall_detail.html'
-    context = {'cinema': cinema, 'cinemahall': cinemahall,
-               'image_list': image_list}
-
-    return render(request, template_name, context)
+    return render(
+        request,
+        'admin_panel/cinema/cinemahall_detail.html',
+        {'cinema': cinema, 'cinemahall': cinemahall,
+         'image_list': image_list},
+    )
 
 
 def admin_cinemahall_update_view(request, cinema_id, cinemahall_id):
@@ -172,11 +178,12 @@ def admin_cinemahall_update_view(request, cinema_id, cinemahall_id):
 
             return redirect('admin_cinema_detail', cinema_id=cinema.id)
 
-    template_name = 'admin_panel/cinema/cinemahall_update.html'
-    context = {'cinema': cinema, 'cinemahall': cinemahall,
-               'form': form, 'formset': formset}
-
-    return render(request, template_name, context)
+    return render(
+        request,
+        'admin_panel/cinema/cinemahall_update.html',
+        {'cinema': cinema, 'cinemahall': cinemahall,
+         'form': form, 'formset': formset},
+    )
 
 
 def admin_cinemahall_delete_view(request, cinema_id, cinemahall_id):
@@ -189,8 +196,9 @@ def admin_cinemahall_delete_view(request, cinema_id, cinemahall_id):
 
         return redirect('admin_cinema_detail', cinema_id=cinema.id)
 
-    template_name = 'admin_panel/cinema/cinemahall_delete.html'
-    context = {'cinema': cinema,
-               'cinemahall': cinemahall}
-
-    return render(request, template_name, context)
+    return render(
+        request,
+        'admin_panel/cinema/cinemahall_delete.html',
+        {'cinema': cinema,
+         'cinemahall': cinemahall},
+    )

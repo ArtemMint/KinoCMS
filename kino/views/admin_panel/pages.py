@@ -1,10 +1,12 @@
+
+from django.forms import inlineformset_factory
 from django.shortcuts import render, redirect, \
     get_list_or_404, get_object_or_404
-
 from django.core.exceptions import ObjectDoesNotExist
 
 from kino.models.pages import HomePage, Contacts, Page
-from kino.forms.pages import HomepageForm, ContactsForm, PageForm
+from kino.models.image import *
+from kino.forms.pages import *
 
 
 def admin_pages_view(request):
@@ -30,7 +32,7 @@ def admin_home_page_view(request):
         form = HomepageForm(request.POST, instance=homepage)
         if form.is_valid():
             form.save()
-            return redirect('admin_users')
+            return redirect('admin_statistics')
 
     context = {'form': form}
 
@@ -51,7 +53,7 @@ def admin_contacts_page_view(request):
         form = ContactsForm(request.POST, request.FILES, instance=contacts)
         if form.is_valid():
             form.save()
-            return redirect('admin_users')
+            return redirect('admin_statistics')
     else:
         form = ContactsForm(instance=contacts)
 
@@ -61,6 +63,9 @@ def admin_contacts_page_view(request):
 
 
 def admin_about_page_view(request):
+    PageFormSet = inlineformset_factory(
+        Page, AboutImage, fields='__all__', extra=5, max_num=5)
+    
     try:
         about = Page.objects.get(id=0)
     except ObjectDoesNotExist:
@@ -72,18 +77,24 @@ def admin_about_page_view(request):
 
     if request.method == "POST":
         form = PageForm(request.POST, request.FILES, instance=about)
-        if form.is_valid():
+        formset = PageFormSet(request.POST, request.FILES,
+                              instance=about)
+        if form.is_valid() and formset.is_valid():
             form.save()
-            return redirect('admin_users')
+            formset.save()
+            return redirect('admin_statistics')
     else:
         form = PageForm(instance=about)
+        formset = PageFormSet(instance=about)
 
-    context = {'form': form}
+    context = {'form': form, 'formset': formset}
     template_name = 'admin_panel/pages/about_page.html'
     return render(request, template_name, context)
 
 
 def admin_cafe_bar_page_view(request):
+    PageFormSet = inlineformset_factory(
+        Page, CafeBarImage, fields='__all__', extra=5, max_num=5)
     try:
         cafe = Page.objects.get(id=1)
     except ObjectDoesNotExist:
@@ -95,18 +106,24 @@ def admin_cafe_bar_page_view(request):
 
     if request.method == "POST":
         form = PageForm(request.POST, request.FILES, instance=cafe)
-        if form.is_valid():
+        formset = PageFormSet(request.POST, request.FILES,
+                              instance=cafe)
+        if form.is_valid() and formset.is_valid():
             form.save()
-            return redirect('admin_users')
+            formset.save()
+            return redirect('admin_statistics')
     else:
         form = PageForm(instance=cafe)
+        formset = PageFormSet(instance=cafe)
 
-    context = {'form': form}
+    context = {'form': form, 'formset': formset}
     template_name = 'admin_panel/pages/cafe_bar.html'
     return render(request, template_name, context)
 
 
 def admin_vip_hall_page_view(request):
+    PageFormSet = inlineformset_factory(
+        Page, VipHallImage, fields='__all__', extra=5, max_num=5)
     try:
         viphall = Page.objects.get(id=2)
     except ObjectDoesNotExist:
@@ -118,18 +135,24 @@ def admin_vip_hall_page_view(request):
 
     if request.method == "POST":
         form = PageForm(request.POST, request.FILES, instance=viphall)
-        if form.is_valid():
+        formset = PageFormSet(request.POST, request.FILES,
+                              instance=viphall)
+        if form.is_valid() and formset.is_valid():
             form.save()
-            return redirect('admin_users')
+            formset.save()
+            return redirect('admin_statistics')
     else:
         form = PageForm(instance=viphall)
+        formset = PageFormSet(instance=viphall)
 
-    context = {'form': form}
+    context = {'form': form, 'formset': formset}
     template_name = 'admin_panel/pages/vip_hall.html'
     return render(request, template_name, context)
 
 
 def admin_advertising_page_view(request):
+    PageFormSet = inlineformset_factory(
+        Page, AdvertisingImage, fields='__all__', extra=5, max_num=5)
     try:
         advertising = Page.objects.get(id=3)
     except ObjectDoesNotExist:
@@ -141,18 +164,25 @@ def admin_advertising_page_view(request):
 
     if request.method == "POST":
         form = PageForm(request.POST, request.FILES, instance=advertising)
-        if form.is_valid():
+        formset = PageFormSet(request.POST, request.FILES,
+                              instance=advertising)
+        if form.is_valid() and formset.is_valid():
             form.save()
-            return redirect('admin_users')
+            formset.save()
+            return redirect('admin_statistics')
     else:
         form = PageForm(instance=advertising)
+        formset = PageFormSet(instance=advertising)
 
-    context = {'form': form}
+    context = {'form': form, 'formset': formset}
     template_name = 'admin_panel/pages/advertising.html'
     return render(request, template_name, context)
 
 
 def admin_children_room_page_view(request):
+    PageFormSet = inlineformset_factory(
+        Page, ChildrenRoomImage, fields='__all__', extra=5, max_num=5)
+
     try:
         children = Page.objects.get(id=4)
     except ObjectDoesNotExist:
@@ -164,12 +194,46 @@ def admin_children_room_page_view(request):
 
     if request.method == "POST":
         form = PageForm(request.POST, request.FILES, instance=children)
-        if form.is_valid():
+        formset = PageFormSet(request.POST, request.FILES,
+                              instance=children)
+        if form.is_valid() and formset.is_valid():
             form.save()
-            return redirect('admin_users')
+            formset.save()
+            return redirect('admin_statistics')
     else:
         form = PageForm(instance=children)
+        formset = PageFormSet(instance=children)
 
-    context = {'form': form}
+    context = {'form': form, 'formset': formset}
     template_name = 'admin_panel/pages/children_room.html'
+    return render(request, template_name, context)
+
+
+def admin_mobile_app_page_view(request):
+    PageFormSet = inlineformset_factory(
+        Page, MobileAppImage, fields='__all__', extra=5, max_num=5)
+
+    try:
+        mobile_app = Page.objects.get(id=5)
+    except ObjectDoesNotExist:
+        Page.objects.create(
+            id=5, seo_title='', seo_keywords='', seo_description='',
+            name='', description='', status=False, preview=''
+        )
+    mobile_app = get_object_or_404(Page, id=5)
+
+    if request.method == "POST":
+        form = PageForm(request.POST, request.FILES, instance=mobile_app)
+        formset = PageFormSet(request.POST, request.FILES,
+                              instance=mobile_app)
+        if form.is_valid() and formset.is_valid():
+            form.save()
+            formset.save()
+            return redirect('admin_statistics')
+    else:
+        form = PageForm(instance=mobile_app)
+        formset = PageFormSet(instance=mobile_app)
+
+    context = {'form': form, 'formset': formset}
+    template_name = 'admin_panel/pages/mobile_app.html'
     return render(request, template_name, context)

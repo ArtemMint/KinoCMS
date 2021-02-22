@@ -11,6 +11,7 @@ class AdminNewsView(ListView):
     model = News
     template_name = 'admin_panel/news/news.html'
     ordering = ['-id']
+    paginate_by = 15
 
 
 def admin_news_detail_view(request, news_id):

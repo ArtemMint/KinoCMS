@@ -7,10 +7,6 @@ def upload_shares_preview(instance, filename):
     return f"shares/{instance.name}/preview/{filename}"
 
 
-def upload_shares_gallery(instance, filename):
-    return f"shares/{instance.name}/gallery_of_shares/{filename}"
-
-
 class Shares(models.Model):
     STATUS_CHOICES = [
         ('ON', 'On'),
@@ -19,7 +15,7 @@ class Shares(models.Model):
 
     name = models.CharField(max_length=50, default='')
     pub_date = models.DateField(editable=True, default=timezone.now)
-    description = models.TextField(blank=True)
+    description = models.TextField(max_length=1000,blank=True)
     status = models.CharField(
         max_length=10, default=STATUS_CHOICES[1], choices=STATUS_CHOICES, blank=True)
     preview = models.ImageField(upload_to=upload_shares_preview)

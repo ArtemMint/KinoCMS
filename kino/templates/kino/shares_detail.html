@@ -6,18 +6,18 @@
 {% endblock title %}
 
 {% block content %}
-<div class="card container">
+<div class="card container" style="min-width: 180vh !important;">
     <br>
     <div class="row">
         <div class="col-md-10">
             <div class="row" style="min-height: 70vh;">
-                <div class="col-md-4">
-                    <img src="{{ shares.preview.url }}" alt="{{ shares.preview }}"></br>
+                <div class="col-md-6">
+                    <img src="{{ shares.preview.url }}" alt="{{ shares.preview }}"  style="height: 50vh !important;"></br>
                 </div>
-                <div class="col-md-8">
+                <div class="col-md-6">
                     <dl class="dl-horizontal">
                         <div class="box-header with-border">
-                            <h3 class="box-title">«{{ shares.name }}»</h3>
+                            <h3 class="box-title text-center">«{{ shares.name }}»</h3>
                         </div>
                         <dt>Date:</dt>
                         <dd>{{ shares.pub_date }}</dd>
