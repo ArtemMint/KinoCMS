@@ -41,9 +41,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'cloudinary_storage',
     'django.contrib.staticfiles',
-    'django_extensions',
     'kino.apps.KinoConfig',
     'register.apps.RegisterConfig',
+    'django_extensions',
     'phonenumber_field',
     'cloudinary',
 ]

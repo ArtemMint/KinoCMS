@@ -1,11 +1,6 @@
-{% extends 'kino/base.html' %}
-{% load static %}
-
-{% block title %}
-    <title>Premiere</title>
-{% endblock title %}
-
-{% block content %}
+{% extends 'kino/base.html' %} {% load static %} {% block title %}
+<title>Premiere</title>
+{% endblock title %} {% block content %}
 <div class="row" style="min-height: 70vh;">
     <div class="col-md-2">
         <div class="text-center">
@@ -15,30 +10,33 @@
     </div>
     <div class="col-md-9 bg-light">
         <h1 style="text-align: center;">Premiere</h1>
+        {% if film_list %}
         <div class="album py-5">
             <div class="container">
                 <div class="row">
-                    {% for film in film_list %}
-                        {% if film.get_premiere %}
-                            {% with firm.get_premiere as p %}
-                                <div class="col-md-2">
-                                    <div class="card mb-2 shadow-sm">
-                                        <a class="text-decoration-none" href="{% url 'film_detail' film.pk%}"><img class="card-img-top" src="{{ film.preview.url }}" alt="{{ film.preview }}" style="height: 250px; width: 90%%; display: block;">
-                                        <div class="card-body text-center">
-                                            <h4 class="card-text">{{ film.name }}</h4></a>
-                                            <p class="btn btn-block btn-outline-danger">Premiere<br> {{ film.premiere}}</p>
-                                            <button type="button" class="btn btn-sm btn-outline-secondary">Buy ticket</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            {% endwith %}
-                        {% endif %}
-                    {% endfor %}
+                    {% for film in film_list %} {% if film.get_premiere %} {% with firm.get_premiere as p %}
+                    <div class="col-md-2">
+                        <div class="card mb-2 shadow-sm">
+                            <a class="text-decoration-none" href="{% url 'film_detail' film.pk%}"><img class="card-img-top" src="{{ film.preview.url }}" alt="{{ film.preview }}" style="height: 250px; width: 90%%; display: block;">
+                                <div class="card-body text-center">
+                                    <h6 class="card-text">{{ film.name }}</h6>
+                            </a>
+                            <p class="btn btn-block btn-outline-danger">Premiere<br> {{ film.premiere}}</p>
+                            <button type="button" class="btn btn-sm btn-outline-secondary">Buy ticket</button>
+                            </div>
+                        </div>
+                    </div>
+                    {% endwith %} {% endif %} {% endfor %}
                 </div>
-            </div> 
+            </div>
         </div>
+        {% else %}
+        <blockquote class="text-center">
+            <p class="blockquote text-center">Sooo empty.. 🙄</p>
+        </blockquote>
+        {% endif %}
     </div>
-    <div class="col-md-1"></div>   
+    <div class="col-md-1"></div>
 </div>
 
-{% endblock  %}
+{% endblock %}

@@ -16,11 +16,12 @@
     <div class="col-md-9 bg-light">
         <div class="container">
             <h1 class="text-center">Cinemas</h1>
+            {% if cinema_list %}
             <div class="row">
                 {% for cinema in cinema_list %}
                     <div class="col-md-6">
                         <div class="card mb-6 shadow-sm">
-                            <a class="text-decoration-none" href="{% url 'cinema_detail' cinema.id%}"><img class="card-img-top" src="{{ cinema.preview.url }}" alt="{{ cinema.preview }}" style="height: 250px; width: 100%%; display: block;">
+                            <a class="text-decoration-none" href="{% url 'cinema_detail' cinema.id%}"><img class="card-img-top" src="{{ cinema.preview.url }}" alt="{{ cinema.preview }}" style="height: 50vh; width: 100%%; display: block;">
                             <div class="card-body">
                                 <h4 class="card-text text-center ">{{ cinema.name }}</h4>
                                 <div class="d-flex justify-content-between align-items-center">
@@ -31,6 +32,11 @@
                     </div>
                 {% endfor %}
             </div>
+            {% else %}
+                <blockquote class="text-center">
+                    <p class="blockquote text-center">Sooo empty.. 🙄</p> 
+                </blockquote>
+            {% endif %}
         </div>
     </div> 
     <div class="col-md-2">

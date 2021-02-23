@@ -7,8 +7,16 @@ from kino.models.pages import HomePage
 
 def poster_view(request):
     film_list = Film.objects.all()
-    home_page = HomePage.objects.get(id=0)
+    try:
+        home_page = HomePage.objects.get(id=0)
+    except HomePage.DoesNotExist:
+        home_page = None
 
-    template_name = 'kino/poster.html'
-    context = {"film_list": film_list, "home_page": home_page}
-    return render(request, template_name, context)
+    return render(
+        request,
+        'kino/poster.html',
+        {
+            "film_list": film_list,
+            "home_page": home_page
+        }
+    )

@@ -6,7 +6,7 @@
 {% block breadcrumb %}
     <li class="breadcrumb-item"><a href="{% url 'admin_statistics' %}">Home</a></li>
     <li class="breadcrumb-item active"><a href="{% url 'admin_cinemas' %}">Cinemas</a></li>
-    <li class="breadcrumb-item active">«{{ cinema.name }}»</li>
+    <li class="breadcrumb-item active">«{{ cinema.name|truncatechars:20 }}»</li>
 {% endblock breadcrumb %}
 
 
@@ -38,7 +38,7 @@
                                 {% for cinemahall in page_obj %}
                                     <tbody>
                                         <tr role="row" class="odd">
-                                            <td class="text-center" width="40%"><a href="{% url 'admin_cinemahall_detail' cinema.id cinemahall.id%}">{{cinemahall.name}}</a></td>
+                                            <td class="text-center" width="40%"><a href="{% url 'admin_cinemahall_detail' cinema.id cinemahall.id%}">{{cinemahall.name|truncatechars:10}}</a></td>
                                             <td class="text-center" width="30%">{{cinemahall.created_date}}</td>
                                             <td class="text-center" width="30%"><a class="btn btn-sm btn-warning" href="{% url 'admin_update_cinemahall' cinema.id cinemahall.id%}">Update</a> <a class="btn btn-sm btn-danger" href="{% url 'admin_delete_cinemahall' cinema.id cinemahall.id%}">Delete</a></td>
                                         </tr>
@@ -73,17 +73,17 @@
             </div>
             <div class="col-md-12">
                 <dl class="dl-horizontal">
-                    <dt>Description:</dt>
+                    <dt><h3 class="text-center">Description:</h3></dt>
                     <dd>{{ cinema.description|truncatechars:'500'|linebreaks }}</dd>
-                    <dt>Conditions:</dt>
+                    <dt><h3 class="text-center">Conditions:</h3></dt>
                     <dd>{{ cinema.conditions|truncatechars:'500'|linebreaks }}</dd>
                 </dl>
             </div>
         </div>
     </div>
-    
+    {% if image_list %}
+    <h3 class="text-center">Gallery</h3>
     <div class="card-body">
-        {% if image_list %}
         <div class="card-body p-0">
             <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                 <ol class="carousel-indicators">
@@ -123,8 +123,7 @@
                     <span class="sr-only">Next</span>
                 </a>
             </div>
-        {% endif %}
-
+    {% endif %}
     </div>     
 
     </div>

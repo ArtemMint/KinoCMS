@@ -1,31 +1,59 @@
 {% extends 'kino/base.html' %}
+{% load static %}
+
+<head>
+    <meta name="description" property="og:description" content="{{contacts.seo_description}}">
+    <meta name="keywords" content="{{contacts.seo_keywords}}">    
+</head>
 
 {% block title %}
-    <title>Cinemas</title>
+    <title>Contacts</title>
 {% endblock title %}
 
 {% block content %}
-
-<div class="container bg-light">
-    <div class="album py-5">
+<div class="row" style="min-height: 70vh;">
+    <div class="col-md-1"></div>    
+    <div class="col-md-9 bg-light">
+        <hr>
+        {% if contacts %}
         <div class="container">
+            <h1 class="text-center">Our contacts</h1>
+            <div class="card">
             <div class="row">
-                {% for cinema in object_list %}
-                <div class="col-md-2">
-                    <div class="card mb-2 shadow-sm">
-                        <a href="{% url 'cinema_detail' cinema.pk%}"><img class="card-img-top" src="{{ cinema.preview.url }}" alt="{{ cinema.preview }}" style="height: 250px; width: 100%%; display: block;">
-                        <div class="card-body">
-                            <p class="card-text">{{ cinema.name }}</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                            </div>
+                {% for cinema in cinema_list %}
+                    <div class="col-md-6 text-center" style="min-height: 50vh;">
+                        <div class="col-md-12" style="min-height: 20vh;">
+                            <h3>{{ cinema.name }}</h3>
+                            <img class="float-right"  src="{{ cinema.logo.url }}" alt="{{ cinema.logo }}" width="100px" height="100px">
                         </div>
-                        </a>
+                        <div class="col-md-12" style="min-height: 30vh;">
+                            <img class="img-fluid" src="{{ cinema.preview.url }}" alt="{{ cinema.preview }}">
+                        </div>
                     </div>
-                </div>
+                    <div class="col-md-6" style="min-height: 50vh;">
+                        <div class="col-md-12"style="min-height: 20vh;">
+                            {{ contacts.address|linebreaks}}
+                        </div>
+                        <div class="col-md-12"style="min-height: 30vh;">
+                            Coordinates {{ contacts.coordinates }}
+                        </div>
+                    </div>
+                    </div>
                 {% endfor %}
             </div>
+        </div>
+        <br>
+        {% else %}
+            <blockquote class="text-center">
+                <p class="blockquote text-center">Sooo empty.. 🙄</p> 
+            </blockquote>
+        {% endif %}
+    </div> 
+    <div class="col-md-2">
+        <div class="text-center">
+            <img src="{% static 'kino/images/1000x500.png' %}" class="img-fluid" alt="Context_ads" style="max-width: 100%%; height:500px;">
+            <p>CONTEXT ADS</p>
         </div> 
     </div>
-
 </div>
 {% endblock  %}

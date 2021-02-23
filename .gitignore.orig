@@ -12,8 +12,13 @@
 
 kino/__pycache__
 
+<<<<<<< HEAD
 kino/includs/__pycache__/
 
+kino/repositories/__pycache__/
+=======
+kino/includs/__pycache__
+>>>>>>> cb8fc024af6b7e0737efb33df8447ed81ae69d58
 
 kino/repositories/__pycache__
 

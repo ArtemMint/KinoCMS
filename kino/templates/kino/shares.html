@@ -13,6 +13,7 @@
         <div class="album py-3">
             <div class="container">
                 <h1 class="text-center">Shares</h1>
+                {% if shares_list %}
                 <div class="row">
                     {% for shares in shares_list %}
                         {% if shares.get_status %}
@@ -23,8 +24,8 @@
                                         <div class="card-body">
                                             <h4 class="card-text text-center">{{ shares.name }}</h4></a>
                                             <p class="card-text">{{ shares.pub_date }}</p>
-                                            <div class="d-flex justify-content-between align-items-center">
-                                                {{shares.description|truncatechars:70}}
+                                            <div class="d-flex justify-content-between align-items-center" style="word-break: break-all;">
+                                                {{shares.description|truncatechars:50}}
                                             </div>
                                         </div>
                                         
@@ -34,6 +35,11 @@
                         {% endif %}
                     {% endfor %}
                 </div>
+                {% else %}
+                    <blockquote class="text-center">
+                        <p class="blockquote text-center">Sooo empty.. 🙄</p> 
+                    </blockquote>
+                {% endif %}
             </div> 
         </div>
     </div>

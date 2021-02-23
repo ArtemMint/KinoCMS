@@ -20,7 +20,7 @@
         <div class="card mb-2 shadow-sm">
             <a href="{% url 'admin_film_detail' film.id%}"><img class="card-img-top" src="{{film.preview.url}}" alt="{{film.preview}}" style="height: 40vh; width: 100%%; display: block; margin: auto;"></a> 
             <div class="card-body">
-                <h2 class="card-text text-center">{{film.name}}</h2>
+                <h4 class="card-text text-center">{{film.name|truncatechars:25}}</h4>
                 <a href="{% url 'admin_update_film' film.id %}" class="btn btn-sm btn-warning float-left">Edit film</a>
                 <a href="{% url 'admin_delete_film' film.id %}" class="btn btn-sm btn-danger float-right">Delete film</a>
             </div>

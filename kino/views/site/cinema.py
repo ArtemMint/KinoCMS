@@ -11,8 +11,11 @@ from kino.models.pages import *
 
 def ciname_view(request):
     cinema_list = Cinema.objects.order_by('-id')
-    home_page = HomePage.objects.get(id=0)
-
+    try:
+        home_page = HomePage.objects.get(id=0)
+    except HomePage.DoesNotExist:
+        home_page = None
+        
     context = {"cinema_list": cinema_list, 'home_page': home_page}
     template_name = 'kino/cinemas.html'
 

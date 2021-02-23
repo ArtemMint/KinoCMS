@@ -58,8 +58,8 @@ class CinemaHallForm(forms.ModelForm):
     cinema, name, scheme, create_date,descriptions, 
     preview, seo_title, seo_keywords, seo_descriptions.
     """
-    scheme = forms.ImageField(widget=forms.FileInput)
-    preview = forms.ImageField(widget=forms.FileInput)
+    scheme = forms.ImageField()
+    preview = forms.ImageField()
 
     class Meta:
         model = CinemaHall
@@ -89,7 +89,7 @@ class CinemaHallForm(forms.ModelForm):
                 attrs={'class': 'form-control',
                        'placeholder': 'SEO keywords of the cinema'}
             ),
-            'seo_description': forms.Textarea(
+            'seo_description': forms.TextInput(
                 attrs={'class': 'form-control',
                        'placeholder': 'SEO descripton of the cinema'}
             ),

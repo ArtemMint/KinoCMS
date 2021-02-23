@@ -7,19 +7,27 @@
 </head>
 
 {% block title %}
-    <title>{{children_room.seo_title}}</title>
-{% endblock title %}
+<title>
+{% if children_room %}
+{{children_room.seo_title}}
+{% else %}
+    Children Room
+{% endif %}
+</title>{% endblock title %}
 
 {% block content %}
-<img class="img-fluid" src="{{ children_room.preview.url }}" alt="{{ children_room.preview }}" width="100%" style="min-height:50vh !important;">
+{% if children_room %}
+<img class="img-fluid" src="{{ children_room.preview.url }}" alt="{{ children_room.preview }}" width="100%" style="max-height:100vh !important;">
+{% endif %}     
 <br><br>
 
 <div class="row bg-light" style="min-height: 70vh;">
     <div class="col-md-1"></div>
     <div class="col-md-8">
         <hr>
+        {% if children_room %}
         <h3 class="text-center">{{children_room.name}}</h3>
-        <div class="">
+        <div style="word-break: break-all;">
             {{ children_room.description}}
         </div>
         <br>
@@ -38,12 +46,8 @@
                 {% for image in gallery %}
                     {% if forloop.counter0|divisibleby:"1" %}
                         <div class="carousel-item {% if forloop.first %} active {% endif %}"> 
-                            <div class="row">{% endif %}
-                                <a href="{{ image.url }}#"><img class="d-block w-100" src="{{image.image.url}}" alt="{{image.image1}}" style="height: 80vh !important;"></a>
-                                {% if forloop.counter0|divisibleby:"1" %}
-                                <div class="carousel-caption d-none d-md-block">
-                                    <h5>{{image.text}}</h5>
-                                </div>
+                            <div class="row">
+                                <a href="{{ image.url }}#"><img class="d-block w-100" src="{{image.image.url}}" alt="{{image.image}}" style="height: 80vh !important;"></a>
                             </div>
                         </div>
                     {% endif %}
@@ -61,6 +65,11 @@
             </a>
         </div>
         <br>
+        {% else %}
+            <blockquote class="text-center">
+                <p class="blockquote text-center">Sooo empty.. 🙄</p> 
+            </blockquote>
+        {% endif %}
     </div>
     <div class="col-md-2">
         <div class="text-center">

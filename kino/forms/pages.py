@@ -40,11 +40,7 @@ class ContactsForm(forms.ModelForm):
         model = Contacts
         fields = "__all__"
         widgets = {
-            'name': forms.TextInput(
-                attrs={'class': 'form-control',
-                       'placeholder': 'Name...'}
-            ),
-            'address': forms.TextInput(
+            'address': forms.Textarea(
                 attrs={'class': 'form-control',
                        'placeholder': 'Address...'}
             ),

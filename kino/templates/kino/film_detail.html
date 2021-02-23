@@ -67,11 +67,8 @@
                     {% for image in gallery %}
                         {% if forloop.counter0|divisibleby:"1" %}
                             <div class="carousel-item {% if forloop.first %} active {% endif %}"> 
-                                <div class="row">{% endif %}
-                                    <a href="{{ image.url }}#"><img class="d-block w-100" src="{{image.image.url}}" alt="{{image.image1}}" style="width:100%; height: 60vh !important;"></a>
-                                    {% if forloop.counter0|divisibleby:"1" %}
-                                    <div class="carousel-caption d-none d-md-block">
-                                    </div>
+                                <div class="row">
+                                    <img class="d-block w-100 img-fluid" src="{{image.image.url}}" alt="{{image.image1}}" style="width:100%; height: 60vh !important;">
                                 </div>
                             </div>
                         {% endif %}
