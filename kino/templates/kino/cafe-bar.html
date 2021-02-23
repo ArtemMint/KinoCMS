@@ -16,8 +16,8 @@ Cafe-Bar {{cafe_bar.seo_title|truncatechars:25}}
 </title>{% endblock title %}
 
 {% block content %}
-{% if cafe_bar %}
-    <img class="img-fluid" src="{{ cafe_bar.preview.url }}" alt="{{ cafe_bar.preview }}" width="100%" style="max-height:100vh !important;">
+{% if cafe_bar.preview %}
+<img class="img-fluid" src="{{ cafe_bar.preview.url }}" alt="{{ cafe_bar.preview }}" width="100%" style="max-height:100vh !important;">
 {% endif %}
 <br><br>
 <div class="row bg-light" style="min-height: 70vh;">
@@ -31,40 +31,40 @@ Cafe-Bar {{cafe_bar.seo_title|truncatechars:25}}
         </div>
         <br>
         {% if gallery %}
-        <h3 class="text-center">Gallery</h3>
-        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel"> 
-            <ol class="carousel-indicators">
-                {% comment %} DYNAMIC CAROUSEL BOTTOM INDICATOR {% endcomment %}
-                {% for image in gallery %}
-                    {% if forloop.counter0|divisibleby:"1" %}
-                        <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{forloop}}"{% if forloop.first %} class="active" {% endif %}></li>
-                    {% endif %}
-                {% endfor %}
-            </ol>
+            <h3 class="text-center">Gallery</h3>
+            <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel"> 
+                <ol class="carousel-indicators">
+                    {% comment %} DYNAMIC CAROUSEL BOTTOM INDICATOR {% endcomment %}
+                    {% for image in gallery %}
+                        {% if forloop.counter0|divisibleby:"1" %}
+                            <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{forloop}}"{% if forloop.first %} class="active" {% endif %}></li>
+                        {% endif %}
+                    {% endfor %}
+                </ol>
 
-            <div class="carousel-inner">
-                {% for image in gallery %}
-                    {% if forloop.counter0|divisibleby:"1" %}
-                        <div class="carousel-item {% if forloop.first %} active {% endif %}"> 
-                            <div class="row">
-                                <a href="{{ image.url }}#"><img class="d-block w-100" src="{{image.image.url}}" alt="{{image.image}}" style="height: 80vh !important;"></a>
+                <div class="carousel-inner">
+                    {% for image in gallery %}
+                        {% if forloop.counter0|divisibleby:"1" %}
+                            <div class="carousel-item {% if forloop.first %} active {% endif %}"> 
+                                <div class="row">
+                                    <a href="{{ image.url }}"><img class="d-block w-100" src="{{image.image.url}}" alt="{{image.image}}" style="height: 80vh !important;"></a>
+                                </div>
                             </div>
-                        </div>
-                    {% endif %}
-                {% endfor %}
-            </div>
-            
-            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </a>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                
+                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </a>
 
-            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </a>
-        </div>
-        <br>
+                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </a>
+            </div>
+            <br>
         {% endif %}
         {% else %}
             <blockquote class="text-center">
