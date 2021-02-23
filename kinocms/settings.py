@@ -25,7 +25,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '$4h_uzy_##=#pf0i*6+231fasca^*$k&jflt&&s0&yh2j2)bj6xw3=$__='
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 
 ALLOWED_HOSTS = ["kinocms-admin.herokuapp.com", "127.0.0.1"]
@@ -156,10 +156,10 @@ EMAIL_HOST_USER = 'troyt3325@gmail.com'
 EMAIL_HOST_PASSWORD = 'GOVEG2021'
 EMAIL_USE_TLS = 'True'
 
-# # Cloudinary
-# CLOUDINARY_STORAGE = {
-#     'CLOUD_NAME': 'hc2yofuve',
-#     'API_KEY': '175342362726441',
-#     'API_SECRET': 'IFYe3ZJ210YmSx6i7cs9xuVYxg8',
-# }
-# DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+# Cloudinary
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'hc2yofuve',
+    'API_KEY': '175342362726441',
+    'API_SECRET': 'IFYe3ZJ210YmSx6i7cs9xuVYxg8',
+}
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
