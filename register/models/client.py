@@ -1,10 +1,11 @@
 import datetime
+
 from django.db import models
 from django.urls import reverse
 from django.utils import timezone
-from phonenumber_field.modelfields import PhoneNumberField
-
 from django.contrib.auth.models import User
+
+from phonenumber_field.modelfields import PhoneNumberField
 
 
 class Client(models.Model):
@@ -19,7 +20,7 @@ class Client(models.Model):
         ('RU', 'Russian'),
     ]
 
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     address = models.CharField(max_length=50, null=True)
     num_card = models.CharField(max_length=20, null=True)
 

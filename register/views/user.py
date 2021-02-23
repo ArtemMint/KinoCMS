@@ -13,9 +13,11 @@ def user_register_view(request):
             form.save()
             return redirect('login')
 
-    template_name = 'registration/register.html'
-    context = {'form': form}
-    return render(request, template_name, context)
+    return render(
+        request,
+        'registration/register.html',
+        {'form': form}
+    )
 
 
 def user_login_view(request):
@@ -28,8 +30,11 @@ def user_login_view(request):
             login(request, user)
             return redirect('edit_profile')
 
-    context = {}
-    return render(request, 'registration/login.html', context)
+    return render(
+        request,
+        'registration/login.html',
+        {}
+    )
 
 
 def user_update_view(request):
@@ -47,5 +52,8 @@ def user_update_view(request):
         client_form = ClientForm(instance=request.user.client)
         user_form = UserForm(instance=request.user)
 
-    context = {'client_form': client_form, 'user_form': user_form}
-    return render(request, 'registration/edit_profile.html', context)
+    return render(
+        request,
+        'registration/edit_profile.html',
+        {'client_form': client_form, 'user_form': user_form}
+    )
