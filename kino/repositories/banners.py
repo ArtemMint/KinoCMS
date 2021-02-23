@@ -3,7 +3,7 @@ from kino.models.banners import *
 
 def get_slider_banners():
     try:
-        slider_banners = SliderBanner.objects.all()[::-1][:5]
+        slider_banners = SliderBanner.objects.all()
     except SliderBanner.DoesNotExist:
         slider_banners = None
     print([banner.image.url for banner in slider_banners])
@@ -16,7 +16,7 @@ def get_back_banner() -> list:
 
 def get_shares_banners() -> list:
     try:
-        shares_banners = SharesBanner.objects.all()[::-1][:5]
+        shares_banners = SharesBanner.objects.all()
     except SliderBanner.DoesNotExist:
         shares_banners = None
     return shares_banners
