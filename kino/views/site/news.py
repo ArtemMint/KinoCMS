@@ -4,13 +4,14 @@ from django.shortcuts import get_object_or_404, \
 
 from kino.models.news import News
 from kino.models.image import NewsImage
+from ...repositories.ads import *
 
 
 def news_view(request):
     news_list = News.objects.all()
 
     template_name = 'kino/news.html'
-    context = {"news_list": news_list}
+    context = {"news_list": news_list,'ads':get_ads_last(),}
 
     return render(request, template_name, context)
 
@@ -20,6 +21,6 @@ def news_detail_view(request, news_id):
     gallery = NewsImage.objects.filter(news=news)
 
     template_name = 'kino/news_detail.html'
-    context = {"news": news, 'gallery': gallery}
+    context = {"news": news, 'gallery': gallery,'ads':get_ads_last(),}
 
     return render(request, template_name, context)

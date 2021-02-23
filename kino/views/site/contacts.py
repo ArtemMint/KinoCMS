@@ -2,6 +2,7 @@ from django.shortcuts import redirect, render
 
 
 from ...repositories.pages import *
+from ...repositories.ads import *
 from ...models.cinema import Cinema
 
 def contacts_page_view(request):
@@ -11,5 +12,6 @@ def contacts_page_view(request):
             'contacts': get_contacts_page(),
             'cinema_list': Cinema.objects.all(),
             'home_page': get_home_page(),
+            'ads':get_ads_last(),
         }
     )

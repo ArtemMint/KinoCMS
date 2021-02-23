@@ -3,12 +3,13 @@ from django.shortcuts import get_list_or_404, get_object_or_404, redirect, rende
 
 from kino.models.shares import Shares
 from kino.models.image import SharesImage
+from ...repositories.ads import *
 
 
 def shares_view(request):
     shares_list = Shares.objects.all()
 
-    context = {"shares_list": shares_list}
+    context = {"shares_list": shares_list,'ads':get_ads_last(),}
     return render(request, 'kino/shares.html', context)
 
 
@@ -17,6 +18,6 @@ def shares_detail_view(request, shares_id):
     gallery = SharesImage.objects.filter(shares=shares)
 
     template_name = 'kino/shares_detail.html'
-    context = {"shares": shares, gallery: gallery}
+    context = {"shares": shares, gallery: gallery,'ads':get_ads_last(),}
 
     return render(request, template_name, context)

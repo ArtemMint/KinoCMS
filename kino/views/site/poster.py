@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect, \
 
 from kino.models.film import Film
 from kino.models.pages import HomePage
+from ...repositories.ads import *
 
 
 def poster_view(request):
@@ -17,6 +18,7 @@ def poster_view(request):
         'kino/poster.html',
         {
             "film_list": film_list,
-            "home_page": home_page
+            "home_page": home_page,
+            'ads':get_ads_last(),
         }
     )

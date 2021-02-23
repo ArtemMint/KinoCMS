@@ -14,6 +14,7 @@ from kino.views.admin_panel.shares import *
 from kino.views.admin_panel.statistics import *
 from kino.views.admin_panel.user import *
 from kino.views.admin_panel.schedule import *
+from kino.views.admin_panel.ads import *
 from kino.views.site.cinema import *
 from kino.views.site.film import *
 from kino.views.site.home import *
@@ -86,6 +87,8 @@ urlpatterns = [
          name='admin_shares'),
     path('admin/pages/', admin_pages_view,
          name='admin_pages'),
+    path('admin/pages/ads/', admin_ads_view,
+         name='admin_ads'),
     path('admin/pages/home/', admin_home_page_view,
          name='admin_homepage'),
     path('admin/pages/contacts/', admin_contacts_page_view,

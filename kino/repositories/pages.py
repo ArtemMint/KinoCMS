@@ -8,7 +8,7 @@ from django.core.exceptions import ObjectDoesNotExist
 def get_home_page() -> HomePage or None:
     try:
         home_page = HomePage.objects.get(id=0)
-    except HomePage.DoesNotExist:
+    except ObjectDoesNotExist:
         home_page = None
     return home_page
 
@@ -16,7 +16,7 @@ def get_home_page() -> HomePage or None:
 def get_cafe_bar_page() -> HomePage or None:
     try:
         cafe_bar = Page.objects.get(id=1)
-    except Page.DoesNotExist:
+    except ObjectDoesNotExist:
         cafe_bar = None
     return cafe_bar
 

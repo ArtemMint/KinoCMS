@@ -7,6 +7,7 @@ from django.core.paginator import Paginator
 from kino.models.cinema import *
 from kino.models.image import CinemaImage, CinemaHallImage
 from kino.models.pages import *
+from ...repositories.ads import *
 
 
 def ciname_view(request):
@@ -16,7 +17,7 @@ def ciname_view(request):
     except HomePage.DoesNotExist:
         home_page = None
         
-    context = {"cinema_list": cinema_list, 'home_page': home_page}
+    context = {"cinema_list": cinema_list, 'home_page': home_page, 'ads':get_ads_last(),}
     template_name = 'kino/cinemas.html'
 
     return render(request, template_name, context)
@@ -32,7 +33,7 @@ def cinema_detail_view(request, cinema_id):
     page_obj = paginator.get_page(page_number)
     template_name = 'kino/cinema_detail.html'
     context = {'cinema': cinema, 'cinemahalls': cinemahalls,
-               'page_obj': page_obj, 'gallery': gallery}
+               'page_obj': page_obj, 'gallery': gallery,'ads':get_ads_last(),}
 
     return render(request, template_name, context)
 
@@ -43,5 +44,5 @@ def cinemahall_detail_view(request, cinema_id, cinemahall_id):
     gallery = CinemaImage.objects.filter(cinema=cinemahall_id)
 
     template_name = 'kino/cinemahall_detail.html'
-    context = {'cinema': cinema,'cinemahall': cinemahall, 'gallery': gallery}
+    context = {'cinema': cinema,'cinemahall': cinemahall, 'gallery': gallery,'ads':get_ads_last(),}
     return render(request, template_name, context)
