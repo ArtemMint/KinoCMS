@@ -24,6 +24,7 @@ def premiere_view(request):
         'kino/premiere.html',
         {
             "film_list": get_all_films(),
-            "home_page": get_home_page()
+            "home_page": get_home_page(),
+            'ads':get_ads_last(),
         }
     )

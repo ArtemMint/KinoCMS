@@ -3,7 +3,6 @@
 This module has baners forms for display view.
 """
 
-__all__ = ['SliderBannerForm', 'BackBannerForm', 'SharesBannerForm', ]
 __version__ = '0.1'
 __author__ = 'Ivan Humeniuk'
 
@@ -35,7 +34,8 @@ class SliderBannerForm(forms.ModelForm):
 
 
 class BackBannerForm(forms.ModelForm):
-    """BackBannerForm has connect with model BackBanner and field: image."""
+    """BackBannerForm has connect with 
+    model BackBanner and field: image."""
     class Meta:
         model = BackBanner
         fields = '__all__'
@@ -48,7 +48,8 @@ class BackBannerForm(forms.ModelForm):
 
 
 class SharesBannerForm(forms.ModelForm):
-    """SharesBannerForm has connect with model SharesBanner and fields:
+    """SharesBannerForm has connect with
+    model SharesBanner and fields:
     image, url."""
     class Meta:
         model = SharesBanner
@@ -56,9 +57,13 @@ class SharesBannerForm(forms.ModelForm):
         widgets = {
             'image': forms.FileInput(
                 attrs={'class': 'form-control-file',
-                       'accept': '.jpg, .jpeg, .png', 'style': "width:180px;"}
+                       'accept': '.jpg, .jpeg, .png',
+                       'style': "width:180px;"}
             ),
             'url': forms.URLInput(
-                attrs={'class': 'form-control', 'placeholder': 'Input URL'}
+                attrs={
+                    'class': 'form-control',
+                    'placeholder': 'Input URL'
+                }
             ),
         }

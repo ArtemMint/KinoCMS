@@ -24,6 +24,9 @@
                 <div class="row">
                     <a href="{{ banner.url }}">
                         <img class="d-block w-100" src="{{ banner.image.url }}" alt="{{ banner.image }}" style="height: 80vh !important;">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>{{ banner.text}}</h5>
+                        </div>
                     </a>
                     {% if forloop.counter0|divisibleby:"1" %}
                     <div class="carousel-caption d-none d-md-block">

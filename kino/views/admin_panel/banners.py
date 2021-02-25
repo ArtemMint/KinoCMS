@@ -4,7 +4,7 @@ from django.shortcuts import redirect, render, reverse
 
 from kino.models.banners import *
 from kino.forms.banners import *
-from kino.services.banners import banners_form_list
+from kino.services.banners import *
 
 
 @require_http_methods(['GET', 'POST'])
@@ -39,14 +39,21 @@ def slider_banners_update(request):
 
 @require_http_methods(['GET', 'POST'])
 def back_banners_update(request):
-    form = BackBannerForm(request.POST or None,
-                          request.FILES or None, instance=None)
+    form = BackBannerForm(
+        request.POST,
+        request.FILES,
+        instance=get_background()
+    )
     if request.method == 'POST':
         if form.is_valid():
             form.save()
-            return redirect(reverse('home'))
-    return render(request, 'admin_panel/banners/back_banner.html',
-                  context={'form': form})
+            return redirect('admin_statistics')
+
+    return render(
+        request,
+        'admin_panel/banners/back_banner.html',
+        {'form': form}
+    )
 
 
 @require_http_methods(['GET', 'POST'])

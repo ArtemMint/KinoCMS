@@ -3,6 +3,10 @@ from django.core.handlers.wsgi import WSGIRequest
 from django.forms.models import ModelFormMetaclass
 
 
+def get_background():
+    return BackBanner.objects.last()
+
+
 def banners_slider_form_save(request):
     counter = 0
     for file in request.FILES.getlist('slider_banner_image'):
