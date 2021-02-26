@@ -2,6 +2,8 @@ from django.urls import reverse_lazy
 from django.shortcuts import render, redirect
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.forms import inlineformset_factory
+from django.contrib.auth.decorators import permission_required
+
 from kino.forms.shares import SharesForm
 from kino.models.shares import Shares
 from kino.models.image import SharesImage
@@ -14,6 +16,7 @@ class AdminSharesView(ListView):
     paginate_by = 15
 
 
+@permission_required('is_staff')
 def admin_shares_detail_view(request, shares_id):
     shares = Shares.objects.get(id=shares_id)
     image_list = SharesImage.objects.filter(shares=shares)
@@ -23,6 +26,7 @@ def admin_shares_detail_view(request, shares_id):
     return render(request, template_name, context)
 
 
+@permission_required('is_staff')
 def admin_shares_create_view(request):
     SharesFormSet = inlineformset_factory(
         Shares, SharesImage, fields='__all__', extra=5, max_num=5)
@@ -44,6 +48,7 @@ def admin_shares_create_view(request):
     return render(request, template_name, context)
 
 
+@permission_required('is_staff')
 def admin_shares_update_view(request, shares_id):
     SharesFormSet = inlineformset_factory(
         Shares, SharesImage, fields='__all__', extra=5, max_num=5)

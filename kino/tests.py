@@ -1,6 +1,7 @@
 import datetime
 
 from django.test import TestCase
+from django.test import tag
 from django.test.client import Client as Client_
 from django.test.client import RequestFactory
 from django.utils import timezone
@@ -33,6 +34,7 @@ class ClientTest(TestCase):
             '/profile/login/'
         )
 
+    @tag('fast')
     def test_client_get(self):
         """Test GET /profile/login/ and check user
         """
@@ -41,6 +43,7 @@ class ClientTest(TestCase):
             200
         )
 
+    @tag('fast')
     def test_create_and_login_user(self):
         """Test GET /profile/login/ and chech user
         """

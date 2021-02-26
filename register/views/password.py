@@ -1,7 +1,9 @@
-from django.contrib.auth.forms import PasswordChangeForm
-from django.contrib.auth.views import PasswordChangeView
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView
+from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib.auth.views import PasswordChangeView
+from django.utils.decorators import method_decorator
+from django.contrib.auth.decorators import login_required
 
 
 class PasswordChangeView_(PasswordChangeView):

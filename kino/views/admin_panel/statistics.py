@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect, \
     get_object_or_404, get_list_or_404
 from django.contrib.auth.models import User
+from django.contrib.admin.views.decorators import staff_member_required
+from django.contrib.auth.decorators import permission_required
 
 from utils import get_avg_age
 from register.models.client import Client
@@ -10,7 +12,7 @@ from kino.models.news import News
 from kino.models.shares import Shares
 
 
-
+@permission_required('is_staff')
 def adminStatisticsView(request):
     """
     Statistics page which contains all main information about DB

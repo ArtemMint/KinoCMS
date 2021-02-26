@@ -1,5 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate
+from django.contrib.auth.decorators import login_required
+
 from register.forms.client import *
 
 
@@ -36,7 +38,7 @@ def user_login_view(request):
         {}
     )
 
-
+@login_required
 def user_update_view(request):
     user = request.user
     client = Client.objects.get(user=user)

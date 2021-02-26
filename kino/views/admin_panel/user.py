@@ -1,9 +1,12 @@
 from django.contrib.auth.models import User
-from register.forms.client import ClientForm, UserForm, CreateUserForm
+from django.contrib.auth.decorators import permission_required
 from django.shortcuts import render, redirect, get_object_or_404
 from django.core.paginator import Paginator
 
+from register.forms.client import ClientForm, UserForm, CreateUserForm
 
+
+@permission_required('is_staff')
 def adminUserListView(request):
     contact_list = User.objects.order_by('-id')
     paginator = Paginator(contact_list, 15)
@@ -15,6 +18,7 @@ def adminUserListView(request):
     return render(request, 'admin_panel/users/users.html', context)
 
 
+@permission_required('is_staff')
 def adminUserCreateView(request):
 
     user_form = CreateUserForm()
@@ -39,6 +43,7 @@ def adminUserCreateView(request):
     return render(request, 'admin_panel/users/user_add.html', context)
 
 
+@permission_required('is_staff')
 def adminUserUpdateView(request, user_id):
 
     user = User.objects.get(id=user_id)
@@ -59,6 +64,7 @@ def adminUserUpdateView(request, user_id):
     return render(request, 'admin_panel/users/user_update.html', context)
 
 
+@permission_required('is_staff')
 def adminUserDeleteView(request, user_id):
     """
     Delete Hall in the Cinema

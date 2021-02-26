@@ -2,11 +2,15 @@ from django.urls import reverse_lazy
 from django.shortcuts import render, redirect, get_object_or_404, get_list_or_404
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.forms import inlineformset_factory
+from django.contrib.auth.decorators import permission_required
+from django.utils.decorators import method_decorator
+
 from kino.models.news import News
 from kino.forms.news import NewsForm
 from kino.models.image import NewsImage
 
 
+@method_decorator(permission_required('is_staff'), name='dispatch')
 class AdminNewsView(ListView):
     model = News
     template_name = 'admin_panel/news/news.html'
@@ -14,6 +18,7 @@ class AdminNewsView(ListView):
     paginate_by = 15
 
 
+@permission_required('is_staff')
 def admin_news_detail_view(request, news_id):
     news = News.objects.get(id=news_id)
     image_list = NewsImage.objects.filter(news=news)
@@ -23,6 +28,7 @@ def admin_news_detail_view(request, news_id):
     return render(request, template_name, context)
 
 
+@permission_required('is_staff')
 def admin_news_create_view(request):
     NewsFormSet = inlineformset_factory(
         News, NewsImage, fields='__all__', extra=5, max_num=5)
@@ -44,6 +50,7 @@ def admin_news_create_view(request):
     return render(request, template_name, context)
 
 
+@permission_required('is_staff')
 def admin_news_update_view(request, news_id):
     NewsFormSet = inlineformset_factory(
         News, NewsImage, fields='__all__', extra=5, max_num=5)
@@ -65,6 +72,7 @@ def admin_news_update_view(request, news_id):
     return render(request, template_name, context)
 
 
+@method_decorator(permission_required('is_staff'), name='dispatch')
 class AdminNewsDeleteView(DeleteView):
     model = News
     template_name = 'admin_panel/news/news_delete.html'

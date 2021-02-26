@@ -2,6 +2,9 @@ from django.urls import reverse_lazy
 from django.views.generic import DeleteView, ListView
 from django.shortcuts import render, redirect
 from django.forms import inlineformset_factory
+from django.contrib.auth.decorators import permission_required
+from django.utils.decorators import method_decorator
+
 from kino.forms.film import FilmForm
 from kino.models.film import Film
 from kino.models.image import FilmImage
@@ -9,6 +12,7 @@ from ...repositories.film import get_film_by_id
 from ...repositories.image import get_film_image_list_by_id
 
 
+@method_decorator(permission_required('is_staff'), name='dispatch')
 class AdminFilmsView(ListView):
     model = Film
     template_name = 'admin_panel/film/films.html'
@@ -16,6 +20,7 @@ class AdminFilmsView(ListView):
     paginate_by = 15
 
 
+@permission_required('is_staff')
 def admin_film_detail_view(request, film_id):
     return render(
         request,
@@ -27,6 +32,7 @@ def admin_film_detail_view(request, film_id):
     )
 
 
+@permission_required('is_staff')
 def admin_film_create_view(request):
     FilmFormSet = inlineformset_factory(
         Film, FilmImage, fields='__all__', extra=5, max_num=5)
@@ -47,6 +53,7 @@ def admin_film_create_view(request):
     return render(request, template_name, context)
 
 
+@permission_required('is_staff')
 def admin_film_update_view(request, film_id):
     FilmFormSet = inlineformset_factory(
         Film, FilmImage, fields='__all__', extra=5, max_num=5)
@@ -67,6 +74,7 @@ def admin_film_update_view(request, film_id):
     return render(request, template_name, context)
 
 
+@method_decorator(permission_required('is_staff'), name='dispatch')
 class AdminFilmDeleteView(DeleteView):
     model = Film
     template_name = 'admin_panel/film/film_delete.html'

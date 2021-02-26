@@ -3,12 +3,14 @@ from django.forms import inlineformset_factory
 from django.shortcuts import render, redirect, \
     get_list_or_404, get_object_or_404
 from django.core.exceptions import ObjectDoesNotExist
+from django.contrib.auth.decorators import permission_required
 
 from kino.models.pages import HomePage, Contacts, Page
 from kino.models.image import *
 from kino.forms.pages import *
 
 
+@permission_required('is_staff')
 def admin_pages_view(request):
     pages = HomePage.objects.all()
 
@@ -16,6 +18,7 @@ def admin_pages_view(request):
     return render(request, 'admin_panel/pages.html', context)
 
 
+@permission_required('is_staff')
 def admin_home_page_view(request):
     try:
         homepage = HomePage.objects.get(id=0)
@@ -39,6 +42,7 @@ def admin_home_page_view(request):
     return render(request, 'admin_panel/pages/home_page.html', context)
 
 
+@permission_required('is_staff')
 def admin_contacts_page_view(request):
     try:
         contacts = Contacts.objects.get(id=0)
@@ -62,6 +66,7 @@ def admin_contacts_page_view(request):
     return render(request, template_name, context)
 
 
+@permission_required('is_staff')
 def admin_about_page_view(request):
     PageFormSet = inlineformset_factory(
         Page, AboutImage, fields='__all__', extra=5, max_num=5)
@@ -92,6 +97,7 @@ def admin_about_page_view(request):
     return render(request, template_name, context)
 
 
+@permission_required('is_staff')
 def admin_cafe_bar_page_view(request):
     PageFormSet = inlineformset_factory(
         Page, CafeBarImage, fields='__all__', extra=5, max_num=5)
@@ -121,6 +127,7 @@ def admin_cafe_bar_page_view(request):
     return render(request, template_name, context)
 
 
+@permission_required('is_staff')
 def admin_vip_hall_page_view(request):
     PageFormSet = inlineformset_factory(
         Page, VipHallImage, fields='__all__', extra=5, max_num=5)
@@ -150,6 +157,7 @@ def admin_vip_hall_page_view(request):
     return render(request, template_name, context)
 
 
+@permission_required('is_staff')
 def admin_advertising_page_view(request):
     PageFormSet = inlineformset_factory(
         Page, AdvertisingImage, fields='__all__', extra=5, max_num=5)
@@ -179,6 +187,7 @@ def admin_advertising_page_view(request):
     return render(request, template_name, context)
 
 
+@permission_required('is_staff')
 def admin_children_room_page_view(request):
     PageFormSet = inlineformset_factory(
         Page, ChildrenRoomImage, fields='__all__', extra=5, max_num=5)
@@ -209,6 +218,7 @@ def admin_children_room_page_view(request):
     return render(request, template_name, context)
 
 
+@permission_required('is_staff')
 def admin_mobile_app_page_view(request):
     PageFormSet = inlineformset_factory(
         Page, MobileAppImage, fields='__all__', extra=5, max_num=5)

@@ -1,12 +1,14 @@
 from django.forms import modelformset_factory
 from django.views.decorators.http import require_http_methods
 from django.shortcuts import redirect, render, reverse
+from django.contrib.auth.decorators import permission_required
 
 from kino.models.banners import *
 from kino.forms.banners import *
 from kino.services.banners import *
 
 
+@permission_required('is_staff')
 @require_http_methods(['GET', 'POST'])
 def slider_banners_update(request):
     SliderFormSet = modelformset_factory(
@@ -37,6 +39,7 @@ def slider_banners_update(request):
     )
 
 
+@permission_required('is_staff')
 @require_http_methods(['GET', 'POST'])
 def back_banners_update(request):
     form = BackBannerForm(
@@ -56,6 +59,7 @@ def back_banners_update(request):
     )
 
 
+@permission_required('is_staff')
 @require_http_methods(['GET', 'POST'])
 def shares_banners_update(request):
     SharesFormSet = modelformset_factory(

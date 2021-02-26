@@ -10,6 +10,8 @@ from django.urls import reverse_lazy
 from django.forms import inlineformset_factory, formset_factory
 from django.shortcuts import render, redirect, \
     get_object_or_404, get_list_or_404
+from django.contrib.auth.decorators import permission_required
+from django.utils.decorators import method_decorator
 
 from django.core.paginator import Paginator
 from django.views.generic import ListView, DetailView, \
@@ -21,6 +23,7 @@ from kino.models.image import *
 
 
 # Cinema
+@method_decorator(permission_required('is_staff'), name='dispatch')
 class AdminCinemasView(ListView):
     """This class-based view and display 
     html template of list of cinemas."""
@@ -29,6 +32,7 @@ class AdminCinemasView(ListView):
     paginate_by = 4
 
 
+@method_decorator(permission_required('is_staff'), name='dispatch')
 class AdminCinemaDeleteView(DeleteView):
     """This class-based view and display 
     html template of delete cinema."""
@@ -37,6 +41,7 @@ class AdminCinemaDeleteView(DeleteView):
     success_url = reverse_lazy('admin_cinemas')
 
 
+@permission_required('is_staff')
 def admin_cinema_create_view(request):
     """This view which display html template of create cinema."""
     CinemaFormSet = inlineformset_factory(
@@ -62,6 +67,7 @@ def admin_cinema_create_view(request):
     )
 
 
+@permission_required('is_staff')
 def admin_cinema_update_view(request, cinema_id):
     """This view which display html template of update cinema."""
     CinemaFormSet = inlineformset_factory(
@@ -88,6 +94,7 @@ def admin_cinema_update_view(request, cinema_id):
     )
 
 
+@permission_required('is_staff')
 def admin_cinema_detail_view(request, cinema_id):
     """This view which display html template of detail info cinema."""
     cinema = Cinema.objects.get(id=cinema_id)
@@ -107,6 +114,7 @@ def admin_cinema_detail_view(request, cinema_id):
 
 
 # CinemaHall
+@permission_required('is_staff')
 def admin_cinemahall_create_view(request, cinema_id):
     """This view which display html template of create cinema hall."""
     CinemaHallFormSet = inlineformset_factory(
@@ -137,6 +145,7 @@ def admin_cinemahall_create_view(request, cinema_id):
     )
 
 
+@permission_required('is_staff')
 def admin_cinemahall_detail_view(request, cinema_id, cinemahall_id):
     """This view which display html template of detail info cinema hall."""
     cinema = get_object_or_404(Cinema, id=cinema_id)
@@ -151,6 +160,7 @@ def admin_cinemahall_detail_view(request, cinema_id, cinemahall_id):
     )
 
 
+@permission_required('is_staff')
 def admin_cinemahall_update_view(request, cinema_id, cinemahall_id):
     """This view which display html template of update cinema hall."""
     CinemaHallFormSet = inlineformset_factory(
@@ -186,6 +196,7 @@ def admin_cinemahall_update_view(request, cinema_id, cinemahall_id):
     )
 
 
+@permission_required('is_staff')
 def admin_cinemahall_delete_view(request, cinema_id, cinemahall_id):
     """This view which display html template of delete cinema hall."""
     cinema = get_object_or_404(Cinema, id=cinema_id)
