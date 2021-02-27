@@ -19,6 +19,6 @@ def admin_ads_view(request):
     
     return render(
         request,
-        'admin_panel/ads.html',
+        'admin_panel/pages/ads.html',
         {'ads': get_ads_list, 'formset': formset}
     )
