@@ -157,6 +157,7 @@ LOGIN_URL = '/profile/login/'
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
 
+GOOGLE_MAPS_API_KEY = 'AIzaSyBocLXpIhv62c6yyAcpGH-MYhZotTli3mI'
 
 # Mailing setting
 EMAIL_HOST = 'smtp.gmail.com'

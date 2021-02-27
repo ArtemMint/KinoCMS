@@ -3,7 +3,7 @@
 
 <head>
     <meta name="description" property="og:description" content="{{contacts.seo_description}}">
-    <meta name="keywords" content="{{contacts.seo_keywords}}">    
+    <meta name="keywords" content="{{contacts.seo_keywords}}">
 </head>
 
 {% block title %}
@@ -31,11 +31,32 @@
                         </div>
                     </div>
                     <div class="col-md-6" style="min-height: 50vh;">
-                        <div class="col-md-12"style="min-height: 20vh;">
+                        <div class="col-md-12" style="min-height: 20vh;">
                             {{ contacts.address|linebreaks}}
                         </div>
-                        <div class="col-md-12"style="min-height: 30vh;">
-                            Coordinates {{ contacts.coordinates }}
+                        <div class="col-md-12" style="min-height: 30vh;">
+                            <div id="map" style="height: 40vh; width: 100%%;"></div>
+                            <script>
+                                function initMap(){
+                                    var myLatlng = new google.maps.LatLng({{ contacts.coordinates }});
+
+                                    var opt = {
+                                        center: myLatlng,
+                                        zoom: 15,
+                                        mapId: 'b765085ca4bff21c',
+                                    };
+
+                                    var map = new google.maps.Map(document.getElementById('map'), opt);
+
+                                    const marker = new google.maps.Marker({
+                                        position: opt,
+                                        map: map,
+                                    });
+                            }
+                            </script>
+                            <script
+                                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBocLXpIhv62c6yyAcpGH-MYhZotTli3mI&map_ids=b765085ca4bff21c&callback=initMap">
+                            </script>
                         </div>
                     </div>
                     </div>
@@ -56,3 +77,6 @@
     </div>
 </div>
 {% endblock  %}
+
+
+
