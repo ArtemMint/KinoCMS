@@ -8,13 +8,14 @@ __author__ = 'Ivan Humeniuk'
 
 from django import forms
 
-from ..models.banners import *
+from kino.models.banners import SharesBanner, SliderBanner, BackBanner
 
 
 class SliderBannerForm(forms.ModelForm):
     """SliderBannerForm has connect with model SliderBanner and fields:
     image, url,text."""
     class Meta:
+        """Meta class"""
         model = SliderBanner
         fields = '__all__'
         widgets = {
@@ -34,9 +35,10 @@ class SliderBannerForm(forms.ModelForm):
 
 
 class BackBannerForm(forms.ModelForm):
-    """BackBannerForm has connect with 
+    """BackBannerForm has connect with
     model BackBanner and field: image."""
     class Meta:
+        """Meta class"""
         model = BackBanner
         fields = '__all__'
         widgets = {
@@ -52,6 +54,7 @@ class SharesBannerForm(forms.ModelForm):
     model SharesBanner and fields:
     image, url."""
     class Meta:
+        """Meta class"""
         model = SharesBanner
         fields = '__all__'
         widgets = {

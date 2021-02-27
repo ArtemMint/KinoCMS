@@ -22,15 +22,16 @@ GENRES = (
 class FilmForm(forms.ModelForm):
     """FilmForm has connect with Film model and fields:
 
-    name, year, country, director, producer, music, scenarist, 
-    genre, description, video, premiere, seo_title, seo_keywords, 
+    name, year, country, director, producer, music, scenarist,
+    genre, description, video, premiere, seo_title, seo_keywords,
     seo_description."""
-    
+
     genre = forms.MultipleChoiceField(
         widget=forms.SelectMultiple,
         choices=GENRES)
-    
+
     class Meta:
+        """Meta class"""
         model = Film
         fields = '__all__'
         widgets = {
@@ -60,7 +61,7 @@ class FilmForm(forms.ModelForm):
             'scenarist': forms.TextInput(
                 attrs={'class': 'form-control', 'placeholder': 'Written By'}
             ),
-            
+
             'description': forms.Textarea(
                 attrs={'class': 'form-control',
                        'placeholder': 'Description of the film'}

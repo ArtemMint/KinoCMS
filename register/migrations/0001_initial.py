@@ -19,15 +19,58 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Client',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('address', models.CharField(max_length=50, null=True)),
-                ('num_card', models.CharField(max_length=20, null=True)),
+                (
+                    'id',
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name='ID',
+                    )
+                ),
+                (
+                    'address',
+                    models.CharField(
+                        max_length=50,
+                        null=True,
+                    )
+                ),
+                (
+                    'num_card',
+                    models.CharField(max_length=20, null=True)),
                 ('birth_date', models.DateField(default=django.utils.timezone.now, null=True)),
-                ('gender', models.CharField(choices=[('Unknown', 'Unknown'), ('Male', 'Male'), ('Female', 'Female')], max_length=20, null=True)),
-                ('language', models.CharField(choices=[('UA', 'Ukrainian'), ('RU', 'Russian')], max_length=20, null=True)),
-                ('phone', phonenumber_field.modelfields.PhoneNumberField(max_length=13, null=True, region=None, unique=True)),
+                ('gender',
+                 models.CharField(
+                     choices=[
+                         ('Unknown', 'Unknown'),
+                         ('Male', 'Male'),
+                         ('Female', 'Female')
+                     ],
+                     max_length=20,
+                     null=True)
+                 ),
+                ('language',
+                 models.CharField(
+                     choices=[
+                         ('UA', 'Ukrainian'),
+                         ('RU', 'Russian')
+                     ],
+                     max_length=20,
+                     null=True)
+                 ),
+                ('phone',
+                 phonenumber_field.modelfields.PhoneNumberField(
+                     max_length=13,
+                     null=True,
+                     region=None,
+                     unique=True)
+                 ),
                 ('city', models.CharField(blank=True, max_length=50, null=True)),
-                ('user', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                ('user',
+                 models.OneToOneField(
+                     on_delete=django.db.models.deletion.CASCADE,
+                     to=settings.AUTH_USER_MODEL)
+                 ),
             ],
         ),
     ]

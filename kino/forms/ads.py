@@ -8,13 +8,14 @@ __author__ = 'Artem Yurchak'
 
 from django import forms
 
-from ..models.ads import *
+from ..models.ads import ADS
 
 
 class ADSForm(forms.ModelForm):
     """ADSForm has connect with model ADS and fields:
     image, url."""
     class Meta:
+        """Meta class"""
         model = ADS
         fields = '__all__'
         widgets = {

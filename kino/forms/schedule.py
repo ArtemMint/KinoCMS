@@ -16,6 +16,7 @@ class ScheduleForm(forms.ModelForm):
 
     film, cinemahall, date, time."""
     class Meta:
+        """Meta class"""
         model = Schedule
         fields = '__all__'
         widgets = {

@@ -1,12 +1,16 @@
+"""Shares form"""
+
 from django import forms
 
 from kino.models.shares import Shares
 
 
 class SharesForm(forms.ModelForm):
+    """Shares form"""
     preview = forms.ImageField()
 
     class Meta:
+        """Meta class"""
         model = Shares
         fields = '__all__'
         widgets = {
@@ -15,7 +19,7 @@ class SharesForm(forms.ModelForm):
                        'placeholder': 'Name of the Shares'}
             ),
             'pub_date': forms.DateInput(
-                format=('%Y-%m-%d'),    
+                format=('%Y-%m-%d'),
                 attrs={'type': 'date'}
             ),
             'description': forms.Textarea(

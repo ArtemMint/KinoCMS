@@ -1,12 +1,16 @@
+"""News forms"""
+
 from django import forms
 
 from kino.models.news import News
 
 
 class NewsForm(forms.ModelForm):
+    """News form"""
     preview = forms.ImageField()
 
     class Meta:
+        """Meta class"""
         model = News
         fields = '__all__'
         widgets = {
