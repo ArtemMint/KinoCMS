@@ -23,9 +23,9 @@ class MalingUsersForm(forms.Form):
 
 
 class MalingGroupUsersForm(forms.Form):
-    OPTIONS = [(f'{email}', f'{email}')
-               for email in get_all_users_email_list()]
-    # OPTIONS = [(1,1),(2,2),]
+    # OPTIONS = [(f'{email}', f'{email}')
+    #            for email in get_all_users_email_list()]
+    OPTIONS = [(1,1),(2,2),]
 
     emails = forms.MultipleChoiceField(
         widget=forms.CheckboxSelectMultiple,

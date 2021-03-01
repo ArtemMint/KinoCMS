@@ -14,7 +14,7 @@ from django.core.validators import RegexValidator
 
 class SliderBanner(models.Model):
     """SliderBanner model has fields:
-    image, url,text.
+    image, url, text.
     """
     image = models.FileField(blank=False, upload_to='banners/slider')
     url = models.URLField(blank=False)
