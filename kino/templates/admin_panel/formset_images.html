@@ -1,8 +1,8 @@
 <h3 class="text-center">Gallery</h3>
 <div class="row">
     {% for form in formset %}
-        <div class='col-md'>
-            <div class='card mb shadow-sm'>
+        <div class='col-md-2'>
+            <div class='card mb-2 shadow-sm'>
                 <img id='image' class="img-fluid" src="/media/{{form.image.value}}" alt="image" style="height: 225px; display: block; margin: auto;">
                 <div class="card-body">               
                     {{ form.image }}
@@ -16,7 +16,7 @@
                         output.src = reader.result;
                         }
                         reader.readAsDataURL(event.target.files[0]);
-                        }
+                        } 
                     </script>
                     <br>
                     {{form.DELETE.label}}{{form.DELETE}}
