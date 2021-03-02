@@ -4,9 +4,9 @@
 {% block title %}AdminLTE | Cinema «{{ cinema.name }}»{% endblock title %}
 
 {% block breadcrumb %}
-    <li class="breadcrumb-item"><a href="{% url 'admin_statistics' %}">Home</a></li>
-    <li class="breadcrumb-item active"><a href="{% url 'admin_cinemas' %}">Cinemas</a></li>
-    <li class="breadcrumb-item active">«{{ cinema.name|truncatechars:20 }}»</li>
+<li class="breadcrumb-item"><a href="{% url 'admin_statistics' %}">Home</a></li>
+<li class="breadcrumb-item active"><a href="{% url 'admin_cinemas' %}">Cinemas</a></li>
+<li class="breadcrumb-item active">«{{ cinema.name|truncatechars:20 }}»</li>
 {% endblock breadcrumb %}
 
 
@@ -24,31 +24,58 @@
                 <div class="col-md-5">
                     <div class="box">
                         <div class="box-body">
-                            <table id="example2" class="table table-bordered table-hover dataTable" role="grid" aria-describedby="example2_info">
-                            <div class="card-body"> 
-                                <a href="{% url 'admin_add_cinemahall' cinema.id%}"><button type="button" class="btn btn-lg btn-block btn-outline-primary">Add New Hall</button></a>
-                            </div>
-                            {% if cinemahalls %}
+                            <table id="example2" class="table table-bordered table-hover dataTable" role="grid"
+                                   aria-describedby="example2_info">
+                                <div class="card-body">
+                                    <a href="{% url 'admin_cinemahall_type_add' cinema.id%}">
+                                        <button type="button" class="btn btn-lg btn-block btn-outline-success">Add New
+                                            Hall Type
+                                        </button>
+                                    </a>
+                                </div>
+                                <div class="card-body">
+                                    <a href="{% url 'admin_add_cinemahall' cinema.id%}">
+                                        <button type="button" class="btn btn-lg btn-block btn-outline-primary">Add New
+                                            Hall
+                                        </button>
+                                    </a>
+                                </div>
+                                {% if cinemahalls %}
                                 <thead>
                                 <tr role="row">
-                                    <th class="sorting_asc text-center" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Rendering engine: activate to sort column descending" aria-sort="ascending">Name</th>
-                                    <th class="sorting text-center" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Created date</th>
-                                    <th class="sorting text-center" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending">Edit/Delete</th>
+                                    <th class="sorting_asc text-center" tabindex="0" aria-controls="example2"
+                                        rowspan="1" colspan="1"
+                                        aria-label="Rendering engine: activate to sort column descending"
+                                        aria-sort="ascending">Name
+                                    </th>
+                                    <th class="sorting text-center" tabindex="0" aria-controls="example2" rowspan="1"
+                                        colspan="1" aria-label="Browser: activate to sort column ascending">Created date
+                                    </th>
+                                    <th class="sorting text-center" tabindex="0" aria-controls="example2" rowspan="1"
+                                        colspan="1" aria-label="Engine version: activate to sort column ascending">
+                                        Edit/Delete
+                                    </th>
                                 </thead>
                                 {% for cinemahall in page_obj %}
-                                    <tbody>
-                                        <tr role="row" class="odd">
-                                            <td class="text-center" width="40%"><a href="{% url 'admin_cinemahall_detail' cinema.id cinemahall.id%}">{{cinemahall.name|truncatechars:10}}</a></td>
-                                            <td class="text-center" width="30%">{{cinemahall.created_date}}</td>
-                                            <td class="text-center" width="30%"><a class="btn btn-sm btn-warning" href="{% url 'admin_update_cinemahall' cinema.id cinemahall.id%}">Update</a> <a class="btn btn-sm btn-danger" href="{% url 'admin_delete_cinemahall' cinema.id cinemahall.id%}">Delete</a></td>
-                                        </tr>
-                                    </tbody>
+                                <tbody>
+                                <tr role="row" class="odd">
+                                    <td class="text-center" width="40%"><a
+                                            href="{% url 'admin_cinemahall_detail' cinema.id cinemahall.id%}">{{cinemahall.name|truncatechars:10}}</a>
+                                    </td>
+                                    <td class="text-center" width="30%">{{cinemahall.created_date}}</td>
+                                    <td class="text-center" width="30%"><a class="btn btn-sm btn-warning"
+                                                                           href="{% url 'admin_update_cinemahall' cinema.id cinemahall.id%}">Update</a>
+                                        <a class="btn btn-sm btn-danger"
+                                           href="{% url 'admin_delete_cinemahall' cinema.id cinemahall.id%}">Delete</a>
+                                    </td>
+                                </tr>
+                                </tbody>
                                 {% endfor %}
-                            {% else %}
+                                {% else %}
                                 <blockquote class="text-center">
-                                    <p class="blockquote text-center">There`re no cinemas yet 🙄</p> 
+                                    <p class="blockquote text-center">There`re no cinemas yet 🙄</p>
                                 </blockquote>
-                            {% endif %}
+                                {% endif %}
                             </table>
                             <div class="pagination">
                                 <span class="step-links">
@@ -89,23 +116,25 @@
                 <ol class="carousel-indicators">
                     {% comment %} DYNAMIC CAROUSEL BOTTOM INDICATOR {% endcomment %}
                     {% for image in image_list %}
-                        {% if forloop.counter0|divisibleby:"1" %}
-                            <li data-target="#carouselExampleIndicators" data-slide-to="{{forloop}}" {% if forloop.first %} class="active" {% endif %}></li>
-                        {% endif %}
+                    {% if forloop.counter0|divisibleby:"1" %}
+                    <li data-target="#carouselExampleIndicators" data-slide-to="{{forloop}}" {% if forloop.first %}
+                        class="active" {% endif %}></li>
+                    {% endif %}
                     {% endfor %}
                 </ol>
-                
+
                 {% comment %} DYNAMIC SLIDER {% endcomment %}
                 <div class="carousel-inner" role="listbox" style=" width:100%; height: 90vh !important;">
                     {% for image in image_list %}
-                        {% if forloop.counter0|divisibleby:"1" %}
-                            <div class="carousel-item {% if forloop.first %} active {% endif %}"> 
-                                <div class="row">{% endif %}
-                                    <img src="{{image.image.url}}" alt="{{image.image}}" style="width:100%; height: 100vh !important;">
-                                    {% if forloop.counter0|divisibleby:"1" %}
-                                </div>
-                            </div>
-                        {% endif %}
+                    {% if forloop.counter0|divisibleby:"1" %}
+                    <div class="carousel-item {% if forloop.first %} active {% endif %}">
+                        <div class="row">{% endif %}
+                            <img src="{{image.image.url}}" alt="{{image.image}}"
+                                 style="width:100%; height: 100vh !important;">
+                            {% if forloop.counter0|divisibleby:"1" %}
+                        </div>
+                    </div>
+                    {% endif %}
                     {% endfor %}
                 </div>
 
@@ -123,8 +152,8 @@
                     <span class="sr-only">Next</span>
                 </a>
             </div>
-    {% endif %}
-    </div>     
+            {% endif %}
+        </div>
 
     </div>
     <div class="card-footer clearfix">

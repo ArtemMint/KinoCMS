@@ -1,6 +1,4 @@
 from django.shortcuts import redirect, render
-
-
 from ...repositories.pages import *
 from ...repositories.ads import *
 

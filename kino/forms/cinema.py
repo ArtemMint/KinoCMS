@@ -8,8 +8,10 @@ __version__ = '0.1'
 __author__ = 'Artem Yurchak'
 
 from django import forms
+from django.contrib.postgres.forms import HStoreField, SimpleArrayField
 
 from kino.models.cinema import Cinema, CinemaHall
+
 
 
 class CinemaForm(forms.ModelForm):

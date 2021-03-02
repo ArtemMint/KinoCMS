@@ -14,6 +14,7 @@ from django.contrib.auth.decorators import permission_required
 from django.utils.decorators import method_decorator
 
 from django.core.paginator import Paginator
+from django.views.decorators.http import require_http_methods
 from django.views.generic import ListView, DetailView, \
     CreateView, UpdateView, DeleteView
 
@@ -213,3 +214,8 @@ def admin_cinemahall_delete_view(request, cinema_id, cinemahall_id):
         {'cinema': cinema,
          'cinemahall': cinemahall},
     )
+
+
+@require_http_methods(['GET', 'POST'])
+def admin_cinemahall_type_add(request, cinema_id):
+    return render(request, 'admin_panel/cinema/cinemahall_type_add.html')

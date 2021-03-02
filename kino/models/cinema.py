@@ -2,6 +2,7 @@ import datetime
 
 from django.db import models
 from django.urls import reverse
+from django.contrib.postgres.fields import ArrayField, HStoreField
 
 
 def upload_cinema_preview(instance, filename):
@@ -46,3 +47,10 @@ class CinemaHall(models.Model):
 
     def __str__(self):
         return f'{self.name}'
+
+
+class HallType(models.Model):
+    name = models.CharField(max_length=200, null=False, editable=True)
+    seats = ArrayField(
+        HStoreField()
+    )
