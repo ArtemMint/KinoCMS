@@ -18,14 +18,38 @@ def upload_cinemahall_preview(instance, filename):
 
 
 class Cinema(models.Model):
-    name = models.CharField(max_length=50, default='')
-    description = models.TextField(max_length=1000, blank=True)
-    conditions = models.TextField(max_length=1000, blank=True)
-    logo = models.ImageField(upload_to=upload_cinema_logo, blank=True)
-    preview = models.ImageField(upload_to=upload_cinema_preview, blank=True)
-    seo_title = models.CharField(max_length=50, blank=True)
-    seo_keywords = models.CharField(max_length=100, blank=True)
-    seo_description = models.TextField(max_length=100, blank=True)
+    name = models.CharField(
+        max_length=50,
+        default=''
+    )
+    description = models.TextField(
+        max_length=1000,
+        blank=True
+    )
+    conditions = models.TextField(
+        max_length=1000,
+        blank=True
+    )
+    logo = models.ImageField(
+        upload_to=upload_cinema_logo,
+        blank=True
+    )
+    preview = models.ImageField(
+        upload_to=upload_cinema_preview,
+        blank=True
+    )
+    seo_title = models.CharField(
+        max_length=50,
+        blank=True
+    )
+    seo_keywords = models.CharField(
+        max_length=100,
+        blank=True
+    )
+    seo_description = models.TextField(
+        max_length=100,
+        blank=True
+    )
 
     def __str__(self):
         return f"{self.name}"
@@ -35,22 +59,51 @@ class Cinema(models.Model):
 
 
 class CinemaHall(models.Model):
-    cinema = models.ForeignKey(Cinema, default='', on_delete=models.CASCADE)
-    name = models.CharField(max_length=50, default='')
-    created_date = models.DateField(default=datetime.datetime.now)
-    description = models.TextField(max_length=1000, blank=True)
-    scheme = models.ImageField(upload_to='images/scheme')
-    preview = models.ImageField(upload_to=upload_cinemahall_preview)
-    seo_title = models.CharField(max_length=50, blank=True)
-    seo_keywords = models.CharField(max_length=100, blank=True)
-    seo_description = models.CharField(max_length=100, blank=True)
+    cinema = models.ForeignKey(
+        Cinema,
+        default='',
+        on_delete=models.CASCADE
+    )
+    name = models.CharField(
+        max_length=50,
+        default=''
+    )
+    created_date = models.DateField(
+        default=datetime.datetime.now
+    )
+    description = models.TextField(
+        max_length=1000,
+        blank=True
+    )
+    scheme = models.ImageField(
+        upload_to='images/scheme'
+    )
+    preview = models.ImageField(
+        upload_to=upload_cinemahall_preview
+    )
+    seo_title = models.CharField(
+        max_length=50,
+        blank=True
+    )
+    seo_keywords = models.CharField(
+        max_length=100,
+        blank=True
+    )
+    seo_description = models.CharField(
+        max_length=100,
+        blank=True
+    )
 
     def __str__(self):
         return f'{self.name}'
 
 
 class HallType(models.Model):
-    name = models.CharField(max_length=200, null=False, editable=True)
+    name = models.CharField(
+        max_length=200,
+        null=False,
+        editable=True
+    )
     seats = ArrayField(
         HStoreField()
     )

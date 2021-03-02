@@ -16,6 +16,17 @@ class Ticket(models.Model):
     row = models.IntegerField(null=False)
     place = models.IntegerField(null=False)
     price = models.IntegerField(null=False)
-    status = models.CharField(null=False, choices=BOOKING_STATUS, default='Free')
-    type = models.CharField(null=False, choices=PLACE_TYPE)
-    schedule = models.ForeignKey(Schedule, null=False, on_delete=models.CASCADE)
+    status = models.CharField(
+        null=False,
+        choices=BOOKING_STATUS,
+        default='Free'
+    )
+    type = models.CharField(
+        null=False,
+        choices=PLACE_TYPE
+    )
+    schedule = models.ForeignKey(
+        Schedule,
+        null=False,
+        on_delete=models.CASCADE
+    )

@@ -42,7 +42,11 @@ def admin_schedule_update_view(request, schedule_id):
 
     form = ScheduleForm(instance=get_schedule_by_id(schedule_id))
     if request.method == "POST":
-        form = ScheduleForm(request.POST, request.FILES, instance=get_schedule_by_id(schedule_id))
+        form = ScheduleForm(
+            request.POST,
+            request.FILES,
+            instance=get_schedule_by_id(schedule_id)
+            )
         if form.is_valid():
             form.save()
             return redirect('admin_schedule')

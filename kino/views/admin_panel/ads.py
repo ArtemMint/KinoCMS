@@ -8,7 +8,13 @@ from kino.repositories.ads import *
 
 @permission_required('is_staff')
 def admin_ads_view(request):
-    ADSFormSet = modelformset_factory(ADS, ADSForm, fields=('image','url'), extra=2, max_num=2,)
+    ADSFormSet = modelformset_factory(
+        ADS,
+        ADSForm,
+        fields=('image','url'),
+        extra=2,
+        max_num=2,
+        )
     formset = ADSFormSet()
     
     if request.method == "POST":

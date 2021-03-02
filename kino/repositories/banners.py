@@ -2,7 +2,8 @@
 
 from django.core.exceptions import ObjectDoesNotExist
 
-from kino.models.banners import SliderBanner, SharesBanner, BackBanner
+from kino.models.banners import SliderBanner, \
+    SharesBanner, BackBanner
 
 
 def get_slider_banners():
@@ -14,7 +15,7 @@ def get_slider_banners():
     return slider_banners
 
 
-def get_back_banner() -> list:
+def get_back_banner():
     """get background image"""
     try:
         background = BackBanner.objects.last()
@@ -23,7 +24,7 @@ def get_back_banner() -> list:
     return background
 
 
-def get_shares_banners() -> list:
+def get_shares_banners():
     """get all shares images"""
     try:
         shares_banners = SharesBanner.objects.all()

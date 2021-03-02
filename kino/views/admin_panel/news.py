@@ -1,6 +1,8 @@
 from django.urls import reverse_lazy
-from django.shortcuts import render, redirect, get_object_or_404, get_list_or_404
-from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.shortcuts import render, \
+    redirect, get_object_or_404, get_list_or_404
+from django.views.generic import ListView, \
+    DetailView, CreateView, UpdateView, DeleteView
 from django.forms import inlineformset_factory
 from django.contrib.auth.decorators import permission_required
 from django.utils.decorators import method_decorator
