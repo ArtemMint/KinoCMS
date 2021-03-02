@@ -214,7 +214,7 @@ def admin_vip_hall_page_view(request):
     if request.method == "POST":
         form = PageForm(
             request.POST,
-            request.FILES
+            request.FILES,
             instance=viphall
         )
         formset = PageFormSet(
