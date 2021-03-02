@@ -5,7 +5,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from kino.models.ads import ADS
 
 
-def get_ads_list() -> ADS:
+def get_ads_list():
     """get list of all ads"""
     try:
         ads = ADS.objects.all()
@@ -14,7 +14,7 @@ def get_ads_list() -> ADS:
     return ads
 
 
-def get_ads_first() -> ADS:
+def get_ads_first():
     """get only first item in DB"""
     try:
         ads = ADS.objects.first()
@@ -23,7 +23,7 @@ def get_ads_first() -> ADS:
     return ads
 
 
-def get_ads_last() -> ADS:
+def get_ads_last():
     """get only last item in DB"""
     try:
         ads = ADS.objects.last()

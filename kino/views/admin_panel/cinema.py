@@ -10,6 +10,7 @@ from django.urls import reverse_lazy
 from django.forms import inlineformset_factory, formset_factory
 from django.shortcuts import render, redirect, \
     get_object_or_404, get_list_or_404
+from django.views.decorators.http import require_http_methods
 from django.contrib.auth.decorators import permission_required
 from django.utils.decorators import method_decorator
 
@@ -214,7 +215,7 @@ def admin_cinemahall_delete_view(request, cinema_id, cinemahall_id):
         {'cinema': cinema,
          'cinemahall': cinemahall},
     )
-
+    
 
 @require_http_methods(['GET', 'POST'])
 def admin_cinemahall_type_add(request, cinema_id):

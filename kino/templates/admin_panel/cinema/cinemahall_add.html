@@ -13,38 +13,27 @@
 
 {% block content %}
 <div class="box box-primary">
-    <div class="box-header with-border">
-        <h3 class="box-title">Add new Cinemahall</h3>
-    </div>
-    <!-- /.box-header -->
-    <!-- form start -->
-    <div class="form-group">
-        <form method="POST" enctype="multipart/form-data">{% csrf_token %}
-            <div class="box-body">
-                <div class="form-group">
-                    {{ formset.management_form }}
-                    {{ form.as_p }}
-                    <div class="row">
-                    {% for form in formset %}
-                        <div class='col-md-2'>
-                            <div class='card mb-2 shadow-sm'>
-                                <img src="/media/{{form.image.value}}" style="height: 200px; width: 160px; display: block; margin: auto;">
-                                <div class="card-body">
-                                    {{form}}
-                                </div>
-                            </div>
-                        </div>
-                    {% endfor %}
+    <div class="container-xl">
+        <div class="box-header with-border">
+            <h3 class="box-title text-center">Add new Cinemahall</h3>
+        </div>
+
+        <div class="form-group">
+            <form method="POST" enctype="multipart/form-data">{% csrf_token %}
+                <div class="box-body">
+                    <div class="form-group">
+                        {{ formset.management_form }}
+                        {{ form.as_p }}
+                        {% comment %} FORMSET OF IMAGES {% endcomment %}
+                        {% include 'admin_panel/formset_images.html' %}
+                    </div>
+                    <div class="box-footer">
+                    <button type="submit" class="btn btn-primary">Add new Cinemahall</button>
                     </div>
                 </div>
-                <!-- /.box-body -->
-                <div class="box-footer">
-                <button type="submit" class="btn btn-primary">Add new Cinemahall</button>
-                </div>
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
-    
 </div>
 {% endblock content %}
 

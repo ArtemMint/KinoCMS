@@ -147,6 +147,10 @@ urlpatterns = [
     path(
         'admin/cinemas/<int:cinema_id>/cinemahall/<int:cinemahall_id>/delete/',
         admin_cinemahall_delete_view, name='admin_delete_cinemahall'),
+    
+    # Admin cinema hall type.
+     path('admin/cinemas/<int:cinema_id>/cinemahall/type/add/',
+          admin_cinemahall_type_add, name='admin_cinemahall_type_add'),
 
 
      # Admin cinema hall type.
