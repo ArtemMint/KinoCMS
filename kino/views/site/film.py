@@ -13,7 +13,19 @@ def film_detail_view(request, film_id):
             "film": get_film_by_id(film_id),
             "home_page": get_home_page(),
             "gallery": get_film_image_list_by_id(film_id),
-            'ads':get_ads_first(),
+            'ads': get_ads_first(),
+        }
+    )
+
+
+def poster_view(request):
+    return render(
+        request,
+        'kino/poster.html',
+        {
+            "film_list": get_all_films(),
+            "home_page": get_home_page(),
+            'ads': get_ads_last(),
         }
     )
 
@@ -25,6 +37,6 @@ def premiere_view(request):
         {
             "film_list": get_all_films(),
             "home_page": get_home_page(),
-            'ads':get_ads_last(),
+            'ads': get_ads_last(),
         }
     )

@@ -20,7 +20,6 @@ from kino.views.site.film import *
 from kino.views.site.home import *
 from kino.views.site.news import *
 from kino.views.site.schedule import *
-from kino.views.site.poster import *
 from kino.views.site.shares import *
 from kino.views.site.children_room import *
 from kino.views.site.cafe_bar import *
