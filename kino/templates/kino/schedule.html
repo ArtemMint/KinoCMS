@@ -18,7 +18,7 @@
                 <div class="row">
                     {% regroup schedule_list by date as day_list %}
                     {% for day in day_list%}                                 
-                                <h3>{{day.grouper}}</h3>
+                                <h3>{{day.grouper}} - {{day.grouper|date:"l" }}</h3>
                                 <table id="example2" class="table table-bordered table-hover dataTable" role="grid" aria-describedby="example2_info">
                                     <thead class="thead-dark">
                                         <tr role="row">

@@ -22,7 +22,9 @@ def mailing_all_users(request):
     return render(
         request,
         'admin_panel/mailing/mailing_all_users.html',
-        context={'form': form}
+        {
+            'form': form,
+        }
     )
 
 
@@ -39,5 +41,7 @@ def mailing_group_of_users(request):
     return render(
         request,
         'admin_panel/mailing/mailing_group_of_users.html',
-        context={'form': form}
+        {
+            'form': form,
+        }
     )

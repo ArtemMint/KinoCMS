@@ -31,3 +31,31 @@ class FilmImageForm(forms.ModelForm):
                        'onchange': 'preview_image(event)'}
             ),
         }
+        
+class CinemaImageForm(forms.ModelForm):
+    """CinemaImageForm has connect with FilmImage model and fields:
+    """
+    class Meta:
+        """Meta class"""
+        model = CinemaImage
+        fields = '__all__'
+        widgets = {
+            'image': forms.FileInput(
+                attrs={'class': 'form-control',
+                       'onchange': 'preview_image(event)'}
+            ),
+        }
+
+class CinemaHallImageForm(forms.ModelForm):
+    """CinemaImageForm has connect with FilmImage model and fields:
+    """
+    class Meta:
+        """Meta class"""
+        model = CinemaHallImage
+        fields = '__all__'
+        widgets = {
+            'image': forms.FileInput(
+                attrs={'class': 'form-control',
+                       'onchange': 'preview_image(event)'}
+            ),
+        }

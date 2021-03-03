@@ -45,3 +45,29 @@ def get_schedule_by_id(schedule_id):
     except Film.DoesNotExist:
         schedule = None
     return schedule
+
+
+def get_schedule_by_film_for_each_day(film):
+    """get schedule by film if to display in film detail
+
+    Args:
+        film ([type]): [description]
+    """
+    try:
+        schedule = Schedule.objects.filter(film=film, date__gte=get_current_date()).distinct()
+    except Schedule.DoesNotExist:
+        schedule = None
+    return schedule
+
+
+def get_today_schedule_by_film(film):
+    """get schedule by film if to display in film detail
+
+    Args:
+        film ([type]): [description]
+    """
+    try:
+        schedule = Schedule.objects.filter(film=film, date=get_current_date())
+    except Schedule.DoesNotExist:
+        schedule = None
+    return schedule
