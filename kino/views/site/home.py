@@ -12,6 +12,7 @@ def home_page_view(request):
         {
             'films': get_all_films(),
             'home_page': get_home_page(),
+            'background': get_back_banner(),
             'slider_banners': get_slider_banners(),
             'shares_banners': get_shares_banners(),
             'ads':get_ads_first(),
