@@ -27,7 +27,10 @@ def slider_banners_update(request):
     formset = SliderFormSet()
 
     if request.method == "POST":
-        formset = SliderFormSet(request.POST, request.FILES)
+        formset = SliderFormSet(
+            request.POST,
+            request.FILES
+        )
         if formset.is_valid():
             formset.save()
             return redirect('admin_statistics')
@@ -77,7 +80,10 @@ def shares_banners_update(request):
     formset = SharesFormSet()
 
     if request.method == "POST":
-        formset = SharesFormSet(request.POST, request.FILES)
+        formset = SharesFormSet(
+            request.POST,
+            request.FILES
+        )
         if formset.is_valid():
             formset.save()
             return redirect('admin_statistics')

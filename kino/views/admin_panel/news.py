@@ -10,6 +10,7 @@ from django.utils.decorators import method_decorator
 from kino.models.news import News
 from kino.forms.news import NewsForm
 from kino.models.image import NewsImage
+from ...repositories.news import *
 
 
 @method_decorator(permission_required('is_staff'), name='dispatch')
@@ -22,15 +23,12 @@ class AdminNewsView(ListView):
 
 @permission_required('is_staff')
 def admin_news_detail_view(request, news_id):
-    news = News.objects.get(id=news_id)
-    image_list = NewsImage.objects.filter(news=news)
-
     return render(
         request,
         'admin_panel/news/news_detail.html',
         {
-            'news': news,
-            'image_list': image_list,
+            'news': get_news_by_id(news_id),
+            'image_list': get_news_gallery(get_news_by_id(news_id)),
         }
     )
 
@@ -76,14 +74,13 @@ def admin_news_update_view(request, news_id):
         extra=5,
         max_num=5,
     )
-    news = News.objects.get(id=news_id)
-    form = NewsForm(instance=news)
-    formset = NewsFormSet(instance=news)
+    form = NewsForm(instance=get_news_by_id(news_id))
+    formset = NewsFormSet(instance=get_news_by_id(news_id))
 
     if request.method == "POST":
-        form = NewsForm(request.POST, request.FILES, instance=news)
+        form = NewsForm(request.POST, request.FILES, instance=get_news_by_id(news_id))
         formset = NewsFormSet(
-            request.POST, request.FILES, instance=news)
+            request.POST, request.FILES, instance=get_news_by_id(news_id))
         if formset.is_valid() and form.is_valid():
             form.save()
             formset.save()
@@ -93,7 +90,7 @@ def admin_news_update_view(request, news_id):
         request,
         'admin_panel/news/news_update.html',
         {
-            'news': news,
+            'news': get_news_by_id(news_id),
             'form': form,
             'formset': formset,
         }

@@ -38,7 +38,8 @@ class FilmForm(forms.ModelForm):
         widgets = {
             'name': forms.TextInput(
                 attrs={'class': 'form-control',
-                       'placeholder': 'Name of the film'}
+                       'placeholder': 'Name of the film'
+                       },
             ),
             'year': forms.Select(
                 attrs={'class': 'form-control',
@@ -64,7 +65,8 @@ class FilmForm(forms.ModelForm):
             ),
             'description': forms.Textarea(
                 attrs={'class': 'form-control',
-                       'placeholder': 'Description of the film'}
+                       'placeholder': 'Description of the film',
+                       'rows': '10'}
             ),
             'video': forms.URLInput(
                 attrs={'class': 'form-control',
@@ -80,7 +82,6 @@ class FilmForm(forms.ModelForm):
                 attrs={
                     'id': 'preview',
                     'class': 'form-control',
-                    'onchange': 'preview_image(event)',
                 }
             ),
             'seo_title': forms.TextInput(
@@ -95,4 +96,9 @@ class FilmForm(forms.ModelForm):
                 attrs={'class': 'form-control',
                        'placeholder': 'SEO descripton of the cinema'}
             ),
+        }
+        error_messages = {
+            'name': {
+                'required': '!!!!',
+            }
         }

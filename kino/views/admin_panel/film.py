@@ -52,7 +52,10 @@ def admin_film_create_view(request):
     return render(
         request,
         'admin_panel/film/film_add.html',
-        {'form': form, 'formset': formset}
+        {
+            'form': form,
+            'formset': formset
+            }
     )
 
 
@@ -60,12 +63,12 @@ def admin_film_create_view(request):
 def admin_film_update_view(request, film_id):
     FilmFormSet = inlineformset_factory(
         Film, FilmImage, FilmImageForm, fields='__all__', extra=5, max_num=5)
-    film = Film.objects.get(id=film_id)
-    form = FilmForm(instance=film)
-    formset = FilmFormSet(instance=film)
+
+    form = FilmForm(instance=get_film_by_id(film_id))
+    formset = FilmFormSet(instance=get_film_by_id(film_id))
     if request.method == "POST":
-        form = FilmForm(request.POST, request.FILES, instance=film)
-        formset = FilmFormSet(request.POST, request.FILES, instance=film)
+        form = FilmForm(request.POST, request.FILES, instance=get_film_by_id(film_id))
+        formset = FilmFormSet(request.POST, request.FILES, instance=get_film_by_id(film_id))
         if formset.is_valid() and form.is_valid():
             form.save()
             formset.save()
@@ -75,10 +78,10 @@ def admin_film_update_view(request, film_id):
         request,
         'admin_panel/film/film_update.html',
         {
-            'film': film,
+            'film': get_film_by_id(film_id),
             'form': form,
             'formset': formset,
-            'images_id': get_images_ids(film),
+            'images_id': get_images_ids(get_film_by_id(film_id)),
         }
     )
 

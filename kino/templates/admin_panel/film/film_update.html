@@ -3,7 +3,6 @@
 
 {% block title %}AdminLTE | Update Film{% endblock title %}
 
-
 {% block breadcrumb %}
     <li class="breadcrumb-item"><a href="{% url 'admin_statistics' %}">Home</a></li>
     <li class="breadcrumb-item active"><a href="{% url 'admin_films' %}">Films</a></li>
@@ -23,6 +22,10 @@
             <div class="form-group">
                 {{ formset.management_form }}
                 {{ form.as_p }}
+                {% if form.preview %}
+                    <img id="preview" class="img-fluid" src="/media/{{form.image.value}}" alt="" style="height: 225px; display: block; margin: auto;">
+                {% endif %}
+
                 {% comment %} FORMSET OF IMAGES {% endcomment %}
                 {% include 'admin_panel/formset_images.html' %}
             </div>
@@ -32,6 +35,5 @@
         </form>
     </div>  
 </div>
+
 {% endblock content %}
-
-

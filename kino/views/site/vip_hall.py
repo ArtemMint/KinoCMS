@@ -1,3 +1,10 @@
+"""This is the viphall module.
+
+"""
+
+__version__ = '0.1'
+__author__ = 'Artem Yurchak'
+
 from django.shortcuts import redirect, render
 
 from ...repositories.pages import *
@@ -6,6 +13,14 @@ from ...repositories.banners import *
 
 
 def vip_hall_page_view(request):
+    """Vip-hall page
+
+    Args:
+        request ([type]): [description]
+
+    Returns:
+        [type]: [description]
+    """
     return render(
         request, 'kino/vip-hall.html',
         {

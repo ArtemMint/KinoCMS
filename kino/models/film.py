@@ -25,7 +25,7 @@ class Film(models.Model):
     name = models.CharField(
         max_length=100,
         verbose_name='Name',
-        default=''
+        default='',
     )
     year = models.IntegerField(
         verbose_name='Year',
