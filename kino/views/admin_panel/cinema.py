@@ -13,12 +13,13 @@ from django.shortcuts import render, redirect, \
 from django.views.decorators.http import require_http_methods
 from django.contrib.auth.decorators import permission_required
 from django.utils.decorators import method_decorator
-
 from django.core.paginator import Paginator
+from django.views.decorators.http import require_http_methods
 from django.views.generic import ListView, DetailView, \
     CreateView, UpdateView, DeleteView
 
 from kino.forms.cinema import *
+from kino.forms.image import *
 from kino.models.cinema import *
 from kino.models.image import *
 
@@ -46,7 +47,12 @@ class AdminCinemaDeleteView(DeleteView):
 def admin_cinema_create_view(request):
     """This view which display html template of create cinema."""
     CinemaFormSet = inlineformset_factory(
-        Cinema, CinemaImage, fields='__all__', extra=5, max_num=5,
+        Cinema,
+        CinemaImage,
+        CinemaImageForm,
+        fields='__all__',
+        extra=5,
+        max_num=5,
     )
 
     form = CinemaForm()
@@ -64,7 +70,10 @@ def admin_cinema_create_view(request):
     return render(
         request,
         'admin_panel/cinema/cinema_add.html',
-        {'form': form, 'formset': formset}
+        {
+            'form': form,
+            'formset': formset,
+        }
     )
 
 
@@ -72,7 +81,12 @@ def admin_cinema_create_view(request):
 def admin_cinema_update_view(request, cinema_id):
     """This view which display html template of update cinema."""
     CinemaFormSet = inlineformset_factory(
-        Cinema, CinemaImage, fields='__all__', extra=5, max_num=5
+        Cinema,
+        CinemaImage,
+        CinemaImageForm,
+        fields='__all__',
+        extra=5,
+        max_num=5,
     )
 
     cinema = Cinema.objects.get(id=cinema_id)
@@ -91,7 +105,11 @@ def admin_cinema_update_view(request, cinema_id):
     return render(
         request,
         'admin_panel/cinema/cinema_update.html',
-        {'cinema': cinema, 'form': form, 'formset': formset}
+        {
+            'cinema': cinema,
+            'form': form,
+            'formset': formset,
+        }
     )
 
 
@@ -109,8 +127,12 @@ def admin_cinema_detail_view(request, cinema_id):
     return render(
         request,
         'admin_panel/cinema/cinema_detail.html',
-        {'cinema': cinema, 'cinemahalls': cinemahalls,
-         'page_obj': page_obj, 'image_list': image_list}
+        {
+            'cinema': cinema,
+            'cinemahalls': cinemahalls,
+            'page_obj': page_obj,
+            'image_list': image_list,
+        }
     )
 
 
@@ -119,7 +141,12 @@ def admin_cinema_detail_view(request, cinema_id):
 def admin_cinemahall_create_view(request, cinema_id):
     """This view which display html template of create cinema hall."""
     CinemaHallFormSet = inlineformset_factory(
-        CinemaHall, CinemaHallImage, fields='__all__', extra=5, max_num=5
+        CinemaHall,
+        CinemaHallImage,
+        CinemaHallImageForm,
+        fields='__all__',
+        extra=5,
+        max_num=5
     )
 
     cinema = get_object_or_404(Cinema, id=cinema_id)
@@ -142,7 +169,10 @@ def admin_cinemahall_create_view(request, cinema_id):
     return render(
         request,
         'admin_panel/cinema/cinemahall_add.html',
-        {'form': form, 'formset': formset}
+        {
+            'form': form,
+            'formset': formset,
+        }
     )
 
 
@@ -156,8 +186,11 @@ def admin_cinemahall_detail_view(request, cinema_id, cinemahall_id):
     return render(
         request,
         'admin_panel/cinema/cinemahall_detail.html',
-        {'cinema': cinema, 'cinemahall': cinemahall,
-         'image_list': image_list},
+        {
+            'cinema': cinema,
+            'cinemahall': cinemahall,
+            'image_list': image_list,
+        }
     )
 
 
@@ -165,7 +198,12 @@ def admin_cinemahall_detail_view(request, cinema_id, cinemahall_id):
 def admin_cinemahall_update_view(request, cinema_id, cinemahall_id):
     """This view which display html template of update cinema hall."""
     CinemaHallFormSet = inlineformset_factory(
-        CinemaHall, CinemaHallImage, fields='__all__', extra=5, max_num=5
+        CinemaHall,
+        CinemaHallImage,
+        CinemaHallImageForm,
+        fields='__all__',
+        extra=5,
+        max_num=5,
     )
 
     cinema = get_object_or_404(Cinema, id=cinema_id)
@@ -192,8 +230,12 @@ def admin_cinemahall_update_view(request, cinema_id, cinemahall_id):
     return render(
         request,
         'admin_panel/cinema/cinemahall_update.html',
-        {'cinema': cinema, 'cinemahall': cinemahall,
-         'form': form, 'formset': formset},
+        {
+            'cinema': cinema,
+            'cinemahall': cinemahall,
+            'form': form,
+            'formset': formset,
+        }
     )
 
 
@@ -214,7 +256,11 @@ def admin_cinemahall_delete_view(request, cinema_id, cinemahall_id):
         {'cinema': cinema,
          'cinemahall': cinemahall},
     )
-    
+
+
 @require_http_methods(['GET', 'POST'])
 def admin_cinemahall_type_add(request, cinema_id):
-    return render(request, 'admin_panel/cinema/cinemahall_type_add.html')
+    return render(
+        request,
+        'admin_panel/cinema/cinemahall_type_add.html'
+    )

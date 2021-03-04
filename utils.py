@@ -10,6 +10,13 @@ def current_year():
 def get_current_date():
     return timezone.now()
 
+def get_week_date():
+    """Last 7 days ago from current day
+
+    Returns:
+        [type]: [description]
+    """
+    return timezone.now()+timezone.timedelta(days=6)
 
 def get_avg_age(set_of_users):
     avg_age = 0

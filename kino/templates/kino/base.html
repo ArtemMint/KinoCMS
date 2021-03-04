@@ -10,6 +10,13 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="{% static 'kino/style.css' %}">
+        {% block additional_styles %}
+        <style>
+            body {
+                background: url({{background.image.url}}) 50% 0 no-repeat fixed;
+            }
+        </style>
+        {% endblock  %}
     </head>
 
     <body>
@@ -127,7 +134,9 @@
                 <div class="col-md-1">
                 </div>
                 <div class="col-md-3 text-center">
-                    <h5>Mobile apps</h5>
+                    <a class="text-muted text-decoration-none" href="{% url 'mobile_app' %}">
+                        <h5>Mobile apps</h5>
+                    </a>
                     <div class=".col-6 .col-md-4">
                         <a class="text-muted text-decoration-none" href="#">Google Play</a>
                         <a class="text-muted text-decoration-none" href="#">App Store</a>

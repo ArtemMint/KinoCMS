@@ -35,9 +35,19 @@ def adminStatisticsView(request):
     num_news = News.objects.count()
     num_shares = Shares.objects.count()
 
-    context = {'users': num_users, 'men': num_men, 'women': num_women,
-               'avg_age': avg_age, 'men_avg_age': men_avg_age, 'women_avg_age': women_avg_age,
-               'films': num_films, 'cinemas': num_cinemas, 'num_news': num_news,
-               'num_shares': num_shares}
-
-    return render(request, 'admin_panel/statistics.html', context)
+    return render(
+        request,
+        'admin_panel/statistics.html',
+        {
+            'users': num_users,
+            'men': num_men,
+            'women': num_women,
+            'avg_age': avg_age,
+            'men_avg_age': men_avg_age,
+            'women_avg_age': women_avg_age,
+            'films': num_films,
+            'cinemas': num_cinemas,
+            'num_news': num_news,
+            'num_shares': num_shares,
+        }
+    )

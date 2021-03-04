@@ -162,8 +162,8 @@ GOOGLE_MAPS_API_KEY = 'AIzaSyBocLXpIhv62c6yyAcpGH-MYhZotTli3mI'
 # Mailing setting
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = '587'
-EMAIL_HOST_USER = 'troyt3325@gmail.com'
-EMAIL_HOST_PASSWORD = 'GOVEG2021'
+EMAIL_HOST_USER = 'artemmint0@gmail.com'
+EMAIL_HOST_PASSWORD = '2400btmint'
 EMAIL_USE_TLS = 'True'
 
 # # Cloudinary

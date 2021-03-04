@@ -14,8 +14,13 @@ def adminUserListView(request):
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
-    context = {'page_obj': page_obj}
-    return render(request, 'admin_panel/users/users.html', context)
+    return render(
+        request,
+        'admin_panel/users/users.html',
+        {
+            'page_obj': page_obj,
+        }
+    )
 
 
 @permission_required('is_staff')
@@ -38,9 +43,13 @@ def adminUserCreateView(request):
             # client_form.save()
             return redirect('admin_users')
 
-    # context = {'user_form': user_form, 'client_form': client_form}
-    context = {'user_form': user_form}
-    return render(request, 'admin_panel/users/user_add.html', context)
+    return render(
+        request,
+        'admin_panel/users/user_add.html',
+        {
+            'user_form': user_form,
+        }
+    )
 
 
 @permission_required('is_staff')
@@ -60,8 +69,14 @@ def adminUserUpdateView(request, user_id):
         user_form = UserForm(instance=user)
         client_form = ClientForm(instance=user.client)
 
-    context = {'client_form': client_form, 'user_form': user_form}
-    return render(request, 'admin_panel/users/user_update.html', context)
+    return render(
+        request,
+        'admin_panel/users/user_update.html',
+        {
+            'client_form': client_form,
+            'user_form': user_form,
+        }
+    )
 
 
 @permission_required('is_staff')
@@ -74,8 +89,11 @@ def adminUserDeleteView(request, user_id):
     if request.method == "POST":
         user.delete()
         return redirect('admin_users')
-    context = {'user': user}
+
     return render(
         request,
-        'admin_panel/users/user_delete.html', context
+        'admin_panel/users/user_delete.html',
+        {
+            'user': user,
+        }
     )

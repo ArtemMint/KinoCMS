@@ -15,17 +15,41 @@ class News(models.Model):
         ('OFF', 'Off'),
     ]
 
-    name = models.CharField(max_length=50, default='')
-    pub_date = models.DateField(editable=True, default=timezone.now)
-    description = models.TextField(max_length=1000)
-    status = models.CharField(
-        max_length=10, default=STATUS_CHOICES[1], choices=STATUS_CHOICES
+    name = models.CharField(
+        max_length=50,
+        default=''
     )
-    preview = models.ImageField(upload_to=upload_news_preview, null=True)
-    video = models.URLField(blank=True)
-    seo_title = models.CharField(max_length=50, blank=True)
-    seo_keywords = models.CharField(max_length=100, blank=True)
-    seo_description = models.CharField(max_length=100, blank=True)
+    pub_date = models.DateField(
+        editable=True,
+        default=timezone.now
+    )
+    description = models.TextField(
+        max_length=1000
+    )
+    status = models.CharField(
+        max_length=10,
+        default=STATUS_CHOICES[1],
+        choices=STATUS_CHOICES
+    )
+    preview = models.ImageField(
+        upload_to=upload_news_preview,
+        null=True
+    )
+    video = models.URLField(
+        blank=True
+    )
+    seo_title = models.CharField(
+        max_length=50,
+        blank=True
+    )
+    seo_keywords = models.CharField(
+        max_length=100,
+        blank=True
+    )
+    seo_description = models.CharField(
+        max_length=100,
+        blank=True
+    )
 
     def __str__(self):
         """Func that returning name of curent news"""

@@ -37,19 +37,19 @@
                             <div id="map" style="height: 50vh; width: 100%%;"></div>
                             <script>
                                 function initMap(){
-                                    var myLatlng = new google.maps.LatLng({{ contacts.coordinates }});
+                                    let myLatlng = new google.maps.LatLng({{ contacts.coordinates }});
 
-                                    var opt = {
+                                    let opt = {
                                         center: myLatlng,
                                         zoom: 15,
-                                        mapId: 'b765085ca4bff21c',
-                                    };
+                                        mapId: 'b765085ca4bff21c'
+                                    }
 
-                                    var map = new google.maps.Map(document.getElementById('map'), opt);
+                                    let map = new google.maps.Map(document.getElementById('map'), opt);
 
-                                    const marker = new google.maps.Marker({
-                                        position: opt,
-                                        map: map,
+                                    let marker = new google.maps.Marker({
+                                        position: myLatlng,
+                                        map: map
                                     });
                             }
                             </script>

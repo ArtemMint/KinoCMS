@@ -9,6 +9,7 @@ from kino.models.image import CinemaImage, CinemaHallImage
 from kino.models.pages import *
 from ...repositories.ads import *
 from ...repositories.schedule import *
+from ...repositories.banners import * 
 
 
 def ciname_view(request):
@@ -25,6 +26,7 @@ def ciname_view(request):
             "cinema_list": cinema_list,
             'home_page': home_page,
             'ads': get_ads_last(),
+            'background': get_back_banner(),
         },
     )
 
@@ -48,6 +50,7 @@ def cinema_detail_view(request, cinema_id):
             'gallery': gallery,
             'ads': get_ads_last(),
             'schedule_list': get_schedule_list_order_by_current_date(),
+            'background': get_back_banner(),
         },
     )
 
@@ -66,5 +69,6 @@ def cinemahall_detail_view(request, cinema_id, cinemahall_id):
             'gallery': gallery,
             'ads': get_ads_last(),
             'schedule_list': get_schedule_list_for_hall_order_by_current_date(cinemahall=cinemahall),
+            'background': get_back_banner(),
         },
     )

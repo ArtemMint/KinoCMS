@@ -20,7 +20,6 @@ from kino.views.site.film import *
 from kino.views.site.home import *
 from kino.views.site.news import *
 from kino.views.site.schedule import *
-from kino.views.site.poster import *
 from kino.views.site.shares import *
 from kino.views.site.children_room import *
 from kino.views.site.cafe_bar import *
@@ -152,6 +151,12 @@ urlpatterns = [
      path('admin/cinemas/<int:cinema_id>/cinemahall/type/add/',
           admin_cinemahall_type_add, name='admin_cinemahall_type_add'),
 
+
+     # Admin cinema hall type.
+     path('admin/cinemas/<int:cinema_id>/cinemahall/type/add/',
+          admin_cinemahall_type_add, name='admin_cinemahall_type_add'),
+    
+    
     # Admin news.
     path('admin/news/', AdminNewsView.as_view(), name='admin_news'),
     path('admin/news/create/', admin_news_create_view,
