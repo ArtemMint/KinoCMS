@@ -11,12 +11,13 @@ from django import forms
 from kino.models.image import *
 
 GENRES = (
-    ('Sci-Fi','Sci-Fi'),
-    ('Detective','Detective'),
-    ('Horror','Horror'),
-    ('Anime','Anime'),
-    ('Thriller','Thriller'),
+    ('Sci-Fi', 'Sci-Fi'),
+    ('Detective', 'Detective'),
+    ('Horror', 'Horror'),
+    ('Anime', 'Anime'),
+    ('Thriller', 'Thriller'),
 )
+
 
 class FilmImageForm(forms.ModelForm):
     """FilmImageForm has connect with FilmImage model and fields:
@@ -27,7 +28,9 @@ class FilmImageForm(forms.ModelForm):
         fields = '__all__'
         widgets = {
             'image': forms.FileInput(
-                attrs={'class': 'form-control',
-                       'onchange': 'preview_image(event)'}
+                attrs={
+                    'class': 'form-control',
+                    'onchange': 'preview_image(event)',
+                }
             ),
         }

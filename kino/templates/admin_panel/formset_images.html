@@ -3,23 +3,23 @@
     {% for form in formset %}
         <div class='col-md-2'>
             <div class='card mb-2 shadow-sm'>
-                <img id='image' class="img-fluid" src="/media/{{form.image.value}}" alt="image" style="height: 225px; display: block; margin: auto;">
+                <img id="image" class="img-fluid" src="/media/{{form.image.value}}" alt="" style="height: 225px; display: block; margin: auto;">
                 <div class="card-body">               
-                    {{ form.image }}
+                    {{ form }}
+                    <br>
                     <script type='text/javascript'>
                         function preview_image(event) 
                         {
                         var reader = new FileReader();
                         reader.onload = function()
                         {
-                        var output = document.getElementById('image{{ form.image }}');
+                        var output = document.getElementById('image');
                         output.src = reader.result;
                         }
                         reader.readAsDataURL(event.target.files[0]);
                         } 
                     </script>
-                    <br>
-                    {{form.DELETE.label}}{{form.DELETE}}
+                    {% comment %} {{form.DELETE.label}}{{form.DELETE}} {% endcomment %}
                 </div>
             </div>
         </div>

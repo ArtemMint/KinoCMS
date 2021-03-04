@@ -65,7 +65,7 @@ def admin_film_update_view(request, film_id):
     formset = FilmFormSet(instance=film)
     if request.method == "POST":
         form = FilmForm(request.POST, request.FILES, instance=film)
-        formset = FilmFormSet(reqfilmuest.POST, request.FILES, instance=film)
+        formset = FilmFormSet(request.POST, request.FILES, instance=film)
         if formset.is_valid() and form.is_valid():
             form.save()
             formset.save()

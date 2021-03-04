@@ -12,12 +12,13 @@ from django import forms
 from kino.models.film import Film
 
 GENRES = (
-    ('Sci-Fi','Sci-Fi'),
-    ('Detective','Detective'),
-    ('Horror','Horror'),
-    ('Anime','Anime'),
-    ('Thriller','Thriller'),
+    ('Sci-Fi', 'Sci-Fi'),
+    ('Detective', 'Detective'),
+    ('Horror', 'Horror'),
+    ('Anime', 'Anime'),
+    ('Thriller', 'Thriller'),
 )
+
 
 class FilmForm(forms.ModelForm):
     """FilmForm has connect with Film model and fields:
@@ -61,7 +62,6 @@ class FilmForm(forms.ModelForm):
             'scenarist': forms.TextInput(
                 attrs={'class': 'form-control', 'placeholder': 'Written By'}
             ),
-
             'description': forms.Textarea(
                 attrs={'class': 'form-control',
                        'placeholder': 'Description of the film'}
@@ -72,7 +72,16 @@ class FilmForm(forms.ModelForm):
             ),
             'premiere': forms.DateInput(
                 format=('%Y-%m-%d'),
-                attrs={'type': 'date'}
+                attrs={
+                    'type': 'date',
+                },
+            ),
+            'preview': forms.FileInput(
+                attrs={
+                    'id': 'preview',
+                    'class': 'form-control',
+                    'onchange': 'preview_image(event)',
+                }
             ),
             'seo_title': forms.TextInput(
                 attrs={'class': 'form-control',
