@@ -57,7 +57,7 @@ def get_schedule_by_film_for_each_day(film):
         schedule = Schedule.objects.filter(
             film=film,
             date__gt=get_current_date(),
-            date__lte=get_week_ago_date(),
+            date__lte=get_week_date(),
         ).distinct().order_by('date','time')
     except Schedule.DoesNotExist:
         schedule = None
