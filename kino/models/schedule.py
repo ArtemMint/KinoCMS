@@ -25,6 +25,18 @@ class Schedule(models.Model):
         default=0,
         verbose_name='Minimum cost:'
     )
+    two_dimensions = models.BooleanField(
+        default=False,
+        null=True
+    )
+    three_dimensions = models.BooleanField(
+        default=False,
+        null=True
+    )
+    imax = models.BooleanField(
+        default=False,
+        null=True
+    )
     date = models.DateField(
         editable=True,
         null=True,

@@ -34,6 +34,20 @@
                 <dd>{{ film.scenarist }}</dd>
                 <dt>Country:</dt>
                 <dd>{{ film.country }}</dd>
+                <dt>Duration:</dt>
+                <dd>{{ film.duration|truncatechars:6|slice:"-1" }}</dd>
+                <dt>Type of watching:</dt>
+                <dd>
+                    {% if film.two_dimensions %}
+                        <button class="btn btn-success">2D</button>
+                    {% endif %}
+                    {% if film.three_dimensions %}
+                        <button class="btn btn-warning">3D</button>
+                    {% endif %}
+                    {% if film.imax %}
+                        <button class="btn btn-info">IMAX</button>
+                    {% endif %}
+                </dd>
             </dl>
         </div>
         

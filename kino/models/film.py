@@ -71,6 +71,23 @@ class Film(models.Model):
     preview = models.FileField(
         upload_to=upload_film_preview
     )
+    two_dimensions = models.BooleanField(
+        default=False,
+        null=True
+    )
+    three_dimensions = models.BooleanField(
+        default=False,
+        null=True
+    )
+    imax = models.BooleanField(
+        default=False,
+        null=True
+    )
+    duration = models.TimeField(
+        editable=True,
+        null=True,
+        verbose_name='Duration of film:'
+        )
     seo_title = models.CharField(
         max_length=50,
         blank=True
