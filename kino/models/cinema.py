@@ -98,12 +98,12 @@ class CinemaHall(models.Model):
         return f'{self.name}'
 
 
-class HallType(models.Model):
-    name = models.CharField(
-        max_length=200,
-        null=False,
-        editable=True
-    )
-    seats = ArrayField(
-        HStoreField()
-    )
+# class HallType(models.Model):
+#     name = models.CharField(
+#         max_length=200,
+#         null=False,
+#         editable=True
+#     )
+#     seats = ArrayField(
+#         HStoreField()
+#     )

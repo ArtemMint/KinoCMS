@@ -271,9 +271,9 @@ def admin_cinemahall_delete_view(request, cinema_id, cinemahall_id):
     )
 
 
-@require_http_methods(['GET', 'POST'])
-def admin_cinemahall_type_add(request, cinema_id):
-    return render(
-        request,
-        'admin_panel/cinema/cinemahall_type_add.html'
-    )
+# @require_http_methods(['GET', 'POST'])
+# def admin_cinemahall_type_add(request, cinema_id):
+#     return render(
+#         request,
+#         'admin_panel/cinema/cinemahall_type_add.html'
+#     )
