@@ -4,9 +4,9 @@
 {% block title %}AdminLTE | Cinema «{{ cinema.name }}»{% endblock title %}
 
 {% block breadcrumb %}
-    <li class="breadcrumb-item"><a href="{% url 'admin_statistics' %}">Home</a></li>
-    <li class="breadcrumb-item active"><a href="{% url 'admin_cinemas' %}">Cinemas</a></li>
-    <li class="breadcrumb-item active">«{{ cinema.name|truncatechars:20 }}»</li>
+<li class="breadcrumb-item"><a href="{% url 'admin_statistics' %}">Home</a></li>
+<li class="breadcrumb-item active"><a href="{% url 'admin_cinemas' %}">Cinemas</a></li>
+<li class="breadcrumb-item active">«{{ cinema.name|truncatechars:20 }}»</li>
 {% endblock breadcrumb %}
 
 
@@ -24,9 +24,19 @@
                 <div class="col-md-5">
                     <div class="box">
                         <div class="box-body">
-                            <table id="example2" class="table table-bordered table-hover dataTable" role="grid" aria-describedby="example2_info">
-                            <div class="card-body"> 
-                                <a href="{% url 'admin_add_cinemahall' cinema.id%}"><button type="button" class="btn btn-lg btn-block btn-outline-primary">Add New Hall</button></a>
+                            <table id="example2" class="table table-bordered table-hover dataTable" role="grid"
+                                   aria-describedby="example2_info">
+                            <div class="card-body">
+                                <a href="{% url 'admin_cinemahall_type_add' cinema.id%}">
+                                    <button type="button" class="btn btn-lg btn-block btn-outline-success">
+                                        Add New Hall Type
+                                    </button>
+                                </a> 
+                                <a href="{% url 'admin_add_cinemahall' cinema.id%}">
+                                    <button type="button" class="btn btn-lg btn-block btn-outline-primary">
+                                        Add New Hall
+                                    </button>
+                                </a>
                             </div>
                             {% if cinemahalls %}
                                 <thead>

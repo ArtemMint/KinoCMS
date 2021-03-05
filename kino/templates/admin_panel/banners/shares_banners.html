@@ -1,4 +1,5 @@
 {% extends 'admin_panel/base.html' %}
+
 {% load static %}
 
 {% load filters %}
@@ -7,27 +8,27 @@
 Admin | Shares Banners
 {% endblock title %}
 
-{% block content_header %}
-Shares Banners
-{% endblock content_header %}
-
-
 {% block breadcrumb %}
 <li class="breadcrumb-item"><a href="{% url 'admin_statistics' %}">Home</a></li>
-<li class="breadcrumb-item active">Shares Banners</li>
+<li class="breadcrumb-item active">Shares</li>
 {% endblock breadcrumb %}
 
 {% block content %}
-<form action="{% url 'admin_banners_shares' %}" method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    <div class="row">
-        {% for form in form_list %}
-        <div class="card" style="width: 13rem; padding: 1.3rem; margin-right: 2rem;">
-
-             {{ form.as_p }}
-        </div>
-        {% endfor%}
+    <div class="box-header with-border">
+        <h3 class="box-title text-center">Shares banners</h3>
     </div>
-    <button type="submit" class="btn btn-primary">Save</button>
-</form>
+<div class="form-group">
+    <form method="POST" enctype="multipart/form-data">{% csrf_token %}
+    {{ formset.management_form }}
+        {% comment %} FORMSET OF IMAGES {% endcomment %}
+        {% include 'admin_panel/formset_images.html' %}
+        <div class="box-footer">
+            <button type="submit" class="btn btn-primary">Update</button>
+        </div>
+    </form>
+</div>
 {% endblock content %}
+
+
+
+

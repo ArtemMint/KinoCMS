@@ -13,9 +13,24 @@ from kino.models.schedule import Schedule
 
 class ScheduleForm(forms.ModelForm):
     """ScheduleForm has connect with Film model and fields:
-
     film, cinemahall, date, time."""
+    two_dimensions = forms.BooleanField(
+        label='2D',
+        required=False,
+        initial=False
+    )
+    three_dimensions = forms.BooleanField(
+        label='3D',
+        required=False,
+        initial=False
+    )
+    imax = forms.BooleanField(
+        label='IMAX',
+        required=False,
+        initial=False
+    )
     class Meta:
+        """Meta class"""
         model = Schedule
         fields = '__all__'
         widgets = {

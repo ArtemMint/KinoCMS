@@ -94,12 +94,8 @@
         <div class="sidebar">
             <!-- Sidebar user panel (optional) -->
             <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-                <div class="image">
-                    <img src="{% static 'dist/img/user2-160x160.jpg' %}" class="img-circle elevation-2"
-                         alt="User Image">
-                </div>
                 <div class="info">
-                    <a href="#" class="d-block">{{request.user}}</a>
+                    <a href="#" class="d-block">User: {{request.user}}</a>
                 </div>
             </div>
 
@@ -203,12 +199,6 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="{% url 'admin_about_page' %}" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>About</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
                                 <a href="{% url 'admin_cafe-bar_page' %}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Cafe-Bar</p>
@@ -244,6 +234,12 @@
                                     <p>Contacts</p>
                                 </a>
                             </li>
+                            <li class="nav-item">
+                                <a href="{% url 'admin_ads' %}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>ADS</p>
+                                </a>
+                            </li>
                         </ul>
                     </li>
                     <li class="nav-item">
@@ -252,10 +248,6 @@
                             <p>Users</p>
                         </a>
                     </li>
-
-
-
-
 
                     <li class="nav-item menu-is-opening">
                         <a href="#" class="nav-link">
@@ -378,6 +370,12 @@
 
 <!--Mailing scripts-->
 <script src="{% static 'mailing/mailing.js' %}"></script>
+
+<!--Vue.js 2 script-->
+<!--<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>-->
+
+<!--Axios script-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.js"></script>
 
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"

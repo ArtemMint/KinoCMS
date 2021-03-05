@@ -2,9 +2,12 @@ from django.urls import reverse_lazy
 from django.shortcuts import render, redirect
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.forms import inlineformset_factory
+from django.contrib.auth.decorators import permission_required
+
 from kino.forms.shares import SharesForm
 from kino.models.shares import Shares
 from kino.models.image import SharesImage
+from ...repositories.shares import *
 
 
 class AdminSharesView(ListView):
@@ -14,18 +17,28 @@ class AdminSharesView(ListView):
     paginate_by = 15
 
 
+@permission_required('is_staff')
 def admin_shares_detail_view(request, shares_id):
-    shares = Shares.objects.get(id=shares_id)
-    image_list = SharesImage.objects.filter(shares=shares)
 
-    template_name = 'admin_panel/shares/shares_detail.html'
-    context = {'shares': shares, 'image_list': image_list}
-    return render(request, template_name, context)
+    return render(
+        request,
+        'admin_panel/shares/shares_detail.html',
+        {
+            'shares': get_shares_by_id(shares_id),
+            'image_list': get_shares_gallery(get_shares_by_id(shares_id))
+        },
+    )
 
 
+@permission_required('is_staff')
 def admin_shares_create_view(request):
     SharesFormSet = inlineformset_factory(
-        Shares, SharesImage, fields='__all__', extra=5, max_num=5)
+        Shares,
+        SharesImage,
+        fields='__all__',
+        extra=5,
+        max_num=5,
+    )
 
     form = SharesForm()
     formset = SharesFormSet()
@@ -33,36 +46,63 @@ def admin_shares_create_view(request):
     if request.method == "POST":
         form = SharesForm(request.POST, request.FILES)
         formset = SharesFormSet(
-            request.POST, request.FILES, instance=form.instance)
+            request.POST,
+            request.FILES,
+            instance=form.instance
+        )
         if formset.is_valid() and form.is_valid():
             form.save()
             formset.save()
             return redirect('admin_shares')
 
-    template_name = 'admin_panel/shares/shares_add.html'
-    context = {'form': form, 'formset': formset}
-    return render(request, template_name, context)
+    return render(
+        request,
+        'admin_panel/shares/shares_add.html',
+        {
+            'form': form,
+            'formset': formset,
+        }
+    )
 
 
+@permission_required('is_staff')
 def admin_shares_update_view(request, shares_id):
     SharesFormSet = inlineformset_factory(
-        Shares, SharesImage, fields='__all__', extra=5, max_num=5)
-    shares = Shares.objects.get(id=shares_id)
-    form = SharesForm(instance=shares)
-    formset = SharesFormSet(instance=shares)
+        Shares,
+        SharesImage,
+        fields='__all__',
+        extra=5,
+        max_num=5,
+    )
+    
+    form = SharesForm(instance=get_shares_by_id(shares_id))
+    formset = SharesFormSet(instance=get_shares_by_id(shares_id))
 
     if request.method == "POST":
-        form = SharesForm(request.POST, request.FILES, instance=shares)
+        form = SharesForm(
+            request.POST,
+            request.FILES,
+            instance=get_shares_by_id(shares_id),
+        )
         formset = SharesFormSet(
-            request.POST, request.FILES, instance=shares)
+            request.POST,
+            request.FILES,
+            instance=get_shares_by_id(shares_id),
+        )
         if formset.is_valid() and form.is_valid():
             form.save()
             formset.save()
             return redirect('admin_shares')
 
-    template_name = 'admin_panel/shares/shares_update.html'
-    context = {'shares': shares, 'form': form, 'formset': formset}
-    return render(request, template_name, context)
+    return render(
+        request,
+        'admin_panel/shares/shares_update.html',
+        {
+            'shares': get_shares_by_id(shares_id),
+            'form': form,
+            'formset': formset,
+        }
+    )
 
 
 class AdminSharesDeleteView(DeleteView):

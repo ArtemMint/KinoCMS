@@ -7,6 +7,9 @@ from django.core.paginator import Paginator
 from kino.models.cinema import *
 from kino.models.image import CinemaImage, CinemaHallImage
 from kino.models.pages import *
+from ...repositories.ads import *
+from ...repositories.schedule import *
+from ...repositories.banners import * 
 
 
 def ciname_view(request):
@@ -15,11 +18,17 @@ def ciname_view(request):
         home_page = HomePage.objects.get(id=0)
     except HomePage.DoesNotExist:
         home_page = None
-        
-    context = {"cinema_list": cinema_list, 'home_page': home_page}
-    template_name = 'kino/cinemas.html'
 
-    return render(request, template_name, context)
+    return render(
+        request,
+        'kino/cinemas.html',
+        {
+            "cinema_list": cinema_list,
+            'home_page': home_page,
+            'ads': get_ads_last(),
+            'background': get_back_banner(),
+        },
+    )
 
 
 def cinema_detail_view(request, cinema_id):
@@ -30,18 +39,36 @@ def cinema_detail_view(request, cinema_id):
 
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
-    template_name = 'kino/cinema_detail.html'
-    context = {'cinema': cinema, 'cinemahalls': cinemahalls,
-               'page_obj': page_obj, 'gallery': gallery}
 
-    return render(request, template_name, context)
+    return render(
+        request,
+        'kino/cinema_detail.html',
+        {
+            'cinema': cinema,
+            'cinemahalls': cinemahalls,
+            'page_obj': page_obj,
+            'gallery': gallery,
+            'ads': get_ads_last(),
+            'schedule_list': get_schedule_list_order_by_current_date(),
+            'background': get_back_banner(),
+        },
+    )
 
 
 def cinemahall_detail_view(request, cinema_id, cinemahall_id):
     cinema = get_object_or_404(Cinema, id=cinema_id)
     cinemahall = get_object_or_404(CinemaHall, id=cinemahall_id)
-    gallery = CinemaImage.objects.filter(cinema=cinemahall_id)
+    gallery = CinemaHallImage.objects.filter(cinema_hall=cinemahall_id)
 
-    template_name = 'kino/cinemahall_detail.html'
-    context = {'cinema': cinema,'cinemahall': cinemahall, 'gallery': gallery}
-    return render(request, template_name, context)
+    return render(
+        request,
+        'kino/cinemahall_detail.html',
+        {
+            'cinema': cinema,
+            'cinemahall': cinemahall,
+            'gallery': gallery,
+            'ads': get_ads_last(),
+            'schedule_list': get_schedule_list_for_hall_order_by_current_date(cinemahall=cinemahall),
+            'background': get_back_banner(),
+        },
+    )

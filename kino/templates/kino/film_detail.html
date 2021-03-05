@@ -10,14 +10,74 @@
     <title>Film «{{ film.seo_title }}»</title>
 {% endblock title %}
 
-
 {% block content %}
 <div class="card container">
 <br>
 <iframe width="100%" height="800" src="{{ film.video }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <br>
     <div class="row">
-        <hr>
+        <h4 class="text-center">Schedule for week</h4>
+        {% if schedule %}
+        {% regroup schedule by date as day_list %}
+        {% for day in day_list%}
+        <div class="col-md-2">
+            <table id="example" class="table table-bordered table-hover dataTable table-dark" role="grid" aria-describedby="example_info">
+                <tbody>
+                <tr role="row">
+                        <td class="sorting text-center"><h6>{{day.grouper}}</h6></td>                          
+                    </tr>
+                    <tr role="row" class="odd">
+                        <td class="text-center" width="10%">{{day.grouper|date:"l" }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        {% endfor %}
+        {% else %}
+        <blockquote class="text-center">
+            <p class="blockquote text-center">Schedule for a week will comming soon! </p> 
+        </blockquote>   
+        {% endif %}
+        <div class="col-md-12">
+            <h4 class="text-center">Schedule for today</h4>
+            {% if schedule_today %}
+            <div class="text-center">
+                <div class="row">
+                {% for item in schedule_today %}
+                    <div class="col-md-2">
+                        <table id="example" class="table table-bordered table-hover dataTable table-dark" role="grid" aria-describedby="example_info">
+                            <tbody> 
+                                <td class="sorting text-center">{{item.date.day}} {{item.date|date:'F'}}</td>
+                                    <td class="sorting text-center">
+                                        {% if item.two_dimensions %}
+                                            <button class="btn btn-success">2D</button>
+                                        {% endif %}
+                                        {% if item.three_dimensions %}
+                                            <button class="btn btn-warning">3D</button>
+                                        {% endif %}
+                                        {% if item.imax %}
+                                            <button class="btn btn-info">IMAX</button>
+                                        {% endif %}
+                                    </td>
+                                <tr role="row" class="odd">
+                                    <td class="text-center">Hall {{item.cinemahall|truncatechars:40}}</td>
+                                    <td class="text-center">{{item.time}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                {% endfor %}
+                </div>
+            </div>
+            {% else %}
+            <blockquote class="text-center">
+                <p class="blockquote text-center">Schedule for today will comming soon! </p><br> 
+            </blockquote>   
+            {% endif %}
+        </div>
+
         <div class="col-md-4">
+        
             <img src="{{ film.preview.url }}" alt="{{ film.preview }}" style="width: 400px; max-height:450px">
             <dl class="dl-horizontal text-center">
                 <br>
@@ -35,23 +95,34 @@
                 <dd>{{ film.scenarist }}</dd>
                 <dt>Country:</dt>
                 <dd>{{ film.country }}</dd>
+                <dt>Duration:</dt>
+                <dd>{{ film.duration|truncatechars:6|slice:"-1" }}</dd>
             </dl>
         </div>
         
         <div class="col-md-8">
             <dl class="dl-horizontal">
                 <div class="text-center">
-                    <a class="btn btn-success" href="#">Buy ticket</a>
+                    <a class="btn btn-danger" href="#">Buy ticket</a>
                 </div>
                 <br>
-                <div class="box-header with-border">
+                <div class="box-header with-border text-center">
                     <h3 class="box-title text-center">«{{ film.name }}»</h3>
+                    {% if film.two_dimensions %}
+                        <button class="btn btn-success">2D</button>
+                    {% endif %}
+                    {% if film.three_dimensions %}
+                        <button class="btn btn-warning">3D</button>
+                    {% endif %}
+                    {% if film.imax %}
+                        <button class="btn btn-info">IMAX</button>
+                    {% endif %}
                 </div>
                 <br>
                 <dt>Description:</dt>
                 <dd>{{ film.description }}</dd>
             </dl>
-            <!-- /.box-body -->
+
             <hr>
             <h3 style="text-align: center;">Frames</h3>
             <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel"> 
@@ -90,7 +161,7 @@
     </div>
     <hr>
     <div class="text-center">
-        <img src="{% static 'kino/images/1000x500.png' %}" class="img-fluid" alt="Context_ads"style="min-width: 100vh; max-height:200px;">
+        <a href="{{ads.url}}"><img src="{{ads.image.url}}" class="img-fluid" alt="{{ads.image}}" width="100%" style="max-height:200px;"></a>
     </div> 
     <br>
 </div>

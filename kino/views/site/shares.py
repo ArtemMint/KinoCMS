@@ -1,22 +1,60 @@
+"""This is the shares module.
+
+"""
+
+__version__ = '0.1'
+__author__ = 'Artem Yurchak'
+
 from django.views.generic import ListView
-from django.shortcuts import get_list_or_404, get_object_or_404, redirect, render
+from django.shortcuts import get_list_or_404,\
+    get_object_or_404, redirect, render
 
 from kino.models.shares import Shares
 from kino.models.image import SharesImage
+from ...repositories.shares import *
+from ...repositories.ads import *
+from ...repositories.banners import * 
 
 
 def shares_view(request):
-    shares_list = Shares.objects.all()
+    """Shares list
 
-    context = {"shares_list": shares_list}
-    return render(request, 'kino/shares.html', context)
+    Args:
+        request ([type]): [description]
+
+    Returns:
+        [type]: [description]
+    """
+
+    return render(
+        request,
+        'kino/shares.html',
+        {
+            "shares_list": get_shares_list(),
+            'ads': get_ads_last(),
+            'background': get_back_banner(),
+        }
+    )
 
 
 def shares_detail_view(request, shares_id):
-    shares = get_object_or_404(Shares, id=shares_id)
-    gallery = SharesImage.objects.filter(shares=shares)
+    """Get one shares by id
 
-    template_name = 'kino/shares_detail.html'
-    context = {"shares": shares, gallery: gallery}
+    Args:
+        request ([type]): [description]
+        shares_id ([type]): [description]
 
-    return render(request, template_name, context)
+    Returns:
+        [type]: [description]
+    """
+
+    return render(
+        request,
+        'kino/shares_detail.html',
+        {
+            "shares": get_shares_by_id(shares_id),
+            'gallery': get_shares_gallery(get_shares_by_id(shares_id)),
+            'ads': get_ads_last(),
+            'background': get_back_banner(),
+        }
+    )

@@ -1,0 +1,27 @@
+<h3 class="text-center">Gallery</h3>
+<div class="row">
+    {% for form in formset %}
+        <div class='col-md-2'>
+            <div class='card mb-2 shadow-sm'>
+                <img id="image" class="img-fluid" src="/media/{{form.image.value}}" alt="" style="height: 225px; display: block; margin: auto;">
+                <div class="card-body">               
+                    {{ form }}
+                    <br>
+                    <script type='text/javascript'>
+                        function preview_image(event) 
+                        {
+                        var reader = new FileReader();
+                        reader.onload = function()
+                        {
+                        var output = document.getElementById('image');
+                        output.src = reader.result;
+                        }
+                        reader.readAsDataURL(event.target.files[0]);
+                        } 
+                    </script>
+                    {% comment %} {{form.DELETE.label}}{{form.DELETE}} {% endcomment %}
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>

@@ -1,0 +1,72 @@
+{% extends 'admin_panel/base.html' %}
+{% load static %}
+
+{% block title %}AdminLTE | Add Cinemahall Type{% endblock title %}
+
+
+{% block breadcrumb %}
+<li class="breadcrumb-item"><a href="{% url 'admin_statistics' %}">Home</a></li>
+<li class="breadcrumb-item active"><a href="{% url 'admin_cinemas' %}">Cinemas</a></li>
+<li class="breadcrumb-item active">New Cinemahall Type</li>
+{% endblock breadcrumb %}
+
+
+{% block content %}
+<div id="hall-type">
+    <div class="box box-primary">
+        <div class="box-header with-border">
+            <h3 class="box-title">Add new Cinemahall type</h3>
+        </div>
+        <!-- /.box-header -->
+        <!-- form start -->
+        <div class="form-group">
+            <form method="POST" enctype="multipart/form-data">{% csrf_token %}
+                <div class="box-body">
+                    <div class="form-group">
+                        <form action="">
+                            <div>
+                                <form>
+                                    <!-- Hall type name & adding button part of form  -->
+                                    <div class="row">
+                                        <div style="margin: 1vh;">
+                                            <label for="type-name" style="margin: 1vh">Hall type name</label>
+                                            <input type="text" class="form-control" id="type-name"
+                                            v-model="nameOfHallType" style="width: 71.8vw;">
+                                        </div>
+                                        <div style="margin: 1vh;">
+                                            <button class="btn btn-primary" style="margin-top: 5.1vh;">Add new type</button>
+                                        </div>
+                    
+                                    </div>
+                                    <!-- Rows and seats part of form  -->
+                                    <div class="row form-group" v-for="row in rows" :key="row.number">
+                                        <div style="margin: 1vh;">
+                                            <label for="row1" style="margin: 1vh">Row</label>
+                                            <input type="number" class="form-control" id="row1"
+                                            readonly v-model="row.number" style="width: 37vw;">
+                                        </div>
+
+                                        <div style="margin: 1vh;">
+                                            <label for="seats-value1" style="margin: 1vh">Seats value</label>
+                                            <input type="number" class="form-control" id="seats-value1"
+                                            v-model="row.seats_value" style="width: 37vw;">
+                                        </div>
+                                        <div>
+                                            <button class="btn btn-outline-danger" style="margin-top: 6.2vh;">Remove</button>
+                                        </div>
+                                    </div>
+                                    <button class="btn btn-success" v-on:click.prevent="addRow">+ Add row</button>
+                                </form>
+
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<script src="{% static 'cinema/hall-type.js' %}"></script>
+{% endblock content %}

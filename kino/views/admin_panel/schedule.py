@@ -1,12 +1,15 @@
 from django.urls import reverse_lazy
 from django.shortcuts import render, redirect
 from django.views.generic import DeleteView
+from django.contrib.auth.decorators import permission_required
 
 from kino.models.film import Film
 from kino.models.cinema import CinemaHall
 from kino.forms.schedule import ScheduleForm
 from ...repositories.schedule import *
 
+
+@permission_required('is_staff')
 def admin_schedule_view(request):
     return render(
         request,
@@ -17,6 +20,7 @@ def admin_schedule_view(request):
     )
 
 
+@permission_required('is_staff')
 def admin_schedule_create_view(request):
 
     form = ScheduleForm()
@@ -33,11 +37,16 @@ def admin_schedule_create_view(request):
     )
 
 
+@permission_required('is_staff')
 def admin_schedule_update_view(request, schedule_id):
 
     form = ScheduleForm(instance=get_schedule_by_id(schedule_id))
     if request.method == "POST":
-        form = ScheduleForm(request.POST, request.FILES, instance=get_schedule_by_id(schedule_id))
+        form = ScheduleForm(
+            request.POST,
+            request.FILES,
+            instance=get_schedule_by_id(schedule_id)
+            )
         if form.is_valid():
             form.save()
             return redirect('admin_schedule')

@@ -25,10 +25,16 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '$4h_uzy_##=#pf0i*6+231fasca^*$k&jflt&&s0&yh2j2)bj6xw3=$__='
 
 # SECURITY WARNING: don't run with debug turned on in production!
+# DEBUG = os.environ.get('DEBUG', False)
 DEBUG = True
 
 
-ALLOWED_HOSTS = ["kinocms-admin.herokuapp.com", "127.0.0.1"]
+ALLOWED_HOSTS = [
+    'kinocms-admin.herokuapp.com',
+    '127.0.0.1',
+    'localhost',
+    'testserver',
+    ]
 
 
 # Application definition
@@ -136,6 +142,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
+
+# STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # STATICFILES_DIRS = (
@@ -145,15 +153,17 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
+LOGIN_URL = '/profile/login/'
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
 
+GOOGLE_MAPS_API_KEY = 'AIzaSyBocLXpIhv62c6yyAcpGH-MYhZotTli3mI'
 
 # Mailing setting
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = '587'
-EMAIL_HOST_USER = 'troyt3325@gmail.com'
-EMAIL_HOST_PASSWORD = 'GOVEG2021'
+EMAIL_HOST_USER = 'artemmint0@gmail.com'
+EMAIL_HOST_PASSWORD = '2400btmint'
 EMAIL_USE_TLS = 'True'
 
 # Cloudinary

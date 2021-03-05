@@ -11,15 +11,16 @@
 {% endblock title %}
 
 {% block content %}
-<img class="img-fluid" src="{{ cinema.preview.url }}" alt="{{ cinema.preview }}" width="100%" style="min-height:50vh !important;">
+{% if cinema.preview %}
+<img class="img-fluid" src="{{ cinema.preview.url }}" alt="{{ cinema.preview }}" width="100%" style="max-height:100vh !important;">
+{% endif %}
 <br><br>
 
-<div class="row bg-light" style="min-height: 70vh;">
-    <div class="col-md-1"></div>
-    <div class="col-md-2">
+<div class="row bg-light" style="min-height: 70vh; padding-left:2%" >
+    <div class="col-md-3">
         <div class="text-center">
         <br>
-            <img src="{% static 'kino/images/1000x500.png' %}" class="img-fluid" alt="Context_ads" style="max-width: 100%%; height:500px;">
+            <a href="{{ads.url}}"><img src="{{ads.image.url}}" class="img-fluid" alt="{{ads.image}}" width="100%" style="max-height:50vh;"></a>
         </div>
         <br>
         {% if cinemahalls %}
@@ -60,12 +61,46 @@
                 {% endif %}
             </div>
         </div>
+        <hr>
         <div>
             <h5>Watch today:</h5>
-            <p>Sessions today</p>
+            {% if schedule_list %}
+                <div class="row">
+                    {% regroup schedule_list by date as day_list %}
+                    {% for day in day_list%}                                 
+                        <h6>{{day.grouper}}</h6>
+                        <table id="example2" class="table table-bordered table-hover dataTable" role="grid" aria-describedby="example2_info">
+                            <thead class="thead-dark">
+                                <tr role="row">
+                                    <th class="sorting_asc text-center" tabindex="0" aria-controls="example2" rowspan="1" colspan="1">Start time</th>
+                                    <th class="sorting text-center" tabindex="0" aria-controls="example2" rowspan="1" colspan="1">Film</th>
+                                    <th class="sorting text-center" tabindex="0" aria-controls="example2" rowspan="1" colspan="1">Hall</th>
+                                    <th class="sorting text-center" tabindex="0" aria-controls="example2" rowspan="1" colspan="1">Minimum cost</th>
+                                    <th class="sorting text-center" tabindex="0" aria-controls="example2" rowspan="1" colspan="1">Book a ticket</th>
+                                </tr>
+                            </thead>
+                            <tbody> 
+                                {% for item in day.list %}
+                                    <tr role="row" class="odd">
+                                        <td class="text-center" width="10%">{{item.time}}</td>
+                                        <td class="text-center" width="40%">{{item.film|truncatechars:50}}</td>
+                                        <td class="text-center" width="10%">{{item.cinemahall|truncatechars:40}}</td>
+                                        <td class="text-center" width="10%">{{item.cost}}</td>
+                                        <td class="text-center" width="10%"><a href="#"><i class="fa fa-ticket"></i></a></td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <blockquote class="text-center">
+                    <p class="blockquote text-center">There is no schedule yet.. </p> 
+                </blockquote>
+            {% endif %}
         </div>
         <div>
-            <a class="btn btn-success" href="#">All sessions</a>
+            <a class="btn btn-success" href="{% url 'schedule' %}">All sessions</a>
         </div>
     </div>
 
@@ -79,7 +114,7 @@
                 <img src="{{ cinema.logo.url }}" alt="{{ cinema.logo }}" style="max-width: 100px; height:auto;"></br>
             </div>
             <div class="col-md-6">
-                <a class="btn btn-success" href="#">Schedule</a>
+                <a class="btn btn-success" href="{% url 'schedule' %}">Schedule</a>
                 <h3 class="box-title">Type of cinema(viphall,3d, dolby atmos, D-box)</h3>
             </div>
         </div>

@@ -32,7 +32,18 @@
                     {% for item in day.list %}
                         <tr role="row" class="odd">
                             <td class="text-center" width="10%">{{item.time}}</td>
-                            <td class="text-center" width="40%">{{item.film|truncatechars:65}}</td>
+                            <td class="text-center" width="40%">
+                                {{item.film|truncatechars:65}}
+                                {% if item.two_dimensions %}
+                                    <button class="btn btn-success">2D</button>
+                                {% endif %}
+                                {% if item.three_dimensions %}
+                                    <button class="btn btn-warning">3D</button>
+                                {% endif %}
+                                {% if item.imax %}
+                                    <button class="btn btn-info">IMAX</button>
+                                {% endif %}
+                            </td>
                             <td class="text-center" width="10%">{{item.cinemahall|truncatechars:30}}</td>
                             <td class="text-center" width="10%">{{item.cost}}</td>
                             <td class="text-center" width="10%"><a class="btn btn-sm btn-warning" href="{% url 'admin_update_schedule' item.id%}">Update</a>  <a class="btn btn-sm btn-danger" href="{% url 'admin_delete_schedule' item.id%}">Delete</a></td>

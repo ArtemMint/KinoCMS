@@ -1,10 +1,14 @@
+"""Pages forms"""
+
 from django import forms
 
 from kino.models.pages import HomePage, Contacts, Page
 
 
 class HomepageForm(forms.ModelForm):
+    """Home page form"""
     class Meta:
+        """Meta class"""
         model = HomePage
         fields = "__all__"
         widgets = {
@@ -36,7 +40,9 @@ class HomepageForm(forms.ModelForm):
 
 
 class ContactsForm(forms.ModelForm):
+    """Contacts page form"""
     class Meta:
+        """Meta class"""
         model = Contacts
         fields = "__all__"
         widgets = {
@@ -64,7 +70,9 @@ class ContactsForm(forms.ModelForm):
 
 
 class PageForm(forms.ModelForm):
+    """Page form"""
     class Meta:
+        """Meta class"""
         model = Page
         fields = "__all__"
         widgets = {

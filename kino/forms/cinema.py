@@ -8,17 +8,20 @@ __version__ = '0.1'
 __author__ = 'Artem Yurchak'
 
 from django import forms
+from django.contrib.postgres.forms import HStoreField, SimpleArrayField
 
 from kino.models.cinema import Cinema, CinemaHall
 
 
+
 class CinemaForm(forms.ModelForm):
     """ CinemaForm has connect with model Cinema and fields:
-    name, descriptions, preview, conditions, 
+    name, descriptions, preview, conditions,
     seo_title, seo_keywords, seo_descriptions."""
     preview = forms.ImageField()
 
     class Meta:
+        """Meta class"""
         model = Cinema
         fields = '__all__'
         widgets = {
@@ -55,13 +58,14 @@ class CinemaForm(forms.ModelForm):
 
 class CinemaHallForm(forms.ModelForm):
     """CinemaHallForm has connect with model CinemaHall and fields:
-    cinema, name, scheme, create_date,descriptions, 
+    cinema, name, scheme, create_date,descriptions,
     preview, seo_title, seo_keywords, seo_descriptions.
     """
     scheme = forms.ImageField()
     preview = forms.ImageField()
 
     class Meta:
+        """Meta class"""
         model = CinemaHall
         fields = '__all__'
         exclude = (
