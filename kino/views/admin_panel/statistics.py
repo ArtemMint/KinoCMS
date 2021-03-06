@@ -1,20 +1,25 @@
+from matplotlib import pyplot as plt
+import matplotlib
+matplotlib.use('Agg')
+from utils import get_avg_age
+
+from django.contrib.auth.decorators import permission_required
+from django.contrib.admin.views.decorators import staff_member_required
+from django.contrib.auth.models import User
 from django.shortcuts import render, redirect, \
     get_object_or_404, get_list_or_404
-from django.contrib.auth.models import User
-from django.contrib.admin.views.decorators import staff_member_required
-from django.contrib.auth.decorators import permission_required
 
-from utils import get_avg_age
-from register.models.client import Client
-from kino.models.cinema import Cinema, CinemaHall
-from kino.models.film import Film
-from kino.models.news import News
 from kino.models.shares import Shares
-from ...repositories.users import *
-from ...repositories.film import *
-from ...repositories.cinema import *
-from ...repositories.news import *
+from kino.models.news import News
+from kino.models.film import Film
+from kino.models.cinema import Cinema, CinemaHall
+from register.models.client import Client
 from ...repositories.shares import *
+from ...repositories.news import *
+from ...repositories.cinema import *
+from ...repositories.film import *
+from ...repositories.users import *
+from kino.charts.charts import *
 
 
 @permission_required('is_staff')
@@ -22,6 +27,8 @@ def adminStatisticsView(request):
     """
     Statistics page which contains all main information about DB
     """
+    get_bar_chart()
+    get_pie_chart()
     return render(
         request,
         'admin_panel/statistics.html',
