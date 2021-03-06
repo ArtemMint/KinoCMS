@@ -15,6 +15,10 @@ def get_shares_list():
     return shares
 
 
+def get_shares_count():
+    return get_shares_list().count()
+
+
 def get_shares_gallery(shares):
     """Get list of shares"""
     try:

@@ -10,6 +10,11 @@ from kino.models.cinema import Cinema, CinemaHall
 from kino.models.film import Film
 from kino.models.news import News
 from kino.models.shares import Shares
+from ...repositories.users import *
+from ...repositories.film import *
+from ...repositories.cinema import *
+from ...repositories.news import *
+from ...repositories.shares import *
 
 
 @permission_required('is_staff')
@@ -17,37 +22,19 @@ def adminStatisticsView(request):
     """
     Statistics page which contains all main information about DB
     """
-    all = Client.objects.all()
-    men = Client.objects.filter(gender='Male')
-    women = Client.objects.filter(gender='Female')
-
-    num_users = all.count()
-    num_men = men.count()
-    num_women = women.count()
-
-    # Average age of Users
-    avg_age = get_avg_age(all)
-    men_avg_age = get_avg_age(men)
-    women_avg_age = get_avg_age(women)
-
-    num_films = Film.objects.count()
-    num_cinemas = Cinema.objects.count()
-    num_news = News.objects.count()
-    num_shares = Shares.objects.count()
-
     return render(
         request,
         'admin_panel/statistics.html',
         {
-            'users': num_users,
-            'men': num_men,
-            'women': num_women,
-            'avg_age': avg_age,
-            'men_avg_age': men_avg_age,
-            'women_avg_age': women_avg_age,
-            'films': num_films,
-            'cinemas': num_cinemas,
-            'num_news': num_news,
-            'num_shares': num_shares,
+            'users': get_users_count(),
+            'men': get_men_count(),
+            'women': get_women_count(),
+            'avg_age': get_users_avg_age(),
+            'men_avg_age': get_men_avg_age(),
+            'women_avg_age': get_women_avg_age(),
+            'films': get_films_count(),
+            'cinemas': get_cinema_count(),
+            'num_news': get_news_count(),
+            'num_shares': get_shares_count(),
         }
     )

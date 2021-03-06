@@ -14,6 +14,10 @@ def get_news_list():
     return news
 
 
+def get_news_count():
+    return get_news_list().count()
+
+
 def get_news_by_id(news):
     """get news by id DB
     """
