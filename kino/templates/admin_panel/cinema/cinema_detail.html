@@ -27,11 +27,11 @@
                             <table id="example2" class="table table-bordered table-hover dataTable" role="grid"
                                    aria-describedby="example2_info">
                             <div class="card-body">
-                                <a href="{% url 'admin_cinemahall_type_add' cinema.id%}">
+                                {% comment %} <a href="{% url 'admin_cinemahall_type_add' cinema.id%}">
                                     <button type="button" class="btn btn-lg btn-block btn-outline-success">
                                         Add New Hall Type
                                     </button>
-                                </a> 
+                                </a>  {% endcomment %}
                                 <a href="{% url 'admin_add_cinemahall' cinema.id%}">
                                     <button type="button" class="btn btn-lg btn-block btn-outline-primary">
                                         Add New Hall
