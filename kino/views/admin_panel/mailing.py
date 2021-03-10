@@ -4,7 +4,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import permission_required
 
 from ...forms.mailing import MalingUsersForm, MalingGroupUsersForm
-# from ...repositories.users import get_all_users_email_list
+from ...repositories.users import get_all_users_email_list
 from ...services.mailing import mail_users
 
 
