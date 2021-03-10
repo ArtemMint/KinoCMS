@@ -1,0 +1,53 @@
+.chat-layout-list {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.chat-layout-list span {
+  padding: 8px;
+  color: white;
+  border-radius: 4px;
+}
+.chat-layout-list .server span {
+  background: violet;
+}
+.chat-layout-list .server p {
+  float: left;
+}
+.chat-layout-list .client span {
+  background: blue;
+}
+.chat-layout-list .client p {
+  float: right;
+}
+
+.chat-layout {
+  margin: 10px;
+  border: 3px solid #39b080;
+  width: 20vw;
+  height: 40vh;
+  border-radius: 3px;
+  margin-left: 75%;
+  margin-right: auto;
+  margin-top: 50vh;
+  align-items: normal;
+  justify-content: space-between;
+}
+
+.chat-inputs {
+  display: flex;
+}
+.chat-inputs input {
+  line-height: 4vh;
+  width: 100%;
+  border: 1px solid #999;
+  border-left: none;
+  border-bottom: none;
+  border-right: none;
+  border-bottom-left-radius: 4px;
+  padding-left: 15px;
+}
+.chat-inputs button {
+  width: 135px;
+  color: white;
+  background: green;
+}

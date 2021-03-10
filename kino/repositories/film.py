@@ -10,6 +10,10 @@ def get_all_films():
     return Film.objects.all()
 
 
+def get_films_count():
+    return get_all_films().count()
+
+
 def get_film_by_id(film_id):
     """get one film by id
 

@@ -14,6 +14,10 @@ def get_cinema_list():
     return cinema
 
 
+def get_cinema_count():
+    return get_cinema_list().count()
+
+
 def get_cinema_by_id(cinema):
     """get one cinema by id
     """

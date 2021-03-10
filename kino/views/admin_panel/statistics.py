@@ -1,15 +1,25 @@
+from matplotlib import pyplot as plt
+import matplotlib
+matplotlib.use('Agg')
+from utils import get_avg_age
+
+from django.contrib.auth.decorators import permission_required
+from django.contrib.admin.views.decorators import staff_member_required
+from django.contrib.auth.models import User
 from django.shortcuts import render, redirect, \
     get_object_or_404, get_list_or_404
-from django.contrib.auth.models import User
-from django.contrib.admin.views.decorators import staff_member_required
-from django.contrib.auth.decorators import permission_required
 
-from utils import get_avg_age
-from register.models.client import Client
-from kino.models.cinema import Cinema, CinemaHall
-from kino.models.film import Film
-from kino.models.news import News
 from kino.models.shares import Shares
+from kino.models.news import News
+from kino.models.film import Film
+from kino.models.cinema import Cinema, CinemaHall
+from register.models.client import Client
+from ...repositories.shares import *
+from ...repositories.news import *
+from ...repositories.cinema import *
+from ...repositories.film import *
+from ...repositories.users import *
+from kino.charts.charts import *
 
 
 @permission_required('is_staff')
@@ -17,37 +27,21 @@ def adminStatisticsView(request):
     """
     Statistics page which contains all main information about DB
     """
-    all = Client.objects.all()
-    men = Client.objects.filter(gender='Male')
-    women = Client.objects.filter(gender='Female')
-
-    num_users = all.count()
-    num_men = men.count()
-    num_women = women.count()
-
-    # Average age of Users
-    avg_age = get_avg_age(all)
-    men_avg_age = get_avg_age(men)
-    women_avg_age = get_avg_age(women)
-
-    num_films = Film.objects.count()
-    num_cinemas = Cinema.objects.count()
-    num_news = News.objects.count()
-    num_shares = Shares.objects.count()
-
+    get_bar_chart()
+    get_pie_chart()
     return render(
         request,
         'admin_panel/statistics.html',
         {
-            'users': num_users,
-            'men': num_men,
-            'women': num_women,
-            'avg_age': avg_age,
-            'men_avg_age': men_avg_age,
-            'women_avg_age': women_avg_age,
-            'films': num_films,
-            'cinemas': num_cinemas,
-            'num_news': num_news,
-            'num_shares': num_shares,
+            'users': get_users_count(),
+            'men': get_men_count(),
+            'women': get_women_count(),
+            'avg_age': get_users_avg_age(),
+            'men_avg_age': get_men_avg_age(),
+            'women_avg_age': get_women_avg_age(),
+            'films': get_films_count(),
+            'cinemas': get_cinema_count(),
+            'num_news': get_news_count(),
+            'num_shares': get_shares_count(),
         }
     )

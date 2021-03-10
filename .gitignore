@@ -12,8 +12,9 @@
 
 kino/__pycache__
 
-kino/includs/__pycache__/
+kino/includs/__pycache__
 
+kino/charts/__pycache__
 
 kino/repositories/__pycache__
 
